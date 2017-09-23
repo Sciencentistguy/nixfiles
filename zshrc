@@ -83,6 +83,14 @@ encrypt ()
     fi
 }
 
+ovpn-add-user()
+{
+    name=$1
+    sudo docker run -v ovpn-data-vpn:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full ${name} nopass
+    sudo docker run -v ovpn-data-vpn:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ${name} > ${name}.ovpn
+
+}
+
 #Sourcing
 if [ -d /etc/zsh/zshrc.d ]; then
   for file in /etc/zsh/zshrc.d/*; do
