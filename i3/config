@@ -14,7 +14,7 @@ exec ~/.i3/laptop.sh
 exec ~/.i3/titan.sh
 
 # Mod Key
-set $mod Mod4
+set $mod Mod1
 
 # set desktop background
 exec ~/.fehbg
