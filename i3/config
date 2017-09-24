@@ -9,6 +9,9 @@
 # layout, use the i3-config-wizard
 #
 
+# set keyboard layout
+exec setxkbmap gb
+
 # Mod Key
 set $mod Mod4
 
