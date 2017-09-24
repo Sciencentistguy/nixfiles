@@ -12,12 +12,14 @@
 # Mod Key
 set $mod Mod4
 
-# set monitor layout 
+# set monitor layout and desktop background
 exec ~/.screenlayout/main.sh
+exec ~/.fehbg
 
 # custom keybinds
 bindsym Mod1+F4 kill
 bindsym $mod+F2 exec i3-input
+bindsym $mod+L exec ~/.i3/lock.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -71,12 +73,6 @@ bindsym $mod+d exec dmenu_run
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
