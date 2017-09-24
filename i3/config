@@ -9,14 +9,14 @@
 # layout, use the i3-config-wizard
 #
 
-# set keyboard layout
-exec setxkbmap gb
+#laptop specific stuff
+exec ~/.i3/laptop.sh
+exec ~/.i3/titan.sh
 
 # Mod Key
 set $mod Mod4
 
-# set monitor layout and desktop background
-exec ~/.screenlayout/main.sh
+# set desktop background
 exec ~/.fehbg
 
 # custom keybinds
