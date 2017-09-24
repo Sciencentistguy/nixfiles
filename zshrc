@@ -91,6 +91,16 @@ ovpn-add-user()
 
 }
 
+ovpn-stop ()
+{
+    sudo systemctl stop openvpn-client@jamie-laptop.service
+}
+
+ovpn-start ()
+{
+    sudo systemctl start openvpn-client@jamie-laptop.service
+}
+
 #Sourcing
 if [ -d /etc/zsh/zshrc.d ]; then
   for file in /etc/zsh/zshrc.d/*; do
