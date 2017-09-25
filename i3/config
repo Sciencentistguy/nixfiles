@@ -23,6 +23,7 @@ exec ~/.fehbg
 bindsym Mod1+F4 kill
 bindsym $mod+F2 exec dmenu_run
 bindsym Mod4+L exec ~/.i3/lock.sh
+bindsym Mod4+Return exec gnome-terminal
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -63,9 +64,6 @@ set $right semicolon
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-# start a terminal
-bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
