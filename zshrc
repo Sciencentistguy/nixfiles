@@ -83,24 +83,6 @@ encrypt ()
     fi
 }
 
-ovpn-add-user()
-{
-    name=$1
-    sudo docker run -v ovpn-data-vpn:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full ${name} nopass
-    sudo docker run -v ovpn-data-vpn:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ${name} > ${name}.ovpn
-
-}
-
-ovpn-stop ()
-{
-    sudo systemctl stop openvpn-client@jamie-laptop.service
-}
-
-ovpn-start ()
-{
-    sudo systemctl start openvpn-client@jamie-laptop.service
-}
-
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
