@@ -36,7 +36,7 @@ alias sensors="while true; do sensors;sleep 1; done"
 if [ -f /usr/bin/exa ]
 then 
 	unalias ls
-	alias ls="exa -lhgbHm --git "
+	alias ls="exa -lhgbHm@ --git "
 fi
 
 #ZSH Style and Options
