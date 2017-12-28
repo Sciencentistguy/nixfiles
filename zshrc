@@ -112,9 +112,14 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+if [ -d "/ubin" ] ; then
+    PATH="/ubin:$PATH"
+fi
+
 #Variables
 export VISUAL="nvim"
 export EDITOR="nvim"
+export HISTFILE="~/zfile"
 
 #Alias expansion
 globalias() {
