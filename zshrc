@@ -20,7 +20,6 @@ alias less="less -r"
 alias more="less -r"
 alias reboot="sudo reboot"
 alias poweroff="sudo poweroff"
-alias zshrc-edit="sudo nvim /etc/zsh/zshrc"
 alias btrfs-du="btrfs fi du -s --human-readable"
 alias btrfs-list="sudo btrfs subvolume list / -t"
 alias btrfs-df="btrfs filesystem df /"
@@ -114,6 +113,10 @@ if [ -d /etc/zsh/zshrc.d ]; then
   for file in /etc/zsh/zshrc.d/*; do
     source $file
   done
+fi
+
+if [ -d "$HOME/.bin" ] ; then
+    PATH="$HOME/.bin:$PATH"
 fi
 
 if [ -d "$HOME/bin" ] ; then
