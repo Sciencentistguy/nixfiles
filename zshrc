@@ -30,6 +30,7 @@ alias umount="sudo umount"
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
 alias sensors="while true; do sensors;sleep 1; done"
+alias wayland-fix-root="xhost +si:localuser:root"
 
 if [ -f /usr/bin/exa ]
 then 
