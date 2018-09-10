@@ -35,7 +35,7 @@ alias wayland-fix-root="xhost +si:localuser:root"
 if [ -f /usr/bin/exa ]
 then 
 	unalias ls
-	alias ls="exa -lhgbHm@ --git "
+	alias ls="exa -lhgbHm --git "
 fi
 
 #ZSH Style and Options
