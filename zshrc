@@ -31,7 +31,7 @@ alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
 alias sensors="while true; do sensors;sleep 1; done"
 alias wayland-fix-root="xhost +si:localuser:root"
-
+alias pacaur="pikaur"
 if [ -f /usr/bin/exa ]
 then 
 	unalias ls
