@@ -32,7 +32,7 @@ alias -g dl="~/Downloads"
 alias sensors="while true; do sensors;sleep 1; done"
 alias wayland-fix-root="xhost +si:localuser:root"
 alias pacaur="pikaur"
-if type exa 2&> /dev/null
+if type exa > /dev/null
 then 
 	unalias ls
 	alias ls="exa -lhgbHm --git "
@@ -130,6 +130,8 @@ fi
 export VISUAL="nvim"
 export EDITOR="nvim"
 export HISTFILE="~/zfile"
+
+eval $(ssh-agent) > /dev/null
 
 #Alias expansion
 globalias() {
