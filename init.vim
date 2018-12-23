@@ -389,6 +389,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
+Plug 'zchee/deoplete-clang'
 
 call plug#end()
 
