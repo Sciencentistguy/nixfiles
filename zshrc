@@ -32,7 +32,7 @@ alias -g dl="~/Downloads"
 alias sensors="while true; do sensors;sleep 1; done"
 alias wayland-fix-root="xhost +si:localuser:root"
 alias pacaur="pikaur"
-if [ -f /usr/bin/exa ]
+if type exa 2&> /dev/null
 then 
 	unalias ls
 	alias ls="exa -lhgbHm --git "
@@ -44,8 +44,6 @@ setopt completealiases
 setopt extendedglob
 unsetopt nomatch
 prompt walters
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/doc/pkgfile/command-not-found.zsh
 
 #Functions
 mkcdir ()
@@ -147,3 +145,11 @@ zle -N globalias
 bindkey " " globalias
 bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
+
+
+if [ -f ~/.archlinux ]; then
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	source /usr/share/doc/pkgfile/command-not-found.zsh
+else
+	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
