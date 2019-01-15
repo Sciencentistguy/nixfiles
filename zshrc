@@ -32,6 +32,8 @@ alias -g dl="~/Downloads"
 alias sensors="while true; do sensors;sleep 1; done"
 alias wayland-fix-root="xhost +si:localuser:root"
 alias pacaur="pikaur"
+alias feh-svg="feh --magick-timeout 1"
+
 if type exa > /dev/null
 then 
 	unalias ls
@@ -52,41 +54,14 @@ mkcdir ()
     cd -P -- "$1"
 }
 
-iommu ()
+borderless ()
 {
-    for d in /sys/kernel/iommu_groups/*/devices/*; do 
-        n=${d#*/iommu_groups/*}; n=${n%%/*}
-        printf 'IOMMU Group %s ' "$n"
-        lspci -nns "${d##*/}"
-    done
-}
-
-update-all ()
-{
-    pacaur -Syu
-    sudo pacman -R $(pacman -Qdtq)
-    sudo mandb -c
-}
-
-fix-permissions ()
-{
-    find $1 -type d -print0 | xargs -0 sudo chmod 755 
-    find $1 -type f -print0 | xargs -0 sudo chmod 644
+    xprop -name $1 -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
 }
 
 pid ()
 {
     ps aux | grep $1
-}
-
-encrypt () 
-{
-    if [ $# -ne 2 ]
-    then
-    tar c $1 |pv|pixz| gpg -r jamie.e.quigley@gmail.com --encrypt > $1.tar.xz.gpg
-    else
-    tar c $1 |pv|pixz| gpg -r $2 --encrypt > $1.tar.xz.gpg
-    fi
 }
 
 sudo-command-line() {
