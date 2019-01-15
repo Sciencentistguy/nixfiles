@@ -381,6 +381,8 @@ endfunction
 command DeopleteOff call deoplete#custom#option('auto_complete', v:false)
 command DeopleteOn call deoplete#custom#option('auto_complete', v:true)
 
+command RenderMd ! python ~/.bin/rendermd.py '%:p'
+
 autocmd FileType c noremap <buffer> <M-C-L> :call Uncrustify('c')
 autocmd FileType c vnoremap <buffer> <M-C-L> :call RangeUncrustify('c')
 autocmd FileType cpp noremap <buffer> <M-C-L> :call Uncrustify('cpp')
@@ -428,9 +430,16 @@ Plug 'Townk/vim-autoclose'
 Plug 'artur-shaik/vim-javacomplete2'
 
 Plug 'cofyc/vim-uncrustify'
+
+Plug 'godlygeek/tabular'
+
+Plug 'plasticboy/vim-markdown'
+
+"Plug 'suan/vim-instant-markdown'
+
 call plug#end()
 
-"Deoplete config
+" Deoplete config
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
@@ -440,11 +449,18 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
 
-"Airline Config
+" Airline Config
 
 let g:airline_powerline_fonts = 1
 
-set hidden
+" vim-markdown Config
+let g:vim_markdown_folding_disabled = 1
+set conceallevel=2
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_strikethrough = 1
+filetype plugin on
+
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
