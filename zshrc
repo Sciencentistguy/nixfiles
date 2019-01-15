@@ -32,7 +32,9 @@ alias -g dl="~/Downloads"
 alias sensors="while true; do sensors;sleep 1; done"
 alias wayland-fix-root="xhost +si:localuser:root"
 alias pacaur="pikaur"
-if [ -f /usr/bin/exa ]
+alias feh-svg="feh --magick-timeout 1"
+
+if type exa > /dev/null
 then 
 	unalias ls
 	alias ls="exa -lhgbHm --git "
@@ -44,8 +46,6 @@ setopt completealiases
 setopt extendedglob
 unsetopt nomatch
 prompt walters
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/doc/pkgfile/command-not-found.zsh
 
 #Functions
 mkcdir ()
@@ -54,41 +54,14 @@ mkcdir ()
     cd -P -- "$1"
 }
 
-iommu ()
+borderless ()
 {
-    for d in /sys/kernel/iommu_groups/*/devices/*; do 
-        n=${d#*/iommu_groups/*}; n=${n%%/*}
-        printf 'IOMMU Group %s ' "$n"
-        lspci -nns "${d##*/}"
-    done
-}
-
-update-all ()
-{
-    pacaur -Syu
-    sudo pacman -R $(pacman -Qdtq)
-    sudo mandb -c
-}
-
-fix-permissions ()
-{
-    find $1 -type d -print0 | xargs -0 sudo chmod 755 
-    find $1 -type f -print0 | xargs -0 sudo chmod 644
+    xprop -name $1 -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
 }
 
 pid ()
 {
     ps aux | grep $1
-}
-
-encrypt () 
-{
-    if [ $# -ne 2 ]
-    then
-    tar c $1 |pv|pixz| gpg -r jamie.e.quigley@gmail.com --encrypt > $1.tar.xz.gpg
-    else
-    tar c $1 |pv|pixz| gpg -r $2 --encrypt > $1.tar.xz.gpg
-    fi
 }
 
 sudo-command-line() {
@@ -133,6 +106,8 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export HISTFILE="~/zfile"
 
+eval $(ssh-agent) > /dev/null
+
 #Alias expansion
 globalias() {
    if [[ $LBUFFER =~ ' [A-Za-z0-9]+$' ]]; then
@@ -147,3 +122,11 @@ zle -N globalias
 bindkey " " globalias
 bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
+
+
+if [ -f ~/.archlinux ]; then
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	source /usr/share/doc/pkgfile/command-not-found.zsh
+else
+	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

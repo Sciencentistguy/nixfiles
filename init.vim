@@ -377,6 +377,24 @@ endfunction
 
 "####################################
 
+
+command DeopleteOff call deoplete#custom#option('auto_complete', v:false)
+command DeopleteOn call deoplete#custom#option('auto_complete', v:true)
+
+autocmd FileType c noremap <buffer> <M-C-L> :call Uncrustify('c')
+autocmd FileType c vnoremap <buffer> <M-C-L> :call RangeUncrustify('c')
+autocmd FileType cpp noremap <buffer> <M-C-L> :call Uncrustify('cpp')
+autocmd FileType cpp vnoremap <buffer> <M-C-L> :call RangeUncrustify('cpp')
+autocmd FileType java noremap <buffer> <M-C-L> :call Uncrustify('java')
+autocmd FileType java vnoremap <buffer> <M-C-L> :call RangeUncrustify('java')
+autocmd FileType cs noremap <buffer> <M-C-L> :call Uncrustify('cs')
+autocmd FileType cs vnoremap <buffer> <M-C-L> :call RangeUncrustify('cs')
+
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+
+"####################################
+
 call plug#begin()
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
@@ -389,10 +407,42 @@ Plug 'autozimu/LanguageClient-neovim', {
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
+Plug 'zchee/deoplete-clang'
 
+Plug 'w0rp/ale'
+
+Plug 'vim-airline/vim-airline'
+
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'Shougo/denite.nvim'
+
+Plug 'chrisbra/csv.vim'
+
+Plug 'mhinz/vim-signify'
+
+Plug 'lervag/vimtex'
+
+Plug 'Townk/vim-autoclose'
+
+Plug 'artur-shaik/vim-javacomplete2'
+
+Plug 'cofyc/vim-uncrustify'
 call plug#end()
 
+"Deoplete config
+
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+let g:deoplete#auto_completion_start_length = 2
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = []
+let g:deoplete#file#enable_buffer_path = 1
+
+"Airline Config
+
+let g:airline_powerline_fonts = 1
 
 set hidden
 
