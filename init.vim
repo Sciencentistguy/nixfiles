@@ -381,7 +381,7 @@ endfunction
 command DeopleteOff call deoplete#custom#option('auto_complete', v:false)
 command DeopleteOn call deoplete#custom#option('auto_complete', v:true)
 
-command RenderMd ! python ~/.bin/rendermd.py '%:p'
+command RenderMd ! python ~/.bin/rendermd.py '%:p' 2&>/dev/null &
 
 autocmd FileType c noremap <buffer> <M-C-L> :call Uncrustify('c')
 autocmd FileType c vnoremap <buffer> <M-C-L> :call RangeUncrustify('c')
