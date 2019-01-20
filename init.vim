@@ -437,6 +437,8 @@ Plug 'plasticboy/vim-markdown'
 
 "Plug 'suan/vim-instant-markdown'
 
+Plug 'carlitux/deoplete-ternjs'
+
 call plug#end()
 
 " Deoplete config
