@@ -29,10 +29,11 @@ alias mount="sudo mount"
 alias umount="sudo umount"
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
-alias sensors="while true; do sensors;sleep 1; done"
+alias sensors="while true; do sensors; sleep 1; done"
 alias wayland-fix-root="xhost +si:localuser:root"
 alias pacaur="pikaur"
 alias feh-svg="feh --magick-timeout 1"
+alias neofetch="clear; neofetch"
 
 if type exa > /dev/null
 then 
@@ -48,19 +49,16 @@ unsetopt nomatch
 prompt walters
 
 #Functions
-mkcdir ()
-{
+mkcdir () {
     mkdir -p -- "$1" &&
     cd -P -- "$1"
 }
 
-borderless ()
-{
+borderless () {
     xprop -name $1 -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
 }
 
-pid ()
-{
+pid () {
     ps aux | grep $1
 }
 
@@ -124,9 +122,12 @@ bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
 
 
-if [ -f ~/.archlinux ]; then
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	source /usr/share/doc/pkgfile/command-not-found.zsh
 else
 	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+neofetch
+
