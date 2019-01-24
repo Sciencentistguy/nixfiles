@@ -463,6 +463,19 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_strikethrough = 1
 filetype plugin on
 
+" vimtex config
+let g:vimtex_compiler_progname = 'nvr'
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'zathura'
+
+let g:vimtex_compiler_latexmk = {
+      \ 'options' : [
+      \   '-lualatex',
+      \   '-interaction=nonstopmode',
+      \ ],
+      \ 'build_dir' : '/tmp/latex',
+  \}
+
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],

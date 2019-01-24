@@ -34,6 +34,7 @@ alias wayland-fix-root="xhost +si:localuser:root"
 alias pacaur="pikaur"
 alias feh-svg="feh --magick-timeout 1"
 alias neofetch="clear; neofetch"
+alias aria2c="aria2c --file-allocation=none"
 
 if type exa > /dev/null
 then 
