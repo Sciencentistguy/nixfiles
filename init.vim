@@ -451,6 +451,11 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
 
+call deoplete#custom#var('omni', 'input_patterns', {
+        \ 'tex': g:vimtex#re#deoplete
+        \})
+
+
 " Airline Config
 
 let g:airline_powerline_fonts = 1
