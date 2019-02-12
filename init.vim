@@ -435,7 +435,7 @@ Plug 'godlygeek/tabular'
 
 Plug 'plasticboy/vim-markdown'
 
-"Plug 'suan/vim-instant-markdown'
+Plug 'anned20/vimsence'
 
 Plug 'carlitux/deoplete-ternjs'
 
@@ -450,6 +450,11 @@ let g:deoplete#auto_completion_start_length = 2
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#file#enable_buffer_path = 1
+
+call deoplete#custom#var('omni', 'input_patterns', {
+          \ 'tex': g:vimtex#re#deoplete
+          \})
+
 
 " Airline Config
 
@@ -475,6 +480,16 @@ let g:vimtex_compiler_latexmk = {
       \ ],
       \ 'build_dir' : '/tmp/latex',
   \}
+let g:Tex_IgnoredWarnings = 
+    \'Underfull'."\n".
+    \'Overfull'."\n".
+    \'specifier changed to'."\n".
+    \'You have requested'."\n".
+    \'Missing number, treated as zero.'."\n".
+    \'There were undefined references'."\n".
+    \'Citation %.%# undefined'."\n".
+    \'Double space found.'."\n"
+let g:Tex_IgnoreLevel = 8
 
 
 let g:LanguageClient_serverCommands = {
@@ -493,3 +508,5 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 cmap w!! w !sudo tee > /dev/null %
+set pastetoggle=<F2>
+
