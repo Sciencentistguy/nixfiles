@@ -7,8 +7,6 @@ promptinit
 #Aliases
 alias vi="nvim"
 alias vim="nvim"
-alias install="makepkg -sri"
-alias wake="wol 30:5A:3A:04:03:A5"
 alias ls="ls -lh --color"
 alias rm="rm -rfv"
 alias cp="cp -av --reflink=auto"
@@ -29,9 +27,6 @@ alias mount="sudo mount"
 alias umount="sudo umount"
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
-alias sensors="watch -n 0.5 sensors"
-alias wayland-fix-root="xhost +si:localuser:root"
-alias pacaur="pikaur"
 alias feh-svg="feh --magick-timeout 1"
 alias neofetch="clear; neofetch"
 alias aria2c="aria2c --file-allocation=none"
@@ -55,9 +50,6 @@ mkcdir () {
     cd -P -- "$1"
 }
 
-borderless () {
-    xprop -name $1 -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
-}
 
 pid () {
     ps aux | grep $1
