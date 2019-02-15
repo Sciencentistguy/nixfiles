@@ -130,5 +130,3 @@ else
 	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-neofetch
-
