@@ -3,10 +3,6 @@ set $mod Mod1
 set $win Mod4
 set $alt Mod1
 
-# automatic windows
-
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/chromium; workspace 2; exec /usr/bin/boostnote'
-
 # set desktop background
 exec ~/.config/i3/fehbg.sh ~/Pictures/wallpaper.jpg
 
