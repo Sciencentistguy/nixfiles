@@ -509,4 +509,5 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 cmap w!! w !sudo tee > /dev/null %
 set pastetoggle=<F2>
+set spelllang=en_gb
 
