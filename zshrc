@@ -30,6 +30,7 @@ alias -g dl="~/Downloads"
 alias feh-svg="feh --magick-timeout 1"
 alias neofetch="clear; neofetch"
 alias aria2c="aria2c --file-allocation=none"
+alias nando="nvim"
 
 if type exa > /dev/null
 then 
@@ -118,6 +119,7 @@ bindkey -M isearch " " magic-space # normal space during searches
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	source /usr/share/doc/pkgfile/command-not-found.zsh
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
 	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
