@@ -50,6 +50,10 @@ mkcdir () {
     cd -P -- "$1"
 }
 
+reload-zshrc () {
+    source ~/Git/rc-files/zshrc
+}
+
 
 pid () {
     ps aux | grep $1
