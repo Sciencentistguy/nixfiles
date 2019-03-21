@@ -8,6 +8,7 @@ promptinit
 alias vi="nvim"
 alias vim="nvim"
 alias ls="ls -lh --color"
+alias sl="ls -lh --color"
 alias rm="rm -rfv"
 alias cp="cp -av --reflink=auto"
 alias mv="mv -v"
@@ -31,11 +32,15 @@ alias feh-svg="feh --magick-timeout 1"
 alias neofetch="clear; neofetch"
 alias aria2c="aria2c --file-allocation=none"
 alias nando="nvim"
+alias zshrc-reload="reload-zshrc"
+
 
 if type exa > /dev/null
 then 
 	unalias ls
+    unalias sl
 	alias ls="exa -lhgbHm --git "
+	alias sl="exa -lhgbHm --git "
 fi
 
 #ZSH Style and Options
@@ -127,4 +132,10 @@ if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 else
 	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+# History
+HISTFILE=~/hdd/.zsh_history
+HISTSIZE=100000
+SAVEHIST=10000
+setopt SHARE_HISTORY
 
