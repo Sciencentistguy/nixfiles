@@ -435,9 +435,12 @@ Plug 'godlygeek/tabular'
 
 Plug 'plasticboy/vim-markdown'
 
-Plug 'anned20/vimsence'
+"Plug 'anned20/vimsence'
 
 Plug 'carlitux/deoplete-ternjs'
+
+Plug 'mattn/emmet-vim'
+
 
 call plug#end()
 
