@@ -1,108 +1,30 @@
+[colors]
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+
 [bar/top]
-enable-ipc = true
-bottom = false
 width = 100%
-height = 43
-dpi = 192
+height = 40
 
-background = #222d32
-foreground = #eee
+monitor = ${env:MONITOR:eDP-1}
 
-font-0="Inconsolaya:sze=10"
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-padding-left = 0
-padding-right = 0
-module-margin-left = 3
-module-margin-right = 3
+fixed-center = true
 
-
-separator = |
-
+font-0 = Ubuntu Mono Nerd Font:pixelsize=15:weight=bold;0
 
 modules-left = i3
-modules-right = temperature wireless-network consumation battery date
-
-wm-restack = i3
-
-tray-position = right 
-tray-scale = 1.0
-tray-background = ${self.background}
-tray-maxsize = 64
-
-tray-offset-y = 0
+modules-center = date
+modules-right = wireless-network memory temperature pulseaudio backlight battery
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
-
-overline-size = 10
-overline-color = ${self.background}
-underline-size = 2
-underline-color = ${self.background}
-
-[module/consumation]
-type = custom/script
-
-exec = ~/Git/rc-files/i3/polybar/power.sh
-interval = 2
-
-[module/battery]
-type = internal/battery
-
-format-charging = <label-charging>
-format-discharging = <label-discharging>
-
-label-charging = "Battery Charging: %percentage%%, %time%h"
-label-discharging = "Battery: %percentage%%, %time%h"
-interval=1
-
-
-[module/date]
-type = internal/date
-date = "%d/%m/%Y %I:%M:%S %p"
-
-[module/wireless-network]
-type = internal/network
-interface = wlp2s0
-interval = 1.0
-ping-interval = 10
-
-format-connected = <ramp-signal> <label-connected>
-label-connected = "Wifi: %local_ip%@%essid% - %downspeed% down, %upspeed% up"
-label-disconnected = Wifi not connected
-label-disconnected-foreground = #66
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-
-animation-packetloss-0 = 
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 
-animation-packetloss-1-foreground = ${bar/top.foreground}
-animation-packetloss-framerate = 500
-
-[module/clock]
-type = internal/date
-interval = 2
-date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-
-
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 10
-warn-temperature = 65
-
-format = <label>
-;format-underline = #f50a4d
-format-warn = <label-warn>
-;format-warn-underline = ${self.format-underline}
-
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = #ff0000
 
 
 [module/i3]
@@ -111,71 +33,157 @@ type = internal/i3
 pin-workspaces = true
 strip-wsnumbers = true
 index-sort = true
+enable-scroll = false
 
-; Use fuzzy (partial) matching on labels when assigning 
-; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
-; containing 'code' in the label
-; Default: false
-fuzzy-match = true
+format = <label-state>
+format-padding-right = 2
 
-label-dimmed-underline = ${root.background}
+label-unfocused-foreground = ${colors.primary}
+label-unfocused-padding = 1
 
-; Available tags:
-;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
-;   <label-mode> (default)
-format = <label-state> <label-mode>
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 1
 
-; Available tokens:
-;   %mode%
-; Default: %mode%
-label-mode = %mode%
-label-mode-padding = 0
-label-mode-background = #e60053
+label-urgent-foreground = #e4b226
+label-urgent-padding = 1
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-focused =  %index%
-label-focused-foreground = #ffffff
-label-focused-background = #3f3f3f
-label-focused-underline = #42e5f4
-label-focused-padding = 4
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-unfocused = %index%
-label-unfocused-padding = 4
+[module/cpu]
+type = internal/cpu
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-visible = %index%
-label-visible-underline = #555555
-label-visible-padding = 4
+interval = 1
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-urgent = %index%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-padding = 4
+format = <label>
+format-padding = 2
 
-; Separator in between workspaces
-label-separator = |
-label-separator-padding = 0
-label-separator-foreground = #42e5f4
+label =  %percentage%%
+
+
+[module/memory]
+type = internal/memory
+
+interval = 1
+
+format = <label>
+format-padding = 2
+
+label =  %gb_used%
+
+
+[module/temperature]
+type = internal/temperature
+
+interval = 1
+
+thermal-zone = 6
+
+warn-temperature = 80
+
+format = <ramp> <label>
+format-padding = 2
+
+format-warn = <ramp> <label-warn>
+format-warn-padding = 2
+
+label = %temperature%
+
+label-warn = %temperature%
+label-warn-foreground = #e4b226
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+
+[module/date]
+type = internal/date
+
+interval = 1
+
+date = %a %b %d,
+time = %H:%M:%S
+
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+format = <label>
+format-padding = 2
+
+label =  %date% %time%
+
+
+[module/battery]
+type = internal/battery
+
+full-at = 100
+
+battery = BAT0
+adapter = AC
+
+poll-interval = 5
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = 2
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 2
+
+format-full = <ramp-capacity> <label-full>
+format-full-padding = 2
+
+label-charging = %percentage%%
+
+label-discharging = %percentage%%
+
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 500
+
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+
+format = <label>
+format-padding = 2
+
+label =  %percentage%%
+
+[module/wireless-network]
+type = internal/network
+
+interface = wlp6s0
+
+format-connected = <label-connected>
+format-connected-padding = 2
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 2
+
+label-connected =  %essid%
+
+label-disconnected =  None
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume = 墳 %percentage%%
+format-volume-padding = 1
+
+label-muted = 婢 Muted
+format-muted-padding = 1
