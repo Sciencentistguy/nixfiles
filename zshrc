@@ -34,6 +34,8 @@ alias aria2c="aria2c --file-allocation=none"
 alias nando="nvim"
 alias zshrc-reload="reload-zshrc"
 
+eval $(thefuck --alias)
+
 
 if type exa > /dev/null
 then 
@@ -60,11 +62,28 @@ reload-zshrc () {
     source ~/Git/rc-files/zshrc
 }
 
-
-pid () {
-    ps aux | grep $1
+ex () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1   ;;
+            *.tar.gz)    tar xzf $1   ;;
+            *.bz2)       bunzip2 $1   ;;
+            *.rar)       unrar x $1   ;;
+            *.gz)        gunzip $1    ;;
+            *.tar)       tar xf $1    ;;
+            *.tbz2)      tar xjf $1   ;;
+            *.tgz)       tar xzf $1   ;;
+            *.zip)       unzip $1     ;;
+            *.Z)         uncompress $1;;
+            *.7z)        7z x $1      ;;
+            *)           echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
+# esc-esc sudo
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
@@ -82,6 +101,9 @@ sudo-command-line() {
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
+
+
+
 
 #Sourcing
 if [ -d /etc/zsh/zshrc.d ]; then
@@ -124,17 +146,60 @@ bindkey " " globalias
 bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
 
+#Sourcing Plugins
+
+if [ -f ~/Git/rc-files/zsh-plugins/vi-mode.plugin.zsh ]; then
+    source ~/Git/rc-files/zsh-plugins/vi-mode.plugin.zsh
+else
+    echo "vi-mode plugin not loaded"
+fi
+
+if grep -Fxq "arch" /etc/os-release; then
+    if [ -f ~/Git/rc-files/zsh-plugins/git.plugin.zsh ]; then
+        source ~/Git/rc-files/zsh-plugins/git.plugin.zsh
+    else
+        echo "archlinux plugin not loaded"
+    fi
+fi
+
+if [ -f ~/Git/rc-files/zsh-plugins/git.plugin.zsh ]; then
+    source ~/Git/rc-files/zsh-plugins/git.plugin.zsh
+else
+    echo "git plugin not loaded"
+fi
+
+if [ -f ~/Git/rc-files/zsh-plugins/you-should-use.plugin.zsh ]; then
+    source ~/Git/rc-files/zsh-plugins/you-should-use.plugin.zsh
+else
+    echo "you-should-use plugin not loaded"
+fi
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	source /usr/share/doc/pkgfile/command-not-found.zsh
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -f ~/Git/rc-files/zsh-plugins/zsh-syntax-highlighting.zsh ]; then
+    source ~/Git/rc-files/zsh-plugins/zsh-syntax-highlighting.zsh
 else
-	source /home/userfs/j/jehq500/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    echo "zsh-syntax-highlighting plugin not loaded"
+fi
+
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then 
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -f ~/Git/rc-files/zsh-plugins/zsh-autosuggestions.zsh ]; then 
+    source ~/Git/rc-files/zsh-plugins/zsh-autosuggestions.zsh
+else
+    echo "zsh-autosuggestions plugin not loaded"
+fi
+
+if grep -Fxq "arch" /etc/os-release; then 
+    if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
+        source https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
+    else
+        echo "pkgfile plugin not loaded"
+    fi
 fi
 
 # History
-HISTFILE=~/hdd/.zsh_history
+HISTFILE=~/.zsh_history
 HISTSIZE=10000000
 SAVEHIST=10000
 setopt SHARE_HISTORY
