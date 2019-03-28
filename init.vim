@@ -378,9 +378,6 @@ endfunction
 "####################################
 
 
-command DeopleteOff call deoplete#custom#option('auto_complete', v:false)
-command DeopleteOn call deoplete#custom#option('auto_complete', v:true)
-
 command RenderMd ! python ~/.bin/rendermd.py '%:p' 2&>/dev/null &
 
 autocmd FileType c noremap <buffer> <M-C-L> :call Uncrustify('c')
@@ -398,18 +395,12 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "####################################
 
 call plug#begin()
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
 
-" (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
-
-Plug 'zchee/deoplete-clang'
 
 Plug 'w0rp/ale'
 
@@ -435,10 +426,6 @@ Plug 'godlygeek/tabular'
 
 Plug 'plasticboy/vim-markdown'
 
-"Plug 'anned20/vimsence'
-
-Plug 'carlitux/deoplete-ternjs'
-
 Plug 'mattn/emmet-vim'
 
 Plug 'sheerun/vim-polyglot'
@@ -447,21 +434,42 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-unimpaired'
 
+Plug 'ncm2/ncm2'
+
+Plug 'roxma/nvim-yarp'
+
+Plug 'ncm2/ncm2-tmux' "Tmux
+
+Plug 'ncm2/ncm2-bufword' "Current Buffer
+
+Plug 'ncm2/ncm2-jedi' "Python
+
+Plug 'ncm2/ncm2-path' "Paths
+
+Plug 'wellle/tmux-complete.vim' "From other tmux panes
+
+Plug 'ncm2/ncm2-pyclang' "C/C++
+
+Plug 'lervag/vimtex' "Latex
+
+Plug 'ncm2/ncm2-vim' "Vimscript
+
+Plug 'Shougo/neco-vim'
+
+Plug 'ObserverOfTime/ncm2-jc2' "Java
+
+Plug 'artur-shaik/vim-javacomplete2'
+
+Plug 'ncm2/ncm2-markdown-subscope' "Markdown subscopes
+
+Plug 'ncm2/ncm2-racer' "Rust
+
+Plug 'ncm2/ncm2-ultisnips' "Snippets
+
+Plug 'SirVer/ultisnips'
+
 call plug#end()
 
-" Deoplete config
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
-let g:deoplete#auto_completion_start_length = 2
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = []
-let g:deoplete#file#enable_buffer_path = 1
-
-call deoplete#custom#var('omni', 'input_patterns', {
-          \ 'tex': g:vimtex#re#deoplete
-          \})
 " Linter Config
 
 let g:ale_linters = {
@@ -484,6 +492,29 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
 let g:airline#extensions#ale#enabled = 1
 
+" Autocomplete Config
+set completeopt=noinsert,menuone
+au BufEnter * call ncm2#enable_for_buffer()
+set shortmess+=c
+inoremap <c-c> <ESC>
+inoremap <expr> <CR> (pumvisible() ? "\<C-y>" : "\<CR>")
+inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+inoremap <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<S-Tab>")
+au FileType java setlocal omnifunc=javacomplete#Complete
+augroup NCM2
+    au!
+    " some other settings...
+    " uncomment this block if you use vimtex for LaTex
+    au Filetype tex call ncm2#register_source({
+        \ 'name': 'vimtex',
+        \ 'priority': 8,
+        \ 'scope': ['tex'],
+        \ 'mark': 'tex',
+        \ 'word_pattern': '\w+',
+        \ 'complete_pattern': g:vimtex#re#ncm2,
+        \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+        \ })
+augroup END
 
 
 
@@ -532,9 +563,6 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-cmap w!! w !sudo tee > /dev/null %
 set pastetoggle=<F2>
 set spelllang=en_gb
 
