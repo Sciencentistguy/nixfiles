@@ -441,6 +441,11 @@ Plug 'carlitux/deoplete-ternjs'
 
 Plug 'mattn/emmet-vim'
 
+Plug 'sheerun/vim-polyglot'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
@@ -457,11 +462,30 @@ let g:deoplete#file#enable_buffer_path = 1
 call deoplete#custom#var('omni', 'input_patterns', {
           \ 'tex': g:vimtex#re#deoplete
           \})
+" Linter Config
+
+let g:ale_linters = {
+	\ 'sh': ['language_server'],
+    \ 'c': ['gcc'],
+	\ }
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = "XX"
+let g:ale_sign_warning = "!!"
+let g:ale_lint_on_text_changed = 'never'
+" Disable polyglot for everything it will conflict with ale on (expand me!)
+let g:polyglot_disabled = ['py', 'markdown']
+
 
 
 " Airline Config
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='badwolf'
+let g:airline#extensions#ale#enabled = 1
+
+
+
 
 " vim-markdown Config
 let g:vim_markdown_folding_disabled = 1
@@ -513,4 +537,6 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 cmap w!! w !sudo tee > /dev/null %
 set pastetoggle=<F2>
 set spelllang=en_gb
+
+au FileType tex setlocal spell
 
