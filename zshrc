@@ -184,8 +184,8 @@ fi
 
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then 
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f ~/Git/rc-files/zsh-plugins/zsh-autosuggestions.zsh ]; then 
-    source ~/Git/rc-files/zsh-plugins/zsh-autosuggestions.zsh
+elif [ -f ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then 
+    source ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions plugin not loaded"
 fi
