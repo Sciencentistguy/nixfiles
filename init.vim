@@ -468,6 +468,8 @@ Plug 'ncm2/ncm2-ultisnips' "Snippets
 
 Plug 'SirVer/ultisnips'
 
+Plug 'Chiel92/vim-autoformat'
+
 call plug#end()
 
 " Linter Config
@@ -562,6 +564,8 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+nnoremap <silent> <F3> :Autoformat<CR>
 
 set pastetoggle=<F2>
 set spelllang=en_gb
