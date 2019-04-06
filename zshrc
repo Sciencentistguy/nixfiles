@@ -132,19 +132,19 @@ export HISTFILE="~/zfile"
 eval $(ssh-agent) > /dev/null
 
 #Alias expansion
-globalias() {
-   if [[ $LBUFFER =~ ' [A-Za-z0-9]+$' ]]; then
-     zle _expand_alias
-     zle expand-word
-   fi
-   zle self-insert
-}
-
-zle -N globalias
-
-bindkey " " globalias
-bindkey "^ " magic-space           # control-space to bypass completion
-bindkey -M isearch " " magic-space # normal space during searches
+#globalias() {
+#   if [[ $LBUFFER =~ ' [A-Za-z0-9]+$' ]]; then
+#     zle _expand_alias
+#     zle expand-word
+#   fi
+#   zle self-insert
+#}
+#
+#zle -N globalias
+#
+#bindkey " " globalias
+#bindkey "^ " magic-space           # control-space to bypass completion
+#bindkey -M isearch " " magic-space # normal space during searches
 
 #Sourcing Plugins
 
@@ -160,6 +160,12 @@ if grep -Fxq "arch" /etc/os-release; then
     else
         echo "archlinux plugin not loaded"
     fi
+fi
+
+if [ -f ~/Git/rc-files/zsh-plugins/globalias.plugin.zsh ]; then
+    source ~/Git/rc-files/zsh-plugins/globalias.plugin.zsh
+else
+    echo "globalias plugin not loaded"
 fi
 
 if [ -f ~/Git/rc-files/zsh-plugins/git.plugin.zsh ]; then
