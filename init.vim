@@ -479,6 +479,7 @@ let g:ale_linters = {
             \ 'sh': ['language_server'],
             \ 'c': ['gcc'],
             \ }
+let g:ale_python_pylint_options = "--errors-only"
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = "XX"
 let g:ale_sign_warning = "!!"
