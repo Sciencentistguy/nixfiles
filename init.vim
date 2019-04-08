@@ -470,10 +470,11 @@ Plug 'SirVer/ultisnips'
 
 Plug 'Chiel92/vim-autoformat'
 
+Plug 'majutsushi/tagbar'
+
 call plug#end()
 
 " Linter Config
-
 let g:ale_linters = {
 	\ 'sh': ['language_server'],
     \ 'c': ['gcc'],
@@ -485,10 +486,7 @@ let g:ale_lint_on_text_changed = 'never'
 " Disable polyglot for everything it will conflict with ale on (expand me!)
 let g:polyglot_disabled = ['py', 'markdown']
 
-
-
 " Airline Config
-
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
@@ -551,7 +549,7 @@ let g:Tex_IgnoredWarnings =
     \'Double space found.'."\n"
 let g:Tex_IgnoreLevel = 8
 
-
+" LanguageClient Options
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
@@ -560,15 +558,22 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-nnoremap <silent> <F3> :Autoformat<CR>
+" Autoformat options
+let g:formatdef_my_custom_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp "'
+let g:formatdef_my_custom_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp "'
+let g:formatters_c = ['my_custom_c']
+let g:formatters_cpp = ['my_custom_c']
+let g:formatters_java = ['my_custom_java']
 
+
+" Keybinds
+nnoremap <silent> <F3> :Autoformat<CR>
+nnoremap <F4> :TagbarToggle<cr>
 set pastetoggle=<F2>
 set spelllang=en_gb
 
 au FileType tex setlocal spell
-
