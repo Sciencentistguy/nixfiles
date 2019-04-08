@@ -38,28 +38,28 @@ eval $(thefuck --alias)
 
 
 if type exa > /dev/null
-then 
-	unalias ls
+then
+    unalias ls
     unalias sl
-	alias ls="exa -lhgbHm --git "
-	alias sl="exa -lhgbHm --git "
+    alias ls="exa -lhgbHm --git "
+    alias sl="exa -lhgbHm --git "
 fi
 
 #ZSH Style and Options
 zstyle ':completion:*' menu select
-setopt completealiases
-setopt extendedglob
-unsetopt nomatch
-prompt walters
+    setopt completealiases
+    setopt extendedglob
+    unsetopt nomatch
+    prompt walters
 
 #Functions
 mkcdir () {
     mkdir -p -- "$1" &&
-    cd -P -- "$1"
-}
+        cd -P -- "$1"
+    }
 
 reload-zshrc () {
-    source ~/Git/rc-files/zshrc
+source ~/Git/rc-files/zshrc
 }
 
 ex () {
@@ -85,18 +85,18 @@ ex () {
 
 # esc-esc sudo
 sudo-command-line() {
-    [[ -z $BUFFER ]] && zle up-history
-    if [[ $BUFFER == sudo\ * ]]; then
-        LBUFFER="${LBUFFER#sudo }"
-    elif [[ $BUFFER == $EDITOR\ * ]]; then
-        LBUFFER="${LBUFFER#$EDITOR }"
-        LBUFFER="sudoedit $LBUFFER"
-    elif [[ $BUFFER == sudoedit\ * ]]; then
-        LBUFFER="${LBUFFER#sudoedit }"
-        LBUFFER="$EDITOR $LBUFFER"
-    else
-        LBUFFER="sudo $LBUFFER"
-    fi
+[[ -z $BUFFER ]] && zle up-history
+if [[ $BUFFER == sudo\ * ]]; then
+    LBUFFER="${LBUFFER#sudo }"
+elif [[ $BUFFER == $EDITOR\ * ]]; then
+    LBUFFER="${LBUFFER#$EDITOR }"
+    LBUFFER="sudoedit $LBUFFER"
+elif [[ $BUFFER == sudoedit\ * ]]; then
+    LBUFFER="${LBUFFER#sudoedit }"
+    LBUFFER="$EDITOR $LBUFFER"
+else
+    LBUFFER="sudo $LBUFFER"
+fi
 }
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
@@ -107,9 +107,9 @@ bindkey -M vicmd '\e\e' sudo-command-line
 
 #Sourcing
 if [ -d /etc/zsh/zshrc.d ]; then
-  for file in /etc/zsh/zshrc.d/*; do
-    source $file
-  done
+    for file in /etc/zsh/zshrc.d/*; do
+        source $file
+    done
 fi
 
 if [ -d "$HOME/.bin" ] ; then
@@ -134,17 +134,17 @@ eval $(ssh-agent) > /dev/null
 #Alias expansion
 #globalias() {
 #   if [[ $LBUFFER =~ ' [A-Za-z0-9]+$' ]]; then
-#     zle _expand_alias
-#     zle expand-word
-#   fi
-#   zle self-insert
-#}
-#
-#zle -N globalias
-#
-#bindkey " " globalias
-#bindkey "^ " magic-space           # control-space to bypass completion
-#bindkey -M isearch " " magic-space # normal space during searches
+    #     zle _expand_alias
+    #     zle expand-word
+    #   fi
+    #   zle self-insert
+    #}
+    #
+    #zle -N globalias
+    #
+    #bindkey " " globalias
+    #bindkey "^ " magic-space           # control-space to bypass completion
+    #bindkey -M isearch " " magic-space # normal space during searches
 
 #Sourcing Plugins
 
@@ -181,22 +181,22 @@ else
 fi
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [ -f ~/Git/rc-files/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/Git/rc-files/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     echo "zsh-syntax-highlighting plugin not loaded"
 fi
 
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then 
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then 
+elif [ -f ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions plugin not loaded"
 fi
 
-if grep -Fxq "arch" /etc/os-release; then 
+if grep -Fxq "arch" /etc/os-release; then
     if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
         source https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
     else
