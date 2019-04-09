@@ -485,7 +485,7 @@ let g:ale_sign_error = "XX"
 let g:ale_sign_warning = "!!"
 let g:ale_lint_on_text_changed = 'never'
 " Disable polyglot for everything it will conflict with ale on (expand me!)
-let g:polyglot_disabled = ['py', 'markdown']
+let g:polyglot_disabled = ['py', 'markdown', 'latex']
 
 " Airline Config
 let g:airline_powerline_fonts = 1
@@ -531,13 +531,19 @@ filetype plugin on
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
-
 let g:vimtex_compiler_latexmk = {
+            \ 'backend' : 'nvim',
+            \ 'background' : 1,
+            \ 'build_dir' : '/tmp/latex',
+            \ 'callback' : 1,
+            \ 'continuous' : 1,
+            \ 'executable' : 'latexmk',
             \ 'options' : [
-            \   '-lualatex',
+            \   '-verbose',
+            \   '-file-line-error',
+            \   '-synctex=1',
             \   '-interaction=nonstopmode',
             \ ],
-            \ 'build_dir' : '/tmp/latex',
             \}
 let g:Tex_IgnoredWarnings =
             \'Underfull'."\n".
