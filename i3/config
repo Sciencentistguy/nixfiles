@@ -11,9 +11,11 @@ exec compton &
 
 # custom keybinds
 bindsym $alt+F4 kill
-bindsym $win+space exec dmenu_run
+bindsym $win+space exec rofi -show run -dpi 240 -theme ~/Git/rc-files/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
+bindsym $alt+Tab exec rofi -show window -dpi 240 -theme ~/Git/rc-files/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
 bindsym $win+L exec ~/.i3/lock.sh
 bindsym $win+Return exec gnome-terminal
+bindsym $win+F11 exec gnome-screenshot -i
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -70,7 +72,7 @@ floating_modifier $mod
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $win+d exec --no-startup-id i3-dmenu-desktop
+bindsym $win+d exec --no-startup-id rofi -show run -dpi 240 -theme ~/Git/rc-files/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
