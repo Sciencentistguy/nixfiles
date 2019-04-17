@@ -472,6 +472,8 @@ Plug 'Chiel92/vim-autoformat'
 
 Plug 'majutsushi/tagbar'
 
+Plug '907th/vim-auto-save'
+
 call plug#end()
 
 " Linter Config
@@ -516,8 +518,6 @@ augroup NCM2
                 \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
                 \ })
 augroup END
-
-
 
 " vim-markdown Config
 let g:vim_markdown_folding_disabled = 1
@@ -576,6 +576,13 @@ let g:formatters_c = ['my_custom_c']
 let g:formatters_cpp = ['my_custom_c']
 let g:formatters_java = ['my_custom_java']
 
+" Autosave options
+let g:auto_save = 0
+augroup ft_latex
+  au!
+  au FileType tex let b:auto_save = 1
+augroup END
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 " Keybinds
 nnoremap <silent> <F3> :Autoformat<CR>
