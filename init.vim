@@ -474,6 +474,11 @@ Plug 'majutsushi/tagbar'
 
 Plug '907th/vim-auto-save'
 
+Plug 'francoiscabrol/ranger.vim'
+
+Plug 'rbgrouleff/bclose.vim'
+
+
 call plug#end()
 
 " Linter Config
@@ -583,6 +588,11 @@ augroup ft_latex
     au FileType tex let b:auto_save = 1
 augroup END
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
+" ranger.vim options
+"let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
+
 
 " Keybinds
 nnoremap <silent> <F3> :Autoformat<CR>
