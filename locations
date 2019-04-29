@@ -1,0 +1,3 @@
+zshrc : ~/.zshrc
+init.vim : ~/.config/nvim/init.vim
+pycodestyle : ~/.config/pycodestyle

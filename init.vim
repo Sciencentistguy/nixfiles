@@ -380,15 +380,6 @@ endfunction
 
 command RenderMd ! python ~/.bin/rendermd.py '%:p' 2&>/dev/null &
 
-autocmd FileType c noremap <buffer> <M-C-L> :call Uncrustify('c')
-autocmd FileType c vnoremap <buffer> <M-C-L> :call RangeUncrustify('c')
-autocmd FileType cpp noremap <buffer> <M-C-L> :call Uncrustify('cpp')
-autocmd FileType cpp vnoremap <buffer> <M-C-L> :call RangeUncrustify('cpp')
-autocmd FileType java noremap <buffer> <M-C-L> :call Uncrustify('java')
-autocmd FileType java vnoremap <buffer> <M-C-L> :call RangeUncrustify('java')
-autocmd FileType cs noremap <buffer> <M-C-L> :call Uncrustify('cs')
-autocmd FileType cs vnoremap <buffer> <M-C-L> :call RangeUncrustify('cs')
-
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 
@@ -419,8 +410,6 @@ Plug 'lervag/vimtex'
 Plug 'Townk/vim-autoclose'
 
 Plug 'artur-shaik/vim-javacomplete2'
-
-Plug 'cofyc/vim-uncrustify'
 
 Plug 'godlygeek/tabular'
 
@@ -485,6 +474,7 @@ call plug#end()
 let g:ale_linters = {
             \ 'sh': ['language_server'],
             \ 'c': ['gcc'],
+            \ 'py': ['pylint']
             \ }
 let g:ale_python_pylint_options = "--errors-only"
 let g:ale_sign_column_always = 1
@@ -568,6 +558,7 @@ let g:LanguageClient_serverCommands = {
             \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
             \ 'python': ['/usr/local/bin/pyls'],
             \ }
+"let g:LanguageClient_useVirtualText = 0
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
