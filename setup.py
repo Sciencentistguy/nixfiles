@@ -4,7 +4,8 @@ import os, subprocess
 zshrc = os.path.expanduser("~/.zshrc")
 initdotvim = os.path.expanduser("~/.config/nvim/init.vim")
 pycodestyle = os.path.expanduser("~/.config/pycodestyle")
-i3=os.path.expanduser("~/.config/i3")
+i3 = os.path.expanduser("~/.config/i3")
+pacman = "/etc/pacman.conf"
 
 subprocess.run(["rm", "-rf", zshrc])
 subprocess.run(["ln", "-s", os.getcwd() + "/zshrc", zshrc])
@@ -25,3 +26,8 @@ print("Installed pycodestyle")
 subprocess.run(["rm", "-rf", i3])
 subprocess.run(["ln", "-s", os.getcwd() + "/i3", i3])
 print("Installed i3 configs")
+
+if ("n" not in input("Install pacman.conf? (Y/n) ").lower()):
+    subprocess.run(["rm", "-rf", pacman])
+    subprocess.run(["ln", "-s", os.getcwd() + "/etc/pacman.conf", pacman])
+    print("Installed pacman config")
