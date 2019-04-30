@@ -33,5 +33,5 @@ if ("n" not in input("Install i3 configs? (Y/n) ").lower()):
 
 if ("n" not in input("Install pacman.conf? (Y/n) ").lower()):
     subprocess.run(["sudo", "rm", "-rf", pacman])
-    subprocess.run(["sudo", "ln", "-s", os.getcwd() + "/etc/pacman.conf", pacman])
+    subprocess.run(["sudo", "ln", "-s", os.getcwd() + "/pacman.conf", pacman])
     print("Installed pacman config")
