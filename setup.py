@@ -14,7 +14,7 @@ if ("n" not in input("Install .zshrc? (Y/n) ").lower()):
 
 if ("n" not in input("Install init.vim? (Y/n) ").lower()):
     try:
-        os.makedirs("~/.config/nvim")
+        os.makedirs(os.path.expanduser("~/.config/nvim"))
     except OSError:
         pass
     subprocess.run(["rm", "-rf", initdotvim])
