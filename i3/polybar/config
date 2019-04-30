@@ -24,7 +24,7 @@ modules-right = temperature wireless-network consumation battery date
 
 wm-restack = i3
 
-tray-position = right 
+tray-position = right
 tray-scale = 1.0
 tray-background = ${self.background}
 tray-maxsize = 64
@@ -112,9 +112,9 @@ pin-workspaces = true
 strip-wsnumbers = true
 index-sort = true
 
-; Use fuzzy (partial) matching on labels when assigning 
+; Use fuzzy (partial) matching on labels when assigning
 ; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
+; Example: code;♚ will apply the icon to all workspaces
 ; containing 'code' in the label
 ; Default: false
 fuzzy-match = true
