@@ -2,15 +2,19 @@
 import os, subprocess
 
 zshrc = os.path.expanduser("~/.zshrc")
+zsh_dir = os.path.expanduser("~/.zsh")
 initdotvim = os.path.expanduser("~/.config/nvim/init.vim")
 pycodestyle = os.path.expanduser("~/.config/pycodestyle")
 i3 = os.path.expanduser("~/.config/i3")
 pacman = "/etc/pacman.conf"
 
-if ("n" not in input("Install .zshrc? (Y/n) ").lower()):
+if ("n" not in input("Install zsh configs? (Y/n) ").lower()):
     subprocess.run(["rm", "-rf", zshrc])
     subprocess.run(["ln", "-s", os.getcwd() + "/zshrc", zshrc])
     print("Installed zshrc")
+    subprocess.run(["rm", "-rf", zsh_dir])
+    subprocess.run(["ln", "-s", os.getcwd() + "./zsh-plugins", zsh_dir])
+    print("Installed .zsh folder")
 
 if ("n" not in input("Install init.vim? (Y/n) ").lower()):
     try:

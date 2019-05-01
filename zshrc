@@ -67,6 +67,7 @@ ex () {
         case $1 in
             *.tar.bz2)   tar xjf $1   ;;
             *.tar.gz)    tar xzf $1   ;;
+            *.tar.xz)    tar xf $1    ;;
             *.bz2)       bunzip2 $1   ;;
             *.rar)       unrar x $1   ;;
             *.gz)        gunzip $1    ;;
@@ -148,57 +149,57 @@ eval $(ssh-agent) > /dev/null
 
 #Sourcing Plugins
 
-if [ -f ~/Git/rc-files/zsh-plugins/vi-mode.plugin.zsh ]; then
-    source ~/Git/rc-files/zsh-plugins/vi-mode.plugin.zsh
+if [ -f ~/.zsh/vi-mode.plugin.zsh ]; then
+    source ~/.zsh/vi-mode.plugin.zsh
 else
     echo "vi-mode plugin not loaded"
 fi
 
 if grep -Fxq "arch" /etc/os-release; then
-    if [ -f ~/Git/rc-files/zsh-plugins/git.plugin.zsh ]; then
-        source ~/Git/rc-files/zsh-plugins/git.plugin.zsh
+    if [ -f ~/.zsh/git.plugin.zsh ]; then
+        source ~/.zsh/git.plugin.zsh
     else
         echo "archlinux plugin not loaded"
     fi
 fi
 
-if [ -f ~/Git/rc-files/zsh-plugins/globalias.plugin.zsh ]; then
-    source ~/Git/rc-files/zsh-plugins/globalias.plugin.zsh
+if [ -f ~/.zsh/globalias.plugin.zsh ]; then
+    source ~/.zsh/globalias.plugin.zsh
 else
     echo "globalias plugin not loaded"
 fi
 
-if [ -f ~/Git/rc-files/zsh-plugins/git.plugin.zsh ]; then
-    source ~/Git/rc-files/zsh-plugins/git.plugin.zsh
+if [ -f ~/.zsh/git.plugin.zsh ]; then
+    source ~/.zsh/git.plugin.zsh
 else
     echo "git plugin not loaded"
 fi
 
-if [ -f ~/Git/rc-files/zsh-plugins/you-should-use.plugin.zsh ]; then
-    source ~/Git/rc-files/zsh-plugins/you-should-use.plugin.zsh
+if [ -f ~/.zsh/you-should-use.plugin.zsh ]; then
+    source ~/.zsh/you-should-use.plugin.zsh
 else
     echo "you-should-use plugin not loaded"
 fi
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f ~/Git/rc-files/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source ~/Git/rc-files/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     echo "zsh-syntax-highlighting plugin not loaded"
 fi
 
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source ~/Git/rc-files/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions plugin not loaded"
 fi
 
 if grep -Fxq "arch" /etc/os-release; then
     if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
-        source https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
+        source /usr/share/doc/pkgfile/command-not-found.zsh
     else
         echo "pkgfile plugin not loaded"
     fi
