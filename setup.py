@@ -13,7 +13,7 @@ if ("n" not in input("Install zsh configs? (Y/n) ").lower()):
     subprocess.run(["ln", "-s", os.getcwd() + "/zshrc", zshrc])
     print("Installed zshrc")
     subprocess.run(["rm", "-rf", zsh_dir])
-    subprocess.run(["ln", "-s", os.getcwd() + "./zsh-plugins", zsh_dir])
+    subprocess.run(["ln", "-s", os.getcwd() + "/zsh-plugins", zsh_dir])
     print("Installed .zsh folder")
 
 if ("n" not in input("Install init.vim? (Y/n) ").lower()):
