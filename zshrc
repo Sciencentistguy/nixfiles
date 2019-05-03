@@ -59,7 +59,7 @@ mkcdir () {
     }
 
 reload-zshrc () {
-source ~/Git/rc-files/zshrc
+source ~/.zshrc
 }
 
 ex () {
