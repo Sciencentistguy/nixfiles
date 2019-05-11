@@ -36,13 +36,11 @@ alias zshrc-reload="reload-zshrc"
 
 eval $(thefuck --alias)
 
+alias sl=ls
 
 if type exa > /dev/null
 then
-    unalias ls
-    unalias sl
     alias ls="exa -lhgbHm --git "
-    alias sl="exa -lhgbHm --git "
 fi
 
 #ZSH Style and Options
