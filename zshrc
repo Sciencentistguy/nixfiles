@@ -8,6 +8,7 @@ promptinit
 alias vi="nvim"
 alias vim="nvim"
 alias ls="ls -lh --color"
+alias sl="ls -lh --color"
 alias rm="rm -rfv"
 alias cp="cp -av --reflink=auto"
 alias mv="mv -v"
@@ -38,12 +39,11 @@ eval $(thefuck --alias)
 
 if type exa > /dev/null
 then
+    unalias ls
+    unalias sl
     alias ls="exa -lhgbHm --git "
+    alias sl="exa -lhgbHm --git "
 fi
-
-alias l=ls
-alias s=ls
-alias sl=ls
 
 #ZSH Style and Options
 zstyle ':completion:*' menu select
