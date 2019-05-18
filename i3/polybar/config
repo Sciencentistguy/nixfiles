@@ -42,7 +42,7 @@ underline-color = ${self.background}
 [module/consumation]
 type = custom/script
 
-exec = ~/Git/rc-files/i3/polybar/power.sh
+exec = ~/.config/i3/polybar/power.sh
 interval = 2
 
 [module/battery]
