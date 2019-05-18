@@ -1,2 +1,2 @@
 #!/bin/bash
-feh --bg-scale ~/Pictures/wallpaper.jpg
+feh --bg-scale ~/.wallpaper.jpg
