@@ -6,6 +6,7 @@ zsh_dir = os.path.expanduser("~/.zsh")
 initdotvim = os.path.expanduser("~/.config/nvim/init.vim")
 pycodestyle = os.path.expanduser("~/.config/pycodestyle")
 i3 = os.path.expanduser("~/.config/i3")
+polybar = os.path.expanduser("~/.config/polybar")
 pacman = "/etc/pacman.conf"
 
 if ("n" not in input("Install zsh configs? (Y/n) ").lower()):
@@ -32,7 +33,9 @@ if ("n" not in input("Install pycodestyle? (Y/n) ").lower()):
 
 if ("n" not in input("Install i3 configs? (Y/n) ").lower()):
     subprocess.run(["rm", "-rf", i3])
+    subprocess.run(["rm", "-rf", polybar])
     subprocess.run(["ln", "-s", os.getcwd() + "/i3", i3])
+    subprocess.run(["ln", "-s", os.getcwd() + "/i3/polybar", polybar])
     print("Installed i3 configs")
 
 if ("n" not in input("Install pacman.conf? (Y/n) ").lower()):
