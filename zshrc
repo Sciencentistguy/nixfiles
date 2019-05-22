@@ -33,6 +33,7 @@ alias neofetch="clear; neofetch"
 alias aria2c="aria2c --file-allocation=none"
 alias nando="nvim"
 alias zshrc-reload="reload-zshrc"
+alias xclip="xclip -selection clipboard"
 
 eval $(thefuck --alias)
 
