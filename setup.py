@@ -4,14 +4,23 @@ import os, subprocess, sys
 yes = "-y" in sys.argv
 
 
+def package_requirements():
+    pkglist = ["nodejs", "texlive-bin", "latex-mk"]
+    subprocess.run(["pikaur", "-S"] + pkglist)
+
+
 def coc_plugins():
     pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 
-def link(filepath, relative_name):
-    subprocess.run(["rm", "-rf", filepath])
-    subprocess.run(["ln", "-s", os.getcwd() + "/" + relative_name, filepath])
+def link(filepath, relative_name, sudo=False):
+    if sudo:
+        subprocess.run(["sudo", "rm", "-rf", filepath])
+        subprocess.run(["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
+    else:
+        subprocess.run(["rm", "-rf", filepath])
+        subprocess.run(["ln", "-s", os.getcwd() + relative_name, filepath])
 
 
 zshrc = os.path.expanduser("~/.zshrc")
@@ -24,12 +33,13 @@ pacman = "/etc/pacman.conf"
 coc_settings = os.path.expanduser("~/.config/nvim/coc-settings.json")
 pylintrc = os.path.expanduser("~/.pylintrc")
 
+if yes or ("n" not in input("Install package dependencies? (Y/n)")):
+    package_requirements()
+
 if yes or ("n" not in input("Install zsh configs? (Y/n) ").lower()):
-    subprocess.run(["rm", "-rf", zshrc])
-    subprocess.run(["ln", "-s", os.getcwd() + "/zshrc", zshrc])
+    link(zshrc, "/zshrc")
     print("Installed zshrc")
-    subprocess.run(["rm", "-rf", zsh_dir])
-    subprocess.run(["ln", "-s", os.getcwd() + "/zsh-plugins", zsh_dir])
+    link(zsh_dir, "/zsh-plugins")
     print("Installed .zsh folder")
 
 if yes or ("n" not in input("Install nvim configs? (Y/n) ").lower()):
@@ -37,28 +47,21 @@ if yes or ("n" not in input("Install nvim configs? (Y/n) ").lower()):
         os.makedirs(os.path.expanduser("~/.config/nvim"))
     except OSError:
         pass
-    subprocess.run(["rm", "-rf", initdotvim])
-    subprocess.run(["ln", "-s", os.getcwd() + "/init.vim", initdotvim])
+    link(initdotvim, "/init.vim")
     print("Installed init.vim")
-    subprocess.run(["rm", "-rf", pycodestyle])
-    subprocess.run(["ln", "-s", os.getcwd() + "/pycodestyle", pycodestyle])
-    print("Installed pycodestyle")
-    subprocess.run(["rm", "-rf", coc_settings])
-    subprocess.run(["ln", "-s", os.getcwd() + "/coc-settings.json", coc_settings])
+    link(coc_settings, "/coc-settings.json")
     print("Installed coc-settings")
-    subprocess.run(["rm", "-rf", pylintrc])
-    subprocess.run(["ln", "-s", os.getcwd() + "/pylintrc", pylintrc])
+    link(pylintrc, "/pylintrc")
     print("Installed pylintrc")
     coc_plugins()
+    print("Installed coc.nvim plugins")
 
 if yes or ("n" not in input("Install i3 configs? (Y/n) ").lower()):
-    subprocess.run(["rm", "-rf", i3])
-    subprocess.run(["rm", "-rf", polybar])
-    subprocess.run(["ln", "-s", os.getcwd() + "/i3", i3])
-    subprocess.run(["ln", "-s", os.getcwd() + "/i3/polybar", polybar])
+    link(i3, "/i3")
     print("Installed i3 configs")
+    link(polybar, "/i3/polybar")
+    print("Installed polybar configs")
 
 if yes or ("n" not in input("Install pacman.conf? (Y/n) ").lower()):
-    subprocess.run(["sudo", "rm", "-rf", pacman])
-    subprocess.run(["sudo", "ln", "-s", os.getcwd() + "/pacman.conf", pacman])
+    link(pacman, "/pacman.conf", sudo=True)
     print("Installed pacman config")
