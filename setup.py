@@ -5,7 +5,7 @@ yes = "-y" in sys.argv
 
 
 def package_requirements():
-    pkglist = ["nodejs", "texlive-bin", "latex-mk"]
+    pkglist = ["nodejs", "texlive-bin", "latex-mk", "ccls"]
     subprocess.run(["pikaur", "-S"] + pkglist)
 
 
