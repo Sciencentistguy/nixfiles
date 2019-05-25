@@ -331,7 +331,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 Plug 'junegunn/fzf'
 
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 Plug 'vim-airline/vim-airline'
 
@@ -361,39 +361,39 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-unimpaired'
 
-Plug 'ncm2/ncm2'
+"Plug 'ncm2/ncm2'
 
 Plug 'roxma/nvim-yarp'
 
-Plug 'ncm2/ncm2-tmux' "Tmux
+"Plug 'ncm2/ncm2-tmux' "Tmux
 
-Plug 'ncm2/ncm2-bufword' "Current Buffer
+"Plug 'ncm2/ncm2-bufword' "Current Buffer
 
-Plug 'ncm2/ncm2-jedi' "Python
+"Plug 'ncm2/ncm2-jedi' "Python
 
-Plug 'ncm2/ncm2-path' "Paths
+"Plug 'ncm2/ncm2-path' "Paths
 
 Plug 'wellle/tmux-complete.vim' "From other tmux panes
 
-Plug 'ncm2/ncm2-pyclang' "C/C++
+"Plug 'ncm2/ncm2-pyclang' "C/C++
 
 Plug 'lervag/vimtex' "Latex
 
-Plug 'ncm2/ncm2-vim' "Vimscript
+"Plug 'ncm2/ncm2-vim' "Vimscript
 
 Plug 'Shougo/neco-vim'
 
-Plug 'ObserverOfTime/ncm2-jc2' "Java
+"Plug 'ObserverOfTime/ncm2-jc2' "Java
 
 Plug 'artur-shaik/vim-javacomplete2'
 
-Plug 'ncm2/ncm2-markdown-subscope' "Markdown subscopes
+"Plug 'ncm2/ncm2-markdown-subscope' "Markdown subscopes
 
-Plug 'ncm2/ncm2-racer' "Rust
+"Plug 'ncm2/ncm2-racer' "Rust
 
-Plug 'ncm2/ncm2-ultisnips' "Snippets
+"Plug 'ncm2/ncm2-ultisnips' "Snippets
 
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 
 Plug 'Chiel92/vim-autoformat'
 
@@ -405,23 +405,25 @@ Plug 'francoiscabrol/ranger.vim'
 
 Plug 'rbgrouleff/bclose.vim'
 
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
 " Plugin Configs
 "
 " Linter Config
-let g:ale_linters = {
-            \ 'sh': ['language_server'],
-            \ 'c': ['gcc'],
-            \ 'py': ['pylint']
-            \ }
-let g:ale_python_pylint_options = "--errors-only"
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = "XX"
-let g:ale_sign_warning = "!!"
-let g:ale_lint_on_text_changed = 'never'
-let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
+"let g:ale_linters = {
+"            \ 'sh': ['language_server'],
+"            \ 'c': ['gcc'],
+"            \ 'py': ['pylint']
+"            \ }
+"let g:ale_python_pylint_options = "--errors-only"
+"let g:ale_sign_column_always = 1
+"let g:ale_sign_error = "XX"
+"let g:ale_sign_warning = "!!"
+"let g:ale_lint_on_text_changed = 'never'
+"let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
+
 
 " Airline Config
 let g:airline_powerline_fonts = 1
@@ -429,29 +431,39 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
 let g:airline#extensions#ale#enabled = 1
 
-" Autocomplete Config
-set completeopt=noinsert,menuone
-au BufEnter * call ncm2#enable_for_buffer()
-set shortmess+=c
-inoremap <c-c> <ESC>
-inoremap <expr> <CR> (pumvisible() ? "\<C-y>" : "\<CR>")
-inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-inoremap <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<S-Tab>")
-au FileType java setlocal omnifunc=javacomplete#Complete
-augroup NCM2
-    au!
-    " some other settings...
-    " uncomment this block if you use vimtex for LaTex
-    au Filetype tex call ncm2#register_source({
-                \ 'name': 'vimtex',
-                \ 'priority': 8,
-                \ 'scope': ['tex'],
-                \ 'mark': 'tex',
-                \ 'word_pattern': '\w+',
-                \ 'complete_pattern': g:vimtex#re#ncm2,
-                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-                \ })
-augroup END
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
+
+" ncm2 Config
+"set completeopt=noinsert,menuone
+"au BufEnter * call ncm2#enable_for_buffer()
+"set shortmess+=c
+"inoremap <c-c> <ESC>
+"inoremap <expr> <CR> (pumvisible() ? "\<C-y>" : "\<CR>")
+"inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+"inoremap <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<S-Tab>")
+"au FileType java setlocal omnifunc=javacomplete#Complete
+"augroup NCM2
+"    au!
+"    " some other settings...
+"    " uncomment this block if you use vimtex for LaTex
+"    au Filetype tex call ncm2#register_source({
+"                \ 'name': 'vimtex',
+"                \ 'priority': 8,
+"                \ 'scope': ['tex'],
+"                \ 'mark': 'tex',
+"                \ 'word_pattern': '\w+',
+"                \ 'complete_pattern': g:vimtex#re#ncm2,
+"                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+"                \ })
+"augroup END
+
+" coc.nvim Config
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
 
 " vim-markdown Config
 let g:vim_markdown_folding_disabled = 1
