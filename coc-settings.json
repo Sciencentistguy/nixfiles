@@ -1,6 +1,7 @@
 {
     "suggest.triggerAfterInsertEnter" : true,
     "suggest.noselect" : false,
+    "suggest.minTriggerInputLength": 2,
     "languageserver": {
         "ccls": {
             "command": "ccls",
