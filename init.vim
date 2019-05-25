@@ -422,7 +422,10 @@ call plug#end()
 "let g:ale_sign_error = "XX"
 "let g:ale_sign_warning = "!!"
 "let g:ale_lint_on_text_changed = 'never'
-"let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
+
+
+" Polyglot Config
+let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
 
 
 " Airline Config
