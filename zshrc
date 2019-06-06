@@ -35,6 +35,7 @@ alias nando="nvim"
 alias zshrc-reload="reload-zshrc"
 alias xclip="xclip -selection clipboard"
 alias df="df -h"
+alias fex="nautilus ."
 
 eval $(thefuck --alias)
 
