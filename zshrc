@@ -124,6 +124,8 @@ if [ -d "/ubin" ] ; then
     PATH="/ubin:$PATH"
 fi
 
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 #Variables
 export VISUAL="nvim"
 export EDITOR="nvim"
@@ -209,4 +211,5 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000000
 SAVEHIST=10000
 setopt SHARE_HISTORY
+
 
