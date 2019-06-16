@@ -68,6 +68,14 @@ lls () {
     ls
 }
 
+borderless () {
+    xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
+}
+
+borderless-undo(){
+    xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
+}
+
 ex () {
     if [ -f $1 ] ; then
         case $1 in
