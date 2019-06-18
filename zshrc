@@ -72,9 +72,20 @@ borderless () {
     xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
 }
 
-borderless-undo(){
+borderless-undo () {
     xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
 }
+
+magnet-info () {
+    wd=`pwd`
+    cd /tmp
+    hash=$(echo "$1" | grep -oP "(?<=btih:).*?(?=&)")
+    echo "Magnet hash: $hash"
+    aria2c --bt-metadata-only=true --bt-save-metadata=true "$1"
+    aria2c "$hash.torrent" -S
+    cd $wd
+}
+
 
 ex () {
     if [ -f $1 ] ; then
