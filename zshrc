@@ -36,6 +36,8 @@ alias zshrc-reload="reload-zshrc"
 alias xclip="xclip -selection clipboard"
 alias df="df -h"
 alias fex="nautilus ."
+alias ffprobe="ffprobe -hide_banner"
+alias ffmpeg="ffmpeg -hide_banner"
 
 eval $(thefuck --alias)
 
@@ -86,6 +88,9 @@ magnet-info () {
     cd $wd
 }
 
+compare_videos() {
+    ffplay $1 & ffplay $2
+}
 
 ex () {
     if [ -f $1 ] ; then
@@ -158,21 +163,6 @@ export EDITOR="nvim"
 export HISTFILE="~/zfile"
 
 eval $(ssh-agent) > /dev/null
-
-#Alias expansion
-#globalias() {
-#   if [[ $LBUFFER =~ ' [A-Za-z0-9]+$' ]]; then
-    #     zle _expand_alias
-    #     zle expand-word
-    #   fi
-    #   zle self-insert
-    #}
-    #
-    #zle -N globalias
-    #
-    #bindkey " " globalias
-    #bindkey "^ " magic-space           # control-space to bypass completion
-    #bindkey -M isearch " " magic-space # normal space during searches
 
 #Sourcing Plugins
 
