@@ -26,8 +26,6 @@ alias sudo="sudo "
 alias rsync="rsync -Pva"
 alias mount="sudo mount"
 alias umount="sudo umount"
-alias -g sd="~/ScratchArea"
-alias -g dl="~/Downloads"
 alias feh-svg="feh --magick-timeout 1"
 alias neofetch="clear; neofetch"
 alias aria2c="aria2c --file-allocation=none"
@@ -39,6 +37,10 @@ alias fex="nautilus ."
 alias ffprobe="ffprobe -hide_banner"
 alias ffmpeg="ffmpeg -hide_banner"
 
+alias -g sd="~/ScratchArea"
+alias -g dl="~/Downloads"
+alias -g "..."="../.."
+
 eval $(thefuck --alias)
 
 alias sl=ls
@@ -46,6 +48,7 @@ alias sl=ls
 if type exa > /dev/null
 then
     alias ls="exa -lhgbHm --git "
+    alias lst="exa -lhgbHmT --git"
 fi
 
 #ZSH Style and Options
