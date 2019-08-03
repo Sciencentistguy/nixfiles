@@ -36,6 +36,7 @@ alias df="df -h"
 alias fex="nautilus ."
 alias ffprobe="ffprobe -hide_banner"
 alias ffmpeg="ffmpeg -hide_banner"
+alias ffplay="ffplay -hide_banner"
 
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
