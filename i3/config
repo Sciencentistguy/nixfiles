@@ -15,7 +15,7 @@ bindsym $win+space exec rofi -show run -dpi 240 -theme ~/.config/i3/rofi-themes/
 bindsym $alt+Tab exec rofi -show window -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
 bindsym $win+L exec --no-startup-id ~/.i3/lock.sh
 bindsym $win+Return exec gnome-terminal
-bindsym $win+F11 exec gnome-screenshot -i
+bindsym $win+Shift+s exec gnome-screenshot -i
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
