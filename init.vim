@@ -407,6 +407,8 @@ Plug 'rbgrouleff/bclose.vim'
 
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'edkolev/tmuxline.vim'
+
 call plug#end()
 
 " Plugin Configs
