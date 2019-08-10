@@ -409,6 +409,9 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'dylanaraps/wal.vim'
+
+
 call plug#end()
 
 " Plugin Configs
@@ -425,6 +428,8 @@ call plug#end()
 "let g:ale_sign_warning = "!!"
 "let g:ale_lint_on_text_changed = 'never'
 
+" Pywal config
+colorscheme wal
 
 " Polyglot Config
 let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
@@ -433,7 +438,7 @@ let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for eve
 " Airline Config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='badwolf'
+let g:airline_theme='wal'
 let g:airline#extensions#ale#enabled = 1
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'

@@ -165,6 +165,9 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+(cat ~/.cache/wal/sequences &)
+
+
 #Variables
 export VISUAL="nvim"
 export EDITOR="nvim"

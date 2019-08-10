@@ -1,3 +1,13 @@
+[colors]
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+
+
+
 [bar/top]
 enable-ipc = true
 bottom = false
@@ -5,8 +15,8 @@ width = 100%
 height = 43
 dpi = 192
 
-background = #222d32
-foreground = #eee
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 font-0="Inconsolaya:sze=10"
 
@@ -15,9 +25,7 @@ padding-right = 0
 module-margin-left = 3
 module-margin-right = 3
 
-
 separator = |
-
 
 modules-left = i3
 modules-right = temperature wireless-network consumation battery date
@@ -35,9 +43,9 @@ scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
 overline-size = 10
-overline-color = ${self.background}
+overline-color = ${colors.background}
 underline-size = 2
-underline-color = ${self.background}
+underline-color = ${colors.background}
 
 [module/consumation]
 type = custom/script
