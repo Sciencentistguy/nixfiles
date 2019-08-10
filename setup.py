@@ -33,7 +33,7 @@ pacman = "/etc/pacman.conf"
 coc_settings = os.path.expanduser("~/.config/nvim/coc-settings.json")
 pylintrc = os.path.expanduser("~/.pylintrc")
 
-if yes or ("n" not in input("Install package dependencies? (Y/n)")):
+if yes or ("n" not in input("Install package dependencies? (Y/n) ")):
     package_requirements()
 
 if yes or ("n" not in input("Install zsh configs? (Y/n) ").lower()):
@@ -55,6 +55,11 @@ if yes or ("n" not in input("Install nvim configs? (Y/n) ").lower()):
     print("Installed pylintrc")
     coc_plugins()
     print("Installed coc.nvim plugins")
+
+if yes or ("n" not in input("Install spicetify configs? (Y/n) ").lower()):
+    link(os.path.expanduser("~/.config/spicetify/Themes"), "/spicetify/Themes")
+    link(os.path.expanduser("~/.config/spicetify/config.ini"), "/spicetify/config.ini")
+    print("Installed spicetify configs")
 
 if yes or ("n" not in input("Install i3 configs? (Y/n) ").lower()):
     link(i3, "/i3")
