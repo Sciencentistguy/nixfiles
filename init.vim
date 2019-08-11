@@ -1,5 +1,4 @@
 " General
-"
 " Sets how many lines of history VIM has to remember
 set history=500
 
@@ -22,17 +21,9 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-
 " VIM user interface
-"
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
-
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en'
-set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
 
 " Turn on the WiLd menu
 set wildmenu
@@ -98,7 +89,6 @@ set foldcolumn=1
 
 
 " Colors and Fonts
-"
 " Enable syntax highlighting
 syntax enable
 
@@ -130,7 +120,6 @@ set ffs=unix,dos,mac
 
 
 " Files, backups and undo
-"
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
@@ -138,7 +127,6 @@ set noswapfile
 
 
 "Text, tab and indent
-"
 " Use spaces instead of tabs
 set expandtab
 
@@ -153,13 +141,12 @@ set tabstop=4
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+set ai
+set si
+set wrap
 
 
 " Visual mode related
-"
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
@@ -230,7 +217,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 
 
 " Editing mappings
-"
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -273,7 +259,6 @@ map <leader>s? z=
 
 
 " Misc
-"
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -322,16 +307,8 @@ endfunction
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Plugins
-" 
 call plug#begin()
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
-
 Plug 'junegunn/fzf'
-
-"Plug 'w0rp/ale'
 
 Plug 'vim-airline/vim-airline'
 
@@ -361,39 +338,15 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-unimpaired'
 
-"Plug 'ncm2/ncm2'
-
 Plug 'roxma/nvim-yarp'
 
-"Plug 'ncm2/ncm2-tmux' "Tmux
+Plug 'wellle/tmux-complete.vim'
 
-"Plug 'ncm2/ncm2-bufword' "Current Buffer
-
-"Plug 'ncm2/ncm2-jedi' "Python
-
-"Plug 'ncm2/ncm2-path' "Paths
-
-Plug 'wellle/tmux-complete.vim' "From other tmux panes
-
-"Plug 'ncm2/ncm2-pyclang' "C/C++
-
-Plug 'lervag/vimtex' "Latex
-
-"Plug 'ncm2/ncm2-vim' "Vimscript
+Plug 'lervag/vimtex'
 
 Plug 'Shougo/neco-vim'
 
-"Plug 'ObserverOfTime/ncm2-jc2' "Java
-
 Plug 'artur-shaik/vim-javacomplete2'
-
-"Plug 'ncm2/ncm2-markdown-subscope' "Markdown subscopes
-
-"Plug 'ncm2/ncm2-racer' "Rust
-
-"Plug 'ncm2/ncm2-ultisnips' "Snippets
-
-"Plug 'SirVer/ultisnips'
 
 Plug 'Chiel92/vim-autoformat'
 
@@ -415,18 +368,6 @@ Plug 'dylanaraps/wal.vim'
 call plug#end()
 
 " Plugin Configs
-"
-" Linter Config
-"let g:ale_linters = {
-"            \ 'sh': ['language_server'],
-"            \ 'c': ['gcc'],
-"            \ 'py': ['pylint']
-"            \ }
-"let g:ale_python_pylint_options = "--errors-only"
-"let g:ale_sign_column_always = 1
-"let g:ale_sign_error = "XX"
-"let g:ale_sign_warning = "!!"
-"let g:ale_lint_on_text_changed = 'never'
 
 " Pywal config
 colorscheme wal
@@ -444,36 +385,10 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
-
-" ncm2 Config
-"set completeopt=noinsert,menuone
-"au BufEnter * call ncm2#enable_for_buffer()
-"set shortmess+=c
-"inoremap <c-c> <ESC>
-"inoremap <expr> <CR> (pumvisible() ? "\<C-y>" : "\<CR>")
-"inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
-"inoremap <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<S-Tab>")
-"au FileType java setlocal omnifunc=javacomplete#Complete
-"augroup NCM2
-"    au!
-"    " some other settings...
-"    " uncomment this block if you use vimtex for LaTex
-"    au Filetype tex call ncm2#register_source({
-"                \ 'name': 'vimtex',
-"                \ 'priority': 8,
-"                \ 'scope': ['tex'],
-"                \ 'mark': 'tex',
-"                \ 'word_pattern': '\w+',
-"                \ 'complete_pattern': g:vimtex#re#ncm2,
-"                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-"                \ })
-"augroup END
-
 " coc.nvim Config
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
 
 " vim-markdown Config
 let g:vim_markdown_folding_disabled = 1
@@ -511,20 +426,6 @@ let g:Tex_IgnoredWarnings =
             \'Citation %.%# undefined'."\n".
             \'Double space found.'."\n"
 let g:Tex_IgnoreLevel = 8
-
-" LanguageClient Options
-let g:LanguageClient_serverCommands = {
-            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-            \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-            \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-            \ 'python': ['/usr/local/bin/pyls'],
-            \ }
-"let g:LanguageClient_useVirtualText = 0
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Autoformat options
 let g:formatdef_my_custom_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W1 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
