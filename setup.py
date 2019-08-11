@@ -1,5 +1,7 @@
 #!/bin/python3
-import os, subprocess, sys
+import os
+import subprocess
+import sys
 
 yes = "-y" in sys.argv
 
