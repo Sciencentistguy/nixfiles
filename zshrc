@@ -165,7 +165,7 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-(cat ~/.cache/wal/sequences &)
+(cat ~/.cache/wal/sequences 2>/dev/null &)
 
 
 #Variables
