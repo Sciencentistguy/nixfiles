@@ -130,6 +130,9 @@ if [[ $BUFFER == sudo\ * ]]; then
 elif [[ $BUFFER == $EDITOR\ * ]]; then
     LBUFFER="${LBUFFER#$EDITOR }"
     LBUFFER="sudoedit $LBUFFER"
+elif [[ $BUFFER == vim\ * ]]; then
+    LBUFFER="${LBUFFER#vim }"
+    LBUFFER="sudoedit $LBUFFER"
 elif [[ $BUFFER == sudoedit\ * ]]; then
     LBUFFER="${LBUFFER#sudoedit }"
     LBUFFER="$EDITOR $LBUFFER"
