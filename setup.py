@@ -34,6 +34,7 @@ polybar = os.path.expanduser("~/.config/polybar")
 pacman = "/etc/pacman.conf"
 coc_settings = os.path.expanduser("~/.config/nvim/coc-settings.json")
 pylintrc = os.path.expanduser("~/.pylintrc")
+compton = os.path.expanduser("~/.config/compton.conf")
 
 if yes or ("n" not in input("Install package dependencies? (Y/n) ")):
     package_requirements()
@@ -68,6 +69,8 @@ if yes or ("n" not in input("Install i3 configs? (Y/n) ").lower()):
     print("Installed i3 configs")
     link(polybar, "/i3/polybar")
     print("Installed polybar configs")
+    link(compton, "/i3/compton.conf")
+    print("Installed compton.conf")
 
 if yes or ("n" not in input("Install pacman.conf? (Y/n) ").lower()):
     link(pacman, "/pacman.conf", sudo=True)

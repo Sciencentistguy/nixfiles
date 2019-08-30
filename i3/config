@@ -3,6 +3,9 @@ set $mod Mod1
 set $win Mod4
 set $alt Mod1
 
+# Recall wal scheme
+exec --no-startup-id wal -R
+
 # set desktop background
 exec --no-startup-id ~/.config/i3/fehbg.sh ~/Pictures/wallpaper.jpg 
 

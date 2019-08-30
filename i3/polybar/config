@@ -101,7 +101,7 @@ date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 [module/temperature]
 type = internal/temperature
 thermal-zone = 10
-warn-temperature = 65
+warn-temperature = 85
 
 format = <label>
 ;format-underline = #f50a4d
