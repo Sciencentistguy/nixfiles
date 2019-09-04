@@ -28,7 +28,7 @@ module-margin-right = 3
 separator = |
 
 modules-left = i3
-modules-right = temperature wireless-network consumation battery date
+modules-right = temperature wireless-network pulseaudio consumation battery date
 
 wm-restack = i3
 
@@ -63,6 +63,11 @@ label-charging = "Battery Charging: %percentage%%, %time%h"
 label-discharging = "Battery: %percentage%%, %time%h"
 interval=1
 
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+label-volume = Volume: %percentage%%
 
 [module/date]
 type = internal/date

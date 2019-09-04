@@ -6,6 +6,12 @@ set $alt Mod1
 # Recall wal scheme
 exec --no-startup-id wal -R
 
+# Start light-locker
+exec --no-startup-id light-locker
+
+# Start blueman-tray
+exec --no-startup-id blueman-tray
+
 # set desktop background
 exec --no-startup-id ~/.config/i3/fehbg.sh ~/Pictures/wallpaper.jpg 
 
@@ -16,7 +22,7 @@ exec --no-startup-id compton &
 bindsym $alt+F4 kill
 bindsym $win+space exec rofi -show run -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
 bindsym $alt+Tab exec rofi -show window -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
-bindsym $win+L exec --no-startup-id ~/.i3/lock.sh
+bindsym $win+L exec --no-startup-id light-locker-command -l
 bindsym $win+Return exec gnome-terminal
 bindsym $win+Shift+s exec gnome-screenshot -i
 
