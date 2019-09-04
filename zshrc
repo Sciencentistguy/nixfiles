@@ -5,16 +5,12 @@ compinit
 promptinit
 
 #Aliases
-alias vi="nvim"
-alias vim="nvim"
 alias ls="ls -lh --color"
-alias sl="ls -lh --color"
 alias rm="rm -rfv"
 alias cp="cp -av --reflink=auto"
 alias mv="mv -v"
 alias du="du -sh"
 alias mkdir="mkdir -p"
-alias dirs="dirs -v"
 alias less="less -r"
 alias more="less -r"
 alias reboot="sudo reboot"
@@ -29,7 +25,6 @@ alias umount="sudo umount"
 alias feh-svg="feh --magick-timeout 1"
 alias neofetch="clear; neofetch"
 alias aria2c="aria2c --file-allocation=none"
-alias nando="nvim"
 alias zshrc-reload="reload-zshrc"
 alias xclip="xclip -selection clipboard"
 alias df="df -h"
@@ -51,6 +46,25 @@ then
     alias ls="exa -lhgbHm --git "
     alias lst="exa -lhgbHmT --git"
 fi
+if type nvim > /dev/null
+then
+    alias vi="nvim"
+    alias vim="nvim"
+    EDITOR=nvim
+    VISUAL=nvim
+elif type vim > /dev/null
+then
+    alias vi="vim"
+    alias nvim="vim"
+    EDITOR=vim
+    VISUAL=vim
+else
+    alias vim="vi"
+    alias nvim="vi"
+    EDITOR=vi
+    VISUAL=vi
+fi
+
 
 #ZSH Style and Options
 zstyle ':completion:*' menu select
@@ -60,29 +74,29 @@ zstyle ':completion:*' menu select
     prompt walters
 
 #Functions
-mkcdir () {
+mkcdir() {
     mkdir -p -- "$1" &&
         cd -P -- "$1"
     }
 
-reload-zshrc () {
+reload-zshrc() {
 source ~/.zshrc
 }
 
-lls () {
+lls() {
     clear
     ls
 }
 
-borderless () {
+borderless() {
     xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
 }
 
-borderless-undo () {
+borderless-undo() {
     xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
 }
 
-magnet-info () {
+magnet-info() {
     wd=`pwd`
     cd /tmp
     hash=$(echo "$1" | grep -oP "(?<=btih:).*?(?=&)")
@@ -92,15 +106,15 @@ magnet-info () {
     cd $wd
 }
 
-ffcompare () {
+ffcompare() {
     ffplay $1 & ffplay $2
 }
 
-vmaf () {
+vmaf() {
     ffmpeg -hwaccel auto -i $1 -hwaccel auto -i $2 -lavfi libvmaf="model_path=/usr/share/model/vmaf_v0.6.1.pkl" -an -f null -
 }
 
-ex () {
+ex() {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)   tar xjf $1   ;;
@@ -172,8 +186,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 
 #Variables
-export VISUAL="nvim"
-export EDITOR="nvim"
 export HISTFILE="~/zfile"
 
 eval $(ssh-agent) > /dev/null
