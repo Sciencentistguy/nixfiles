@@ -97,10 +97,6 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-try
-    colorscheme desert
-catch
-endtry
 
 set background=dark
 
@@ -369,17 +365,21 @@ call plug#end()
 
 " Plugin Configs
 
-" Pywal config
-colorscheme wal
-
 " Polyglot Config
 let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
 
+" colorscheme
+try
+    colorscheme wal
+catch  /^Vim\%((\a\+)\)\=:E185/
+    colorscheme desert
+endtry
 
 " Airline Config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='wal'
+"let g:airline_theme='wal'
+let g:airline_theme='badwolf'
 let g:airline#extensions#ale#enabled = 1
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
@@ -454,6 +454,7 @@ nnoremap <Up> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Down> <NOP>
 nnoremap <Right> <NOP>
+nnoremap q: <NOP>
 set spelllang=en_gb
 
 au FileType tex setlocal spell
