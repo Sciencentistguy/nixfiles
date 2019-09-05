@@ -21,6 +21,9 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+" :Q mapped to :q
+command Q q
+
 " VIM user interface
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
