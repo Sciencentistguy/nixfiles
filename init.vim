@@ -219,17 +219,17 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" Move a line of text using ALT+[up/down] or Command+[up/down] on mac
+nmap <M-down> mz:m+<cr>`z
+nmap <M-up> mz:m-2<cr>`z
+vmap <M-down> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-up> :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
-    nmap <D-j> <M-j>
-    nmap <D-k> <M-k>
-    vmap <D-j> <M-j>
-    vmap <D-k> <M-k>
+    nmap <D-down> <M-down>
+    nmap <D-up> <M-up>
+    vmap <D-down> <M-down>
+    vmap <D-up> <M-up>
 endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
