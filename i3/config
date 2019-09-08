@@ -12,6 +12,9 @@ exec --no-startup-id light-locker
 # Start blueman-tray
 exec --no-startup-id blueman-tray
 
+# Start dunst
+exec --no-startup-id dunst
+
 # set desktop background
 exec --no-startup-id ~/.config/i3/fehbg.sh ~/Pictures/wallpaper.jpg 
 
@@ -44,8 +47,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 for_window [class="^.*"] border pixel 3
 gaps outer 5
 gaps inner 5
-smart_gaps on
-smart_borders on
+#smart_gaps on
+#smart_borders on
 
 # Floating by Default
 # for_window [class="^Spotify$"] floating enable
