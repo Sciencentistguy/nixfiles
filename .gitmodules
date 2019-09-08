@@ -6,4 +6,4 @@
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "i3/rofi-themes"]
 	path = i3/rofi-themes
-	url = git@github.com:davatorium/rofi-themes.git
+	url = http://github.com/davatorium/rofi-themes.git
