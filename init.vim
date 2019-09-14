@@ -363,6 +363,7 @@ Plug 'edkolev/tmuxline.vim'
 
 Plug 'dylanaraps/wal.vim'
 
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -453,11 +454,13 @@ let g:ranger_replace_netrw = 1
 " Keybinds
 nnoremap <silent> <F3> :Autoformat<CR>
 nnoremap <F4> :TagbarToggle<cr>
+nnoremap <F5> :UndotreeToggle<cr>
 nnoremap <Up> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Down> <NOP>
 nnoremap <Right> <NOP>
 nnoremap q: <NOP>
+vnoremap q: <NOP>
 set spelllang=en_gb
 
 au FileType tex setlocal spell
