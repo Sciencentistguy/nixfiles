@@ -1,4 +1,6 @@
+"""""""""""""""""""""""""""""""""""""""
 " General
+"""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=500
 
@@ -91,7 +93,9 @@ endif
 set foldcolumn=1
 
 
+"""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
 
@@ -99,7 +103,6 @@ syntax enable
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
-
 
 set background=dark
 
@@ -111,21 +114,21 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-" Set utf8 as standard encoding and en_US as the standard language
+" Set utf8 as standard encoding
 set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-
-" Files, backups and undo
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Turn backup off, since most stuff is in git etc anyway...
 set nobackup
 set nowb
 set noswapfile
 
 
-"Text, tab and indent
+"""""""""""""""""""""""""""""""""""""""
+" Text, tab and indent
+"""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
 
@@ -145,15 +148,18 @@ set si
 set wrap
 
 
+"""""""""""""""""""""""""""""""""""""""
 " Visual mode related
+"""""""""""""""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 
+"""""""""""""""""""""""""""""""""""""""
 " Moving around, tabs, windows and buffers
-"
+"""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
@@ -206,8 +212,9 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
+"""""""""""""""""""""""""""""""""""""""
 " Status line
-"
+"""""""""""""""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
 
@@ -215,7 +222,9 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
+"""""""""""""""""""""""""""""""""""""""
 " Editing mappings
+"""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -232,6 +241,24 @@ if has("mac") || has("macunix")
     vmap <D-up> <M-up>
 endif
 
+
+"""""""""""""""""""""""""""""""""""""""
+" Spell checking
+"""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+
+"""""""""""""""""""""""""""""""""""""""
+" Helper functions
+"""""""""""""""""""""""""""""""""""""""
+
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
@@ -245,35 +272,6 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-
-" Spell checking
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-" Misc
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
-
-" Quickly open a markdown buffer for scribble
-map <leader>x :e ~/buffer.md<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
@@ -305,7 +303,51 @@ endfunction
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+"""""""""""""""""""""""""""""""""""""""
+" Misc Maps
+"""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <F3> :Autoformat<CR>
+nnoremap <F4> :TagbarToggle<cr>
+nnoremap <F5> :UndotreeToggle<cr>:UndotreeFocus<cr>
+noremap <Up> <NOP>
+noremap <Left> <NOP>
+noremap <Down> <NOP>
+noremap <Right> <NOP>
+noremap q: <NOP>
+noremap q/ <NOP>
+noremap q? <NOP>
+
+" Make s act like d but it doesn't cut the text to a register
+nnoremap s "_d
+nnoremap ss "_dd
+nnoremap S "_D
+
+" Make j and k move by wrapped line, apart from when it'd break things
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""
+" Misc Sets
+"""""""""""""""""""""""""""""""""""""""
+" Spelllang English
+set spelllang=en_gb
+
+" Enable neovim's inccommand feature
+set inccommand=nosplit
+
+" Set spellcheck on for *.tex files
+au FileType tex setlocal spell
+
+"""""""""""""""""""""""""""""""""""""""
 " Plugins
+"""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'junegunn/fzf'
 
@@ -369,10 +411,12 @@ Plug 'tpope/vim-surround'
 
 call plug#end()
 
-" Plugin Configs
 
+"""""""""""""""""""""""""""""""""""""""
+" Plugin Configs
+"""""""""""""""""""""""""""""""""""""""
 " Polyglot Config
-let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict with ale on (expand me!)
+let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict on
 
 " colorscheme
 try
@@ -451,22 +495,3 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 " ranger.vim options
 "let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1
-
-
-" Keybinds
-nnoremap <silent> <F3> :Autoformat<CR>
-nnoremap <F4> :TagbarToggle<cr>
-nnoremap <F5> :UndotreeToggle<cr>:UndotreeFocus<cr>
-nnoremap <Up> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Right> <NOP>
-nnoremap q: <NOP>
-vnoremap q: <NOP>
-nnoremap q/ <NOP>
-vnoremap q/ <NOP>
-nnoremap q? <NOP>
-vnoremap q? <NOP>
-set spelllang=en_gb
-
-au FileType tex setlocal spell
