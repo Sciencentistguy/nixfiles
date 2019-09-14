@@ -365,6 +365,8 @@ Plug 'dylanaraps/wal.vim'
 
 Plug 'mbbill/undotree'
 
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
 " Plugin Configs
