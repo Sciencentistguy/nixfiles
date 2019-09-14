@@ -345,6 +345,14 @@ set inccommand=nosplit
 " Set spellcheck on for *.tex files
 au FileType tex setlocal spell
 
+" Autosave
+let g:auto_save = 0
+augroup ft_latex
+    au!
+    au FileType tex let b:auto_save = 1
+augroup END
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
 """""""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""""
@@ -413,34 +421,33 @@ call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""
-" Plugin Configs
+" Plugin Options
 """""""""""""""""""""""""""""""""""""""
-" Polyglot Config
+" Polyglot
 let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict on
 
-" colorscheme
+" Colorscheme
 try
     colorscheme wal
 catch  /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
 endtry
 
-" Airline Config
+" Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline_theme='wal'
 let g:airline_theme='badwolf'
 let g:airline#extensions#ale#enabled = 1
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
-" coc.nvim Config
+" Coc.nvim
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
-" vim-markdown Config
+" Vim-markdown
 let g:vim_markdown_folding_disabled = 1
 set conceallevel=2
 let g:tex_conceal = ""
@@ -448,7 +455,7 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_strikethrough = 1
 filetype plugin on
 
-" vimtex config
+" Vimtex
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
@@ -477,21 +484,13 @@ let g:Tex_IgnoredWarnings =
             \'Double space found.'."\n"
 let g:Tex_IgnoreLevel = 8
 
-" Autoformat options
+" Autoformat
 let g:formatdef_my_custom_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W1 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
 let g:formatdef_my_custom_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
 let g:formatters_c = ['my_custom_c']
 let g:formatters_cpp = ['my_custom_c']
 let g:formatters_java = ['my_custom_java']
 
-" Autosave options
-let g:auto_save = 0
-augroup ft_latex
-    au!
-    au FileType tex let b:auto_save = 1
-augroup END
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
-" ranger.vim options
+" Ranger.vim
 "let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1
