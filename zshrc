@@ -1,10 +1,10 @@
-#Init
+# Init
 autoload -U compinit promptinit
 autoload -U colors && colors
 compinit
 promptinit
 
-#Aliases
+# Aliases
 alias ls="ls -lh --color"
 alias rm="rm -rfv"
 alias cp="cp -av --reflink=auto"
@@ -50,30 +50,33 @@ if type nvim > /dev/null
 then
     alias vi="nvim"
     alias vim="nvim"
-    EDITOR=nvim
-    VISUAL=nvim
+    export EDITOR=nvim
+    export VISUAL=nvim
 elif type vim > /dev/null
 then
     alias vi="vim"
     alias nvim="vim"
-    EDITOR=vim
-    VISUAL=vim
+    export EDITOR=vim
+    export VISUAL=vim
 else
     alias vim="vi"
     alias nvim="vi"
-    EDITOR=vi
-    VISUAL=vi
+    export EDITOR=vi
+    export VISUAL=vi
+fi
+if type nvimpager > /dev/null
+then
+    export PAGER=nvimpager
 fi
 
-
-#ZSH Style and Options
+# ZSH Style and Options
 zstyle ':completion:*' menu select
     setopt completealiases
     setopt extendedglob
     unsetopt nomatch
     prompt walters
 
-#Functions
+# Functions
 mkcdir() {
     mkdir -p -- "$1" &&
         cd -P -- "$1"
@@ -161,7 +164,7 @@ bindkey -M vicmd '\e\e' sudo-command-line
 
 
 
-#Sourcing
+# PATH 
 if [ -d /etc/zsh/zshrc.d ]; then
     for file in /etc/zsh/zshrc.d/*; do
         source $file
@@ -170,6 +173,10 @@ fi
 
 if [ -d "$HOME/.bin" ] ; then
     PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 if [ -d "$HOME/bin" ] ; then
@@ -182,15 +189,15 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-(cat ~/.cache/wal/sequences 2>/dev/null &)
-
-
-#Variables
+# Environment Variables
 export HISTFILE="~/zfile"
+export ARCHFLAGS="-arch x86_64"
 
 eval $(ssh-agent) > /dev/null
 
-#Sourcing Plugins
+(cat ~/.cache/wal/sequences 2>/dev/null &)
+
+# Sourcing Plugins
 
 if [ -f ~/.zsh/vi-mode.plugin.zsh ]; then
     source ~/.zsh/vi-mode.plugin.zsh
