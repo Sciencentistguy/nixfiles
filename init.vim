@@ -419,6 +419,8 @@ Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-surround'
 
+Plug 'tpope/vim-git'
+
 call plug#end()
 
 
