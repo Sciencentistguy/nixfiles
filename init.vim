@@ -1,4 +1,44 @@
 """""""""""""""""""""""""""""""""""""""
+" Plugins
+"""""""""""""""""""""""""""""""""""""""
+call plug#begin()
+Plug 'junegunn/fzf'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Shougo/denite.nvim'
+Plug 'chrisbra/csv.vim'
+Plug 'mhinz/vim-signify'
+Plug 'lervag/vimtex'
+Plug 'Townk/vim-autoclose'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'mattn/emmet-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'roxma/nvim-yarp'
+Plug 'wellle/tmux-complete.vim'
+Plug 'lervag/vimtex'
+Plug 'Shougo/neco-vim'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'Chiel92/vim-autoformat'
+Plug 'majutsushi/tagbar'
+Plug '907th/vim-auto-save'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'dylanaraps/wal.vim'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-git'
+
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+call plug#end()
+
+
+"""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -10,6 +50,13 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" Colorscheme
+try
+    colorscheme wal
+catch  /^Vim\%((\a\+)\)\=:E185/
+    colorscheme desert
+endtry
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -312,74 +359,6 @@ augroup ft_latex
 augroup END
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-"""""""""""""""""""""""""""""""""""""""
-" Plugins
-"""""""""""""""""""""""""""""""""""""""
-call plug#begin()
-Plug 'junegunn/fzf'
-
-Plug 'vim-airline/vim-airline'
-
-Plug 'vim-airline/vim-airline-themes'
-
-Plug 'Shougo/denite.nvim'
-
-Plug 'chrisbra/csv.vim'
-
-Plug 'mhinz/vim-signify'
-
-Plug 'lervag/vimtex'
-
-Plug 'Townk/vim-autoclose'
-
-Plug 'artur-shaik/vim-javacomplete2'
-
-Plug 'godlygeek/tabular'
-
-Plug 'plasticboy/vim-markdown'
-
-Plug 'mattn/emmet-vim'
-
-Plug 'sheerun/vim-polyglot'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'tpope/vim-unimpaired'
-
-Plug 'roxma/nvim-yarp'
-
-Plug 'wellle/tmux-complete.vim'
-
-Plug 'lervag/vimtex'
-
-Plug 'Shougo/neco-vim'
-
-Plug 'artur-shaik/vim-javacomplete2'
-
-Plug 'Chiel92/vim-autoformat'
-
-Plug 'majutsushi/tagbar'
-
-Plug '907th/vim-auto-save'
-
-Plug 'francoiscabrol/ranger.vim'
-
-Plug 'rbgrouleff/bclose.vim'
-
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-Plug 'edkolev/tmuxline.vim'
-
-Plug 'dylanaraps/wal.vim'
-
-Plug 'mbbill/undotree'
-
-Plug 'tpope/vim-surround'
-
-Plug 'tpope/vim-git'
-
-call plug#end()
-
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin Options
@@ -387,12 +366,6 @@ call plug#end()
 " Polyglot
 let g:polyglot_disabled = ['py', 'markdown', 'latex'] " Disable polyglot for everything it will conflict on
 
-" Colorscheme
-try
-    colorscheme wal
-catch  /^Vim\%((\a\+)\)\=:E185/
-    colorscheme desert
-endtry
 
 " Airline
 let g:airline_powerline_fonts = 1
