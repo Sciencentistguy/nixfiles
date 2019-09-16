@@ -6,9 +6,9 @@ import sys
 yes = "-y" in sys.argv
 
 
-def package_requirements():
-    pkglist = ["nodejs", "texlive-bin", "latex-mk", "ccls", "vim-plug", "neovim", "neovim-symlinks"]
-    subprocess.run(["pikaur", "-S"] + pkglist)
+def pikaur(packages: list):
+    if "--pkg" in sys.argv or "--packages" in sys.argv:
+        subprocess.run(["pikaur", "-S", ] + packages)
 
 
 def coc_plugins():
@@ -16,7 +16,8 @@ def coc_plugins():
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 
-def link(filepath, relative_name, sudo=False):
+def link(relative_name, filepath, sudo=False):
+    filepath = os.path.expanduser(filepath)
     if sudo:
         subprocess.run(["sudo", "rm", "-rf", filepath])
         subprocess.run(["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
@@ -25,56 +26,45 @@ def link(filepath, relative_name, sudo=False):
         subprocess.run(["ln", "-s", os.getcwd() + relative_name, filepath])
 
 
-zshrc = os.path.expanduser("~/.zshrc")
-zsh_dir = os.path.expanduser("~/.zsh")
-initdotvim = os.path.expanduser("~/.config/nvim/init.vim")
-pycodestyle = os.path.expanduser("~/.config/pycodestyle")
-i3 = os.path.expanduser("~/.config/i3")
-polybar = os.path.expanduser("~/.config/polybar")
-pacman = "/etc/pacman.conf"
-coc_settings = os.path.expanduser("~/.config/nvim/coc-settings.json")
-pylintrc = os.path.expanduser("~/.pylintrc")
-compton = os.path.expanduser("~/.config/compton.conf")
-dunst = os.path.expanduser("~/.config/dunst")
-
-if yes or ("n" not in input("Install package dependencies? (Y/n) ")):
-    package_requirements()
-
 if yes or ("n" not in input("Install zsh configs? (Y/n) ").lower()):
-    link(zshrc, "/zshrc")
+    pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile"])
+    link("/zshrc", "~/.zshrc")
     print("Installed zshrc")
-    link(zsh_dir, "/zsh-plugins")
+    link("/zsh-plugins", "~/.zsh")
     print("Installed .zsh folder")
 
 if yes or ("n" not in input("Install nvim configs? (Y/n) ").lower()):
+    pikaur(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
     try:
         os.makedirs(os.path.expanduser("~/.config/nvim"))
     except OSError:
         pass
-    link(initdotvim, "/init.vim")
+    link("/init.vim", "~/.config/nvim/init.vim")
     print("Installed init.vim")
-    link(coc_settings, "/coc-settings.json")
+    link("/coc-settings.json", "~/.config/nvim/coc-settings.json")
     print("Installed coc-settings")
-    link(pylintrc, "/pylintrc")
+    link("/pylintrc", "~/.pylintrc")
     print("Installed pylintrc")
     coc_plugins()
     print("Installed coc.nvim plugins")
 
 if yes or ("n" not in input("Install spicetify configs? (Y/n) ").lower()):
-    link(os.path.expanduser("~/.config/spicetify/Themes"), "/spicetify/Themes")
-    link(os.path.expanduser("~/.config/spicetify/config.ini"), "/spicetify/config.ini")
+    pikaur(["spotify", "spicetify-cli"])
+    link("/spicetify/Themes", "~/.config/spicetify/Themes")
+    link("/spicetify/config.ini", "~/.config/spicetify/config.ini")
     print("Installed spicetify configs")
 
 if yes or ("n" not in input("Install i3 configs? (Y/n) ").lower()):
-    link(i3, "/i3")
+    pikaur(["i3-gaps", "polybar", "rofi", "compton", "feh", "dunst"])
+    link("/i3", "~/.config/i3")
     print("Installed i3 configs")
-    link(polybar, "/i3/polybar")
+    link("/i3/polybar", "~/.config/polybar")
     print("Installed polybar configs")
-    link(compton, "/i3/compton.conf")
+    link("/i3/compton.conf", "~/.config/compton.conf")
     print("Installed compton.conf")
-    link(dunst, "/i3/dunst")
+    link("/i3/dunst", "~/.config/dunst")
     print("installed dunst configs")
 
 if yes or ("n" not in input("Install pacman.conf? (Y/n) ").lower()):
-    link(pacman, "/pacman.conf", sudo=True)
+    link("/pacman.conf", "/etc/pacman.conf", sudo=True)
     print("Installed pacman config")
