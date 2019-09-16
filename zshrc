@@ -41,6 +41,7 @@ eval $(thefuck --alias)
 
 alias sl=ls
 
+# Conditional Aliases
 if type exa > /dev/null
 then
     alias ls="exa -lhgbHm --git "
@@ -66,8 +67,14 @@ else
 fi
 if type nvimpager > /dev/null
 then
+    alias less="nvimpager"
     export PAGER=nvimpager
 fi
+if type bat > /dev/null
+then
+    alias cat="PAGER=less bat --color=always"
+fi
+
 
 # ZSH Style and Options
 zstyle ':completion:*' menu select
@@ -195,7 +202,7 @@ export ARCHFLAGS="-arch x86_64"
 
 eval $(ssh-agent) > /dev/null
 
-(cat ~/.cache/wal/sequences 2>/dev/null &)
+(\cat ~/.cache/wal/sequences 2>/dev/null &)
 
 # Sourcing Plugins
 
