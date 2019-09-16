@@ -12,7 +12,7 @@ def package_requirements():
 
 
 def coc_plugins():
-    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls"]
+    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls", "coc-snippets"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 
