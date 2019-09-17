@@ -256,6 +256,7 @@ noremap q/ <NOP>
 noremap q? <NOP>
 noremap K <NOP>
 noremap <F1> <NOP>
+noremap ¬¬ ZZ
 
 " Make s act like d but it doesn't cut the text to a register
 nnoremap s "_d
