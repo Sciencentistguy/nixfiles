@@ -255,6 +255,7 @@ noremap q: <NOP>
 noremap q/ <NOP>
 noremap q? <NOP>
 noremap K <NOP>
+noremap Q <NOP>
 noremap <F1> <NOP>
 noremap ¬¬ ZZ
 
