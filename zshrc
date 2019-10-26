@@ -82,6 +82,7 @@ zstyle ':completion:*' menu select
     setopt extendedglob
     unsetopt nomatch
     prompt walters
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Functions
 mkcdir() {
