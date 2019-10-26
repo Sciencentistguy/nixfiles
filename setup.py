@@ -12,7 +12,7 @@ def pikaur(packages: list):
 
 
 def coc_plugins():
-    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls", "coc-snippets"]
+    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls", "coc-snippets", "coc-ultisnips"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 
@@ -36,7 +36,7 @@ if yes or ("n" not in input("Install zsh configs? (Y/n) ").lower()):
 if yes or ("n" not in input("Install nvim configs? (Y/n) ").lower()):
     pikaur(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
     try:
-        os.makedirs(os.path.expanduser("~/.config/nvim"))
+        os.mkdir(os.path.expanduser("~/.config/nvim"))
     except OSError:
         pass
     link("/init.vim", "~/.config/nvim/init.vim")
@@ -47,6 +47,8 @@ if yes or ("n" not in input("Install nvim configs? (Y/n) ").lower()):
     print("Installed pylintrc")
     coc_plugins()
     print("Installed coc.nvim plugins")
+    link("/ultisnips", "~/.config/coc/ultisnips")
+    print("Installed coc.nvim ultisnips")
 
 if yes or ("n" not in input("Install spicetify configs? (Y/n) ").lower()):
     pikaur(["spotify", "spicetify-cli"])
