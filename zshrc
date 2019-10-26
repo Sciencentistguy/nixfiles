@@ -5,7 +5,6 @@ compinit
 promptinit
 
 # Aliases
-alias ls="ls -lh --color"
 alias rm="rm -rfv"
 alias cp="cp -av --reflink=auto"
 alias mv="mv -v"
@@ -46,7 +45,10 @@ if type exa > /dev/null
 then
     alias ls="exa -lhgbHm --git "
     alias lst="exa -lhgbHmT --git"
+else
+alias ls="ls -lh --color"
 fi
+
 if type nvim > /dev/null
 then
     alias vi="nvim"
