@@ -12,7 +12,7 @@ def pikaur(packages: list):
 
 
 def coc_plugins():
-    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls", "coc-snippets", "coc-ultisnips"]
+    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls", "coc-snippets", "coc-ultisnips", "coc-word"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 

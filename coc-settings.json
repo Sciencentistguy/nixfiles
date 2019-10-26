@@ -40,5 +40,6 @@
             }
         }
     },
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "coc.source.word.filetypes": ["tex", "md", "txt", ""]
 }
