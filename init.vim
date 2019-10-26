@@ -341,6 +341,10 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Make curly brackets not stupid
+inoremap {<cr> {<cr>}<c-o><s-o>
+
+
 """""""""""""""""""""""""""""""""""""""
 " Misc Sets
 """""""""""""""""""""""""""""""""""""""
