@@ -383,6 +383,7 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
+vmap <leader>sn <Plug>(coc-snippets-select)
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :

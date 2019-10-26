@@ -49,6 +49,12 @@ for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:$2++}) {
 }
 endsnippet
 
+snippet if "If statement (if)" b
+if (${1:condition}){
+	${VISUAL:default}$0
+}
+endsnippet
+
 snippet once "Include header once only guard"
 #ifndef ${1:`!p
 if not snip.c:
