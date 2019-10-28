@@ -30,10 +30,8 @@ $0
 endsnippet
 
 snippet main "main() (main)"
-int main(int argc, char *argv[])
-{
+int main(int argc, char* argv[]) {
 	${VISUAL}$0
-	return 0;
 }
 endsnippet
 
@@ -49,8 +47,8 @@ for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:$2++}) {
 }
 endsnippet
 
-snippet if "If statement (if)" b
-if (${1:condition}){
+snippet if "If statement (if)"
+if (${1}){
 	${VISUAL:default}$0
 }
 endsnippet
