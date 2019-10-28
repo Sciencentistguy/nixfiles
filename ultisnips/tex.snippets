@@ -113,72 +113,61 @@ snippet it "Individual item" b
 endsnippet
 
 snippet part "Part" b
-\part{${1:part name}}%
-\label{prt:${2:${1/(\w+)|\W+/(?1:\L$0\E:_)/ga}}}
+\part{${1:part name}}
 
 $0
 endsnippet
 
 snippet cha "Chapter" b
-\chapter{${1:chapter name}}%
-\label{cha:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\chapter{${1:chapter name}}
 
 $0
 endsnippet
 
 snippet sec "Section"
-\section{${1:${VISUAL:section name}}}%
-\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\section{${1:${VISUAL:section name}}}
 
 $0
 endsnippet
 
 snippet sec* "Section"
-\section*{${1:${VISUAL:section name}}}%
-\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\section*{${1:${VISUAL:section name}}}
 
 ${0}
 endsnippet
 
 
 snippet sub "Subsection"
-\subsection{${1:${VISUAL:subsection name}}}%
-\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsection{${1:${VISUAL:subsection name}}}
 
 $0
 endsnippet
 
 snippet sub* "Subsection"
-\subsection*{${1:${VISUAL:subsection name}}}%
-\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsection*{${1:${VISUAL:subsection name}}}
 
 ${0}
 endsnippet
 
 snippet ssub "Subsubsection"
-\subsubsection{${1:${VISUAL:subsubsection name}}}%
-\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsubsection{${1:${VISUAL:subsubsection name}}}
 
 $0
 endsnippet
 
 snippet ssub* "Subsubsection"
-\subsubsection*{${1:${VISUAL:subsubsection name}}}%
-\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsubsection*{${1:${VISUAL:subsubsection name}}}
 
 ${0}
 endsnippet
 
 snippet par "Paragraph"
-\paragraph{${1:${VISUAL:paragraph name}}}%
-\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-
+\paragraph*{${1:${VISUAL:paragraph name}}}
 $0
 endsnippet
 
 snippet subp "Subparagraph"
-\subparagraph{${1:${VISUAL:subparagraph name}}}%
-\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subparagraph{${1:${VISUAL:subparagraph name}}}
 
 $0
 endsnippet
@@ -193,7 +182,9 @@ snippet acl "Acroynm expanded" b
 $0
 endsnippet
 
-
+snippet eg "\paragraph*{e.g.}" b
+\paragraph*{e.g.}
+endsnippet
 
 snippet ni "Non-indented paragraph" b
 \noindent
