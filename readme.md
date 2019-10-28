@@ -1,5 +1,5 @@
 # dotfiles
-
+The dotfiles I use on my ArchLinux machines. (A custom desktop and a Dell XPS 15 2-in-1 9575)
 ## Instructions
 Clone this repo, and run `setup.py`. Do not delete the cloned repo.
 
