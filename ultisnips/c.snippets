@@ -4,6 +4,10 @@
 
 priority -50
 
+snippet mems "memset (mems)"
+memset(${1:${VISUAL}}, 0, sizeof(${1}))
+endsnippet
+
 snippet def "#define ..."
 #define $1
 endsnippet
