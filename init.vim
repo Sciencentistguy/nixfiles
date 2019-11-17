@@ -390,18 +390,17 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 vmap <leader>sn <Plug>(coc-snippets-select)
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? coc#_select_confirm() :
+            \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 let g:coc_snippet_next = '<tab>'
-
 
 " Vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -446,6 +445,8 @@ let g:formatdef_my_custom_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -
 let g:formatters_c = ['my_custom_c']
 let g:formatters_cpp = ['my_custom_c']
 let g:formatters_java = ['my_custom_java']
+au BufWrite * :Autoformat
+"inoremap <F3> <c-o><F3>
 
 " Ranger.vim
 "let g:NERDTreeHijackNetrw = 0
