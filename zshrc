@@ -45,8 +45,9 @@ if type exa > /dev/null
 then
     alias ls="exa -lhgbHm --git "
     alias lst="exa -lhgbHmT --git"
+    alias lsa="exa -lhgbHma --git"
 else
-alias ls="ls -lh --color"
+    alias ls="ls -lh --color"
 fi
 
 if type nvim > /dev/null
@@ -80,10 +81,10 @@ fi
 
 # ZSH Style and Options
 zstyle ':completion:*' menu select
-    setopt completealiases
-    setopt extendedglob
-    unsetopt nomatch
-    prompt walters
+setopt completealiases
+setopt extendedglob
+unsetopt nomatch
+prompt walters
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Functions
@@ -106,17 +107,17 @@ borderless() {
 }
 
 borderless-undo() {
-    xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
+xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
 }
 
 magnet-info() {
-    wd=`pwd`
-    cd /tmp
-    hash=$(echo "$1" | grep -oP "(?<=btih:).*?(?=&)")
-    echo "Magnet hash: $hash"
-    aria2c --bt-metadata-only=true --bt-save-metadata=true "$1"
-    aria2c "$hash.torrent" -S
-    cd $wd
+wd=`pwd`
+cd /tmp
+hash=$(echo "$1" | grep -oP "(?<=btih:).*?(?=&)")
+echo "Magnet hash: $hash"
+aria2c --bt-metadata-only=true --bt-save-metadata=true "$1"
+aria2c "$hash.torrent" -S
+cd $wd
 }
 
 ffcompare() {
@@ -174,7 +175,7 @@ bindkey -M vicmd '\e\e' sudo-command-line
 
 
 
-# PATH 
+# PATH
 if [ -d /etc/zsh/zshrc.d ]; then
     for file in /etc/zsh/zshrc.d/*; do
         source $file
