@@ -2,38 +2,32 @@
 " Plugins
 """""""""""""""""""""""""""""""""""""""
 call plug#begin()
-Plug 'junegunn/fzf'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'Shougo/denite.nvim'
-Plug 'chrisbra/csv.vim'
-Plug 'mhinz/vim-signify'
-Plug 'lervag/vimtex'
-Plug 'Townk/vim-autoclose'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'mattn/emmet-vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
-Plug 'roxma/nvim-yarp'
-Plug 'wellle/tmux-complete.vim'
-Plug 'lervag/vimtex'
-Plug 'Shougo/neco-vim'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'Chiel92/vim-autoformat'
-Plug 'majutsushi/tagbar'
-Plug '907th/vim-auto-save'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'dylanaraps/wal.vim'
-Plug 'mbbill/undotree'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-git'
+Plug 'junegunn/fzf'                   " Fuzzy finder
+Plug 'vim-airline/vim-airline'        " Fancy statusline
+Plug 'vim-airline/vim-airline-themes' " Themes for airline
+Plug 'chrisbra/csv.vim'               " CSV file specific commands
+Plug 'lervag/vimtex'                  " LaTeX support
+Plug 'Townk/vim-autoclose'            " Automatically close ( { [ etc
+Plug 'godlygeek/tabular'              " Align stuff
+Plug 'plasticboy/vim-markdown'        " Markdown support
+Plug 'mattn/emmet-vim'                " Emmet-style abbreviation expansion
+Plug 'sheerun/vim-polyglot'           " Language profiles (syntax highlighting)
+Plug 'tpope/vim-fugitive'             " Git integration
+Plug 'tpope/vim-unimpaired'           " Miscellaneous mappings
+Plug 'wellle/tmux-complete.vim'       " Use words in adjacent tmux panes as a completion source
+Plug 'Chiel92/vim-autoformat'         " Autoformatter
+Plug 'majutsushi/tagbar'              " Tagbar
+Plug '907th/vim-auto-save'            " Autosave
+Plug 'francoiscabrol/ranger.vim'      " Open ranger if you accidently vim a directory
+Plug 'rbgrouleff/bclose.vim'          " Close buffers without closing the window
+Plug 'edkolev/tmuxline.vim'           " Format tmux's statusbar to look like airline
+Plug 'dylanaraps/wal.vim'             " Support for Wal colorschemes
+Plug 'mbbill/undotree'                " A nice undo-tree viewer
+Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
+Plug 'tpope/vim-git'                  " Filetype plugin for git files
+Plug 'neoclide/coc-neco'              " Viml completion source for coc.nvim
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
 
 call plug#end()
 
@@ -190,14 +184,14 @@ try
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
 """""""""""""""""""""""""""""""""""""""
 " Helper functions
 """""""""""""""""""""""""""""""""""""""
-" Delete trailing white space on save, useful for some filetypes ;)
+" Delete trailing white space on save
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -216,27 +210,6 @@ function! HasPaste()
         return 'PASTE MODE  '
     endif
     return ''
-endfunction
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
 endfunction
 
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -286,15 +259,11 @@ map 0 ^
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" Shortcuts using <leader>
+" Spelling shortcuts
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -304,9 +273,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
@@ -386,8 +352,18 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
 vmap <leader>sn <Plug>(coc-snippets-select)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nnoremap <silent> gD :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call CocActionAsync('doHover')<cr>
 
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? coc#_select_confirm() :
@@ -442,7 +418,9 @@ let g:Tex_IgnoreLevel = 8
 " Autoformat
 let g:formatdef_my_custom_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W1 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
 let g:formatdef_my_custom_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
+"let g:formatdef_my_custom_tex = '"latexformat"'
 let g:formatters_c = ['my_custom_c']
+"let g:formatters_tex = ['my_custom_tex']
 let g:formatters_cpp = ['my_custom_c']
 let g:formatters_java = ['my_custom_java']
 au BufWrite * :Autoformat
