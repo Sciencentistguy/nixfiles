@@ -330,6 +330,8 @@ augroup ft_latex
 augroup END
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
+" The default UpdateTime of 4000 is far too long for coc.nvim
+set updatetime=300
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin Options
