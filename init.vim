@@ -18,7 +18,6 @@ Plug 'wellle/tmux-complete.vim'       " Use words in adjacent tmux panes as a co
 Plug 'Chiel92/vim-autoformat'         " Autoformatter
 Plug 'majutsushi/tagbar'              " Tagbar
 Plug '907th/vim-auto-save'            " Autosave
-Plug 'francoiscabrol/ranger.vim'      " Open ranger if you accidently vim a directory
 Plug 'rbgrouleff/bclose.vim'          " Close buffers without closing the window
 Plug 'edkolev/tmuxline.vim'           " Format tmux's statusbar to look like airline
 Plug 'dylanaraps/wal.vim'             " Support for Wal colorschemes
