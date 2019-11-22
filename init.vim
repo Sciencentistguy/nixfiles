@@ -27,8 +27,13 @@ Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
 Plug 'tpope/vim-git'                  " Filetype plugin for git files
 Plug 'neoclide/coc-neco'              " Viml completion source for coc.nvim
 Plug 'airblade/vim-gitgutter'         " Git diff tracker for airline
+Plug 'scrooloose/nerdcommenter'       " Format comments properly and automatically
+Plug 'scrooloose/nerdtree'            " Tree file broweser inside vim
+Plug 'Xuyuanp/nerdtree-git-plugin'    " Git status plugin for nerdtree
+Plug 'ludovicchabant/vim-gutentags'   " Tag management plugin
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
 
 call plug#end()
 
@@ -237,10 +242,13 @@ noremap <Right> <NOP>
 noremap q: <NOP>
 noremap q/ <NOP>
 noremap q? <NOP>
-noremap K <NOP>
+lnoremap q: <NOP>
+lnoremap q/ <NOP>
+lnoremap q? <NOP>
 noremap Q <NOP>
 noremap <F1> <NOP>
 noremap ¬¬ ZZ
+noremap <leader>q :Bclose<cr>
 
 " Make s act like d but it doesn't cut the text to a register
 nnoremap s "_d
@@ -484,3 +492,19 @@ au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs :Autoformat
 
 """ Ranger.vim
 let g:ranger_replace_netrw = 1
+
+""" NERDTree
+map <F2> :NERDTreeToggle <cr>
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified"  : "M",
+            \ "Staged"    : "+",
+            \ "Untracked" : "N",
+            \ "Renamed"   : "R",
+            \ "Unmerged"  : "=",
+            \ "Deleted"   : "D",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : 'i',
+            \ "Unknown"   : "?"
+            \ }
+
