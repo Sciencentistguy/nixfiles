@@ -48,5 +48,9 @@
         "md",
         "txt",
         ""
+    ],
+    "coc.source.emoji.filetypes": [
+        "markdown",
+        ""
     ]
 }
