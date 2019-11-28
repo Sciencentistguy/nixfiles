@@ -8,10 +8,7 @@ yes = "-y" in sys.argv
 
 def pikaur(packages: list):
     if "--pkg" in sys.argv or "--packages" in sys.argv:
-        subprocess.run([
-            "pikaur",
-            "-S",
-        ] + packages)
+        subprocess.run(["pikaur", "-S", ] + packages)
 
 
 def coc_plugins():
@@ -42,14 +39,19 @@ def should(message) -> bool:
 
 if should("Install Git configs"):
     link("/gitignore", "~/.config/git/ignore")
+    link("/gitignore", "~/.gitignore")
     print("Installed global gitignore")
 
-if should("Install zsh configs?"):
-    pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile"])
-    link("/zshrc", "~/.zshrc")
-    print("Installed zshrc")
-    link("/zsh-plugins", "~/.zsh")
-    print("Installed .zsh folder")
+if should("Install i3 configs?"):
+    pikaur(["i3-gaps", "polybar", "rofi", "compton", "feh", "dunst"])
+    link("/i3", "~/.config/i3")
+    print("Installed i3 configs")
+    link("/i3/polybar", "~/.config/polybar")
+    print("Installed polybar configs")
+    link("/i3/compton.conf", "~/.config/compton.conf")
+    print("Installed compton.conf")
+    link("/i3/dunst", "~/.config/dunst")
+    print("installed dunst configs")
 
 if should("Install nvim configs?"):
     pikaur(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
@@ -74,13 +76,9 @@ if should("Install spicetify themes?"):
     link("/spicetify/config.ini", "~/.config/spicetify/config.ini")
     print("Installed spicetify configs")
 
-if should("Install i3 configs?"):
-    pikaur(["i3-gaps", "polybar", "rofi", "compton", "feh", "dunst"])
-    link("/i3", "~/.config/i3")
-    print("Installed i3 configs")
-    link("/i3/polybar", "~/.config/polybar")
-    print("Installed polybar configs")
-    link("/i3/compton.conf", "~/.config/compton.conf")
-    print("Installed compton.conf")
-    link("/i3/dunst", "~/.config/dunst")
-    print("installed dunst configs")
+if should("Install zsh configs?"):
+    pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile"])
+    link("/zshrc", "~/.zshrc")
+    print("Installed zshrc")
+    link("/zsh-plugins", "~/.zsh")
+    print("Installed .zsh folder")
