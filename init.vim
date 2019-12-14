@@ -3,6 +3,8 @@
 """""""""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'junegunn/fzf'                   " Fuzzy finder
+Plug 'junegunn/fzf.vim'               " Fuzzy finder plugin for vim
+Plug 'm42e/vim-lgh'                   " Local history using git
 Plug 'vim-airline/vim-airline'        " Fancy statusline
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 Plug 'chrisbra/csv.vim'               " CSV file specific commands
@@ -507,3 +509,5 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
+""" vim-lgh
+let g:lgh_asedir = '~/.vim/githistory'
