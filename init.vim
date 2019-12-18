@@ -4,7 +4,6 @@
 call plug#begin()
 Plug 'junegunn/fzf'                   " Fuzzy finder
 Plug 'junegunn/fzf.vim'               " Fuzzy finder plugin for vim
-Plug 'm42e/vim-lgh'                   " Local history using git
 Plug 'vim-airline/vim-airline'        " Fancy statusline
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 Plug 'chrisbra/csv.vim'               " CSV file specific commands
@@ -16,7 +15,6 @@ Plug 'mattn/emmet-vim'                " Emmet-style abbreviation expansion
 Plug 'sheerun/vim-polyglot'           " Language profiles (syntax highlighting)
 Plug 'tpope/vim-fugitive'             " Git integration
 Plug 'tpope/vim-unimpaired'           " Miscellaneous mappings
-Plug 'wellle/tmux-complete.vim'       " Use words in adjacent tmux panes as a completion source
 Plug 'Chiel92/vim-autoformat'         " Autoformatter
 Plug 'majutsushi/tagbar'              " Tagbar
 Plug '907th/vim-auto-save'            " Autosave
@@ -32,6 +30,7 @@ Plug 'scrooloose/nerdcommenter'       " Format comments properly and automatical
 Plug 'scrooloose/nerdtree'            " Tree file broweser inside vim
 Plug 'Xuyuanp/nerdtree-git-plugin'    " Git status plugin for nerdtree
 Plug 'ludovicchabant/vim-gutentags'   " Tag management plugin
+Plug 'm42e/vim-lgh'                   " Local history using git
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
@@ -233,9 +232,12 @@ endfunction
 """""""""""""""""""""""""""""""""""""""
 " Misc Maps
 """""""""""""""""""""""""""""""""""""""
+map <F2> :NERDTreeToggle <cr>
 nnoremap <silent> <F3> :Autoformat<cr>
 nnoremap <F4> :TagbarToggle<cr>
 nnoremap <F5> :UndotreeToggle<cr>:UndotreeFocus<cr>
+
+" Unbind keys I don't want
 noremap <Up> <NOP>
 noremap <Left> <NOP>
 noremap <Down> <NOP>
@@ -248,7 +250,13 @@ lnoremap q/ <NOP>
 lnoremap q? <NOP>
 noremap Q <NOP>
 noremap <F1> <NOP>
+noremap gh h
+noremap gH H
+
+" Save and quit with ¬¬
 noremap ¬¬ ZZ
+
+" Close a buffer with ,q
 noremap <leader>q :Bclose<cr>
 
 " Make s act like d but it doesn't cut the text to a register
@@ -495,7 +503,6 @@ au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs :Autoformat
 let g:ranger_replace_netrw = 1
 
 """ NERDTree
-map <F2> :NERDTreeToggle <cr>
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "M",
             \ "Staged"    : "+",
