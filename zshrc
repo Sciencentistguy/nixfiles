@@ -31,6 +31,7 @@ alias fex="nautilus ."
 alias ffprobe="ffprobe -hide_banner"
 alias ffmpeg="ffmpeg -hide_banner"
 alias ffplay="ffplay -hide_banner"
+alias ":q"="exit"
 
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
