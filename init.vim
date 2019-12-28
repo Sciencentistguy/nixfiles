@@ -207,7 +207,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.tex :call CleanExtraSpaces()
 endif
 
 " Returns true if paste mode is enabled
@@ -491,7 +491,9 @@ let g:Tex_IgnoreLevel = 8
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W1 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
 let g:formatdef_astyle_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
 
+autocmd FileType tex let b:autoformat_autoindent=0
 " Specify custom formatters
+let g:formatterpath = ['/bin', '~/.bin']
 let g:formatters_c = ['astyle_c']
 let g:formatters_cpp = ['astyle_c']
 let g:formatters_java = ['astyle_java']

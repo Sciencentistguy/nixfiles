@@ -62,6 +62,11 @@ $0${2/(?<=.)(c|l|r)|./(?1: & )/g}
 \end{$1${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
 endsnippet
 
+snippet iff "If and only if (iff)"
+$\iff$
+endsnippet
+
+
 pre_expand "create_table(snip)"
 snippet "gentbl(\d+)x(\d+)" "Generate table of *width* by *height*" r  
 endsnippet
@@ -125,37 +130,18 @@ $0
 endsnippet
 
 snippet sec "Section"
-\section{${1:${VISUAL:section name}}}
-
-$0
-endsnippet
-
-snippet sec* "Section"
 \section*{${1:${VISUAL:section name}}}
 
 ${0}
 endsnippet
 
-
 snippet sub "Subsection"
-\subsection{${1:${VISUAL:subsection name}}}
-
-$0
-endsnippet
-
-snippet sub* "Subsection"
 \subsection*{${1:${VISUAL:subsection name}}}
 
-${0}
+$0
 endsnippet
 
 snippet ssub "Subsubsection"
-\subsubsection{${1:${VISUAL:subsubsection name}}}
-
-$0
-endsnippet
-
-snippet ssub* "Subsubsection"
 \subsubsection*{${1:${VISUAL:subsubsection name}}}
 
 ${0}
