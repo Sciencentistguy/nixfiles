@@ -499,7 +499,7 @@ let g:formatters_cpp = ['astyle_c']
 let g:formatters_java = ['astyle_java']
 
 " Autoformat on write
-au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs :Autoformat
+au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex :Autoformat
 
 """ Ranger.vim
 let g:ranger_replace_netrw = 1
