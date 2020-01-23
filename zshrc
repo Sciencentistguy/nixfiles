@@ -98,6 +98,10 @@ reload-zshrc() {
 source ~/.zshrc
 }
 
+imgpaste() {
+    xclip -t image/png -o >$1
+}
+
 lls() {
     clear
     ls
