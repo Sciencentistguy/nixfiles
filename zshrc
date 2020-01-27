@@ -32,14 +32,11 @@ alias ffprobe="ffprobe -hide_banner"
 alias ffmpeg="ffmpeg -hide_banner"
 alias ffplay="ffplay -hide_banner"
 alias ":q"="exit"
+alias sl=ls
 
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
 alias -g "..."="../.."
-
-eval $(thefuck --alias)
-
-alias sl=ls
 
 # Conditional Aliases
 if type exa >/dev/null; then
@@ -83,72 +80,7 @@ prompt walters
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Functions
-mkcdir() {
-    mkdir -p -- "$1" &&
-        cd -P -- "$1"
-}
-
-reload-zshrc() {
-    source ~/.zshrc
-}
-
-imgpaste() {
-    xclip -t image/png -o >$1
-}
-
-lls() {
-    clear
-    ls
-}
-
-borderless() {
-    xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x0, 0x0, 0x0"
-}
-
-borderless-undo() {
-    xprop -f _MOTIF_WM_HINTS 32c -set _MOTIF_WM_HINTS "0x2, 0x0, 0x1, 0x0, 0x0"
-}
-
-magnet-info() {
-    wd=$(pwd)
-    cd /tmp
-    hash=$(echo "$1" | grep -oP "(?<=btih:).*?(?=&)")
-    echo "Magnet hash: $hash"
-    aria2c --bt-metadata-only=true --bt-save-metadata=true "$1"
-    aria2c "$hash.torrent" -S
-    cd $wd
-}
-
-ffcompare() {
-    ffplay $1 &
-    ffplay $2
-}
-
-vmaf() {
-    ffmpeg -hwaccel auto -i $1 -hwaccel auto -i $2 -lavfi libvmaf="model_path=/usr/share/model/vmaf_v0.6.1.pkl" -an -f null -
-}
-
-ex() {
-    if [ -f $1 ]; then
-        case $1 in
-        *.tar.bz2) tar xjf $1 ;;
-        *.tar.gz) tar xzf $1 ;;
-        *.tar.xz) tar xf $1 ;;
-        *.bz2) bunzip2 $1 ;;
-        *.rar) unrar x $1 ;;
-        *.gz) gunzip $1 ;;
-        *.tar) tar xf $1 ;;
-        *.tbz2) tar xjf $1 ;;
-        *.tgz) tar xzf $1 ;;
-        *.zip) unzip $1 ;;
-        *.Z) uncompress $1 ;;
-        *.7z) 7z x $1 ;;
-        *) echo "'$1' cannot be extracted via ex()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
+source ~/.zsh/functions.zsh
 
 # esc-esc sudo
 sudo-command-line() {
@@ -208,52 +140,55 @@ if [ -d ~/.cache/wal/ ]; then
     \cat ~/.cache/wal/sequences 2>/dev/null 
 fi
 
-# Sourcing Plugins
+# Plugins
+if type thefuck >/dev/null; then
+    eval $(thefuck --alias)
+fi
 
-if [ -f ~/.zsh/vi-mode.plugin.zsh ]; then
-    source ~/.zsh/vi-mode.plugin.zsh
+if [ -f ~/.zsh/plugins/vi-mode.plugin.zsh ]; then
+    source ~/.zsh/plugins/vi-mode.plugin.zsh
 else
     echo "vi-mode plugin not loaded"
 fi
 
 if grep -Fxq "arch" /etc/os-release; then
-    if [ -f ~/.zsh/git.plugin.zsh ]; then
-        source ~/.zsh/git.plugin.zsh
+    if [ -f ~/.zsh/plugins/git.plugin.zsh ]; then
+        source ~/.zsh/plugins/git.plugin.zsh
     else
         echo "archlinux plugin not loaded"
     fi
 fi
 
-if [ -f ~/.zsh/globalias.plugin.zsh ]; then
-    source ~/.zsh/globalias.plugin.zsh
+if [ -f ~/.zsh/plugins/globalias.plugin.zsh ]; then
+    source ~/.zsh/plugins/globalias.plugin.zsh
 else
     echo "globalias plugin not loaded"
 fi
 
-if [ -f ~/.zsh/git.plugin.zsh ]; then
-    source ~/.zsh/git.plugin.zsh
+if [ -f ~/.zsh/plugins/git.plugin.zsh ]; then
+    source ~/.zsh/plugins/git.plugin.zsh
 else
     echo "git plugin not loaded"
 fi
 
-if [ -f ~/.zsh/you-should-use.plugin.zsh ]; then
-    source ~/.zsh/you-should-use.plugin.zsh
+if [ -f ~/.zsh/plugins/you-should-use.plugin.zsh ]; then
+    source ~/.zsh/plugins/you-should-use.plugin.zsh
 else
     echo "you-should-use plugin not loaded"
 fi
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     echo "zsh-syntax-highlighting plugin not loaded"
 fi
 
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -f ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions plugin not loaded"
 fi

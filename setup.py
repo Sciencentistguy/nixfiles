@@ -6,6 +6,13 @@ import sys
 yes = "-y" in sys.argv
 
 
+def mkdir(path: str):
+    try:
+        os.mkdir(os.path.expanduser(path))
+    except FileExistsError:
+        pass
+
+
 def pikaur(packages: list):
     if "--pkg" in sys.argv or "--packages" in sys.argv:
         subprocess.run(["pikaur", "-S", ] + packages)
@@ -21,10 +28,7 @@ def link(relative_name, filepath, sudo=False):
         raise FileNotFoundError("Local filepath does not exist")
 
     filepath = os.path.expanduser(filepath)
-    try:
-        os.mkdir(filepath if os.path.isdir(filepath) else os.path.dirname(filepath))
-    except FileExistsError:
-        pass
+    mkdir(filepath if os.path.isdir(filepath) else os.path.dirname(filepath))
     if sudo:
         subprocess.run(["sudo", "rm", "-rf", filepath])
         subprocess.run(["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
@@ -78,10 +82,13 @@ if should("Install spicetify themes?"):
 
 if should("Install zsh configs?"):
     pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile"])
+    mkdir("~/.zsh")
     link("/zshrc", "~/.zshrc")
     print("Installed zshrc")
-    link("/zsh-plugins", "~/.zsh")
-    print("Installed .zsh folder")
-    if not os.path.isdir("~/.resh"):
+    link("/zsh-plugins", "~/.zsh/plugins")
+    print("Installed zsh plugins")
+    link("/functions.zsh", "~/.zsh/functions.zsh")
+    print("Installed functions.zsh")
+    if not os.path.isdir(os.path.expanduser("~/.resh")):
         os.system("curl -fsSL https://raw.githubusercontent.com/curusarn/resh/master/scripts/rawinstall.sh | bash")
         print("Installed resh")
