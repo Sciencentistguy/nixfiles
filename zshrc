@@ -203,7 +203,10 @@ export ARCHFLAGS="-arch x86_64"
 
 eval $(ssh-agent) >/dev/null
 
-(\cat ~/.cache/wal/sequences 2>/dev/null &)
+# Wal
+if [ -d ~/.cache/wal/ ]; then
+    \cat ~/.cache/wal/sequences 2>/dev/null 
+fi
 
 # Sourcing Plugins
 
