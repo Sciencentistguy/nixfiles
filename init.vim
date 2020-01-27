@@ -252,6 +252,8 @@ noremap Q <NOP>
 noremap <F1> <NOP>
 noremap gh h
 noremap gH H
+noremap <PageUp> <NOP>
+noremap <PageDown> <NOP>
 
 " Save and quit with ¬¬
 noremap ¬¬ ZZ
