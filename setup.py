@@ -57,6 +57,11 @@ if should("Install i3 configs?"):
     link("/i3/dunst", "~/.config/dunst")
     print("installed dunst configs")
 
+if should("Install neofetch config?"):
+    mkdir("~/.config/neofetch")
+    link("/neofetch.conf", "~/.config/neofetch/config.conf")
+    print("Installed neofetch.conf")
+
 if should("Install nvim configs?"):
     pikaur(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
     try:
