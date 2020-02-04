@@ -254,10 +254,13 @@ lnoremap q/ <NOP>
 lnoremap q? <NOP>
 noremap Q <NOP>
 noremap <F1> <NOP>
+inoremap <F1> <NOP>
 noremap gh h
 noremap gH H
 noremap <PageUp> <NOP>
 noremap <PageDown> <NOP>
+inoremap <PageUp> <Left>
+inoremap <PageDown> <Right>
 
 " Save and quit with ¬¬
 noremap ¬¬ ZZ
