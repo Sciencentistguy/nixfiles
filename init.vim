@@ -492,14 +492,14 @@ let g:Tex_IgnoreLevel = 8
 
 """ Autoformat
 " Specify astyle commands for c/++ and java
-let g:formatdef_astyle_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W1 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
-let g:formatdef_astyle_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
+"let g:formatdef_astyle_c = '"astyle --mode=c -A2 -F -xg -H -U -xe -k1 -W1 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
+"let g:formatdef_astyle_java = '"astyle --mode=java -A2 -F -xg -H -U -xe -k1 -W3 -xb -xf -xh -c -xp -p -C -S -N 2>/dev/null"'
 
 autocmd FileType tex let b:autoformat_autoindent=0
 " Specify custom formatters
 let g:formatterpath = ['/bin', '~/.bin']
-let g:formatters_c = ['astyle_c']
-let g:formatters_cpp = ['astyle_c']
+"let g:formatters_c = ['astyle_c']
+"let g:formatters_cpp = ['astyle_c']
 let g:formatters_java = ['astyle_java']
 let g:formatters_zsh = ['shfmt']
 
