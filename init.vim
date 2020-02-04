@@ -237,7 +237,9 @@ nnoremap <silent> <F3> :Autoformat<cr>
 nnoremap <F4> :TagbarToggle<cr>
 nnoremap <F5> :UndotreeToggle<cr>:UndotreeFocus<cr>
 
-nnoremap mm :wa<cr> :!make -j && make install<cr>
+nnoremap mm :wa<cr> :!make -j<cr>
+nnoremap mi :!make install<cr>
+nnoremap mc :!make clean<cr>
 
 " Unbind keys I don't want
 noremap <Up> <NOP>
