@@ -525,3 +525,6 @@ let g:NERDTreeIndicatorMapCustom = {
 
 """ vim-lgh
 let g:lgh_asedir = '~/.vim/githistory'
+
+""" vim-gitgutter
+let g:gitgutter_map_keys=0
