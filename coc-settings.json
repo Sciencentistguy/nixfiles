@@ -42,14 +42,17 @@
         }
     },
     "python.jediEnabled": false,
+    "coc.source.word.enable": true,
+    "coc.source.emoji.enable": true,
     "coc.source.word.filetypes": [
         "tex",
-        "md",
-        "txt",
+        "markdown",
+        "text",
         ""
     ],
     "coc.source.emoji.filetypes": [
         "markdown",
+        "gitcommit",
         ""
     ]
 }
