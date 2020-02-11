@@ -2,39 +2,41 @@
 " Plugins
 """""""""""""""""""""""""""""""""""""""
 call plug#begin()
-Plug 'junegunn/fzf'                   " Fuzzy finder
-Plug 'junegunn/fzf.vim'               " Fuzzy finder plugin for vim
-Plug 'vim-airline/vim-airline'        " Fancy statusline
-Plug 'vim-airline/vim-airline-themes' " Themes for airline
-Plug 'chrisbra/csv.vim'               " CSV file specific commands
-Plug 'lervag/vimtex'                  " LaTeX support
-Plug 'Townk/vim-autoclose'            " Automatically close ( { [ etc
-Plug 'godlygeek/tabular'              " Align stuff
-Plug 'plasticboy/vim-markdown'        " Markdown support
-Plug 'mattn/emmet-vim'                " Emmet-style abbreviation expansion
-Plug 'sheerun/vim-polyglot'           " Language profiles (syntax highlighting)
-Plug 'tpope/vim-fugitive'             " Git integration
-Plug 'tpope/vim-unimpaired'           " Miscellaneous mappings
-Plug 'Chiel92/vim-autoformat'         " Autoformatter
-Plug 'majutsushi/tagbar'              " Tagbar
-Plug '907th/vim-auto-save'            " Autosave
-Plug 'rbgrouleff/bclose.vim'          " Close buffers without closing the window
-Plug 'edkolev/tmuxline.vim'           " Format tmux's statusbar to look like airline
-Plug 'dylanaraps/wal.vim'             " Support for Wal colorschemes
-Plug 'mbbill/undotree'                " A nice undo-tree viewer
-Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
-Plug 'tpope/vim-git'                  " Filetype plugin for git files
-Plug 'neoclide/coc-neco'              " Viml completion source for coc.nvim
-Plug 'airblade/vim-gitgutter'         " Git diff tracker for airline
-Plug 'scrooloose/nerdcommenter'       " Format comments properly and automatically
-Plug 'scrooloose/nerdtree'            " Tree file broweser inside vim
-Plug 'Xuyuanp/nerdtree-git-plugin'    " Git status plugin for nerdtree
-Plug 'ludovicchabant/vim-gutentags'   " Tag management plugin
-Plug 'm42e/vim-lgh'                   " Local history using git
-
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
 
+Plug '907th/vim-auto-save'            " Autosave
+Plug 'Chiel92/vim-autoformat'         " Autoformatter
+Plug 'Townk/vim-autoclose'            " Automatically close ( { [ etc
+Plug 'Xuyuanp/nerdtree-git-plugin'    " Git status plugin for nerdtree
+Plug 'airblade/vim-gitgutter'         " Git diff tracker for airline
+Plug 'arthurxavierx/vim-caser'        " Easily change word casing with motions, text objects or visual mode
+Plug 'chrisbra/csv.vim'               " CSV file specific commands
+Plug 'dylanaraps/wal.vim'             " Support for Wal colorschemes
+Plug 'edkolev/tmuxline.vim'           " Format tmux's statusbar to look like airline
+Plug 'godlygeek/tabular'              " Align stuff
+Plug 'junegunn/fzf'                   " Fuzzy finder
+Plug 'junegunn/fzf.vim'               " Fuzzy finder plugin for vim
+Plug 'lervag/vimtex'                  " LaTeX support
+Plug 'ludovicchabant/vim-gutentags'   " Tag management plugin
+Plug 'm42e/vim-lgh'                   " Local history using git
+Plug 'majutsushi/tagbar'              " Tagbar
+Plug 'mattn/emmet-vim'                " Emmet-style abbreviation expansion
+Plug 'mbbill/undotree'                " A nice undo-tree viewer
+Plug 'neoclide/coc-neco'              " Viml completion source for coc.nvim
+Plug 'plasticboy/vim-markdown'        " Markdown support
+Plug 'rbgrouleff/bclose.vim'          " Close buffers without closing the window
+Plug 'scrooloose/nerdcommenter'       " Format comments properly and automatically
+Plug 'scrooloose/nerdtree'            " Tree file broweser inside vim
+Plug 'sheerun/vim-polyglot'           " Language profiles (syntax highlighting)
+Plug 'tpope/vim-abolish'              " Easily search for, substitute, and abbreviate multiple variants of a word
+Plug 'tpope/vim-afterimage'           " Edit things like pdfs and word docs
+Plug 'tpope/vim-endwise'              " Automatically add 'end' for functions etc.
+Plug 'tpope/vim-eunuch'               " Vim sugar for UNIX shell commands
+Plug 'tpope/vim-fugitive'             " Git integration
+Plug 'tpope/vim-git'                  " Filetype plugin for git files
+Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
+Plug 'vim-airline/vim-airline'        " Fancy statusline
+Plug 'vim-airline/vim-airline-themes' " Themes for airline
 call plug#end()
 
 
