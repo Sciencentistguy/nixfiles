@@ -1,42 +1,50 @@
-# Init
+# Init and options
 autoload -U compinit promptinit
 autoload -U colors && colors
 compinit
 promptinit
+zstyle ':completion:*' menu select
+setopt completealiases
+setopt extendedglob
+setopt AUTO_PUSHD
+unsetopt nomatch
+prompt walters
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Aliases
-alias rm="rm -rfv"
-alias cp="cp -av --reflink=auto"
-alias mv="mv -v"
-alias du="du -sh"
-alias mkdir="mkdir -p"
-alias less="less -r"
-alias more="less -r"
-alias reboot="sudo reboot"
-alias poweroff="sudo poweroff"
+alias :q="exit"
+alias aria2c="aria2c --file-allocation=none"
+alias btrfs-df="btrfs filesystem df /"
 alias btrfs-du="btrfs fi du -s --human-readable"
 alias btrfs-list="sudo btrfs subvolume list / -t"
-alias btrfs-df="btrfs filesystem df /"
-alias sudo="sudo "
-alias rsync="rsync -Pva"
-alias mount="sudo mount"
-alias umount="sudo umount"
-alias feh-svg="feh --magick-timeout 1"
-alias neofetch="clear; neofetch"
-alias aria2c="aria2c --file-allocation=none"
-alias zshrc-reload="reload-zshrc"
-alias xclip="xclip -selection clipboard"
+alias cp="cp -av --reflink=auto"
 alias df="df -h"
+alias du="du -sh"
 alias fex="nautilus ."
-alias ffprobe="ffprobe -hide_banner"
 alias ffmpeg="ffmpeg -hide_banner"
 alias ffplay="ffplay -hide_banner"
-alias ":q"="exit"
+alias ffprobe="ffprobe -hide_banner"
+alias less="less -r"
+alias mkdir="mkdir -p"
+alias more="less -r"
+alias mount="sudo mount"
+alias mv="mv -v"
+alias neofetch="clear; neofetch"
+alias poweroff="sudo poweroff"
+alias reboot="sudo reboot"
+alias rm="rm -rfv"
+alias rsync="rsync -Pva"
 alias sl=ls
+alias sudo="sudo "
+alias umount="sudo umount"
+alias xclip="xclip -selection clipboard"
+alias zshrc-reload="reload-zshrc"
 
 alias -g sd="~/ScratchArea"
 alias -g dl="~/Downloads"
 alias -g "..."="../.."
+alias -g "...."="../../.."
+alias -g "....."="../../../.."
 
 # Conditional Aliases
 if type exa >/dev/null; then
@@ -70,14 +78,6 @@ fi
 if type bat >/dev/null; then
     alias cat="PAGER=less bat --color=always"
 fi
-
-# ZSH Style and Options
-zstyle ':completion:*' menu select
-setopt completealiases
-setopt extendedglob
-unsetopt nomatch
-prompt walters
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Functions
 source ~/.zsh/functions.zsh
