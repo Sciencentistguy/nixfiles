@@ -94,6 +94,8 @@ if should("Install zsh configs?"):
     print("Installed zsh plugins")
     link("/functions.zsh", "~/.zsh/functions.zsh")
     print("Installed functions.zsh")
+    link("/aliases.zsh", "~/.zsh/aliases.zsh")
+    print("Installed aliases.zsh")
     if not os.path.isdir(os.path.expanduser("~/.resh")):
         os.system("curl -fsSL https://raw.githubusercontent.com/curusarn/resh/master/scripts/rawinstall.sh | bash")
         print("Installed resh")
