@@ -8,6 +8,8 @@ setopt completealiases
 setopt extendedglob
 setopt AUTO_PUSHD
 unsetopt nomatch
+unsetopt correct
+unsetopt correct_all
 prompt walters
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
