@@ -45,6 +45,7 @@ if type exa >/dev/null; then
     alias lsa="exa -lhgbHma --git"
 else
     alias ls="ls -lh --color"
+    alias lsa="ls -lhA --color"
 fi
 
 if type nvim >/dev/null; then
