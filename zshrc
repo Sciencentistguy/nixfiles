@@ -3,15 +3,22 @@ autoload -U compinit promptinit
 autoload -U colors && colors
 compinit
 promptinit
-zstyle ':completion:*' menu select
+prompt walters
+
+setopt AUTO_PUSHD
+setopt SHARE_HISTORY
 setopt completealiases
 setopt extendedglob
-setopt AUTO_PUSHD
-unsetopt nomatch
+setopt nomatch
+
 unsetopt correct
 unsetopt correct_all
-prompt walters
+
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+HISTFILE=~/.zsh_history
+HISTSIZE=10000000
+SAVEHIST=10000
 
 # Aliases
 source ~/.zsh/aliases.zsh
@@ -66,15 +73,11 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# Environment Variables
-export HISTFILE="~/zfile"
-export ARCHFLAGS="-arch x86_64"
-
 eval $(ssh-agent) >/dev/null
 
 # Wal
 if [ -d ~/.cache/wal/ ]; then
-    \cat ~/.cache/wal/sequences 2>/dev/null 
+    \cat ~/.cache/wal/sequences 2>/dev/null
 fi
 
 # Plugins
@@ -114,17 +117,13 @@ else
     echo "you-should-use plugin not loaded"
 fi
 
-if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+if [ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     echo "zsh-syntax-highlighting plugin not loaded"
 fi
 
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+if [ -f ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions plugin not loaded"
@@ -141,9 +140,3 @@ if grep -Fxq "arch" /etc/os-release; then
         echo "pkgfile plugin not loaded"
     fi
 fi
-
-# History
-HISTFILE=~/.zsh_history
-HISTSIZE=10000000
-SAVEHIST=10000
-setopt SHARE_HISTORY
