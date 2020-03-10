@@ -209,7 +209,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.tex :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.tex,*.md :call CleanExtraSpaces()
 endif
 
 " Returns true if paste mode is enabled
@@ -341,8 +341,8 @@ set spelllang=en_gb
 " Enable neovim's inccommand feature
 set inccommand=nosplit
 
-" Set spellcheck on for *.tex files
-au FileType tex setlocal spell
+" Set spellcheck on for certain filetypes
+au FileType tex,markdown setlocal spell
 
 " Conceal level 2
 set conceallevel=2
