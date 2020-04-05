@@ -41,6 +41,11 @@ def should(message) -> bool:
     return yes or ("n" not in input(f"{message} (Y/n) ").lower())
 
 
+if should("Install firefox configs"):
+    pikaur(["firefox-tridactyl-native", "firefox"])
+    link("/tridactylrc", "~/.config/tridactyl/tridactylrc")
+    print("Installed tridactylrc")
+
 if should("Install Git configs"):
     link("/gitignore", "~/.config/git/ignore")
     link("/gitignore", "~/.gitignore")

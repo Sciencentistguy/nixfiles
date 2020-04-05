@@ -35,6 +35,7 @@ Plug 'tpope/vim-eunuch'               " Vim sugar for UNIX shell commands
 Plug 'tpope/vim-fugitive'             " Git integration
 Plug 'tpope/vim-git'                  " Filetype plugin for git files
 Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
+Plug 'tridactyl/vim-tridactyl'        " Syntax plugin for tridactylrc
 Plug 'vim-airline/vim-airline'        " Fancy statusline
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 call plug#end()
