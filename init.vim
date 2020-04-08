@@ -348,17 +348,6 @@ au FileType tex,markdown setlocal spell
 " Conceal level 2
 set conceallevel=2
 
-" Don't conceal in LaTeX
-let g:tex_conceal = ""
-
-" Autosave
-let g:auto_save = 0
-augroup ft_latex
-    au!
-    au FileType tex let b:auto_save = 1
-augroup END
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
 " The default UpdateTime of 4000 is far too long for coc.nvim
 set updatetime=300
 
@@ -449,6 +438,14 @@ endfunction
 let g:polyglot_disabled = ['py', 'markdown', 'latex']
 
 
+""" Autosave
+let g:auto_save = 0
+augroup ft_latex
+    au!
+    au FileType tex let b:auto_save = 1
+augroup END
+let g:auto_save_events = ["InsertLeave"]
+
 """ Airline
 " Enable powerline fonts to use pointy airline separators
 let g:airline_powerline_fonts = 1
@@ -470,6 +467,7 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_strikethrough = 1
 
 """ Vimtex
+let g:tex_conceal = ""
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
