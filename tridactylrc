@@ -37,7 +37,7 @@ command hint_focus hint -;
 bind ;C composite hint_focus; !s xdotool key Menu
 
 " Unbind d to close a tab because its far too easy to accidently do.
-unbind d 
+unbind d
 
 " Bind ,{l,h} to switch forward and backwards along tabs.
 bind ,l tabnext
@@ -63,6 +63,7 @@ unbindurl ^http(s?)://www.youtube.com/watch k
 unbindurl ^http(s?)://www.youtube.com/watch l
 unbindurl ^http(s?)://www.youtube.com/watch t
 
+blacklistadd madebyevan.com/fsm/
 
 """""""""""""""""""""""""""""""""""""""
 " Settings
