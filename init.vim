@@ -354,6 +354,34 @@ set updatetime=300
 """""""""""""""""""""""""""""""""""""""
 " Plugin Options
 """""""""""""""""""""""""""""""""""""""
+""" Airline
+" Enable powerline fonts to use pointy airline separators
+let g:airline_powerline_fonts = 1
+
+" Enable tabline
+let g:airline#extensions#tabline#enabled = 1
+
+" Set theme
+let g:airline_theme='badwolf'
+
+" Format airline
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
+
+""" Autoformat
+au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex :Autoformat
+
+
+""" Autosave
+let g:auto_save = 0
+augroup ft_latex
+    au!
+    au FileType tex let b:auto_save = 1
+augroup END
+let g:auto_save_events = ["InsertLeave"]
+
+
 """ Coc.nvim
 " Run snippets in visual mode with <tab>
 vnoremap <tab> <Plug>(coc-snippets-select)
@@ -365,7 +393,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 
 " K will show documentation (vim's :h or LSP hover)
 nnoremap <silent> K :call <SID>show_documentation()<cr>
@@ -433,38 +460,39 @@ function! s:show_documentation()
 endfunction
 
 
+""" NERDTree
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified"  : "M",
+            \ "Staged"    : "+",
+            \ "Untracked" : "N",
+            \ "Renamed"   : "R",
+            \ "Unmerged"  : "=",
+            \ "Deleted"   : "D",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : 'i',
+            \ "Unknown"   : "?"
+            \ }
+
+
 """ Polyglot
 " Disable polyglot for everything it will conflict on
 let g:polyglot_disabled = ['py', 'markdown', 'latex']
 
 
-""" Autosave
-let g:auto_save = 0
-augroup ft_latex
-    au!
-    au FileType tex let b:auto_save = 1
-augroup END
-let g:auto_save_events = ["InsertLeave"]
+""" vim-gitgutter
+let g:gitgutter_map_keys=0
 
-""" Airline
-" Enable powerline fonts to use pointy airline separators
-let g:airline_powerline_fonts = 1
 
-" Enable tabline
-let g:airline#extensions#tabline#enabled = 1
-
-" Set theme
-let g:airline_theme='badwolf'
-
-" Format airline
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+""" vim-lgh
+let g:lgh_asedir = '~/.vim/githistory'
 
 
 """ Vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_strikethrough = 1
+
 
 """ Vimtex
 let g:tex_conceal = ""
@@ -503,29 +531,3 @@ let g:formatterpath = ['/bin', '~/.bin']
 "let g:formatters_cpp = ['astyle_c']
 let g:formatters_java = ['astyle_java']
 let g:formatters_zsh = ['shfmt']
-
-" Autoformat on write
-au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex :Autoformat
-
-""" Ranger.vim
-let g:ranger_replace_netrw = 1
-
-""" NERDTree
-let g:NERDTreeIndicatorMapCustom = {
-            \ "Modified"  : "M",
-            \ "Staged"    : "+",
-            \ "Untracked" : "N",
-            \ "Renamed"   : "R",
-            \ "Unmerged"  : "=",
-            \ "Deleted"   : "D",
-            \ "Dirty"     : "✗",
-            \ "Clean"     : "✔︎",
-            \ 'Ignored'   : 'i',
-            \ "Unknown"   : "?"
-            \ }
-
-""" vim-lgh
-let g:lgh_asedir = '~/.vim/githistory'
-
-""" vim-gitgutter
-let g:gitgutter_map_keys=0
