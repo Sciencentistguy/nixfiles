@@ -14,6 +14,7 @@ Plug 'chrisbra/csv.vim'               " CSV file specific commands
 Plug 'dylanaraps/wal.vim'             " Support for Wal colorschemes
 Plug 'edkolev/tmuxline.vim'           " Format tmux's statusbar to look like airline
 Plug 'godlygeek/tabular'              " Align stuff
+Plug 'honza/vim-snippets'             " Provides python to ultisnips
 Plug 'junegunn/fzf'                   " Fuzzy finder
 Plug 'junegunn/fzf.vim'               " Fuzzy finder plugin for vim
 Plug 'lervag/vimtex'                  " LaTeX support
