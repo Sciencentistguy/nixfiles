@@ -508,11 +508,15 @@ let g:vimtex_compiler_latexmk = {
             \ 'continuous' : 1,
             \ 'executable' : 'latexmk',
             \ 'options' : [
+            \   '-lualatex',
             \   '-verbose',
             \   '-file-line-error',
             \   '-synctex=1',
             \   '-interaction=nonstopmode',
             \ ],
+            \}
+let g:vimtex_compiler_latexmk_engines = {
+            \ '_'         : '-lualatex',
             \}
 let g:Tex_IgnoredWarnings =
             \'Underfull'."\n".
