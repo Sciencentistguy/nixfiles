@@ -66,7 +66,6 @@ snippet iff "If and only if (iff)"
 $\iff$
 endsnippet
 
-
 pre_expand "create_table(snip)"
 snippet "gentbl(\d+)x(\d+)" "Generate table of *width* by *height*" r  
 endsnippet
@@ -111,6 +110,14 @@ snippet desc "Description" b
 \begin{description}
 	\item[$1] $0
 \end{description}
+endsnippet
+
+snippet lst "lstlisting environment" b
+\begin{lstlisting}[language=$1]
+	$0
+\end{lstlisting}
+endsnippet
+
 endsnippet
 
 snippet it "Individual item" b
