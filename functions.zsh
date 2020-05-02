@@ -60,3 +60,15 @@ videodownload() {
     tmux new -d aria2c $i
     cd -
 }
+
+update-music-library() {
+    if [ $(hostname) = chronos ]; then
+        rsync -Pa --delete ~/Music/beets/ atlas:/nas/plex/Music
+    fi
+}
+
+update-music-library-remote() {
+    if [ $(hostname) = chronos ]; then
+        rsync -Pa --delete ~/Music/beets/ home.jamiequigley.com:/nas/plex/Music
+    fi
+}
