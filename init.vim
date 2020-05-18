@@ -5,7 +5,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
 
 Plug '907th/vim-auto-save'            " Autosave
-Plug 'Chiel92/vim-autoformat'         " Autoformatter
+Plug 'APZelos/blamer.nvim'            " Inline git blame
 Plug 'Townk/vim-autoclose'            " Automatically close ( { [ etc
 Plug 'Xuyuanp/nerdtree-git-plugin'    " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'         " Git diff tracker for airline
@@ -17,6 +17,7 @@ Plug 'godlygeek/tabular'              " Align stuff
 Plug 'honza/vim-snippets'             " Provides python to ultisnips
 Plug 'junegunn/fzf'                   " Fuzzy finder
 Plug 'junegunn/fzf.vim'               " Fuzzy finder plugin for vim
+Plug 'kien/rainbow_parentheses.vim'   " Rainbow Brackets
 Plug 'lervag/vimtex'                  " LaTeX support
 Plug 'ludovicchabant/vim-gutentags'   " Tag management plugin
 Plug 'm42e/vim-lgh'                   " Local history using git
@@ -26,9 +27,11 @@ Plug 'mbbill/undotree'                " A nice undo-tree viewer
 Plug 'neoclide/coc-neco'              " Viml completion source for coc.nvim
 Plug 'plasticboy/vim-markdown'        " Markdown support
 Plug 'rbgrouleff/bclose.vim'          " Close buffers without closing the window
+Plug 'sbdchd/neoformat'               " Formatting
 Plug 'scrooloose/nerdcommenter'       " Format comments properly and automatically
 Plug 'scrooloose/nerdtree'            " Tree file broweser inside vim
 Plug 'sheerun/vim-polyglot'           " Language profiles (syntax highlighting)
+Plug 'spolu/dwm.vim'                  " Clever 'window' management in vim
 Plug 'tpope/vim-abolish'              " Easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-afterimage'           " Edit things like pdfs and word docs
 Plug 'tpope/vim-endwise'              " Automatically add 'end' for functions etc.
@@ -37,7 +40,6 @@ Plug 'tpope/vim-fugitive'             " Git integration
 Plug 'tpope/vim-git'                  " Filetype plugin for git files
 Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
 Plug 'tridactyl/vim-tridactyl'        " Syntax plugin for tridactylrc
-Plug 'tveskag/nvim-blame-line'        " Inline git blame
 Plug 'vim-airline/vim-airline'        " Fancy statusline
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 call plug#end()
@@ -238,7 +240,8 @@ endfunction
 " Misc Maps
 """""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle <cr>
-nnoremap <silent> <F3> :Autoformat<cr>
+nnoremap <silent> <F3> :Neoformat<cr>
+vnoremap <silent> <F3> :Neoformat!
 nnoremap <F4> :TagbarToggle<cr>
 nnoremap <F5> :UndotreeToggle<cr>:UndotreeFocus<cr>
 
@@ -371,10 +374,6 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
-""" Autoformat
-au BufWrite *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex :Autoformat
-
-
 """ Autosave
 let g:auto_save = 0
 augroup ft_latex
@@ -382,6 +381,11 @@ augroup ft_latex
     au FileType tex let b:auto_save = 1
 augroup END
 let g:auto_save_events = ["InsertLeave"]
+
+
+""" blamer 
+" Enable blamer
+let g:blamer_enabled = 1
 
 
 """ Coc.nvim
@@ -462,6 +466,40 @@ function! s:show_documentation()
 endfunction
 
 
+""" Neoformat
+" Automatically format on write
+augroup fmt
+    autocmd!
+    autocmd BufWritePre *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex undojoin | Neoformat
+augroup END
+autocmd FileType tex let b:autoformat_autoindent=0
+
+" Specify custom formatters 
+let g:neoformat_zsh_shfmt = {
+            \ 'exe': 'shfmt',
+            \ 'stdin': 1, 
+            \ 'args': ['-i 4']
+            \ }
+let g:neoformat_python_autopep8 = {
+            \ 'exe': 'autopep8',
+            \ 'args': ['--max-line-length 120', '--experimental', '-aa' ,'-'],
+            \ 'stdin': 1,
+            \ 'noappend': 1,
+            \ }
+let g:neoformat_json_prettier = {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'json', '--tab-width 4', '--print-width 120'],
+        \ 'stdin': 1,
+        \ }
+
+
+
+
+" Select formatters
+let g:neoformat_enabled_zsh = ['shfmt']
+let g:neoformat_enabled_python = ['autopep8']
+
+
 """ NERDTree
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "M",
@@ -477,17 +515,17 @@ let g:NERDTreeIndicatorMapCustom = {
             \ }
 
 
-""" nvim-blame-line
-" Use gb to toggle the blame line 
-nmap gb :ToggleBlameLine<cr>
-
-" Spacing and // prefix
-let g:blameLineVirtualTextPrefix = "  //  "
-
-
 """ Polyglot
 " Disable polyglot for everything it will conflict on
 let g:polyglot_disabled = ['py', 'markdown', 'latex']
+
+
+""" Rainbow Parenthesis
+" Enable everywhere
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 
 """ vim-gitgutter
@@ -538,10 +576,3 @@ let g:Tex_IgnoredWarnings =
             \'Double space found.'."\n"
 let g:Tex_IgnoreLevel = 8
 
-autocmd FileType tex let b:autoformat_autoindent=0
-" Specify custom formatters
-let g:formatterpath = ['/bin', '~/.bin']
-"let g:formatters_c = ['astyle_c']
-"let g:formatters_cpp = ['astyle_c']
-let g:formatters_java = ['astyle_java']
-let g:formatters_zsh = ['shfmt']
