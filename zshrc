@@ -67,8 +67,20 @@ if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo/bin" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 if [ -d "/ubin" ]; then
     PATH="/ubin:$PATH"
+fi
+
+if [ -d "/sbin" ]; then
+    PATH="/sbin:$PATH"
+fi
+
+if [ -d "/usr/sbin" ]; then
+    PATH="/usr/sbin:$PATH"
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
