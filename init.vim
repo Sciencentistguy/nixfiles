@@ -37,6 +37,7 @@ Plug 'tpope/vim-fugitive'             " Git integration
 Plug 'tpope/vim-git'                  " Filetype plugin for git files
 Plug 'tpope/vim-surround'             " Surround text with arbitrary characters
 Plug 'tridactyl/vim-tridactyl'        " Syntax plugin for tridactylrc
+Plug 'tveskag/nvim-blame-line'        " Inline git blame
 Plug 'vim-airline/vim-airline'        " Fancy statusline
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 call plug#end()
@@ -474,6 +475,14 @@ let g:NERDTreeIndicatorMapCustom = {
             \ 'Ignored'   : 'i',
             \ "Unknown"   : "?"
             \ }
+
+
+""" nvim-blame-line
+" Use gb to toggle the blame line 
+nmap gb :ToggleBlameLine<cr>
+
+" Spacing and // prefix
+let g:blameLineVirtualTextPrefix = "  //  "
 
 
 """ Polyglot
