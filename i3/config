@@ -36,7 +36,7 @@ bindsym $alt+F4 kill
 bindsym $win+space exec rofi -show run -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
 #bindsym $alt+Tab exec rofi -show window -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
 #bindsym $win+L exec --no-startup-id light-locker-command -l
-bindsym $win+Return exec gnome-terminal
+bindsym $win+Return exec alacritty
 bindsym $win+Shift+s exec flameshot gui
 
 # Pulse Audio controls

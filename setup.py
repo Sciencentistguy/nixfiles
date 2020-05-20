@@ -19,7 +19,19 @@ def pikaur(packages: list):
 
 
 def coc_plugins():
-    pluglist = ["coc-vimtex", "coc-python", "coc-json", "coc-java", "coc-html", "coc-css", "coc-ccls", "coc-snippets", "coc-ultisnips", "coc-word", "coc-emoji", "coc-git"]
+    pluglist = [
+        "coc-vimtex",
+        "coc-python",
+        "coc-json",
+        "coc-java",
+        "coc-html",
+        "coc-css",
+        "coc-ccls",
+        "coc-snippets",
+        "coc-ultisnips",
+        "coc-word",
+        "coc-emoji",
+        "coc-git"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 
@@ -37,9 +49,12 @@ def link(relative_name, filepath, sudo=False):
         subprocess.run(["ln", "-s", os.getcwd() + relative_name, filepath])
 
 
-def should(message) -> bool:
+def should(message: str) -> bool:
     return yes or ("n" not in input(f"{message} (Y/n) ").lower())
 
+
+if should("Install alacritty config"):
+    link("/alacritty.yml", "~/.config/alacritty/alacritty.yml")
 
 if should("Install firefox configs"):
     pikaur(["firefox-tridactyl-native", "firefox"])
