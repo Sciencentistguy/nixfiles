@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+import socket
 
 yes = "-y" in sys.argv
 
@@ -54,7 +55,15 @@ def should(message: str) -> bool:
 
 
 if should("Install alacritty config"):
-    link("/alacritty.yml", "~/.config/alacritty/alacritty.yml")
+    hostname = socket.gethostname()
+    if hostname == "chronos":
+        link("/alacritty_chronos.yml", "~/.config/alacritty/alacritty.yml")
+        print("Installed alacritty_{hostname}.yml")
+    elif hostname == "hyperion":
+        link("/alacritty_hyperion.yml", "~/.config/alacritty/alacritty.yml")
+        print(f"Installed alacritty_{hostname}.yml")
+    else:
+        print(f"Alacritty_{hostname}.yml does not exist")
 
 if should("Install firefox configs"):
     pikaur(["firefox-tridactyl-native", "firefox"])
