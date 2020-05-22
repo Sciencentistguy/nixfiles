@@ -44,53 +44,60 @@ sudo-command-line() {
         LBUFFER="sudo $LBUFFER"
     fi
 }
+
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
 
-# PATH
 if [ -d /etc/zsh/zshrc.d ]; then
     for file in /etc/zsh/zshrc.d/*; do
         source $file
     done
 fi
 
-if [ -d "$HOME/.bin" ]; then
-    PATH="$HOME/.bin:$PATH"
+# PATH
+if [ -d "/ubin" ]; then
+    PATH="$PATH:/ubin"
+fi
+
+if [ -d "/sbin" ] && [ ! -L "/sbin" ]; then
+    PATH="$PATH:/sbin"
+fi
+
+if [ -d "/usr/sbin" ] && [ ! -L "/sbin" ]; then
+    PATH="$PATH:/usr/sbin"
 fi
 
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 if [ -d "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -d "/ubin" ]; then
-    PATH="/ubin:$PATH"
+if [ -d "$HOME/.yarn/bin" ]; then
+    PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-if [ -d "/sbin" ]; then
-    PATH="/sbin:$PATH"
+if [ -d "$HOME/.config/yarn/global/node_modules/.bin" ]; then
+    PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 fi
 
-if [ -d "/usr/sbin" ]; then
-    PATH="/usr/sbin:$PATH"
+if [ -d "$HOME/.bin" ]; then
+    PATH="$HOME/.bin:$PATH"
 fi
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
 
 eval $(ssh-agent) >/dev/null
 
 # Wal
-if [ -d ~/.cache/wal/ ]; then
-    \cat ~/.cache/wal/sequences 2>/dev/null
-fi
+#if [ -d ~/.cache/wal/ ]; then
+#\cat ~/.cache/wal/sequences 2>/dev/null
+#fi
 
 # Plugins
 if type thefuck >/dev/null; then
