@@ -58,7 +58,7 @@ if should("Install alacritty config"):
     hostname = socket.gethostname()
     if hostname == "chronos":
         link("/alacritty_chronos.yml", "~/.config/alacritty/alacritty.yml")
-        print("Installed alacritty_{hostname}.yml")
+        print(f"Installed alacritty_{hostname}.yml")
     elif hostname == "hyperion":
         link("/alacritty_hyperion.yml", "~/.config/alacritty/alacritty.yml")
         print(f"Installed alacritty_{hostname}.yml")

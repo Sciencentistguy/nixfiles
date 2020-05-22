@@ -1,15 +1,15 @@
 {
-    "suggest.triggerAfterInsertEnter" : true,
-    "suggest.noselect" : false,
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.noselect": false,
     "suggest.minTriggerInputLength": 2,
     "languageserver": {
         "ccls": {
             "command": "ccls",
-            "filetypes": ["c","cpp","cuda","cc","objc","objcpp"],
-            "rootPatterns": [".ccls","compile_commands.json",".vim/",".git/",".hg/"],
+            "filetypes": ["c", "cpp", "cuda", "cc", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "initializationOptions": {
                 "cache": {
-                    "directory":".ccls-cache"
+                    "directory": ".ccls-cache"
                 }
             }
         },
@@ -25,34 +25,16 @@
         "haskell": {
             "command": "hie-wrapper",
             "args": ["--lsp"],
-            "rootPatterns": [
-                "*.cabal",
-                "stack.yaml", "cabal.project",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
+            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml"],
+            "filetypes": ["hs", "lhs", "haskell"],
             "initializationOptions": {
-                "languageServerHaskell": {
-                }
+                "languageServerHaskell": {}
             }
         }
     },
     "python.jediEnabled": false,
     "coc.source.word.enable": true,
     "coc.source.emoji.enable": true,
-    "coc.source.word.filetypes": [
-        "tex",
-        "markdown",
-        "text",
-        ""
-    ],
-    "coc.source.emoji.filetypes": [
-        "markdown",
-        "gitcommit",
-        ""
-    ]
+    "coc.source.word.filetypes": ["tex", "markdown", "text", ""],
+    "coc.source.emoji.filetypes": ["markdown", "gitcommit", ""]
 }

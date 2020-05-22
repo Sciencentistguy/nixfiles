@@ -487,12 +487,10 @@ let g:neoformat_python_autopep8 = {
             \ 'noappend': 1,
             \ }
 let g:neoformat_json_prettier = {
-        \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'json', '--tab-width 4', '--print-width 120'],
-        \ 'stdin': 1,
-        \ }
-
-
+            \ 'exe': 'prettier',
+            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'json', '--tab-width 4', '--print-width 120'],
+            \ 'stdin': 1,
+            \ }
 
 
 " Select formatters
