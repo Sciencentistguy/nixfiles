@@ -25,9 +25,9 @@ window:
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  position:
-    x: 0
-    y: 0
+  #position:
+    #x: 2600
+    #y: 720
 
   # Window padding (changes require restart)
   #
@@ -63,7 +63,7 @@ window:
   startup_mode: Windowed
 
   # Window title
-  title: Alacritty
+  title: Terminal
 
   # Window class (Linux/BSD only):
   class:
