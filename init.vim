@@ -140,9 +140,6 @@ if has("gui_macvim")
     autocmd GUIEnter * set vb t_vb=
 endif
 
-" Add a bit extra margin to the left
-set foldcolumn=1
-
 " Enable syntax highlighting
 syntax enable
 
@@ -385,7 +382,8 @@ let g:auto_save_events = ["InsertLeave"]
 
 """ blamer 
 " Enable blamer
-let g:blamer_enabled = 1
+let g:blamer_enabled = 0
+nmap <leader>bb :BlamerToggle<cr>
 
 
 """ Coc.nvim
