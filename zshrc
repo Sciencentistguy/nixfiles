@@ -94,11 +94,6 @@ fi
 
 eval $(ssh-agent) >/dev/null
 
-# Wal
-#if [ -d ~/.cache/wal/ ]; then
-#\cat ~/.cache/wal/sequences 2>/dev/null
-#fi
-
 # Plugins
 if type thefuck >/dev/null; then
     eval $(thefuck --alias)
