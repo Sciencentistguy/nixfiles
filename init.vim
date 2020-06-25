@@ -12,11 +12,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
 Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions, text objects or visual mode
 Plug 'chrisbra/csv.vim'                " CSV file specific commands
+Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of things
 Plug 'edkolev/tmuxline.vim'            " Format tmux's statusbar to look like airline
 Plug 'godlygeek/tabular'               " Align stuff
 Plug 'honza/vim-snippets'              " Provides python to ultisnips
-Plug 'junegunn/fzf'                    " Fuzzy finder
-Plug 'junegunn/fzf.vim'                " Fuzzy finder plugin for vim
 Plug 'kien/rainbow_parentheses.vim'    " Rainbow Brackets
 Plug 'lervag/vimtex'                   " LaTeX support
 Plug 'ludovicchabant/vim-gutentags'    " Tag management plugin
@@ -42,6 +41,7 @@ Plug 'tpope/vim-surround'              " Surround text with arbitrary characters
 Plug 'tridactyl/vim-tridactyl'         " Syntax plugin for tridactylrc
 Plug 'vim-airline/vim-airline'         " Fancy statusline
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
+Plug 'timonv/vim-cargo'                " Cargo commands
 call plug#end()
 
 
@@ -207,7 +207,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.tex,*.md :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.tex,*.md,*.vim :call CleanExtraSpaces()
 endif
 
 " Returns true if paste mode is enabled
@@ -376,7 +376,7 @@ augroup END
 let g:auto_save_events = ["InsertLeave"]
 
 
-""" blamer 
+""" blamer
 " Enable blamer
 let g:blamer_enabled = 0
 nmap <leader>bb :BlamerToggle<cr>
@@ -468,10 +468,10 @@ augroup fmt
 augroup END
 autocmd FileType tex let b:autoformat_autoindent=0
 
-" Specify custom formatters 
+" Specify custom formatters
 let g:neoformat_zsh_shfmt = {
             \ 'exe': 'shfmt',
-            \ 'stdin': 1, 
+            \ 'stdin': 1,
             \ 'args': ['-i 4']
             \ }
 let g:neoformat_python_autopep8 = {
@@ -522,6 +522,10 @@ au Syntax * RainbowParenthesesLoadBraces
 
 """ vim-gitgutter
 let g:gitgutter_map_keys=0
+
+
+""" vim-gutentags
+let g:gutentags_define_commands=1
 
 
 """ vim-lgh
