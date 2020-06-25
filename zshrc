@@ -9,8 +9,8 @@ setopt AUTO_PUSHD
 setopt SHARE_HISTORY
 setopt completealiases
 setopt extendedglob
-setopt nomatch
 
+unsetopt nomatch
 unsetopt correct
 unsetopt correct_all
 
