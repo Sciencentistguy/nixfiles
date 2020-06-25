@@ -17,6 +17,7 @@ exec --no-startup-id ~/.config/i3/fehbg.sh ~/Pictures/wallpaper.jpg
 
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf --experimental-backends -b &
+exec_always --no-startup-id setxkbmap -option caps:escape
 
 # KDE Plasma
 for_window [title="Desktop — Plasma"]; floating enable; border none
