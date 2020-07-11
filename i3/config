@@ -3,24 +3,22 @@ set $mod Mod1
 set $win Mod4
 set $alt Mod1
 
-# Recall wal scheme
-exec --no-startup-id wal -R
-
-# Start light-locker
-#exec --no-startup-id light-locker
-
 # Start ksuperkey
-exec --no-startup-id ksuperkey
+#exec --no-startup-id ksuperkey
 
 # set desktop background
-exec --no-startup-id ~/.config/i3/fehbg.sh ~/Pictures/wallpaper.jpg
+exec --no-startup-id ~/.config/i3/fehbg.sh "~/Pictures/Wallpaper/Rainbow outrun - dekstop.png"
 
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf --experimental-backends -b &
 exec_always --no-startup-id setxkbmap -option caps:escape
 
+# Dunst
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
+
 # KDE Plasma
-for_window [title="Desktop — Plasma"]; floating enable; border none
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [class="plasmashell"] floating enable;
 for_window [class="Plasma"] floating enable; border none
 for_window [title="plasma-desktop"] floating enable; border none
@@ -34,9 +32,8 @@ for_window [class="plasmashell" window_type="notification"] floating enable, bor
 
 # custom keybinds
 bindsym $alt+F4 kill
-bindsym $win+space exec rofi -show run -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
+bindsym $win+space exec rofi -font "SF Pro Display 12" -show run -dpi 192 -theme ~/.config/i3/rofi_theme.rasi
 #bindsym $alt+Tab exec rofi -show window -dpi 240 -theme ~/.config/i3/rofi-themes/Official\ Themes/Adapta-Nokto.rasi
-#bindsym $win+L exec --no-startup-id light-locker-command -l
 bindsym $win+Return exec alacritty
 bindsym $win+Shift+s exec flameshot gui
 
@@ -68,7 +65,7 @@ gaps inner 5
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:inconsolata 10
+font pango:SF Pro Display 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -89,13 +86,13 @@ set $left h
 set $right l
 
 # use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier $alt
 
 # change focused window
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindsym $alt+$left focus left
+bindsym $alt+$down focus down
+bindsym $alt+$up focus up
+bindsym $alt+$right focus right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Left focus left
@@ -104,10 +101,10 @@ bindsym $mod+$right focus right
 #bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $alt+Shift+$left move left
+bindsym $alt+Shift+$down move down
+bindsym $alt+Shift+$up move up
+bindsym $alt+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Shift+Left move left
@@ -122,21 +119,21 @@ bindsym $alt+Shift+v splith
 bindsym $alt+v splitv
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $alt+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $alt+s layout stacking
+bindsym $alt+w layout tabbed
+bindsym $alt+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $alt+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $alt+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $alt+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -177,7 +174,8 @@ bindsym $win+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $win+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $alt+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $alt+Shift+e exec "qdbus org.kde.ksmserver /KSMServer logout 1 0 0"
+#bindsym $alt+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -207,14 +205,18 @@ bindsym $mod+r mode "resize"
 
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
+set $background #1c1c1
+set $foreground #e8e8e8
+set $highlight #00adb3
+set $bell #b33000
+set $select #3f3f3f
+# class                 border          backgr.         text        indicator       child_border
+client.focused          $select $background $select $select $select 
+client.focused_inactive $select $background $select $select $select 
+client.unfocused        $background $background $foreground $background $background
+client.urgent           $bell $background $foreground $background $bell 
+client.placeholder      $background $background $foreground $background $background
 
-# class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $fg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
-
-client.background       $bg
+client.background       $background
 
 exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
