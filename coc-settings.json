@@ -1,18 +1,8 @@
 {
-    "suggest.triggerAfterInsertEnter": true,
+    "suggest.triggerAfterInsertEnter": false,
     "suggest.noselect": false,
     "suggest.minTriggerInputLength": 2,
     "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "cuda", "cc", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": ".ccls-cache"
-                }
-            }
-        },
         "golang": {
             "command": "go-langserver",
             "filetypes": ["go"],

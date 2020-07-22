@@ -7,7 +7,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer
 Plug '907th/vim-auto-save'             " Autosave
 Plug 'APZelos/blamer.nvim'             " Inline git blame
 Plug 'Sciencentistguy/vim-monokai-pro' " Colourscheme
-Plug 'Townk/vim-autoclose'             " Automatically close ( { [ etc
 Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
 Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions, text objects or visual mode
@@ -18,7 +17,6 @@ Plug 'godlygeek/tabular'               " Align stuff
 Plug 'honza/vim-snippets'              " Provides python to ultisnips
 Plug 'kien/rainbow_parentheses.vim'    " Rainbow Brackets
 Plug 'lervag/vimtex'                   " LaTeX support
-Plug 'ludovicchabant/vim-gutentags'    " Tag management plugin
 Plug 'm42e/vim-lgh'                    " Local history using git
 Plug 'majutsushi/tagbar'               " Tagbar
 Plug 'mattn/emmet-vim'                 " Emmet-style abbreviation expansion
@@ -30,10 +28,10 @@ Plug 'sbdchd/neoformat'                " Formatting
 Plug 'scrooloose/nerdcommenter'        " Format comments properly and automatically
 Plug 'scrooloose/nerdtree'             " Tree file broweser inside vim
 Plug 'sheerun/vim-polyglot'            " Language profiles (syntax highlighting)
-Plug 'spolu/dwm.vim'                   " Clever 'window' management in vim
+Plug 'timonv/vim-cargo'                " Cargo commands
+Plug 'tjdevries/coc-zsh'               " ZSH completion source for coc
 Plug 'tpope/vim-abolish'               " Easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-afterimage'            " Edit things like pdfs and word docs
-Plug 'tpope/vim-endwise'               " Automatically add 'end' for functions etc.
 Plug 'tpope/vim-eunuch'                " Vim sugar for UNIX shell commands
 Plug 'tpope/vim-fugitive'              " Git integration
 Plug 'tpope/vim-git'                   " Filetype plugin for git files
@@ -41,7 +39,6 @@ Plug 'tpope/vim-surround'              " Surround text with arbitrary characters
 Plug 'tridactyl/vim-tridactyl'         " Syntax plugin for tridactylrc
 Plug 'vim-airline/vim-airline'         " Fancy statusline
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
-Plug 'timonv/vim-cargo'                " Cargo commands
 call plug#end()
 
 
@@ -241,6 +238,11 @@ nnoremap <F5> :UndotreeToggle<cr>:UndotreeFocus<cr>
 nnoremap mm :wa<cr> :!make -j<cr>
 nnoremap mi :!make install<cr>
 nnoremap mc :!make clean<cr>
+nnoremap mm :wa<cr> :!make -j<cr>
+
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+
+nnoremap <leader>L :CocList
 
 " Unbind keys I don't want
 noremap <Up> <NOP>
@@ -442,6 +444,12 @@ inoremap <silent><expr> <tab>
             \ <SID>check_back_space() ? "\<tab>" :
             \ coc#refresh()
 inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Snippet "next" keybind
 let g:coc_snippet_next = '<tab>'

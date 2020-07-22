@@ -21,18 +21,28 @@ def pikaur(packages: list):
 
 def coc_plugins():
     pluglist = [
-        "coc-vimtex",
-        "coc-python",
-        "coc-json",
-        "coc-java",
-        "coc-html",
+        "coc-clangd",
+        "coc-cord",
         "coc-css",
-        "coc-ccls",
-        "coc-snippets",
-        "coc-ultisnips",
-        "coc-word",
+        "coc-dictionary",
         "coc-emoji",
-        "coc-git"]
+        "coc-git",
+        "coc-java",
+        "coc-json",
+        "coc-lists",
+        "coc-marketplace",
+        "coc-pairs",
+        "coc-python",
+        "coc-rust-analyzer",
+        "coc-sh",
+        "coc-snippets",
+        "coc-tag",
+        "coc-tsserver",
+        "coc-ultisnips",
+        "coc-vimtex",
+        "coc-word",
+        "coc-yaml",
+        "coc-yank"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
 
 
