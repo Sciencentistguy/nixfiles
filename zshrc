@@ -60,6 +60,10 @@ if [ -d "/ubin" ]; then
     PATH="$PATH:/ubin"
 fi
 
+if [ -d "/opt/cuda/bin" ]; then
+    PATH="$PATH:/opt/cuda/bin"
+fi
+
 if [ -d "/sbin" ] && [ ! -L "/sbin" ]; then
     PATH="$PATH:/sbin"
 fi
