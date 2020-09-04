@@ -26,6 +26,9 @@ source ~/.zsh/aliases.zsh
 # Functions
 source ~/.zsh/functions.zsh
 
+# Environment
+export GPG_TTY=$(tty)
+
 # esc-esc sudo
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
