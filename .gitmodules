@@ -7,3 +7,6 @@
 [submodule "i3/rofi-themes"]
 	path = i3/rofi-themes
 	url = http://github.com/davatorium/rofi-themes.git
+[submodule "zsh-plugins/zsh-command-time"]
+	path = zsh-plugins/zsh-command-time
+	url = git@github.com:popstas/zsh-command-time.git

@@ -150,6 +150,14 @@ else
     echo "zsh-autosuggestions plugin not loaded"
 fi
 
+if [ -f ~/.zsh/plugins/zsh-command-time/command-time.plugin.zsh ]; then
+    source ~/.zsh/plugins/zsh-command-time/command-time.plugin.zsh
+    ZSH_COMMAND_TIME_MSG="Execution time: %s"
+    ZSH_COMMAND_TIME_COLOR="red"
+else
+    echo "zsh-command-time plugin not loaded"
+fi
+
 if [ -f ~/.resh/shellrc ]; then
     source ~/.resh/shellrc
 fi

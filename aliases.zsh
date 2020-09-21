@@ -43,6 +43,7 @@ if type exa >/dev/null; then
     alias ls="exa -lhgbHm --git "
     alias lst="exa -lhgbHmT --git"
     alias lsa="exa -lhgbHma --git"
+    alias lsat="exa -lhgbHmaT --git"
 else
     alias ls="ls -lh --color"
     alias lsa="ls -lhA --color"

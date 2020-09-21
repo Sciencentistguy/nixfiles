@@ -13,6 +13,7 @@ env:
   TERM: alacritty
 
 window:
+  dynamic_title: false
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -252,7 +253,7 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
   color: "#ffffff"
@@ -270,7 +271,6 @@ selection:
   save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: false
 
 cursor:
   # Cursor style
