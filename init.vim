@@ -437,19 +437,24 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Make <tab> and <s-tab> work like in vscode
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+ "Make <tab> and <s-tab> work like in vscode
 inoremap <silent><expr> <tab>
             \ pumvisible() ? coc#_select_confirm() :
             \ coc#expandableOrJumpable() ? "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
             \ <SID>check_back_space() ? "\<tab>" :
             \ coc#refresh()
 inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+"if exists('*complete_info')
+  "inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"else
+  "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"endif
 
 " Snippet "next" keybind
 let g:coc_snippet_next = '<tab>'
@@ -493,11 +498,25 @@ let g:neoformat_json_prettier = {
             \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'json', '--tab-width 4', '--print-width 120'],
             \ 'stdin': 1,
             \ }
+let g:neoformat_haskell_custombrittany = {
+        \ 'exe': 'brittany',
+        \ 'args': ['--indent 4', '--columns 120'],
+        \ 'stdin': 1,
+        \ }
 
 
 " Select formatters
-let g:neoformat_enabled_zsh = ['shfmt']
+let g:neoformat_enabled_haskell = ['custombrittany']
 let g:neoformat_enabled_python = ['autopep8']
+let g:neoformat_enabled_zsh = ['shfmt']
+
+
+
+""" NERDCommenter
+" Mappings
+nmap  <plug>NERDCommenterToggle <cr>
+vmap  <plug>NERDCommenterToggle
+
 
 
 """ NERDTree
