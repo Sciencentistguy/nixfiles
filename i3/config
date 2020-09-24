@@ -7,7 +7,7 @@ set $alt Mod1
 #exec --no-startup-id ksuperkey
 
 # set desktop background
-exec --no-startup-id ~/.config/i3/fehbg.sh "~/Pictures/Wallpaper/Rainbow outrun - dekstop.png"
+exec --no-startup-id ~/.config/i3/fehbg.sh ~/.wallpaper.png
 
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf --experimental-backends -b &
@@ -217,6 +217,6 @@ client.unfocused        $background $background $foreground $background $backgro
 client.urgent           $bell $background $foreground $background $bell 
 client.placeholder      $background $background $foreground $background $background
 
-client.background       $background
+#client.background       $background
 
 exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
