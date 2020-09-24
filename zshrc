@@ -3,7 +3,7 @@ autoload -U compinit promptinit
 autoload -U colors && colors
 compinit
 promptinit
-prompt walters
+prompt spaceship || prompt walters
 
 setopt AUTO_PUSHD
 setopt SHARE_HISTORY
@@ -19,6 +19,60 @@ zstyle ':completion:*' menu select
 HISTFILE=~/.zsh_history
 HISTSIZE=10000000
 SAVEHIST=10000
+
+# Prompt
+SPACESHIP_PROMPT_ORDER=(
+  #time          # Time stamps section
+  user          # Username section
+  host          # Hostname section
+  dir           # Current directory section
+  git           # Git section (git_branch + git_status)
+  #hg            # Mercurial section (hg_branch  + hg_status)
+  #package       # Package version
+  #node          # Node.js section
+  #ruby          # Ruby section
+  #elixir        # Elixir section
+  #swift         # Swift section
+  #golang        # Go section
+  #php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  #julia         # Julia section
+  #docker        # Docker section
+  #aws           # Amazon Web Services section
+  #gcloud        # Google Cloud Platform section
+  venv          # virtualenv section
+  #conda         # conda virtualenv section
+  #pyenv         # Pyenv section
+  #dotnet        # .NET section
+  #ember         # Ember.js section
+  #kubectl       # Kubectl context section
+  #terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  #battery       # Battery level and status
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+
+SPACESHIP_CHAR_SYMBOL="$"
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_SYMBOL_ROOT="#"
+
+SPACESHIP_USER_SHOW="true"
+#SPACESHIP_USER_SUFFIX=""
+SPACESHIP_HOST_SHOW="true"
+#SPACESHIP_HOST_PREFIX="@"
+
+SPACESHIP_DIR_TRUNK=0
+
+SPACESHIP_EXEC_TIME_TIME_ELAPSED=5
+
+SPACESHIP_VI_MODE_INSERT="<I>"
+SPACESHIP_VI_MODE_NORMAL="<N>"
+SPACESHIP_VI_MODE_COLOR=246
 
 # Aliases
 source ~/.zsh/aliases.zsh
@@ -148,14 +202,6 @@ if [ -f ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions plugin not loaded"
-fi
-
-if [ -f ~/.zsh/plugins/zsh-command-time/command-time.plugin.zsh ]; then
-    source ~/.zsh/plugins/zsh-command-time/command-time.plugin.zsh
-    ZSH_COMMAND_TIME_MSG="Execution time: %s"
-    ZSH_COMMAND_TIME_COLOR="red"
-else
-    echo "zsh-command-time plugin not loaded"
 fi
 
 if [ -f ~/.resh/shellrc ]; then
