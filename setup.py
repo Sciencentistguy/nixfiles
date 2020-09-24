@@ -125,7 +125,7 @@ if should("Install spicetify themes?"):
     print("Installed spicetify configs")
 
 if should("Install zsh configs?"):
-    pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile"])
+    pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile", "starship-git"])
     mkdir("~/.zsh")
     link("/zshrc", "~/.zshrc")
     print("Installed zshrc")
@@ -135,6 +135,8 @@ if should("Install zsh configs?"):
     print("Installed functions.zsh")
     link("/aliases.zsh", "~/.zsh/aliases.zsh")
     print("Installed aliases.zsh")
+    link("/starship.toml", "~/.config/starship.toml")
+    print("Installed starship.toml")
     if not os.path.isdir(os.path.expanduser("~/.resh")):
         os.system("curl -fsSL https://raw.githubusercontent.com/curusarn/resh/master/scripts/rawinstall.sh | bash")
         print("Installed resh")
