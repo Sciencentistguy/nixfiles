@@ -24,6 +24,13 @@ truncation_length = 8
 truncate_to_repo = true
 read_only_symbol= ' '
 
+[hostname]
+ssh_only = false
+
+[username]
+show_always = true
+format = "[$user]($style)@"
+
 [package]
 disabled = true
 
