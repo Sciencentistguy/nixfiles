@@ -1,10 +1,8 @@
-# Don't print a new line at the start of the prompt
 add_newline = false
 
 format="$all"
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
+[character]
 success_symbol = '[<I>](bold fg:246) [➜](bold green)'
 error_symbol = '[<I>](bold fg:246) [➜](bold red)'
 vicmd_symbol = '[<N>](bold fg:246) [➜](bold green)'
@@ -36,10 +34,3 @@ disabled = true
 
 [python]
 scan_for_pyfiles = false
-
-[custom.haskell]
-command = "stack ghc -- -V | sed 's/.*version //'"
-files = ["stack.yaml"]
-#prefix = "via λ v"
-format = 'via [λ v$output](yellow bold)'
-
