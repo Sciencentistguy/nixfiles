@@ -3,7 +3,6 @@ autoload -U compinit promptinit
 autoload -U colors && colors
 compinit
 promptinit
-prompt walters
 
 setopt AUTO_PUSHD
 setopt SHARE_HISTORY
@@ -21,8 +20,11 @@ HISTSIZE=10000000
 SAVEHIST=10000
 
 # Prompt
-if type starship > /dev/null; then 
+if type starship >/dev/null; then
     eval "$(starship init zsh)"
+    RPROMPT=""
+else
+    prompt walters
 fi
 
 # Aliases
@@ -111,12 +113,6 @@ if type thefuck >/dev/null; then
     eval $(thefuck --alias)
 fi
 
-if [ -f ~/.zsh/plugins/vi-mode.plugin.zsh ]; then
-    source ~/.zsh/plugins/vi-mode.plugin.zsh
-else
-    echo "vi-mode plugin not loaded"
-fi
-
 if grep -Fxq "arch" /etc/os-release; then
     if [ -f ~/.zsh/plugins/git.plugin.zsh ]; then
         source ~/.zsh/plugins/git.plugin.zsh
@@ -165,4 +161,14 @@ if grep -Fxq "arch" /etc/os-release; then
     else
         echo "pkgfile plugin not loaded"
     fi
+fi
+
+if [ -f ~/.zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh ]; then
+    source ~/.zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh
+    KEYTIMEOUT=20
+    if type starship >/dev/null; then
+        RPROMPT=""
+    fi
+else
+    echo "vi-mode plugin not loaded"
 fi
