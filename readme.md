@@ -1,7 +1,7 @@
 # dotfiles
 The dotfiles I use on my ArchLinux machines. (A custom desktop and a Dell XPS 15 2-in-1 9575)
 ## Instructions
-Clone this repo, and run `setup.py`. Do not delete the cloned repo.
+Clone this repo, and run `setup`, either by running `python setup` or `./setup`. Do not delete the cloned repo.
 
 ## Colourscheme
 ### Dark mode
