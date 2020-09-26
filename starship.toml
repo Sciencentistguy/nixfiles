@@ -4,8 +4,12 @@ format="$all"
 
 [character]
 success_symbol = '[<I>](bold fg:246) [➜](bold green)'
+cancel_symbol = '[<I>](bold fg:246) [➜](bold yellow)'
 error_symbol = '[<I>](bold fg:246) [➜](bold red)'
-vicmd_symbol = '[<N>](bold fg:246) [➜](bold green)'
+vicmd_symbol = '[<N>](bold fg:246) [➜](bold green)' # Backwards compatibility with not my patch
+vicmd_success_symbol = '[<N>](bold fg:246) [➜](bold green)'
+vicmd_cancel_symbol = '[<N>](bold fg:246) [➜](bold yellow)'
+vicmd_error_symbol = '[<N>](bold fg:246) [➜](bold red)'
 
 [aws]
 disabled = true
