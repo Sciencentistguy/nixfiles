@@ -1,6 +1,10 @@
 """""""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""""
+""" Polyglot
+" Disable polyglot for everything it will conflict on
+let g:polyglot_disabled = ['py', 'markdown', 'latex']
+
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
 
@@ -517,7 +521,7 @@ vmap  <plug>NERDCommenterToggle
 
 
 """ NERDTree
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ "Modified"  : "M",
             \ "Staged"    : "+",
             \ "Untracked" : "N",
@@ -531,9 +535,6 @@ let g:NERDTreeIndicatorMapCustom = {
             \ }
 
 
-""" Polyglot
-" Disable polyglot for everything it will conflict on
-let g:polyglot_disabled = ['py', 'markdown', 'latex']
 
 
 """ Rainbow Parenthesis
