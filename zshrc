@@ -19,6 +19,53 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000000
 SAVEHIST=10000
 
+# Path
+if [ -d "/ubin" ]; then
+    PATH="$PATH:/ubin"
+fi
+
+if [ -d "/opt/cuda/bin" ]; then
+    PATH="$PATH:/opt/cuda/bin"
+fi
+
+if [ -d "/sbin" ] && [ ! -L "/sbin" ]; then
+    PATH="$PATH:/sbin"
+fi
+
+if [ -d "/usr/sbin" ] && [ ! -L "/sbin" ]; then
+    PATH="$PATH:/usr/sbin"
+fi
+
+if [ -d "$HOME/.gem" ]; then
+    for i in $HOME/.gem/ruby/*; do
+        PATH="$i/bin:$PATH"
+    done
+fi
+
+if [ -d "$HOME/.yarn/bin" ]; then
+    PATH="$HOME/.yarn/bin:$PATH"
+fi
+
+if [ -d "$HOME/.config/yarn/global/node_modules/.bin" ]; then
+    PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.cargo/bin" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.bin" ]; then
+    PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+
 # Prompt
 if type starship >/dev/null; then
     eval "$(starship init zsh)"
@@ -63,47 +110,6 @@ if [ -d /etc/zsh/zshrc.d ]; then
     for file in /etc/zsh/zshrc.d/*; do
         source $file
     done
-fi
-
-# PATH
-if [ -d "/ubin" ]; then
-    PATH="$PATH:/ubin"
-fi
-
-if [ -d "/opt/cuda/bin" ]; then
-    PATH="$PATH:/opt/cuda/bin"
-fi
-
-if [ -d "/sbin" ] && [ ! -L "/sbin" ]; then
-    PATH="$PATH:/sbin"
-fi
-
-if [ -d "/usr/sbin" ] && [ ! -L "/sbin" ]; then
-    PATH="$PATH:/usr/sbin"
-fi
-
-if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/.cargo/bin" ]; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-if [ -d "$HOME/.yarn/bin" ]; then
-    PATH="$HOME/.yarn/bin:$PATH"
-fi
-
-if [ -d "$HOME/.config/yarn/global/node_modules/.bin" ]; then
-    PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.bin" ]; then
-    PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
 fi
 
 eval $(ssh-agent) >/dev/null
