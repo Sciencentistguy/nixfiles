@@ -10,12 +10,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer
 
 Plug '907th/vim-auto-save'             " Autosave
 Plug 'APZelos/blamer.nvim'             " Inline git blame
+Plug 'LucHermitte/lh-brackets'         " Automatically close brackets, quotes, etc
+Plug 'LucHermitte/lh-vim-lib'          " Library for lh-brackets
 Plug 'Sciencentistguy/vim-monokai-pro' " Colourscheme
 Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
 Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions, text objects or visual mode
 Plug 'chrisbra/csv.vim'                " CSV file specific commands
-Plug 'cohama/lexima.vim'               " Surround text with arbitrary characters
 Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of things
 Plug 'edkolev/tmuxline.vim'            " Format tmux's statusbar to look like airline
 Plug 'godlygeek/tabular'               " Align stuff
@@ -472,6 +473,12 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
+
+
+""" lh-brackets
+let g:usemarks = 0
+let b:usemarks = 0
+let g:marker_define_jump_mappings = 0
 
 
 """ Neoformat
