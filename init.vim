@@ -11,6 +11,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
 Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions, text objects or visual mode
 Plug 'chrisbra/csv.vim'                " CSV file specific commands
+Plug 'cohama/lexima.vim'               " Surround text with arbitrary characters
 Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of things
 Plug 'edkolev/tmuxline.vim'            " Format tmux's statusbar to look like airline
 Plug 'godlygeek/tabular'               " Align stuff
@@ -35,7 +36,6 @@ Plug 'tpope/vim-afterimage'            " Edit things like pdfs and word docs
 Plug 'tpope/vim-eunuch'                " Vim sugar for UNIX shell commands
 Plug 'tpope/vim-fugitive'              " Git integration
 Plug 'tpope/vim-git'                   " Filetype plugin for git files
-Plug 'tpope/vim-surround'              " Surround text with arbitrary characters
 Plug 'tridactyl/vim-tridactyl'         " Syntax plugin for tridactylrc
 Plug 'vim-airline/vim-airline'         " Fancy statusline
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
@@ -328,9 +328,6 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Fast saving
 nmap <leader>w :w!<cr>
-
-" Make curly brackets not stupid
-inoremap {<cr> {<cr>}<c-o><s-o>
 
 
 """""""""""""""""""""""""""""""""""""""
