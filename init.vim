@@ -37,6 +37,7 @@ Plug 'sheerun/vim-polyglot'            " Language profiles (syntax highlighting)
 Plug 'timonv/vim-cargo'                " Cargo commands
 Plug 'tjdevries/coc-zsh'               " ZSH completion source for coc
 Plug 'tpope/vim-abolish'               " Easily search for, substitute, and abbreviate multiple variants of a word
+Plug 'tpope/vim-surround'              " Simple quoting / bracketing
 Plug 'tpope/vim-afterimage'            " Edit things like pdfs and word docs
 Plug 'tpope/vim-eunuch'                " Vim sugar for UNIX shell commands
 Plug 'tpope/vim-fugitive'              " Git integration
