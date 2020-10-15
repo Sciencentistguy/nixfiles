@@ -26,5 +26,9 @@
     "coc.source.word.enable": true,
     "coc.source.emoji.enable": true,
     "coc.source.word.filetypes": ["tex", "markdown", "text", ""],
-    "coc.source.emoji.filetypes": ["markdown", "gitcommit", ""]
+    "coc.source.emoji.filetypes": ["markdown", "gitcommit", ""],
+    "diagnostic-languageserver.filetypes": {
+        "sh": "shellcheck",
+        "markdown":"markdownlint"
+    }
 }
