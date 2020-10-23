@@ -75,6 +75,11 @@ if should("Install alacritty config"):
     else:
         print(f"Alacritty_{hostname}.yml does not exist")
 
+if should("Install bpytop config?"):
+    pikaur(["bpytop"])
+    link("/bpytop.conf","~/.config/bpytop/bpytop.conf")
+    print("Installed bpytop.conf")
+
 if should("Install firefox configs"):
     pikaur(["firefox-tridactyl-native", "firefox"])
     link("/tridactylrc", "~/.config/tridactyl/tridactylrc")
