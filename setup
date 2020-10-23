@@ -30,7 +30,8 @@ def coc_plugins():
         "coc-java",
         "coc-json",
         "coc-lists",
-        "coc-marketplace",
+        "coc-marketplace"]
+    pluglist2 = [
         "coc-pairs",
         "coc-python",
         "coc-rust-analyzer",
@@ -42,8 +43,10 @@ def coc_plugins():
         "coc-vimtex",
         "coc-word",
         "coc-yaml",
-        "coc-yank"]
+        "coc-yank",
+    "coc-diagnostic"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
+    subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist2)])
 
 
 def link(relative_name, filepath, sudo=False):
