@@ -54,6 +54,9 @@ call plug#end()
 " Sets how many lines of history VIM has to remember
 set history=500
 
+" We don't need to show mode, airline does it for us
+set noshowmode
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
