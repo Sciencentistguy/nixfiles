@@ -16,7 +16,11 @@ snippet ZZ "Integers (ZZ)"
 endsnippet
 
 snippet bar "\bar{}" i
-\bar{${VISUAL}$1}
+\bar{${0:${VISUAL}}}
+endsnippet
+
+snippet mbf "\mathbf{}" i
+\mathbf{${1:${VISUAL}}}$0
 endsnippet
 
 snippet eqnn "Equation without a number" b
