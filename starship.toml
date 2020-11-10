@@ -38,3 +38,6 @@ disabled = true
 
 [python]
 scan_for_pyfiles = false
+
+[cmake]
+symbol ="🛆 "
