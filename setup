@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 import socket
+from typing import List
 
 yes = "-y" in sys.argv
 
@@ -14,12 +15,13 @@ def mkdir(path: str):
         pass
 
 
-def pikaur(packages: list):
+def install_packages(packages: List[str]) -> None:
+    AUR_HELPER="pikaur"
     if "--pkg" in sys.argv or "--packages" in sys.argv:
-        subprocess.run(["pikaur", "-S", ] + packages)
+        subprocess.run([AUR_HELPER, "-S", ] + packages)
 
 
-def coc_plugins():
+def coc_plugins() -> None:
     pluglist = [
         "coc-clangd",
         "coc-cord",
@@ -44,12 +46,12 @@ def coc_plugins():
         "coc-word",
         "coc-yaml",
         "coc-yank",
-    "coc-diagnostic"]
+        "coc-diagnostic"]
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
     subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist2)])
 
 
-def link(relative_name, filepath, sudo=False):
+def link(relative_name: str, filepath: str, sudo: bool = False) -> None:
     if not os.path.exists(os.getcwd() + relative_name):
         raise FileNotFoundError("Local filepath does not exist")
 
@@ -79,12 +81,12 @@ if should("Install alacritty config"):
         print(f"Alacritty_{hostname}.yml does not exist")
 
 if should("Install bpytop config?"):
-    pikaur(["bpytop"])
-    link("/bpytop.conf","~/.config/bpytop/bpytop.conf")
+    install_packages(["bpytop"])
+    link("/bpytop.conf", "~/.config/bpytop/bpytop.conf")
     print("Installed bpytop.conf")
 
 if should("Install firefox configs"):
-    pikaur(["firefox-tridactyl-native", "firefox"])
+    install_packages(["firefox-tridactyl-native", "firefox"])
     link("/tridactylrc", "~/.config/tridactyl/tridactylrc")
     print("Installed tridactylrc")
 
@@ -94,7 +96,7 @@ if should("Install Git configs"):
     print("Installed global gitignore")
 
 if should("Install i3 configs?"):
-    pikaur(["i3-gaps", "polybar", "rofi", "compton", "feh", "dunst"])
+    install_packages(["i3-gaps", "polybar", "rofi", "compton", "feh", "dunst"])
     link("/i3", "~/.config/i3")
     print("Installed i3 configs")
     link("/i3/polybar", "~/.config/polybar")
@@ -110,7 +112,7 @@ if should("Install neofetch config?"):
     print("Installed neofetch.conf")
 
 if should("Install nvim configs?"):
-    pikaur(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
+    install_packages(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
     try:
         os.mkdir(os.path.expanduser("~/.config/nvim"))
     except OSError:
@@ -127,13 +129,13 @@ if should("Install nvim configs?"):
     print("Installed coc.nvim ultisnips")
 
 if should("Install spicetify themes?"):
-    pikaur(["spotify", "spicetify-cli"])
+    install_packages(["spotify", "spicetify-cli"])
     link("/spicetify/Themes", "~/.config/spicetify/Themes")
     link("/spicetify/config.ini", "~/.config/spicetify/config.ini")
     print("Installed spicetify configs")
 
 if should("Install zsh configs?"):
-    pikaur(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile", "starship-git"])
+    install_packages(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile", "starship-git"])
     mkdir("~/.zsh")
     link("/zshrc", "~/.zshrc")
     print("Installed zshrc")
