@@ -16,7 +16,7 @@ def mkdir(path: str):
 
 
 def install_packages(packages: List[str]) -> None:
-    AUR_HELPER="pikaur"
+    AUR_HELPER = "pikaur"
     if "--pkg" in sys.argv or "--packages" in sys.argv:
         subprocess.run([AUR_HELPER, "-S", ] + packages)
 
@@ -105,6 +105,14 @@ if should("Install i3 configs?"):
     print("Installed compton.conf")
     link("/i3/dunst", "~/.config/dunst")
     print("installed dunst configs")
+
+if should("Install mpd configs?"):
+    link("/mpd/mpd.conf", "~/.config/mpd/mpd.conf")
+    print("Installed mpd.conf")
+    link("/mpd/mpDris2.conf", "~/.config/mpDris2/mpDris2.conf")
+    print("Installed mpDris2.conf")
+    link("/mpd/ncmpcpp/bindings", "~/.ncmpcpp/bindings")
+    print("Installed ncmpcpp bindings")
 
 if should("Install neofetch config?"):
     mkdir("~/.config/neofetch")
