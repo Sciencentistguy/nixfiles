@@ -111,8 +111,9 @@ if should("Install mpd configs?"):
     print("Installed mpd.conf")
     link("/mpd/mpDris2.conf", "~/.config/mpDris2/mpDris2.conf")
     print("Installed mpDris2.conf")
-    link("/mpd/ncmpcpp/bindings", "~/.ncmpcpp/bindings")
-    print("Installed ncmpcpp bindings")
+    link("/mpd/ncmpcpp", "~/.ncmpcpp")
+    print("Installed ncmpcpp configs")
+
 
 if should("Install neofetch config?"):
     mkdir("~/.config/neofetch")
