@@ -70,3 +70,7 @@ update-music-library-remote() {
         rsync -Pa ~/.config/beets home.jamiequigley.com:/nas/plex/Music/beetsconfig
     fi
 }
+
+aur() {
+    git clone "https://aur.archlinux.org/$1"
+}
