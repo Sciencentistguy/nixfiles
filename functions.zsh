@@ -74,3 +74,7 @@ update-music-library-remote() {
 aur() {
     git clone "https://aur.archlinux.org/$1"
 }
+
+abs() {
+    asp update "$1" && asp checkout "$1"
+}
