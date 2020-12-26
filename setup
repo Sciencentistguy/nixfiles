@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import os
+import socket
 import subprocess
 import sys
-import socket
 from typing import List
 
 yes = "-y" in sys.argv
@@ -114,7 +114,6 @@ if should("Install mpd configs?"):
     link("/mpd/ncmpcpp", "~/.ncmpcpp")
     print("Installed ncmpcpp configs")
 
-
 if should("Install neofetch config?"):
     mkdir("~/.config/neofetch")
     link("/neofetch.conf", "~/.config/neofetch/config.conf")
@@ -156,6 +155,7 @@ if should("Install zsh configs?"):
     print("Installed aliases.zsh")
     link("/starship.toml", "~/.config/starship.toml")
     print("Installed starship.toml")
-    if not os.path.isdir(os.path.expanduser("~/.resh")):
-        os.system("curl -fsSL https://raw.githubusercontent.com/curusarn/resh/master/scripts/rawinstall.sh | bash")
-        print("Installed resh")
+    if should("Install resh?"):
+        if not os.path.isdir(os.path.expanduser("~/.resh")):
+            os.system("curl -fsSL https://raw.githubusercontent.com/curusarn/resh/master/scripts/rawinstall.sh | bash")
+            print("Installed resh")
