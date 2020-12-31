@@ -94,6 +94,7 @@ visualizer_look = ●▮
 ##
 #visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
 #
+visualizer_fps = 60
 ##### system encoding #####
 ##
 ## ncmpcpp should detect your charset encoding but if it failed to do so, you
