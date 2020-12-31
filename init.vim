@@ -273,6 +273,8 @@ noremap <PageUp> <NOP>
 noremap <PageDown> <NOP>
 inoremap <PageUp> <Left>
 inoremap <PageDown> <Right>
+noremap H h
+noremap L l
 
 " Save and quit with ¬¬
 noremap ¬¬ ZZ
