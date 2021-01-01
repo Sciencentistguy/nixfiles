@@ -53,7 +53,7 @@ mpd_music_dir = ~/Music/beets
 ## }
 ##
 #
-visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_data_source = /tmp/mpd.fifo
 #
 ##
 ## Note: Below parameter is needed for ncmpcpp to determine which output
@@ -94,7 +94,7 @@ visualizer_look = ●▮
 ##
 #visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
 #
-visualizer_fps = 60
+visualizer_fps = 144
 ##### system encoding #####
 ##
 ## ncmpcpp should detect your charset encoding but if it failed to do so, you
