@@ -427,7 +427,7 @@ fetch_lyrics_for_current_song_in_background = yes
 #
 #display_volume_level = yes
 #
-#display_bitrate = yes
+display_bitrate = yes
 #
 #display_remaining_time = no
 #
