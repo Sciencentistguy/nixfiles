@@ -601,6 +601,8 @@ let g:vim_markdown_strikethrough = 1
 
 """ Vimtex
 let g:tex_conceal = ""
+let g:vimtex_syntax_conceal = {}
+let g:vimtex_syntax_conceal_default = 0
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
