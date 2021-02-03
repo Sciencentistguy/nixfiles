@@ -78,3 +78,7 @@ aur() {
 abs() {
     asp update "$1" && asp checkout "$1"
 }
+
+cpufreq() {
+    watch -n.1 "cat /proc/cpuinfo | grep \"^[c]pu MHz\""
+}
