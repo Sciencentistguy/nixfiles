@@ -25,7 +25,10 @@
     "coc.source.word.filetypes": ["tex", "markdown", "text", ""],
     "coc.source.emoji.filetypes": ["markdown", "gitcommit", ""],
     "diagnostic-languageserver.filetypes": {
-        "sh": "shellcheck",
-        "markdown": "markdownlint"
+        "sh": "shellcheck"
+    },
+    "markdownlint.config": {
+      "default": true,
+      "line_length": false
     }
 }

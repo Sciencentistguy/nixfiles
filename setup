@@ -32,7 +32,9 @@ def coc_plugins() -> None:
         "coc-java",
         "coc-json",
         "coc-lists",
-        "coc-marketplace"]
+        "coc-marketplace",
+        "coc-markdownlint",
+    ]
     pluglist2 = [
         "coc-pairs",
         "coc-python",
