@@ -82,6 +82,8 @@ source ~/.zsh/functions.zsh
 
 # Environment
 export GPG_TTY=$(tty)
+export RUST_BACKTRACE=1
+export NODE_OPTIONS="--max_old_space_size=16384"
 
 # esc-esc sudo
 sudo-command-line() {
