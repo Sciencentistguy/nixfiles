@@ -12,6 +12,7 @@ Plug '907th/vim-auto-save'             " Autosave
 Plug 'APZelos/blamer.nvim'             " Inline git blame
 Plug 'LucHermitte/lh-brackets'         " Automatically close brackets, quotes, etc
 Plug 'LucHermitte/lh-vim-lib'          " Library for lh-brackets
+Plug 'Raimondi/vim_search_objects'     " Treat search matches as text objects
 Plug 'Sciencentistguy/vim-monokai-pro' " Colourscheme
 Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
@@ -37,11 +38,11 @@ Plug 'sheerun/vim-polyglot'            " Language profiles (syntax highlighting)
 Plug 'timonv/vim-cargo'                " Cargo commands
 Plug 'tjdevries/coc-zsh'               " ZSH completion source for coc
 Plug 'tpope/vim-abolish'               " Easily search for, substitute, and abbreviate multiple variants of a word
-Plug 'tpope/vim-surround'              " Simple quoting / bracketing
 Plug 'tpope/vim-afterimage'            " Edit things like pdfs and word docs
 Plug 'tpope/vim-eunuch'                " Vim sugar for UNIX shell commands
 Plug 'tpope/vim-fugitive'              " Git integration
 Plug 'tpope/vim-git'                   " Filetype plugin for git files
+Plug 'tpope/vim-surround'              " Simple quoting / bracketing
 Plug 'tridactyl/vim-tridactyl'         " Syntax plugin for tridactylrc
 Plug 'vim-airline/vim-airline'         " Fancy statusline
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
@@ -514,7 +515,7 @@ let g:neoformat_json_prettier = {
             \ }
 let g:neoformat_haskell_custombrittany = {
             \ 'exe': 'brittany',
-            \ 'args': ['--indent 4', '--columns 120'],
+            \ 'args': ['--indent 4'],
             \ 'stdin': 1,
             \ }
 let g:neoformat_rust_customrustfmt = {
