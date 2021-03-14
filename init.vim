@@ -16,6 +16,8 @@ Plug 'Raimondi/vim_search_objects'     " Treat search matches as text objects
 Plug 'Sciencentistguy/vim-monokai-pro' " Colourscheme
 Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
+Plug 'airblade/vim-rooter'             " cd to the root of the project, so that grepping etc works properly
+Plug 'andymass/vim-matchup'            " Cleverer '%' behavior
 Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions, text objects or visual mode
 Plug 'chrisbra/csv.vim'                " CSV file specific commands
 Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of things
@@ -197,6 +199,10 @@ try
 catch
 endtry
 
+" Show relative line numbers
+set relativenumber
+set number
+
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -253,6 +259,8 @@ nnoremap mm :wa<cr> :!make -j<cr>
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 
 nnoremap <leader>L :CocList
+nnoremap <leader>rg :CocList grep<cr>
+nnoremap <leader>e :FZF<cr>
 
 " Unbind keys I don't want
 noremap <Up> <NOP>
@@ -581,6 +589,9 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
+
+""" rooter
+let g:rooter_patterns = ['.git', 'Cargo.toml', 'CMakeLists.txt', '*.cabal', 'stack.yaml']
 
 """ vim-gitgutter
 let g:gitgutter_map_keys=0
