@@ -22,6 +22,10 @@ def install_packages(packages: List[str]) -> None:
 
 
 def coc_plugins() -> None:
+    def split_list(ls, n):
+        for i in range(0, len(ls), n):
+            yield ls[i:i + n]
+
     pluglist = [
         "coc-clangd",
         "coc-cord",
@@ -34,8 +38,6 @@ def coc_plugins() -> None:
         "coc-lists",
         "coc-marketplace",
         "coc-markdownlint",
-    ]
-    pluglist2 = [
         "coc-pairs",
         "coc-python",
         "coc-rust-analyzer",
@@ -49,8 +51,8 @@ def coc_plugins() -> None:
         "coc-yaml",
         "coc-yank",
         "coc-diagnostic"]
-    subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist)])
-    subprocess.run(["nvim", "+CocInstall " + " ".join(pluglist2)])
+    for plugs in split_list(pluglist, 10):
+        subprocess.run(["nvim", "+CocInstall " + " ".join(plugs)])
 
 
 def link(relative_name: str, filepath: str, sudo: bool = False) -> None:
@@ -98,13 +100,13 @@ if should("Install Git configs"):
     print("Installed global gitignore")
 
 if should("Install i3 configs?"):
-    install_packages(["i3-gaps", "polybar", "rofi", "compton", "feh", "dunst"])
+    install_packages(["i3-gaps", "polybar", "rofi", "picom", "feh", "dunst"])
     link("/i3", "~/.config/i3")
     print("Installed i3 configs")
     link("/i3/polybar", "~/.config/polybar")
     print("Installed polybar configs")
-    link("/i3/compton.conf", "~/.config/compton.conf")
-    print("Installed compton.conf")
+    link("/i3/picom.conf", "~/.config/picom.conf")
+    print("Installed picom.conf")
     link("/i3/dunst", "~/.config/dunst")
     print("installed dunst configs")
 
