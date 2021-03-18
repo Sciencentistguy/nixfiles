@@ -84,6 +84,7 @@ source ~/.zsh/functions.zsh
 export GPG_TTY=$(tty)
 export RUST_BACKTRACE=1
 export NODE_OPTIONS="--max_old_space_size=16384"
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # esc-esc sudo
 sudo-command-line() {
