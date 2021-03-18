@@ -31,10 +31,11 @@
       "default": true,
       "line_length": false
     },
-    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rust-analyzer.cargo.runBuildScripts": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.checkOnSave.allFeatures": true,
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.hoverActions.linksInHover": true,
-    "rust-analyzer.updates.channel": "nightly"
+    "rust-analyzer.updates.channel": "nightly",
+    "rust-analyzer.assist.importGroup": true,
 }
