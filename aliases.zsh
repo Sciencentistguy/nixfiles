@@ -32,6 +32,7 @@ alias sudo="sudo "
 alias umount="sudo umount"
 alias xclip="xclip -selection clipboard"
 alias zshrc-reload="reload-zshrc"
+alias makepkg-gcc="makepkg --config /etc/makepkg.conf.gcc"
 
 # Global Aliases
 alias -g sd="~/ScratchArea"

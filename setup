@@ -84,6 +84,12 @@ if should("Install alacritty config"):
     else:
         print(f"Alacritty_{hostname}.yml does not exist")
 
+if should("Install archlinx specific configs?"):
+    link("/makepkg.conf", "/etc/makepkg.conf", sudo=True)
+    print("Installed makepkg.conf")
+    link("/makepkg.conf.gcc", "/etc/makepkg.conf.gcc", sudo=True)
+    print("Installed makepkg.conf.gcc")
+
 if should("Install bpytop config?"):
     install_packages(["bpytop"])
     link("/bpytop.conf", "~/.config/bpytop/bpytop.conf")
