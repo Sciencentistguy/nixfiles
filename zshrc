@@ -86,6 +86,13 @@ export RUST_BACKTRACE=1
 export NODE_OPTIONS="--max_old_space_size=16384"
 export FZF_DEFAULT_COMMAND='rg --files'
 
+if type clang >/dev/null; then
+    export CC=clang
+    export CXX=clang++
+fi
+
+export MAKEFLAGS="-j$(nproc)"
+
 # esc-esc sudo
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
