@@ -1,0 +1,48 @@
+startup = [
+    # Aliases
+    "alias :q = exit",
+    "alias aria2c = aria2c --file-allocation=none",
+    "alias cp = ^cp -av --reflink=auto",
+    "alias dc = cd",
+    "alias df = df -h",
+    "alias e = nvim $(fzf)",
+    "alias feh = feh --conversion-timeout 1",
+    "alias fex = nautilus . 2>/dev/null",
+    "alias ffmpeg = ffmpeg -hide_banner",
+    "alias ffplay = ffplay -hide_banner",
+    "alias ffprobe = ffprobe -hide_banner",
+    "alias less = less -r",
+    "alias makepkg-gcc = makepkg --config /etc/makepkg.conf.gcc",
+    "alias mc = make clean",
+    "alias mm = make -j$(nproc)",
+    "alias more = less -r",
+    "alias mount = sudo mount",
+    "alias mv = mv -v",
+    "alias poweroff = sudo poweroff",
+    "alias reboot = sudo reboot",
+    "alias rm = rm -rf",
+    "alias rsync = rsync -Pva",
+    "alias sl = ls",
+    "alias umount = sudo umount",
+    "alias xclip = xclip -selection clipboard",
+    # Functions
+    "def lls [] {clear; ls}",
+    "def neofetch [] {clear; ^neofetch}",
+    "def mkcdir [p: path] {mkdir $p; cd $p}",
+    "def abs [pkg: string] {asp update $pkg; asp checkout $pkg}",
+    "def \"cd sd\" [] {cd ~/ScratchArea}",
+    "def \"cd dl\" [] {cd ~/Downloads}",
+]
+
+[env]
+CC = "clang"
+CUDA_PATH = "/opt/cuda"
+CXX = "clang++"
+EDITOR = "nvim"
+FZF_DEFAULT_COMMAND = "rg --files"
+LANG = "en_GB.UTF-8"
+MAKEFLAGS = "-j32"
+NODE_OPTIONS = "--max_old_space_size=16384"
+RUST_BACKTRACE = "1"
+SHELL="/bin/nu"
+VISUAL = "nvim"
