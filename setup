@@ -170,3 +170,4 @@ if should("Install zsh configs?"):
     print("Installed aliases.zsh")
     link("/starship.toml", "~/.config/starship.toml")
     print("Installed starship.toml")
+    link("/atuin.toml", "~/.config/atuin/config.toml")
