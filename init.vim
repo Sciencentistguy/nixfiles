@@ -506,7 +506,7 @@ let g:marker_define_jump_mappings = 0
 " Automatically format on write
 augroup fmt
     autocmd!
-    autocmd BufWritePre *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex undojoin | Neoformat
+    au BufWritePre *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 autocmd FileType tex let b:autoformat_autoindent=0
 
