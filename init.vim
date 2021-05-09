@@ -527,11 +527,6 @@ let g:neoformat_json_prettier = {
             \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'json', '--tab-width 4', '--print-width 120'],
             \ 'stdin': 1,
             \ }
-let g:neoformat_haskell_custombrittany = {
-            \ 'exe': 'brittany',
-            \ 'args': ['--indent 4'],
-            \ 'stdin': 1,
-            \ }
 let g:neoformat_rust_customrustfmt = {
             \ 'exe': 'rustfmt',
             \ 'stdin': 1,
@@ -540,7 +535,7 @@ let g:neoformat_rust_customrustfmt = {
 
 
 " Select formatters
-let g:neoformat_enabled_haskell = ['custombrittany']
+let g:neoformat_enabled_haskell = ['ormolu']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:neoformat_enabled_rust = ['customrustfmt']
