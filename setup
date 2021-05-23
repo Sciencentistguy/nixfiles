@@ -95,10 +95,15 @@ if should("Install bpytop config?"):
     link("/bpytop.conf", "~/.config/bpytop/bpytop.conf")
     print("Installed bpytop.conf")
 
-if should("Install firefox configs"):
+if should("Install firefox configs?"):
     install_packages(["firefox-tridactyl-native", "firefox"])
     link("/tridactylrc", "~/.config/tridactyl/tridactylrc")
     print("Installed tridactylrc")
+
+if should("Install Haskell GHCi config?"):
+    mkdir("~/.ghc")
+    link("/ghci.conf", "~/.ghc/ghci.conf")
+    print("Installed GHCi config")
 
 if should("Install Git configs"):
     link("/gitignore", "~/.config/git/ignore")
