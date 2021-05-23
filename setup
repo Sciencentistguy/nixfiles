@@ -150,7 +150,7 @@ if should("Install nvim configs?"):
 
 if should("Install ptpython configs?"):
     mkdir("~/.config/ptpython")
-    link("/ptpython.py", "~/.config/ptpython/config.py")
+    link("/ptpython_config.py", "~/.config/ptpython/config.py")
     print("Installed ptpython.py")
     mkdir("~/.config/python")
     link("/pythonstartup.py", "~/.config/python/startup.py")
