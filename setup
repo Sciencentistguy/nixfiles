@@ -21,7 +21,7 @@ def install_packages(packages: List[str]) -> None:
         subprocess.run([AUR_HELPER, "-S", ] + packages)
 
 
-def coc_plugins() -> None:
+def install_coc_plugins() -> None:
     def split_list(ls, n):
         for i in range(0, len(ls), n):
             yield ls[i:i + n]
@@ -136,20 +136,25 @@ if should("Install nushell config?"):
 
 if should("Install nvim configs?"):
     install_packages(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
-    try:
-        os.mkdir(os.path.expanduser("~/.config/nvim"))
-    except OSError:
-        pass
+    mkdir("~/.config/nvim")
     link("/init.vim", "~/.config/nvim/init.vim")
     print("Installed init.vim")
     link("/coc-settings.json", "~/.config/nvim/coc-settings.json")
     print("Installed coc-settings")
     link("/pylintrc", "~/.pylintrc")
     print("Installed pylintrc")
-    coc_plugins()
+    install_coc_plugins()
     print("Installed coc.nvim plugins")
     link("/ultisnips", "~/.config/coc/ultisnips")
     print("Installed coc.nvim ultisnips")
+
+if should("Install ptpython configs?"):
+    mkdir("~/.config/ptpython")
+    link("/ptpython.py", "~/.config/ptpython/config.py")
+    print("Installed ptpython.py")
+    mkdir("~/.config/python")
+    link("/pythonstartup.py", "~/.config/python/startup.py")
+    print("Installed pythonstartup.py")
 
 if should("Install spicetify themes?"):
     install_packages(["spotify", "spicetify-cli"])

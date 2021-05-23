@@ -82,16 +82,22 @@ source ~/.zsh/functions.zsh
 
 # Environment
 export GPG_TTY=$(tty)
-export RUST_BACKTRACE=1
+export MAKEFLAGS="-j$(nproc)"
 export NODE_OPTIONS="--max_old_space_size=16384"
-export FZF_DEFAULT_COMMAND='rg --files'
+export RUST_BACKTRACE=1
+
+if type rg >/dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files'
+fi
 
 if type clang >/dev/null; then
     export CC=clang
     export CXX=clang++
 fi
 
-export MAKEFLAGS="-j$(nproc)"
+if [ -f "$HOME/.config/python/startup.py" ]; then
+    export PYTHONSTARTUP="$HOME/.config/python/startup.py"
+fi
 
 # esc-esc sudo
 sudo-command-line() {
