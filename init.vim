@@ -431,6 +431,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 imap <m-cr> <c-o>:CocAction<cr>
+nmap <m-cr> :CocAction<cr>
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -592,7 +593,7 @@ let g:rbpt_colorpairs = [
     \ ]
 
 """ rooter
-let g:rooter_patterns = ['.git', 'Cargo.toml', 'CMakeLists.txt', '*.cabal', 'stack.yaml']
+let g:rooter_patterns = ['.git', 'Cargo.lock', 'CMakeLists.txt', '*.cabal', 'stack.yaml']
 
 """ vim-gitgutter
 let g:gitgutter_map_keys=0
