@@ -55,7 +55,7 @@ def install_coc_plugins() -> None:
         subprocess.run(["nvim", "+CocInstall " + " ".join(plugs)])
 
 
-def link(relative_name: str, filepath: str, sudo: bool = False) -> None:
+def link(relative_name: str, filepath: str, /, sudo: bool = False) -> None:
     if not os.path.exists(os.getcwd() + relative_name):
         raise FileNotFoundError("Local filepath does not exist")
 
@@ -89,6 +89,8 @@ if should("Install archlinx specific configs?"):
     print("Installed makepkg.conf")
     link("/makepkg.conf.gcc", "/etc/makepkg.conf.gcc", sudo=True)
     print("Installed makepkg.conf.gcc")
+    link("/pacman.conf", "/etc/pacman.conf", sudo=True)
+    print("Installed pacman.conf")
 
 if should("Install bpytop config?"):
     install_packages(["bpytop"])
