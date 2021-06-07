@@ -6,7 +6,7 @@ format="$all"
 success_symbol = '[<I>](bold fg:246) [➜](bold green)'
 cancel_symbol = '[<I>](bold fg:246) [➜](bold yellow)'
 error_symbol = '[<I>](bold fg:246) [➜](bold red)'
-vicmd_symbol = '[<N>](bold fg:246) [➜](bold green)' # Backwards compatibility with not my patch
+#vicmd_symbol = '[<N>](bold fg:246) [➜](bold green)' # Backwards compatibility with not my patch
 vicmd_success_symbol = '[<N>](bold fg:246) [➜](bold green)'
 vicmd_cancel_symbol = '[<N>](bold fg:246) [➜](bold yellow)'
 vicmd_error_symbol = '[<N>](bold fg:246) [➜](bold red)'
@@ -24,7 +24,7 @@ show_milliseconds = true
 [directory]
 truncation_length = 8
 truncate_to_repo = true
-read_only_symbol= ' '
+read_only = ' 🔒'
 
 [hostname]
 ssh_only = false
@@ -35,9 +35,6 @@ format = "[$user]($style)@"
 
 [package]
 disabled = true
-
-[python]
-scan_for_pyfiles = false
 
 [cmake]
 symbol ="🛆 "
