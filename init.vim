@@ -70,6 +70,9 @@ set autoread
 " Colorscheme
 colorscheme monokai_pro
 
+" Colourcolumn 100
+set colorcolumn=100
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","

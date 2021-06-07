@@ -24,7 +24,6 @@
             }
         }
     },
-    "python.jediEnabled": false,
     "coc.source.word.enable": true,
     "coc.source.emoji.enable": true,
     "coc.source.word.filetypes": ["tex", "markdown", "text", ""],
@@ -36,6 +35,8 @@
         "default": true,
         "line_length": false
     },
+
+    // Rust Analyzer
     "rust-analyzer.cargo.runBuildScripts": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.checkOnSave.allFeatures": true,
@@ -43,4 +44,9 @@
     "rust-analyzer.hoverActions.linksInHover": true,
     "rust-analyzer.updates.channel": "nightly",
     "rust-analyzer.assist.importGroup": true,
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "coc.preferences.colorSupport": false,
+
+    // clangd
+    "clangd.fallbackFlags": ["-std=c++20"],
 }
