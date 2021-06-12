@@ -70,9 +70,6 @@ set autoread
 " Colorscheme
 colorscheme monokai_pro
 
-" Colourcolumn 100
-set colorcolumn=100
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -208,6 +205,9 @@ set number
 
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Highlight column 100
+set colorcolumn=100
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -352,6 +352,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Y yanks to end of line, a la D
+nmap Y y$
 
 """""""""""""""""""""""""""""""""""""""
 " Misc Sets
