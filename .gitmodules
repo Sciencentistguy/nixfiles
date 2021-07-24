@@ -9,7 +9,7 @@
 	url = http://github.com/davatorium/rofi-themes.git
 [submodule "zsh-plugins/zsh-command-time"]
 	path = zsh-plugins/zsh-command-time
-	url = git@github.com:popstas/zsh-command-time.git
+	url = https://github.com/popstas/zsh-command-time.git
 [submodule "zsh-plugins/zsh-vim-mode"]
 	path = zsh-plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode.git
