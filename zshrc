@@ -131,18 +131,6 @@ fi
 eval $(ssh-agent) >/dev/null
 
 # Plugins
-if type thefuck >/dev/null; then
-    eval $(thefuck --alias)
-fi
-
-if grep -Fxq "arch" /etc/os-release; then
-    if [ -f ~/.zsh/plugins/git.plugin.zsh ]; then
-        source ~/.zsh/plugins/git.plugin.zsh
-    else
-        echo "archlinux plugin not loaded"
-    fi
-fi
-
 if [ -f ~/.zsh/plugins/globalias.plugin.zsh ]; then
     source ~/.zsh/plugins/globalias.plugin.zsh
 else
