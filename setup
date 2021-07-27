@@ -163,12 +163,6 @@ if should("Install ptpython configs?"):
     link("/pythonstartup.py", "~/.config/python/startup.py")
     print("Installed pythonstartup.py")
 
-if should("Install spicetify themes?"):
-    install_packages(["spotify", "spicetify-cli"])
-    link("/spicetify/Themes", "~/.config/spicetify/Themes")
-    link("/spicetify/config.ini", "~/.config/spicetify/config.ini")
-    print("Installed spicetify configs")
-
 if should("Install zsh configs?"):
     install_packages(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile", "starship-git"])
     mkdir("~/.zsh")
