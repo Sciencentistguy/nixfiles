@@ -163,6 +163,10 @@ if should("Install ptpython configs?"):
     link("/pythonstartup.py", "~/.config/python/startup.py")
     print("Installed pythonstartup.py")
 
+if should("Install tmux config?"):
+    link("/tmux.conf", "~/.tmux.conf")
+    print("Installed tmux.conf")
+
 if should("Install zsh configs?"):
     install_packages(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile", "starship-git"])
     mkdir("~/.zsh")
