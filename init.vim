@@ -355,6 +355,9 @@ nmap <leader>w :w!<cr>
 " Y yanks to end of line, a la D
 nmap Y y$
 
+" Restart CoC
+nmap <leader>rr :CocRestart
+
 """""""""""""""""""""""""""""""""""""""
 " Misc Sets
 """""""""""""""""""""""""""""""""""""""
@@ -372,6 +375,9 @@ set conceallevel=2
 
 " The default UpdateTime of 4000 is far too long for coc.nvim
 set updatetime=300
+
+" Enable mouse in normal and visual modes
+set mouse=nv
 
 """""""""""""""""""""""""""""""""""""""
 " Plugin Options
