@@ -28,7 +28,6 @@ def install_coc_plugins() -> None:
 
     pluglist = [
         "coc-clangd",
-        "coc-cord",
         "coc-css",
         "coc-dictionary",
         "coc-emoji",
