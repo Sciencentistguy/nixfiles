@@ -22,3 +22,6 @@ auto_sync = false
 
 ## address of the sync server
 sync_address = "https://example.com"
+
+# Search better
+search_mode = "fulltext"
