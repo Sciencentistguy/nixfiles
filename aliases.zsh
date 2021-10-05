@@ -29,6 +29,7 @@ alias umount="sudo umount"
 alias xclip="xclip -selection clipboard"
 alias zshrc-reload="reload-zshrc"
 alias makepkg-gcc="makepkg --config /etc/makepkg.conf.gcc"
+alias gla="git-pull-all"
 
 # Global Aliases
 alias -g sd="~/ScratchArea"

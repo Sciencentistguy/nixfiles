@@ -82,3 +82,9 @@ abs() {
 cpufreq() {
     watch -n.1 "cat /proc/cpuinfo | grep \"^[c]pu MHz\""
 }
+
+git-pull-all() {
+    for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
+        git branch --track "${branch##*/}" "$branch"
+    done
+}
