@@ -96,6 +96,11 @@ if should("Install bpytop config?"):
     link("/bpytop.conf", "~/.config/bpytop/bpytop.conf")
     print("Installed bpytop.conf")
 
+if should("Install btop config?"):
+    install_packages(["btop"])
+    link("/btop.conf", "~/.config/btop/btop.conf")
+    print("Installed btop.conf")
+
 if should("Install firefox configs?"):
     install_packages(["firefox-tridactyl-native", "firefox"])
     link("/tridactylrc", "~/.config/tridactyl/tridactylrc")
