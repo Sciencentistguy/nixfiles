@@ -22,7 +22,7 @@
 #
 ##### connection settings #####
 #
-#mpd_host = localhost
+mpd_host = ~/Music/mpd/socket
 #
 #mpd_port = 6600
 #
