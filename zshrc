@@ -20,6 +20,15 @@ HISTSIZE=10000000
 SAVEHIST=10000
 
 # Path
+# Nix single-user
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+# Nix multi-user
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
 if [ -d "/ubin" ]; then
     PATH="$PATH:/ubin"
 fi
@@ -64,16 +73,6 @@ fi
 
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
-fi
-
-# Nix single-user
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
-
-# Nix multi-user
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 # Prompt
