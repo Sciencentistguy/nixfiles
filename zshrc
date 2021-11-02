@@ -66,6 +66,16 @@ if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# Nix single-user
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+# Nix multi-user
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 # Prompt
 if type starship >/dev/null; then
     eval "$(starship init zsh)"
@@ -177,6 +187,12 @@ if [ -f ~/.zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh ]; then
     fi
 else
     echo "vi-mode plugin not loaded"
+fi
+
+if [ -f ~/.zsh/plugins/zsh-nix-shell/nix-shell.plugin.zsh ]; then
+    source ~/.zsh/plugins/zsh-nix-shell/nix-shell.plugin.zsh
+else
+    echo "zsh-nix-shell plugin not loaded"
 fi
 
 if type atuin >/dev/null; then

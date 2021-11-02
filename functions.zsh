@@ -13,7 +13,7 @@ imgpaste() {
 
 lls() {
     clear
-    ls
+    ls "$@"
 }
 
 borderless() {
