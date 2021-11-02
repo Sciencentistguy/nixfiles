@@ -22,4 +22,4 @@ Clone this repo, and run `setup`, either by running `python setup` or `./setup`.
 ---
 # Licence
 
-The content in this repository is available under the GNU AGPL
+The content in this repository is available under version 2.0 of the Mozilla Public Licence
