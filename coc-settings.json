@@ -1,52 +1,60 @@
 {
-    "suggest.triggerAfterInsertEnter": false,
-    "suggest.noselect": false,
-    "suggest.minTriggerInputLength": 2,
-    "languageserver": {
-        "golang": {
-            "command": "go-langserver",
-            "filetypes": ["go"],
-            "initializationOptions": {
-                "gocodeCompletionEnabled": true,
-                "diagnosticsEnabled": true,
-                "lintTool": "golint"
-            }
-        },
+  "coc.preferences.colorSupport": false,
+  "suggest.triggerAfterInsertEnter": false,
+  "suggest.noselect": false,
+  "suggest.minTriggerInputLength": 2,
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"],
+      "settings": {
         "haskell": {
-            "command": "haskell-language-server-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
-            "filetypes": ["haskell", "lhaskell"],
-            "settings": {
-                "haskell" : {
-                "formattingProvider" : "ormolu"
-                }
-            }
+          "formattingProvider": "ormolu"
         }
+      }
     },
-    "coc.source.word.enable": true,
-    "coc.source.emoji.enable": true,
-    "coc.source.word.filetypes": ["tex", "markdown", "text", ""],
-    "coc.source.emoji.filetypes": ["markdown", "gitcommit", ""],
-    "diagnostic-languageserver.filetypes": {
-        "sh": "shellcheck"
-    },
-    "markdownlint.config": {
-        "default": true,
-        "line_length": false
-    },
-    "codeLens.enable": true,
+    "nix": {
+      "command": "rnix-lsp",
+      "filetypes": ["nix"]
+    }
+  },
+  "coc.source.word.enable": true,
+  "coc.source.emoji.enable": true,
+  "coc.source.word.filetypes": ["tex", "markdown", "text", ""],
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit", ""],
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "markdownlint.config": {
+    "default": true,
+    "line_length": false
+  },
+  "codeLens.enable": true,
 
-    // Rust Analyzer
-    "rust-analyzer.cargo.runBuildScripts": true,
-    "rust-analyzer.procMacro.enable": true,
-    "rust-analyzer.checkOnSave.allFeatures": true,
-    "rust-analyzer.cargo.allFeatures": true,
-    "rust-analyzer.updates.channel": "nightly",
-    "rust-analyzer.assist.importGroup": true,
-    "rust-analyzer.checkOnSave.command": "clippy",
-    "coc.preferences.colorSupport": false,
+  // Rust Analyzer
+  "rust-analyzer.cargo.runBuildScripts": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.checkOnSave.allFeatures": true,
+  "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.updates.channel": "nightly",
+  "rust-analyzer.assist.importGroup": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.lens.enable": false,
 
-    // clangd
-    "clangd.fallbackFlags": ["-std=c++20"],
+  "texlab.build.onSave": true,
+  "texlab.chktex.onEdit": true,
+  "texlab.chktex.onOpenAndSave": true,
+
+
+
+  // clangd
+  "clangd.fallbackFlags": ["-std=c++20"]
 }
