@@ -29,27 +29,28 @@ def install_coc_plugins() -> None:
     pluglist = [
         "coc-clangd",
         "coc-css",
+        "coc-diagnostic",
         "coc-dictionary",
         "coc-emoji",
         "coc-git",
         "coc-java",
         "coc-json",
         "coc-lists",
-        "coc-marketplace",
         "coc-markdownlint",
+        "coc-marketplace",
         "coc-pairs",
         "coc-python",
         "coc-rust-analyzer",
         "coc-sh",
         "coc-snippets",
         "coc-tag",
+        "coc-texlab",
         "coc-tsserver",
         "coc-ultisnips",
         "coc-vimtex",
         "coc-word",
         "coc-yaml",
-        "coc-yank",
-        "coc-diagnostic"]
+        "coc-yank"]
     for plugs in split_list(pluglist, 10):
         subprocess.run(["nvim", "+CocInstall " + " ".join(plugs)])
 

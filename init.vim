@@ -434,8 +434,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <F18> <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format)
 
 " Remap for do codeAction of selected region
 xmap <leader>a  <Plug>(coc-codeaction-selected)
