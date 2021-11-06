@@ -626,8 +626,19 @@ let g:vim_markdown_strikethrough = 1
 
 """ Vimtex
 let g:tex_conceal = ""
-let g:vimtex_syntax_conceal = {}
-let g:vimtex_syntax_conceal_default = 0
+let g:vimtex_syntax_conceal = {
+      \ 'accents': 0,
+      \ 'cites': 0,
+      \ 'fancy': 0,
+      \ 'greek': 0,
+      \ 'math_bounds': 0,
+      \ 'math_delimiters': 0,
+      \ 'math_fracs': 0,
+      \ 'math_super_sub': 0,
+      \ 'math_symbols': 0,
+      \ 'sections': 0,
+      \ 'styles': 0,
+      \}
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
@@ -639,7 +650,7 @@ let g:vimtex_compiler_latexmk = {
             \ 'continuous' : 1,
             \ 'executable' : 'latexmk',
             \ 'options' : [
-            \   '-lualatex',
+            \   '-xelatex',
             \   '-verbose',
             \   '-file-line-error',
             \   '-synctex=1',
@@ -647,7 +658,7 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 let g:vimtex_compiler_latexmk_engines = {
-            \ '_'         : '-lualatex',
+            \ '_'         : '-xelatex',
             \}
 let g:Tex_IgnoredWarnings =
             \'Underfull'."\n".
