@@ -49,7 +49,7 @@
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.lens.enable": false,
 
-  "texlab.build.onSave": true,
+  //"texlab.build.onSave": true,
   "texlab.chktex.onEdit": true,
   "texlab.chktex.onOpenAndSave": true,
 
