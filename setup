@@ -142,6 +142,8 @@ if should("Install neofetch config?"):
     print("Installed neofetch.conf")
 
 if should("Install Nix configs?"):
+    link("/nix", "~/.config/nix")
+    print("Installed nixs config")
     link("/nixpkgs", "~/.config/nixpkgs")
     print("Installed nixpkgs configs and overlays")
 
