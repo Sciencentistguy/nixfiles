@@ -1,4 +1,14 @@
-# Init and options
+# Shell options
+
+# completions
+if [ -f ~/.zsh/plugins/nix-zsh-completions/nix-zsh-completions.plugin.zsh ]; then
+    source ~/.zsh/plugins/nix-zsh-completions/nix-zsh-completions.plugin.zsh
+    fpath=(~/.zsh/plugins/nix-zsh-completions $fpath)
+else
+    echo "nix-zsh-completions plugin not loaded"
+fi
+
+# Init prompt and colours
 autoload -U compinit promptinit
 autoload -U colors && colors
 compinit
