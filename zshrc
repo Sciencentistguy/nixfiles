@@ -119,6 +119,10 @@ if [ -f "$HOME/.config/python/startup.py" ]; then
     export PYTHONSTARTUP="$HOME/.config/python/startup.py"
 fi
 
+if type bat >/dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
 # esc-esc sudo
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
