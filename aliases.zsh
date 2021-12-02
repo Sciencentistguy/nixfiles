@@ -41,7 +41,8 @@ alias -g "....."="../../../.."
 # Conditional Aliases
 if type exa >/dev/null; then
     alias ls="exa -lhgbHm --git "
-    alias lst="exa -lhgbHmT --git"
+    alias lst="exa -lhgbHmT --git --git-ignore"
+    alias lstg="exa -lhgbHmT --git"
     alias lsa="exa -lhgbHma --git"
     alias lsat="exa -lhgbHmaT --git"
 else
