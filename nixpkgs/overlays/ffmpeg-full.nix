@@ -1,4 +1,4 @@
-self: super: {
+self: super: rec {
   # ffmpeg full requires an override to enable the (nonfree) libfdk_aac.
   #
   # it also needs a wrapper script to use nvenc on non-nixos systems because it is otherwise unable
@@ -6,6 +6,12 @@ self: super: {
   #
   # See: https://github.com/NixOS/nixpkgs/issues/77834
   ffmpeg-full =
+    super.ffmpeg-full.override {
+      nonfreeLicensing = true;
+      fdkaacExtlib = true;
+    };
+
+  ffmpeg-full-nixgl =
     let
       nixGLPkgs = import
         (fetchTarball {
@@ -15,20 +21,15 @@ self: super: {
         })
         { pkgs = super; };
     in
-    (super.ffmpeg-full.overrideAttrs (attrs: {
+    (ffmpeg-full.overrideAttrs (attrs: {
       postInstall = ''
         mv ${placeholder "out"}/bin/ffmpeg ${placeholder "out"}/bin/ffmpeg-bin
-        echo 'nixGL ${placeholder "out"}/bin/ffmpeg-bin "$@"' > ${placeholder "out"}/bin/ffmpeg
+        echo '${nixGLPkgs.auto.nixGLDefault}/bin/nixGL ${placeholder "out"}/bin/ffmpeg-bin "$@"' > ${placeholder "out"}/bin/ffmpeg
         chmod 755 ${placeholder "out"}/bin/ffmpeg
       '';
 
       propogatedBuildInputs = [
         nixGLPkgs.auto.nixGLDefault
       ];
-
-    })).override
-      {
-        nonfreeLicensing = true;
-        fdkaacExtlib = true;
-      };
+    }));
 }
