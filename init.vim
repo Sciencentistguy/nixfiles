@@ -551,6 +551,7 @@ let g:neoformat_enabled_haskell = ['ormolu']
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:neoformat_enabled_rust = ['customrustfmt']
+let g:neoformat_enabled_yaml = ['prettier']
 
 
 
