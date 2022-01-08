@@ -56,5 +56,12 @@
 
 
   // clangd
-  "clangd.fallbackFlags": ["-std=c++20"]
+  "clangd.fallbackFlags": ["-std=c++20"],
+
+  "coc.source.ultisnips.enable": true,
+  "snippets.ultisnips.enable": true,
+
+  "snippets.extends": {
+      "latex": ["tex", "texmath"]
+  },
 }
