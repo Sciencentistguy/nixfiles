@@ -40,6 +40,10 @@ alias -g "...."="../../.."
 alias -g "....."="../../../.."
 
 # Conditional Aliases
+if type bat >/dev/null; then
+    alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+fi
+
 if type exa >/dev/null; then
     alias ls="exa -lhgbHm --git "
     alias lst="exa -lhgbHmT --git --git-ignore"
@@ -67,6 +71,7 @@ else
     export EDITOR=vi
     export VISUAL=vi
 fi
+
 if type nvimpager >/dev/null; then
     alias less="nvimpager"
     export PAGER=nvimpager
