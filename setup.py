@@ -74,15 +74,7 @@ def should(message: str) -> bool:
 
 
 if should("Install alacritty config"):
-    hostname = socket.gethostname()
-    if hostname == "chronos":
-        link("/alacritty_chronos.yml", "~/.config/alacritty/alacritty.yml")
-        print(f"Installed alacritty_{hostname}.yml")
-    elif hostname == "hyperion":
-        link("/alacritty_hyperion.yml", "~/.config/alacritty/alacritty.yml")
-        print(f"Installed alacritty_{hostname}.yml")
-    else:
-        print(f"Alacritty_{hostname}.yml does not exist")
+    link("/alacritty.yml", "~/.config/alacritty/alacritty.yml")
 
 if should("Install archlinx specific configs?"):
     link("/makepkg.conf", "/etc/makepkg.conf", sudo=True)
