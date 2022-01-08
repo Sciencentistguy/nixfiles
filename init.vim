@@ -200,7 +200,6 @@ catch
 endtry
 
 " Show relative line numbers
-set relativenumber
 set number
 
 " Return to last edit position when opening files
