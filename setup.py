@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import os
-import socket
 import subprocess
 import sys
 from typing import List
@@ -83,11 +82,6 @@ if should("Install archlinx specific configs?"):
     print("Installed makepkg.conf.gcc")
     link("/pacman.conf", "/etc/pacman.conf", sudo=True)
     print("Installed pacman.conf")
-
-if should("Install bpytop config?"):
-    install_packages(["bpytop"])
-    link("/bpytop.conf", "~/.config/bpytop/bpytop.conf")
-    print("Installed bpytop.conf")
 
 if should("Install btop config?"):
     install_packages(["btop"])
