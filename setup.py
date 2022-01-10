@@ -98,17 +98,6 @@ if should("Install Git configs"):
     link("/gitignore", "~/.gitignore")
     print("Installed global gitignore")
 
-if should("Install i3 configs?"):
-    install_packages(["i3-gaps", "polybar", "rofi", "picom", "feh", "dunst"])
-    link("/i3", "~/.config/i3")
-    print("Installed i3 configs")
-    link("/i3/polybar", "~/.config/polybar")
-    print("Installed polybar configs")
-    link("/i3/picom.conf", "~/.config/picom.conf")
-    print("Installed picom.conf")
-    link("/i3/dunst", "~/.config/dunst")
-    print("installed dunst configs")
-
 if should("Install mpd configs?"):
     link("/mpd/mpd.conf", "~/.config/mpd/mpd.conf")
     print("Installed mpd.conf")
