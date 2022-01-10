@@ -88,11 +88,6 @@ if should("Install btop config?"):
     link("/btop.conf", "~/.config/btop/btop.conf")
     print("Installed btop.conf")
 
-if should("Install firefox configs?"):
-    install_packages(["firefox-tridactyl-native", "firefox"])
-    link("/tridactylrc", "~/.config/tridactyl/tridactylrc")
-    print("Installed tridactylrc")
-
 if should("Install Haskell GHCi config?"):
     mkdir("~/.ghc")
     link("/ghci.conf", "~/.ghc/ghci.conf")
