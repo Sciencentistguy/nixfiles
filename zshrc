@@ -106,6 +106,10 @@ export NODE_OPTIONS="--max_old_space_size=16384"
 export RUST_BACKTRACE=1
 export XDG_DATA_DIRS=$HOME/.nix-profile/share:$HOME/.share:"${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 
+if type bat >/dev/null && type delta >/dev/null; then
+    export GIT_PAGER='delta | bat --style=numbers,header'
+fi
+
 if type rg >/dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
 fi
