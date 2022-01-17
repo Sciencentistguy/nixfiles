@@ -185,7 +185,7 @@ else
     echo "zsh-autosuggestions plugin not loaded"
 fi
 
-if grep -Fxq "arch" /etc/os-release; then
+if grep -Fxq "arch" /etc/os-release 2>/dev/null; then
     if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
         source /usr/share/doc/pkgfile/command-not-found.zsh
     else
