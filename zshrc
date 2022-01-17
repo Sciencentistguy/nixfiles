@@ -69,6 +69,10 @@ if [ -d "$HOME/.config/yarn/global/node_modules/.bin" ]; then
     PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 fi
 
+if [ -d "/opt/homebrew/bin" ]; then
+    PATH="/opt/homebrew/bin:$PATH" 
+fi
+
 if [ -d "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
