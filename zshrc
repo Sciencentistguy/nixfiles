@@ -110,6 +110,12 @@ export NODE_OPTIONS="--max_old_space_size=16384"
 export RUST_BACKTRACE=1
 export XDG_DATA_DIRS=$HOME/.nix-profile/share:$HOME/.share:"${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 
+if [[ $(uname) == "Darwin" ]]; then 
+    if [ -f "/etc/static/zshrc" ]; then
+        source "/etc/static/zshrc"
+    fi
+fi
+
 if type bat >/dev/null && type delta >/dev/null; then
     export GIT_PAGER='delta | bat --style=numbers,header'
 fi
