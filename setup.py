@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import os
 import subprocess
 import sys
@@ -15,7 +15,7 @@ def mkdir(path: str):
         pass
 
 
-def install_packages(packages: list(str)) -> None:
+def install_packages(packages):
     AUR_HELPER = "pikaur"
     if "--pkg" in sys.argv or "--packages" in sys.argv:
         subprocess.run([AUR_HELPER, "-S", ] + packages)
@@ -81,7 +81,7 @@ if IS_DARWIN:
         link("/alacritty_macos.yml", "~/.config/alacritty/alacritty.yml")
 
     if should("Install darwin-nix"):
-        link("/darwin-configuration.nix", "~/.nixpkgs/darwin-configuration.nix")
+        link("/nix-environment/darwin.nix", "~/.nixpkgs/darwin-configuration.nix")
         print("Installed darwin-configuration.nix")
         using_nix_cfgs = True
 else:
