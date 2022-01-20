@@ -29,6 +29,8 @@ Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions,
 Plug 'chrisbra/csv.vim'                " CSV file specific commands
 Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of things
 Plug 'edkolev/tmuxline.vim'            " Format tmux's statusbar to look like airline
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'                " FZF
 Plug 'godlygeek/tabular'               " Align stuff
 Plug 'honza/vim-snippets'              " Provides python to ultisnips
 Plug 'kien/rainbow_parentheses.vim'    " Rainbow Brackets
