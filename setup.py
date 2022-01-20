@@ -2,9 +2,10 @@
 import os
 import subprocess
 import sys
-from typing import List
 
 yes = "-y" in sys.argv
+
+IS_DARWIN = sys.platform.startswith("darwin")
 
 
 def mkdir(path: str):
@@ -14,7 +15,7 @@ def mkdir(path: str):
         pass
 
 
-def install_packages(packages: List[str]) -> None:
+def install_packages(packages: list(str)) -> None:
     AUR_HELPER = "pikaur"
     if "--pkg" in sys.argv or "--packages" in sys.argv:
         subprocess.run([AUR_HELPER, "-S", ] + packages)
@@ -62,7 +63,8 @@ def link(relative_name: str, filepath: str, /, sudo: bool = False) -> None:
     mkdir(filepath if os.path.isdir(filepath) else os.path.dirname(filepath))
     if sudo:
         subprocess.run(["sudo", "rm", "-rf", filepath])
-        subprocess.run(["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
+        subprocess.run(
+            ["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
     else:
         subprocess.run(["rm", "-rf", filepath])
         subprocess.run(["ln", "-s", os.getcwd() + relative_name, filepath])
@@ -72,16 +74,28 @@ def should(message: str) -> bool:
     return yes or ("n" not in input(f"{message} (Y/n) ").lower())
 
 
-if should("Install alacritty config"):
-    link("/alacritty.yml", "~/.config/alacritty/alacritty.yml")
+using_nix_cfgs = False
 
-if should("Install archlinx specific configs?"):
-    link("/makepkg.conf", "/etc/makepkg.conf", sudo=True)
-    print("Installed makepkg.conf")
-    link("/makepkg.conf.gcc", "/etc/makepkg.conf.gcc", sudo=True)
-    print("Installed makepkg.conf.gcc")
-    link("/pacman.conf", "/etc/pacman.conf", sudo=True)
-    print("Installed pacman.conf")
+if IS_DARWIN:
+    if should("Install alacritty config"):
+        link("/alacritty_macos.yml", "~/.config/alacritty/alacritty.yml")
+
+    if should("Install darwin-nix"):
+        link("/darwin-configuration.nix", "~/.nixpkgs/darwin-configuration.nix")
+        print("Installed darwin-configuration.nix")
+        using_nix_cfgs = True
+else:
+    if should("Install alacritty config"):
+        link("/alacritty.yml", "~/.config/alacritty/alacritty.yml")
+
+    if should("Install archlinx specific configs?"):
+        link("/makepkg.conf", "/etc/makepkg.conf", sudo=True)
+        print("Installed makepkg.conf")
+        link("/makepkg.conf.gcc", "/etc/makepkg.conf.gcc", sudo=True)
+        print("Installed makepkg.conf.gcc")
+        link("/pacman.conf", "/etc/pacman.conf", sudo=True)
+        print("Installed pacman.conf")
+
 
 if should("Install btop config?"):
     install_packages(["btop"])
@@ -93,7 +107,7 @@ if should("Install Haskell GHCi config?"):
     link("/ghci.conf", "~/.ghc/ghci.conf")
     print("Installed GHCi config")
 
-if should("Install Git configs"):
+if (not using_nix_cfgs) and should("Install Git configs"):
     link("/gitignore", "~/.config/git/ignore")
     link("/gitignore", "~/.gitignore")
     print("Installed global gitignore")
@@ -117,13 +131,14 @@ if should("Install Nix configs?"):
     link("/nixpkgs", "~/.config/nixpkgs")
     print("Installed nixpkgs configs and overlays")
 
-if should("Install nushell config?"):
+if (not using_nix_cfgs) and should("Install nushell config?"):
     mkdir("~/.config/nu")
     link("/nushell.toml", "~/.config/nu/config.toml")
     print("Installed nushell.toml")
 
 if should("Install nvim configs?"):
-    install_packages(["neovim-nightly", "vim-plug", "neovim-symlinks", "nodejs", "texlive-bin", "latex-mk", "ccls"])
+    install_packages(["neovim-nightly", "vim-plug", "neovim-symlinks",
+                     "nodejs", "texlive-bin", "latex-mk", "ccls"])
     mkdir("~/.config/nvim")
     link("/init.vim", "~/.config/nvim/init.vim")
     print("Installed init.vim")
@@ -149,7 +164,8 @@ if should("Install tmux config?"):
     print("Installed tmux.conf")
 
 if should("Install zsh configs?"):
-    install_packages(["zsh", "zsh-syntax-highlighting", "zsh-autocomplete", "pkgfile", "starship-git"])
+    install_packages(["zsh", "zsh-syntax-highlighting",
+                     "zsh-autocomplete", "pkgfile", "starship-git"])
     mkdir("~/.zsh")
     link("/zshrc", "~/.zshrc")
     print("Installed zshrc")
