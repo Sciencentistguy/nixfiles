@@ -66,15 +66,16 @@ in
 
   homebrew.casks = [
     "discord"
-    "keybase"
-    "google-drive"
-    "steam"
-    "visual-studio-code"
-    "multimc"
-    "gitkraken"
     "firefox"
+    "gitkraken"
+    "google-drive"
+    "keybase"
+    "multimc"
     "private-internet-access"
     "qbittorrent"
+    "spotify"
+    "steam"
+    "visual-studio-code"
   ];
 
   homebrew.brews = [
