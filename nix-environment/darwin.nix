@@ -1,16 +1,14 @@
 { config, pkgs, lib, ... }:
 
-let custompkgs = import
-  (fetchTarball {
-    url = "https://github.com/Sciencentistguy/nixpkgs/archive/974a87b25f6d2d3398b3c71138bc2de7ddc094d3.tar.gz";
-    sha256 = "16m1lbbk1mg1bjahhxln2gxa7hd47c6pi7h5kjg9dzvbz1h0s65m";
-  })
-  { };
-in
 {
-  imports = [ <home-manager/nix-darwin> ];
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
+  imports = [
+    <home-manager/nix-darwin>
+    ./jamie.nix
+    ./root.nix
+  ];
+
+  #environment.darwinConfig 
+  environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
 
   nix.trustedUsers = [
     "jamie"
@@ -68,6 +66,7 @@ in
     "discord"
     "firefox"
     "gitkraken"
+    "ghidra"
     "google-drive"
     "keybase"
     "multimc"
@@ -105,146 +104,13 @@ in
       home = "/var/root";
     };
 
-  home-manager.users.root = { pkgs, ... }: {
-    home.packages = [
-      pkgs.exa
-    ];
+  #home-manager.users.root = import ./root.nix;
+  #home-manager.users.jamie = import ./jamie.nix;
 
-    programs.bash.enable = true;
-    programs.zsh.enable = true;
-    programs.zsh.enableCompletion = true;
-    programs.zsh.enableAutosuggestions = true;
-    programs.zsh.enableSyntaxHighlighting = true;
-    programs.zsh.shellAliases = {
-      ls = "exa -lhgbHm --git ";
-      lst = "exa -lhgbHmT --git --git-ignore";
-      lstg = "exa -lhgbHmT --git";
-      lsa = "exa -lhgbHma --git";
-      lsat = "exa -lhgbHmaT --git";
-    };
-
-    programs.starship.package = custompkgs.starship;
-    programs.starship.enable = true;
-    programs.starship.enableZshIntegration = true;
-    programs.starship.enableBashIntegration = true;
-  };
 
   users.users.jamie =
     {
       name = "jamie";
       home = "/Users/jamie";
     };
-
-
-  home-manager.users.jamie = { pkgs, ... }: {
-    home.packages = [
-      # Store shell history in a SQL database
-      pkgs.atuin
-
-      # A good process monitor (python version is more stable on darwin)
-      pkgs.bpytop
-      pkgs.btop
-
-      # A prettifier for diffs
-      pkgs.delta
-
-      # Fancier `ls`
-      pkgs.exa
-
-      # Fancier `find`
-      pkgs.fd
-
-      # Video encoder
-      pkgs.ffmpeg
-
-      # PGP implementation
-      pkgs.gnupg
-
-      # Flex mode
-      pkgs.neofetch
-
-      # Format nix source code
-      pkgs.nixpkgs-fmt
-
-      # General purpse archive extractor
-      pkgs.p7zip
-
-      # Reverse engineering tool
-      pkgs.radare2
-
-      # Good grep
-      pkgs.ripgrep
-      pkgs.ripgrep-all
-
-      # Language server for nix
-      pkgs.rnix-lsp
-
-      # Speedtest tool
-      pkgs.speedtest-cli
-
-      # Terminal multiplexer
-      pkgs.tmux
-
-      # Download files
-      pkgs.wget
-
-      # Extract xz files
-      pkgs.xz
-
-      # Fuzzy finder
-      pkgs.fzf
-
-      custompkgs.starship
-    ];
-
-    programs.bat.enable = true;
-    programs.bat.config = {
-      style = "numbers";
-    };
-
-    programs.git.enable = true;
-    programs.git.delta.enable = true;
-    programs.git.ignores = [
-      "tags"
-      ".vim/"
-      ".ccls*/"
-      ".clangd"
-    ];
-    programs.git.signing = {
-      key = "30BBFF3FAB0BBB3E0435F83C8E8FF66E2AE8D970";
-      signByDefault = true;
-    };
-    programs.git.userEmail = "jamie@quigley.xyz";
-    programs.git.userName = "Jamie Quigley";
-
-    programs.gh.enable = true;
-    programs.gh.settings.git_protocol = "ssh";
-
-    programs.ssh.enable = true;
-    programs.ssh.compression = true;
-
-    programs.ssh.matchBlocks."github.com".identityFile = "~/.ssh/github";
-    programs.ssh.matchBlocks."*.github.com".identityFile = "~/.ssh/github";
-    programs.ssh.matchBlocks."gitlab.com".identityFile = "~/.ssh/github";
-    programs.ssh.matchBlocks."*.gitlab.com".identityFile = "~/.ssh/github";
-    programs.ssh.matchBlocks."seedbox".identityFile = "~/.ssh/seedbox";
-    programs.ssh.matchBlocks."aur.archlinux.org".identityFile = "~/.ssh/aur";
-    programs.ssh.matchBlocks."*.york.ac.uk".user = "jehq500";
-
-    programs.nushell.enable = true;
-    programs.nushell.settings = {
-      edit_mode = "vi";
-      startup = [
-        "def lls [] { clear; ls }"
-        "def neofetch [] {clear; ^neofetch}"
-        "def mkcdir [p: path] {mkdir $p; cd $p}"
-        "def abs [pkg: string] {asp update $pkg; asp checkout $pkg}"
-        "def \"cd sd\" [] { cd ~/ScratchArea }"
-        "def \"cd dl\" [] {cd ~/Downloads}"
-      ];
-    };
-
-    #programs.bash.enable = true;
-    #programs.neovim.enable = true;
-  };
 }
