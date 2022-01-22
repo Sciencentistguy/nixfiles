@@ -169,22 +169,10 @@ fi
 eval $(ssh-agent) >/dev/null
 
 # Plugins
-if [ -f ~/.zsh/plugins/globalias.plugin.zsh ]; then
-    source ~/.zsh/plugins/globalias.plugin.zsh
-else
-    echo "globalias plugin not loaded"
-fi
-
 if [ -f ~/.zsh/plugins/git.plugin.zsh ]; then
     source ~/.zsh/plugins/git.plugin.zsh
 else
     echo "git plugin not loaded"
-fi
-
-if [ -f ~/.zsh/plugins/you-should-use.plugin.zsh ]; then
-    source ~/.zsh/plugins/you-should-use.plugin.zsh
-else
-    echo "you-should-use plugin not loaded"
 fi
 
 if [ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
@@ -222,6 +210,14 @@ if [ -f ~/.zsh/plugins/zsh-nix-shell/nix-shell.plugin.zsh ]; then
 else
     echo "zsh-nix-shell plugin not loaded"
 fi
+
+if [ -f ~/.zsh/plugins/globalias.plugin.zsh ]; then
+    source ~/.zsh/plugins/globalias.plugin.zsh
+    GLOBALIAS_FILTER_VALUES=(ls lsa lsat lstg vim rm cp)
+else
+    echo "globalias plugin not loaded"
+fi
+
 
 if type atuin >/dev/null; then
     autoload -U add-zsh-hook
