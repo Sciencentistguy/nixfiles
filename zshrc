@@ -221,7 +221,6 @@ if [ -f ~/.zsh/plugins/globalias.plugin.zsh ]; then
         vim
 
         cp
-        dc
         df
         du
         e
