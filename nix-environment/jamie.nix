@@ -63,7 +63,11 @@ in
         # Fuzzy finder
         pkgs.fzf
 
+        # Nice prompt
         custompkgs.starship
+
+        # Fancier `ps`
+        pkgs.procs
 
       ];
 
