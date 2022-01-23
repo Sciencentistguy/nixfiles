@@ -5,7 +5,7 @@ import sys
 
 yes = "-y" in sys.argv
 
-IS_DARWIN = sys.platform.startswith("darwin")
+IS_DARWIN: bool = sys.platform.startswith("darwin")
 
 
 def mkdir(path: str):
@@ -39,7 +39,7 @@ def install_coc_plugins() -> None:
         "coc-markdownlint",
         "coc-marketplace",
         "coc-pairs",
-        "coc-python",
+        "coc-jedi",
         "coc-rust-analyzer",
         "coc-sh",
         "coc-snippets",
@@ -51,6 +51,7 @@ def install_coc_plugins() -> None:
         "coc-word",
         "coc-yaml",
         "coc-yank"]
+
     for plugs in split_list(pluglist, 10):
         subprocess.run(["nvim", "+CocInstall " + " ".join(plugs)])
 
@@ -75,15 +76,18 @@ def should(message: str) -> bool:
 
 
 using_nix_cfgs = False
+if IS_DARWIN:
+    using_nix_cfgs = should("Install nix-darwin system configuration")
+
+    if using_nix_cfgs:
+        link("/nix-environment", "~/.nix-environment")
+        print("Installed nix-environment")
+
 
 if IS_DARWIN:
     if should("Install alacritty config"):
         link("/alacritty_macos.yml", "~/.config/alacritty/alacritty.yml")
 
-    if should("Install darwin-nix"):
-        link("/nix-environment/darwin.nix", "~/.nixpkgs/darwin-configuration.nix")
-        print("Installed darwin-configuration.nix")
-        using_nix_cfgs = True
 else:
     if should("Install alacritty config"):
         link("/alacritty.yml", "~/.config/alacritty/alacritty.yml")
@@ -127,7 +131,7 @@ if should("Install neofetch config?"):
 
 if should("Install Nix configs?"):
     link("/nix", "~/.config/nix")
-    print("Installed nixs config")
+    print("Installed nix config")
     link("/nixpkgs", "~/.config/nixpkgs")
     print("Installed nixpkgs configs and overlays")
 
@@ -175,7 +179,8 @@ if should("Install zsh configs?"):
     print("Installed functions.zsh")
     link("/aliases.zsh", "~/.zsh/aliases.zsh")
     print("Installed aliases.zsh")
-    link("/starship.toml", "~/.config/starship.toml")
-    print("Installed starship.toml")
-    link("/atuin.toml", "~/.config/atuin/config.toml")
-    print("Installed atuin.toml")
+    if not using_nix_cfgs:
+        link("/starship.toml", "~/.config/starship.toml")
+        print("Installed starship.toml")
+        link("/atuin.toml", "~/.config/atuin/config.toml")
+        print("Installed atuin.toml")
