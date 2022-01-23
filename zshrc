@@ -70,7 +70,7 @@ if [ -d "$HOME/.config/yarn/global/node_modules/.bin" ]; then
 fi
 
 if [ -d "/opt/homebrew/bin" ]; then
-    PATH="/opt/homebrew/bin:$PATH" 
+    PATH="/opt/homebrew/bin:$PATH"
 fi
 
 if [ -d "$HOME/.cargo/bin" ]; then
@@ -110,7 +110,7 @@ export NODE_OPTIONS="--max_old_space_size=16384"
 export RUST_BACKTRACE=1
 export XDG_DATA_DIRS=$HOME/.nix-profile/share:$HOME/.share:"${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 
-if [[ $(uname) == "Darwin" ]]; then 
+if [[ $(uname) == "Darwin" ]]; then
     if [ -f "/etc/static/zshrc" ]; then
         source "/etc/static/zshrc"
     fi
@@ -213,11 +213,32 @@ fi
 
 if [ -f ~/.zsh/plugins/globalias.plugin.zsh ]; then
     source ~/.zsh/plugins/globalias.plugin.zsh
-    GLOBALIAS_FILTER_VALUES=(ls lsa lsat lstg vim rm cp)
+    GLOBALIAS_FILTER_VALUES=(
+        ls
+        lsa
+        lsat
+        lstg
+        vim
+
+        cp
+        dc
+        df
+        du
+        e
+        feh
+        ffmpeg
+        ffplay
+        ffprobe
+        less
+        mkdir
+        mv
+        rg
+        rm
+        sudo
+    )
 else
     echo "globalias plugin not loaded"
 fi
-
 
 if type atuin >/dev/null; then
     autoload -U add-zsh-hook
