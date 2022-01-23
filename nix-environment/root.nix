@@ -65,8 +65,6 @@ in
       programs.zsh.completionInit = "autoload -U compinit && compinit -C";
       programs.zsh.initExtraBeforeCompInit = "ZSH_DISABLE_COMPFIX=true";
 
-      programs.zsh.initExtraFirst = "setopt SOURCE_TRACE";
-
       programs.zsh.oh-my-zsh.enable = true;
       programs.zsh.oh-my-zsh.plugins = [
         "globalias"

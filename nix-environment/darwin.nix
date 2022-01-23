@@ -1,5 +1,14 @@
 { config, pkgs, lib, ... }:
-
+let
+  neovim-nightly-pkgs = pkgs.callPackage
+    (import
+      (builtins.fetchTarball {
+        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+      })
+      { }
+    )
+    { inherit (pkgs) system; };
+in
 {
   imports = [
     <home-manager/nix-darwin>
@@ -24,9 +33,18 @@
   environment.systemPackages = [
     pkgs.coreutils
 
-    pkgs.neovim
+    neovim-nightly-pkgs.neovim-nightly
     pkgs.nodejs
     pkgs.yarn
+    (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
+      jedi
+      autopep8
+      pylint
+      pynvim
+    ]))
+
+    pkgs.coreutils
+    pkgs.gnumake
   ];
 
   environment.shells = with pkgs; [
@@ -65,8 +83,9 @@
   homebrew.casks = [
     "discord"
     "firefox"
-    "gitkraken"
+    "flameshot"
     "ghidra"
+    "gitkraken"
     "google-drive"
     "keybase"
     "multimc"
@@ -74,6 +93,8 @@
     "qbittorrent"
     "spotify"
     "steam"
+    "temurin"
+    "temurin8"
     "visual-studio-code"
   ];
 
@@ -103,10 +124,6 @@
       name = "root";
       home = "/var/root";
     };
-
-  #home-manager.users.root = import ./root.nix;
-  #home-manager.users.jamie = import ./jamie.nix;
-
 
   users.users.jamie =
     {
