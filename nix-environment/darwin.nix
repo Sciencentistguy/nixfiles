@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
 let
+  # This is cursed but it would appear that's just how flakes be
   neovim-nightly-pkgs = pkgs.callPackage
     (import
       (builtins.fetchTarball {
@@ -30,22 +31,32 @@ in
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
-  environment.systemPackages = [
-    pkgs.coreutils
+  environment.systemPackages =
+    let neovim-with-dependencies = [
+      neovim-nightly-pkgs.neovim-nightly
+      (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
+        jedi
+        autopep8
+        pylint
+        pynvim
+      ]))
 
-    neovim-nightly-pkgs.neovim-nightly
-    pkgs.nodejs
-    pkgs.yarn
-    (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
-      jedi
-      autopep8
-      pylint
-      pynvim
-    ]))
+      pkgs.nodejs
+      pkgs.yarn
 
-    pkgs.coreutils
-    pkgs.gnumake
-  ];
+      pkgs.shellcheck
+      pkgs.shfmt
+
+      pkgs.nixpkgs-fmt
+      pkgs.rnix-lsp
+    ];
+    in
+    [
+      pkgs.coreutils
+
+      pkgs.coreutils
+      pkgs.gnumake
+    ] ++ neovim-with-dependencies;
 
   environment.shells = with pkgs; [
     bashInteractive
