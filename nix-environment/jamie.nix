@@ -69,6 +69,8 @@ in
         # Fancier `ps`
         pkgs.procs
 
+        # Monitor the output of a command
+        pkgs.watch
       ];
 
       programs.bat.enable = true;
