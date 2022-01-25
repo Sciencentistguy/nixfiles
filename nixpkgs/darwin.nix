@@ -142,6 +142,7 @@ in
 
   home-manager.users.jamie = import ./jamie.nix {
     inherit pkgs custompkgs neovim-nightly-pkgs;
+    inherit (pkgs) lib;
     isDarwin = true;
   };
 }

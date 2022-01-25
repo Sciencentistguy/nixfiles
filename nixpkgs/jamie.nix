@@ -19,13 +19,18 @@ in
           ln -s $out/bin/nvim $out/bin/vi
         '';
       });
+      beets-with-file-info =
+        pkgs.beets.overrideAttrs (oldAttrs: {
+          propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ]) ++ [
+            custompkgs.beets-file-info
+          ];
+        });
     in
     [
       custompkgs.shark-radar # Check blåhaj stock
       custompkgs.starship # Nice prompt
       ffmpeg # Video encoder. ffmpeg-full doesn't build on darwin
       pkgs.atuin # Store shell history in a SQL database
-      pkgs.beets-with-file-info # Music orginaisation software with a custom plugin
       pkgs.delta # A prettifier for diffs
       pkgs.exa # Fancier `ls`
       pkgs.fd # Fancier `find`
@@ -64,6 +69,9 @@ in
       pkgs.shellcheck
       pkgs.nodejs
       pkgs.yarn
+
+      # Broken on aarch64-darwin
+      beets-with-file-info # Music orginaisation software with a custom plugin
     ];
 
   # Let Home Manager install and manage itself on linux.
