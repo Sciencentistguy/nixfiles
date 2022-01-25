@@ -9,11 +9,11 @@ let
       { }
     )
     { inherit (pkgs) system; };
+  custompkgs = import ./custompkgs.nix { };
 in
 {
   imports = [
     <home-manager/nix-darwin>
-    ./jamie.nix
     ./root.nix
   ];
 
@@ -116,11 +116,6 @@ in
 
   ];
 
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
-
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
@@ -144,4 +139,9 @@ in
       name = "jamie";
       home = "/Users/jamie";
     };
+
+  home-manager.users.jamie = import ./jamie.nix {
+    inherit pkgs custompkgs neovim-nightly-pkgs;
+    isDarwin = true;
+  };
 }
