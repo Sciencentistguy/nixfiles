@@ -12,7 +12,7 @@ let
     )
     { inherit (pkgs) system; };
 in
-  {
+{
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "jamie";
@@ -29,7 +29,7 @@ in
   home.stateVersion = "22.05";
 
 } // import ./jamie.nix {
-    inherit custompkgs pkgs neovim-nightly-pkgs;
-    inherit (pkgs) lib;
-    isDarwin = false;
-  }
+  inherit custompkgs pkgs neovim-nightly-pkgs;
+  inherit (pkgs) lib;
+  isDarwin = false;
+}

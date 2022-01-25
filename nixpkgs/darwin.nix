@@ -12,10 +12,7 @@ let
   custompkgs = import ./custompkgs.nix { };
 in
 {
-  imports = [
-    <home-manager/nix-darwin>
-    ./root.nix
-  ];
+  imports = [ <home-manager/nix-darwin> ];
 
   #environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
   environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
@@ -141,6 +138,12 @@ in
     };
 
   home-manager.users.jamie = import ./jamie.nix {
+    inherit pkgs custompkgs neovim-nightly-pkgs;
+    inherit (pkgs) lib;
+    isDarwin = true;
+  };
+
+  home-manager.users.root = import ./root.nix {
     inherit pkgs custompkgs neovim-nightly-pkgs;
     inherit (pkgs) lib;
     isDarwin = true;
