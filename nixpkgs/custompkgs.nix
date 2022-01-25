@@ -1,4 +1,4 @@
 import (fetchTarball {
-  url = "https://github.com/Sciencentistguy/nixpkgs/archive/974a87b25f6d2d3398b3c71138bc2de7ddc094d3.tar.gz";
-  sha256 = "16m1lbbk1mg1bjahhxln2gxa7hd47c6pi7h5kjg9dzvbz1h0s65m";
+  url = "https://github.com/Sciencentistguy/nixpkgs/archive/504032b9754567224017344ae539c4f9c6fe8415.tar.gz";
+  sha256 = "07l0igx8a490mn8sgx975vlqrwkhv8dgvlwx8xdzsq0h7y0cjihw";
 })
