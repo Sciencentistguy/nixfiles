@@ -17,8 +17,8 @@ in
     ./root.nix
   ];
 
-  #environment.darwinConfig 
-  environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
+  #environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
+  environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
 
   nix.trustedUsers = [
     "jamie"
