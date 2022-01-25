@@ -17,6 +17,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer
 
 Plug '907th/vim-auto-save'             " Autosave
 Plug 'APZelos/blamer.nvim'             " Inline git blame
+Plug 'Druid-of-Luhn/essence.vim'       " Synax highlighting for essence prime
 Plug 'LucHermitte/lh-brackets'         " Automatically close brackets, quotes, etc
 Plug 'LucHermitte/lh-vim-lib'          " Library for lh-brackets
 Plug 'Raimondi/vim_search_objects'     " Treat search matches as text objects
@@ -29,10 +30,10 @@ Plug 'arthurxavierx/vim-caser'         " Easily change word casing with motions,
 Plug 'chrisbra/csv.vim'                " CSV file specific commands
 Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of things
 Plug 'edkolev/tmuxline.vim'            " Format tmux's statusbar to look like airline
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'                " FZF
 Plug 'godlygeek/tabular'               " Align stuff
 Plug 'honza/vim-snippets'              " Provides python to ultisnips
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'                " FZF
 Plug 'kien/rainbow_parentheses.vim'    " Rainbow Brackets
 Plug 'lervag/vimtex'                   " LaTeX support
 Plug 'm42e/vim-lgh'                    " Local history using git
