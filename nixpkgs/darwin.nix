@@ -4,7 +4,8 @@ let
   neovim-nightly-pkgs = pkgs.callPackage
     (import
       (builtins.fetchTarball {
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+        #TODO the commit after this is broken
+        url = https://github.com/nix-community/neovim-nightly-overlay/archive/6e5090ef126eec295b978629805a16b138969579.tar.gz;
       })
       { }
     )
