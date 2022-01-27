@@ -96,9 +96,10 @@ in
     "firefox"
     "flameshot"
     "ghidra"
-    "gitkraken"
     "gimp"
+    "gitkraken"
     "google-drive"
+    "intellij-idea-ce"
     "keybase"
     "multimc"
     "private-internet-access"
@@ -111,7 +112,7 @@ in
   ];
 
   homebrew.brews = [
-
+    "llvm@13"
   ];
 
   # Auto upgrade nix package and the daemon service.

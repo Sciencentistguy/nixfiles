@@ -73,6 +73,14 @@ if [ -d "/opt/homebrew/bin" ]; then
     PATH="/opt/homebrew/bin:$PATH"
 fi
 
+# Macos ships a very old and crippled clang, replace it with homebrew
+if [ -d "/opt/homebrew/opt/llvm/bin" ]; then
+    # Unless nix is in control
+    if [[ "$(which clang)" == /usr/bin* ]]; then
+        PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+    fi
+fi
+
 if [ -d "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
