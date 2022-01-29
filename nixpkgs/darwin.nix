@@ -4,8 +4,7 @@ let
   neovim-nightly-pkgs = pkgs.callPackage
     (import
       (builtins.fetchTarball {
-        #TODO the commit after this is broken
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/6e5090ef126eec295b978629805a16b138969579.tar.gz;
+        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
       })
       { }
     )
@@ -92,6 +91,7 @@ in
   };
 
   homebrew.casks = [
+    "bitwarden"
     "discord"
     "firefox"
     "flameshot"
@@ -100,6 +100,7 @@ in
     "gitkraken"
     "google-drive"
     "intellij-idea-ce"
+    "iterm2"
     "keybase"
     "multimc"
     "private-internet-access"
