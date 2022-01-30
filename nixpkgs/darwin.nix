@@ -109,6 +109,7 @@ in
     "steam"
     "temurin"
     "temurin8"
+    "tidal"
     "visual-studio-code"
   ];
 
