@@ -59,7 +59,8 @@ in
       pkgs.drawio # Draw diagrams
       pkgs.gimp # Edit images
       pkgs.gitkraken # Git GUI
-      pkgs.jetbrains.idea-community # Java GUI
+      pkgs.jetbrains.idea-community # Java IDE
+      #pkgs.jetbrains.pycharm-community # Python IDE
       pkgs.makemkv # Rip DVDs and Blu-Ray discs
       pkgs.slack
       pkgs.spotify
@@ -73,6 +74,7 @@ in
       # Broken on aarch64-darwin
       beets-with-file-info # Music orginaisation software with a custom plugin
     ];
+
 
   # Let Home Manager install and manage itself on linux.
   programs.home-manager.enable = !isDarwin;
@@ -241,7 +243,7 @@ in
   programs.starship.package = custompkgs.starship;
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
-  programs.starship.enableBashIntegration = true;
+  programs.starship.enableBashIntegration = false;
   programs.starship.settings = {
     add_newline = false;
     format = "$all";
