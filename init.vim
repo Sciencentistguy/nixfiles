@@ -21,7 +21,6 @@ Plug 'Druid-of-Luhn/essence.vim'       " Synax highlighting for essence prime
 Plug 'LucHermitte/lh-brackets'         " Automatically close brackets, quotes, etc
 Plug 'LucHermitte/lh-vim-lib'          " Library for lh-brackets
 Plug 'Raimondi/vim_search_objects'     " Treat search matches as text objects
-Plug 'Sciencentistguy/vim-monokai-pro' " Colourscheme
 Plug 'Xuyuanp/nerdtree-git-plugin'     " Git status plugin for nerdtree
 Plug 'airblade/vim-gitgutter'          " Git diff tracker for airline
 Plug 'airblade/vim-rooter'             " cd to the root of the project, so that grepping etc works properly
@@ -32,8 +31,9 @@ Plug 'ctrlpvim/ctrlp.vim'              " Fancy fuzzy finder for a whole bunch of
 Plug 'edkolev/tmuxline.vim'            " Format tmux's statusbar to look like airline
 Plug 'godlygeek/tabular'               " Align stuff
 Plug 'honza/vim-snippets'              " Provides python to ultisnips
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'joshdick/onedark.vim'            " Colorscheme
 Plug 'junegunn/fzf.vim'                " FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'kien/rainbow_parentheses.vim'    " Rainbow Brackets
 Plug 'lervag/vimtex'                   " LaTeX support
 Plug 'm42e/vim-lgh'                    " Local history using git
@@ -78,7 +78,19 @@ filetype indent on
 set autoread
 
 " Colorscheme
-colorscheme monokai_pro
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+" `gui` is the hex color code used in GUI mode/nvim true-color mode
+" `cterm` is the color code used in 256-color mode
+" `cterm16` is the color code used in 16-color mode
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+colorscheme onedark
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -399,7 +411,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " Set theme
-let g:airline_theme='badwolf'
+let g:airline_theme='onedark'
 
 " Format airline
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
