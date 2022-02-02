@@ -14,6 +14,8 @@ endif
 " vim-plug plugins
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Hugely powerful LanguageServer/Completion/Syntax/EverythingElse plugin
+"Plug 'ms-jpq/coq_nvim'
+"Plug 'neovim/nvim-lspconfig'
 
 Plug '907th/vim-auto-save'             " Autosave
 Plug 'APZelos/blamer.nvim'             " Inline git blame
@@ -58,6 +60,7 @@ Plug 'tpope/vim-surround'              " Simple quoting / bracketing
 Plug 'tridactyl/vim-tridactyl'         " Syntax plugin for tridactylrc
 Plug 'vim-airline/vim-airline'         " Fancy statusline
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 
@@ -537,10 +540,10 @@ let g:marker_define_jump_mappings = 0
 
 """ Neoformat
 " Automatically format on write
-augroup fmt
-    autocmd!
-    au BufWritePre *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-augroup END
+"augroup fmt
+    "autocmd!
+    "au BufWritePre *.c,*.py,*.h,*.hpp,*.cpp,*.hs,*.tex try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+"augroup END
 autocmd FileType tex let b:autoformat_autoindent=0
 
 " Specify custom formatters

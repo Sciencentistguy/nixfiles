@@ -143,11 +143,8 @@ if (not using_nix_cfgs) and should("Install nushell config?"):
 if should("Install nvim configs?"):
     install_packages(["neovim-nightly", "vim-plug", "neovim-symlinks",
                      "nodejs", "texlive-bin", "latex-mk", "ccls"])
-    mkdir("~/.config/nvim")
-    link("/init.vim", "~/.config/nvim/init.vim")
-    print("Installed init.vim")
-    link("/coc-settings.json", "~/.config/nvim/coc-settings.json")
-    print("Installed coc-settings")
+    link("/nvim", "~/.config/nvim")
+    print("Installed nvim configs")
     link("/pylintrc", "~/.pylintrc")
     print("Installed pylintrc")
     install_coc_plugins()
