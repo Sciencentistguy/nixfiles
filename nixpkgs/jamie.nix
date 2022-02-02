@@ -25,6 +25,18 @@ in
             custompkgs.beets-file-info
           ];
         });
+      openssh-patched =
+        pkgs.openssh.overrideAttrs (old:
+          {
+            patches = old.patches ++ [
+              (pkgs.fetchpatch {
+                url = "https://gist.githubusercontent.com/Sciencentistguy/18f94bde5ce06b63d760a736322b1aa0/raw/be75bcf34fe98fd49a68d2fccf366c5e51c06915/sussh.patch";
+                sha256 = "1jvfxfjfphzxzqlz3rrax5kz6gca0j5m6k8ll3mjx362xqx7lz80";
+              })
+            ];
+            dontCheck = true;
+            checkTarget = [ ];
+          });
     in
     [
       custompkgs.shark-radar # Check blåhaj stock
@@ -54,6 +66,7 @@ in
       pkgs.xz # Extract xz files
       pkgs.yt-dlp # Download internet videos
       top # Processm monitor. bpytop is more stable than btop on darwin
+      openssh-patched
     ] ++ lib.optionals (!isDarwin) [
       # Nix can't do graphical apps on darwin (well, at least)
       pkgs.drawio # Draw diagrams
