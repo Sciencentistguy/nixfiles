@@ -1,0 +1,5 @@
+require('Comment').setup()
+vim.api.nvim_set_keymap("n", "<leader>cs", "gbc", {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>cc", "gcc", {silent = true})
+vim.api.nvim_set_keymap("v", "<leader>c", "gb", {silent = true})
+vim.api.nvim_set_keymap("", "", "gccj", {silent = true})

@@ -294,3 +294,5 @@ if type atuin >/dev/null; then
         bindkey '^r' _atuin_search_widget
     fi
 fi
+
+alias luamake=/home/jamie/Git/dotfiles/nvim/lua-language-server/3rd/luamake/luamake

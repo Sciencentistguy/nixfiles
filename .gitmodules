@@ -4,9 +4,6 @@
 [submodule "zsh-plugins/zsh-autosuggestions"]
 	path = zsh-plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "i3/rofi-themes"]
-	path = i3/rofi-themes
-	url = http://github.com/davatorium/rofi-themes.git
 [submodule "zsh-plugins/zsh-command-time"]
 	path = zsh-plugins/zsh-command-time
 	url = https://github.com/popstas/zsh-command-time.git

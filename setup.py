@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+from types import NotImplementedType
 
 yes = "-y" in sys.argv
 
