@@ -118,6 +118,7 @@ export NODE_OPTIONS="--max_old_space_size=16384"
 export RUST_BACKTRACE=1
 export XDG_DATA_DIRS=$HOME/.nix-profile/share:$HOME/.share:"${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 
+
 if [[ $(uname) == "Darwin" ]]; then
     if [ -f "/etc/static/zshrc" ]; then
         source "/etc/static/zshrc"
@@ -184,6 +185,29 @@ else
 fi
 
 if [ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    # zsh-syntax-highlighting colours
+    typeset -A ZSH_HIGHLIGHT_STYLES
+    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=#E06C75,bold
+    ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=#EFC07B
+    ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#98C379,underline
+    ZSH_HIGHLIGHT_STYLES[global-alias]=fg=#56B6C2
+    ZSH_HIGHLIGHT_STYLES[precommand]=fg=#98C379,underline
+    ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=#98C379,underline
+    ZSH_HIGHLIGHT_STYLES[globbing]=fg=#61AFEF
+    ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=#61AFEF
+    ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=#C678DD
+    ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=#C678DD
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=#C678DD
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=#EFC07B
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=#EFC07B
+    ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=#EFC07B
+    ZSH_HIGHLIGHT_STYLES[rc-quote]=fg=#56B6C2
+    ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=#56B6C2
+    ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=#56B6C2
+    ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=#56B6C2
+    ZSH_HIGHLIGHT_STYLES[redirection]=fg=#EFC07B
+    ZSH_HIGHLIGHT_STYLES[comment]=fg=#282C34,bold
+    ZSH_HIGHLIGHT_STYLES[arg0]=fg=#98C379
     source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     echo "zsh-syntax-highlighting plugin not loaded"
