@@ -1,19 +1,38 @@
 local options = {
-	history = 500,
-	--noshowmode = true,
 	autoread = true,
-	expandtab = true,
-	smarttab = true,
-	shiftwidth = 4,
-	tabstop = 4,
-	mouse = "nv",
-	spelllang = "en_gb",
-	--incommand = "nosplit",
 	conceallevel = 0,
-	updatetime = 300,
+	expandtab = true,
+	history = 500,
 	ignorecase = true,
+	mouse = "nv",
+	scrolloff = 7,
+	shiftwidth = 4,
 	smartcase = true,
-	--colorcolumn = 100,
+	smarttab = true,
+	spelllang = "en_gb",
+	tabstop = 4,
+	updatetime = 300,
+	wildmenu = true,
+	wildignore = { "*.o", "*~", "*.pyc", ".git*", ".hg*", ".svn*", "*/.git/*", "*/.hg/*", "*/.svn/*", "*/.DS_Store", },
+    ruler = true,
+    cmdheight = 1,
+    hid = true,
+    backspace = {"eol", "start", "indent"},
+    -- whichwrap = {"<,>", "h", "l"},
+    hlsearch = true,
+    incsearch= true,
+    lazyredraw = true,
+    magic = true,
+    showmatch = true,
+    background = "dark",
+    encoding = "utf-8",
+    ffs= {"unix", "dos", "mac"},
+    lbr = true,
+    tw = 500,
+    ai = true,
+    si = true,
+    wrap = true,
+    number = true,
 }
 
 for k, v in pairs(options) do
@@ -21,10 +40,16 @@ for k, v in pairs(options) do
 end
 
 -- I don't know why this has to be vim.o rather than vim.opts /shrug
-vim.o.colorcolumn = 100
 vim.o.termguicolors = true
 
-vim.cmd("set noswapfile")
+-- These options don't work at all with vim.o{,pt} /shrug
+vim.cmd([[set colorcolumn=100]])
+vim.cmd([[set inccommand=nosplit]])
+vim.cmd([[set noshowmode]])
+vim.cmd([[set nobackup]])
+vim.cmd([[set noswapfile]])
+vim.cmd([[set nowb]])
+vim.cmd([[set whichwrap=<,>,h,l]])
 
 ----
 -- Mappings
