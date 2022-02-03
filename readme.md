@@ -27,10 +27,5 @@ Most colours here are based on / taken from [here](https://github.com/joshdick/o
 ```
 
 ---
+
 The content in this repository is available under version 2.0 of the Mozilla Public Licence
-
-### Credits
-
-- The `init.vim` file was originally based on a very old version of [this](https://github.com/amix/vimrc)
-- I took the UltiSnip files from [here](https://github.com/honza/vim-snippets)
-
