@@ -5,6 +5,13 @@ require("user.plugins")
 
 vim.g.rooter_patterns = {'.git', 'Cargo.lock', 'CMakeLists.txt', '*.cabal', 'stack.yaml'}
 
+vim.cmd([[
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+]])
+
 -- Regular vim options (not plugins)
 require("user.vim-opts")
 
