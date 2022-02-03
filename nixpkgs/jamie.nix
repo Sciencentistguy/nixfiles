@@ -261,12 +261,16 @@ in
     add_newline = false;
     format = "$all";
     character = {
-      success_symbol = "[<I>](bold fg:246) [➜](bold green)";
-      cancel_symbol = "[<I>](bold fg:246) [➜](bold yellow)";
-      error_symbol = "[<I>](bold fg:246) [➜](bold red)";
-      vicmd_success_symbol = "[<N>](bold fg:246) [➜](bold green)";
-      vicmd_cancel_symbol = "[<N>](bold fg:246) [➜](bold yellow)";
-      vicmd_error_symbol = "[<N>](bold fg:246) [➜](bold red)";
+      success_symbol = "[<I>](bold fg:246) [➜](bold #98C379)";
+      cancel_symbol = "[<I>](bold fg:246) [➜](bold #EFC07B)";
+      error_symbol = "[<I>](bold fg:246) [➜](bold #E06C75)";
+      vicmd_success_symbol = "[<N>](bold fg:246) [➜](bold #98C379)";
+      vicmd_cancel_symbol = "[<N>](bold fg:246) [➜](bold #EFC07B)";
+      vicmd_error_symbol = "[<N>](bold fg:246) [➜](bold #E06C75)";
+    };
+    username = {
+      style_root = "bold #E06C75";
+      style_user = "bold #EFC07B";
     };
     aws = {
       disabled = true;
@@ -282,9 +286,11 @@ in
       truncation_length = 8;
       truncate_to_repo = true;
       read_only = " 🔒";
+      style = "bold #61AFEF";
     };
     hostname = {
       ssh_only = false;
+      style = "bold #98C379";
     };
     username = {
       show_always = true;
@@ -293,21 +299,22 @@ in
     package = {
       disabled = true;
     };
-    cmake =
+    git_branch = {
+      style = "bold #C678DD";
+    };
+    git_status = {
+      style = "bold #E06C75";
+    };
+    cmake = {
       # Nerd fonts are hard on darwin
-      if isDarwin then {
-        symbol = "🛆 ";
-      } else { };
+      symbol = if isDarwin then "🛆 " else "";
+    };
     nix_shell = {
       impure_msg = "";
       pure_msg = "";
       format = "within [$symbol($name)]($style) ";
-    } // (
-      # Nerd fonts are hard on darwin
-      if (!isDarwin) then {
-        symbol = " ";
-      } else { }
-    );
+      symbol = if !isDarwin then " " else "";
+    };
   };
 }
 
