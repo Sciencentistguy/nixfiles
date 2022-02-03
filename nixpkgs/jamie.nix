@@ -100,6 +100,12 @@ in
       # Installed system-wide on darwin
       neovim
       pkgs.shellcheck
+      pkgs.nodejs
+      pkgs.yarn
+      pkgs.shfmt
+      pkgs.python3Packages.autopep8
+      pkgs.stylua
+
 
       # Broken on aarch64-darwin
       beets-with-file-info # Music orginaisation software with a custom plugin

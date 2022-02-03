@@ -36,9 +36,12 @@ in
       (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
         pynvim
       ]))
-
       pkgs.shellcheck
+      pkgs.nodejs
+      pkgs.yarn
       pkgs.shfmt
+      pkgs.python3Packages.autopep8
+      pkgs.stylua
     ];
     in
     [
