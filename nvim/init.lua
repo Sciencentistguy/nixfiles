@@ -30,9 +30,10 @@ require("user.statusbar")
 -- Show git status in sidebar
 require("gitsigns").setup()
 
--- Crates.io integration
+-- Plugin initialisation
 require("crates").setup()
 require("rust-tools").setup()
+require("colorizer").setup()
 
 -- TODO:
 -- coq_3p

@@ -22,6 +22,7 @@ end
 
 -- I don't know why this has to be vim.o rather than vim.opts /shrug
 vim.o.colorcolumn = 100
+vim.o.termguicolors = true
 
 vim.cmd("set noswapfile")
 

@@ -18,6 +18,7 @@ return require("packer").startup(function(use)
     use "m42e/vim-lgh"
     use "Saecki/crates.nvim"
     use "tpope/vim-git"
+    use "norcalli/nvim-colorizer.lua"
 
     use "simrat39/rust-tools.nvim"
 
