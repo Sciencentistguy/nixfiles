@@ -1,6 +1,6 @@
 # dotfiles
 
-The dotfiles I use on my machines. (currently just a desktop running Arch, soon to also be a MacBook Pro)
+The dotfiles I use on my machines. (currently a desktop running Arch, and a MacBook Pro)
 
 ## Instructions
 
