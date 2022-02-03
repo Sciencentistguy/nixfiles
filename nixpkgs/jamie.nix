@@ -28,7 +28,7 @@ in
       openssh-patched =
         pkgs.openssh.overrideAttrs (old:
           {
-            patches = old.patches ++ [
+            patches = old.patches or [] ++ [
               (pkgs.fetchpatch {
                 url = "https://gist.githubusercontent.com/Sciencentistguy/18f94bde5ce06b63d760a736322b1aa0/raw/be75bcf34fe98fd49a68d2fccf366c5e51c06915/sussh.patch";
                 sha256 = "1jvfxfjfphzxzqlz3rrax5kz6gca0j5m6k8ll3mjx362xqx7lz80";
@@ -37,6 +37,14 @@ in
             dontCheck = true;
             checkTarget = [ ];
           });
+      exa-patched = pkgs.exa.overrideAttrs (old: {
+        patches = old.patches or [] ++ [
+          (pkgs.fetchpatch {
+            url = "https://gist.githubusercontent.com/Sciencentistguy/8d48b464d1e5846b55e61854887cc5af/raw/e43d9c4344954b1ae9be9dd0faf1d2e44276ea0f/exa-onedark.patch";
+            sha256 = "1pgcnhry34ga6la74bwchsizwalpspmdxjf0jkk1f5l0ddg3iay4";
+          })
+        ];
+      });
     in
     [
       custompkgs.shark-radar # Check blåhaj stock
@@ -44,7 +52,7 @@ in
       ffmpeg # Video encoder. ffmpeg-full doesn't build on darwin
       pkgs.atuin # Store shell history in a SQL database
       pkgs.delta # A prettifier for diffs
-      pkgs.exa # Fancier `ls`
+      exa-patched # Fancier `ls`
       pkgs.fd # Fancier `find`
       pkgs.fzf # Fuzzy finder
       pkgs.gnupg # PGP implementation
