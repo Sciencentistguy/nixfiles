@@ -27,6 +27,9 @@ require("user.autopair")
 -- Fancy statusbar
 require("user.statusbar")
 
+-- Code formatter
+require("user.neoformat")
+
 -- Show git status in sidebar
 require("gitsigns").setup()
 

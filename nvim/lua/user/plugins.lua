@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
 	use("Saecki/crates.nvim")
 	use("tpope/vim-git")
 	use("norcalli/nvim-colorizer.lua")
+	use("sbdchd/neoformat")
 
 	use("simrat39/rust-tools.nvim")
 
@@ -39,7 +40,6 @@ return require("packer").startup(function(use)
 	use("numToStr/Comment.nvim")
 
 	use("nvim-treesitter/nvim-treesitter")
-	use("p00f/nvim-ts-rainbow")
 
 	use("monsonjeremy/onedark.nvim")
 	use("nvim-lualine/lualine.nvim")
