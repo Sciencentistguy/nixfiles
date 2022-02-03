@@ -3,6 +3,8 @@ vim.g.mapleader = ","
 -- Packer.nvim plugin file
 require("user.plugins")
 
+vim.g.rooter_patterns = {'.git', 'Cargo.lock', 'CMakeLists.txt', '*.cabal', 'stack.yaml'}
+
 -- Regular vim options (not plugins)
 require("user.vim-opts")
 
