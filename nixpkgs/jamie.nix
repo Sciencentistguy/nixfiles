@@ -11,24 +11,35 @@ in
               postInstall = ''
                 ln -s $out/bin/btop $out/bin/bpytop
               '';
-            }) else pkgs.btop;
-      ffmpeg = if isDarwin then pkgs.ffmpeg else pkgs.ffmpeg-full;
+            })
+        else pkgs.btop;
+      ffmpeg =
+        if isDarwin then
+          pkgs.ffmpeg
+        else
+          pkgs.ffmpeg-full.override {
+            nonfreeLicensing = true;
+            fdkaacExtlib = true;
+          };
+
       neovim = neovim-nightly-pkgs.neovim-nightly.overrideAttrs (old: {
         postInstall = ''
           ln -s $out/bin/nvim $out/bin/vim
           ln -s $out/bin/nvim $out/bin/vi
         '';
       });
+
       beets-with-file-info =
         pkgs.beets.overrideAttrs (oldAttrs: {
           propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ]) ++ [
             custompkgs.beets-file-info
           ];
         });
+
       openssh-patched =
         pkgs.openssh.overrideAttrs (old:
           {
-            patches = old.patches or [] ++ [
+            patches = old.patches or [ ] ++ [
               (pkgs.fetchpatch {
                 url = "https://gist.githubusercontent.com/Sciencentistguy/18f94bde5ce06b63d760a736322b1aa0/raw/be75bcf34fe98fd49a68d2fccf366c5e51c06915/sussh.patch";
                 sha256 = "1jvfxfjfphzxzqlz3rrax5kz6gca0j5m6k8ll3mjx362xqx7lz80";
@@ -37,8 +48,9 @@ in
             dontCheck = true;
             checkTarget = [ ];
           });
+
       exa-patched = pkgs.exa.overrideAttrs (old: {
-        patches = old.patches or [] ++ [
+        patches = old.patches or [ ] ++ [
           (pkgs.fetchpatch {
             url = "https://gist.githubusercontent.com/Sciencentistguy/8d48b464d1e5846b55e61854887cc5af/raw/e43d9c4344954b1ae9be9dd0faf1d2e44276ea0f/exa-onedark.patch";
             sha256 = "1pgcnhry34ga6la74bwchsizwalpspmdxjf0jkk1f5l0ddg3iay4";
