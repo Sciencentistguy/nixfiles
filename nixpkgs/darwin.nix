@@ -34,20 +34,11 @@ in
     let neovim-with-dependencies = [
       neovim-nightly-pkgs.neovim-nightly
       (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
-        jedi
-        autopep8
-        pylint
         pynvim
       ]))
 
-      pkgs.nodejs
-      pkgs.yarn
-
       pkgs.shellcheck
       pkgs.shfmt
-
-      pkgs.nixpkgs-fmt
-      pkgs.rnix-lsp
     ];
     in
     [

@@ -42,7 +42,7 @@ in
             patches = old.patches or [ ] ++ [
               (pkgs.fetchpatch {
                 url = "https://gist.githubusercontent.com/Sciencentistguy/18f94bde5ce06b63d760a736322b1aa0/raw/be75bcf34fe98fd49a68d2fccf366c5e51c06915/sussh.patch";
-                sha256 = "1jvfxfjfphzxzqlz3rrax5kz6gca0j5m6k8ll3mjx362xqx7lz80";
+                sha256 = "sha256-PKrlujoTkvTDCl02AGR5vmlZVeSoLYZqQGERc1sI+hM";
               })
             ];
             dontCheck = true;
@@ -53,7 +53,7 @@ in
         patches = old.patches or [ ] ++ [
           (pkgs.fetchpatch {
             url = "https://gist.githubusercontent.com/Sciencentistguy/8d48b464d1e5846b55e61854887cc5af/raw/e43d9c4344954b1ae9be9dd0faf1d2e44276ea0f/exa-onedark.patch";
-            sha256 = "1pgcnhry34ga6la74bwchsizwalpspmdxjf0jkk1f5l0ddg3iay4";
+            sha256 = "sha256-JTnumRCJuX6WHcSKBXYCvabDMoKLnBVMqju2TbdEj2E";
           })
         ];
       });
@@ -77,7 +77,6 @@ in
       pkgs.radare2 # Reverse engineering tool
       pkgs.ripgrep # Faster grep
       pkgs.ripgrep-all # rg through not just text
-      pkgs.rnix-lsp # Language server for nix
       pkgs.sad # Modern `sed` replacement
       pkgs.speedtest-cli # Speedtest tool
       pkgs.tmux # Terminal multiplexer
@@ -101,8 +100,6 @@ in
       # Installed system-wide on darwin
       neovim
       pkgs.shellcheck
-      pkgs.nodejs
-      pkgs.yarn
 
       # Broken on aarch64-darwin
       beets-with-file-info # Music orginaisation software with a custom plugin
