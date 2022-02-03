@@ -60,9 +60,9 @@ vim.api.nvim_set_keymap("", "H", "h", {noremap= true})
 vim.api.nvim_set_keymap("", "L", "l", {noremap= true})
 
 -- `s` works like `d` but doesn't yank to buffer
-vim.api.nvim_set_keymap("", "s", "_d", {noremap= true})
-vim.api.nvim_set_keymap("", "ss", "_dd", {noremap= true})
-vim.api.nvim_set_keymap("", "S", "_D", {noremap= true})
+vim.api.nvim_set_keymap("", "s", '"_d', {noremap= true})
+vim.api.nvim_set_keymap("", "ss", '"_dd', {noremap= true})
+vim.api.nvim_set_keymap("", "S", '"_D', {noremap= true})
 
 -- `j` and `k` move by wrapped line, unless it would break things
 vim.api.nvim_set_keymap("", "k", "(v:count == 0 ? 'gk' : 'k')", {noremap= true, expr=true})
