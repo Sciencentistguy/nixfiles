@@ -25,6 +25,31 @@ Most colours here are based on / taken from [here](https://github.com/joshdick/o
 | Gutter Grey  | rgb(76, 82, 99)    | #4b5263 |
 | Comment Grey | rgb(92, 99, 112)   | #5c6370 |
 ```
+I've created a 16-colour version of this, by adding 20 to the saturation value (in HSV) to each colour.
+
+```yaml
+# Normal colors
+normal:
+  black: "#282c34"
+  red: "#be5046"
+  green: "#98c379"
+  yellow: "#e5c07b"
+  blue: "#61afef"
+  magenta: "#c678dd"
+  cyan: "#56b6c2"
+  white: "#abb2bf"
+
+# Bright colors
+bright:
+  black: "#4b5263"
+  red: "#bf2e21"
+  green: "#80c251"
+  yellow: "#e6b04e"
+  blue: "#329af0"
+  magenta: "#bc4bde"
+  cyan: "#2fb1c2"
+  white: "#ccd0d8"
+```
 
 ---
 
