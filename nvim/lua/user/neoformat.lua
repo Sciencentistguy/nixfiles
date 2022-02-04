@@ -1,6 +1,6 @@
 -- <F3> formats the current file / selection
-vim.api.nvim_set_keymap("n", "<F3>", ":Neoformat<cr>", { noremap = true })
-vim.api.nvim_set_keymap("v", "<F3>", ":Neoformat!", { noremap = true })
+vim.api.nvim_set_keymap("n", "<F3>", ":Neoformat<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<F3>", ":Neoformat!", { noremap = true, silent = true })
 
 -- Autoformat on save
 vim.cmd([[

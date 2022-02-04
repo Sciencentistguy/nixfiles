@@ -72,6 +72,10 @@ vim.api.nvim_set_keymap("", "q:", "", { noremap = true })
 vim.api.nvim_set_keymap("", "q/", "", { noremap = true })
 vim.api.nvim_set_keymap("", "q?", "", { noremap = true })
 
+-- Unbind `{` and `}` in vmode
+vim.api.nvim_set_keymap("v", "{", "", { noremap = true })
+vim.api.nvim_set_keymap("v", "}", "", { noremap = true })
+
 -- Annoying
 vim.api.nvim_set_keymap("", "Q", "", { noremap = true })
 

@@ -16,7 +16,7 @@ autocmd BufReadPost *
 require("user.vim-opts")
 
 -- Set up LSP
-require("user.lsp.lsp-installer")
+require("user.lsp")
 
 -- Commenter plugin
 require("user.comment")
@@ -37,6 +37,11 @@ require("gitsigns").setup()
 require("crates").setup()
 require("rust-tools").setup()
 require("colorizer").setup()
+require("lsp_signature").setup({
+	hint_prefix = "",
+})
+require("telescope").setup()
+require("telescope").load_extension("fzf")
 
 -- TODO:
 -- coq_3p
@@ -54,7 +59,10 @@ require("onedark").setup({
 
 vim.g.coq_settings = {
 	auto_start = "shut-up",
-	keymap = { recommended = false },
+	keymap = {
+		recommended = false,
+		eval_snips = "<leader>j",
+	},
 }
 
 -- these mappings are coq recommended mappings unrelated to nvim-autopairs

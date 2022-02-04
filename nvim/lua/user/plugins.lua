@@ -25,9 +25,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"lewis6991/gitsigns.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
+		requires = { "nvim-lua/plenary.nvim" },
 		-- tag = 'release' -- To use the latest release
 	})
 
@@ -43,7 +41,14 @@ return require("packer").startup(function(use)
 
 	use("monsonjeremy/onedark.nvim")
 	use("nvim-lualine/lualine.nvim")
+	use("arkav/lualine-lsp-progress")
+	use("nvim-lua/lsp-status.nvim")
+
 	use("lukas-reineke/indent-blankline.nvim")
+
+    -- use("SirVer/ultisnips")
+
+	use("ray-x/lsp_signature.nvim")
 
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -51,9 +56,16 @@ return require("packer").startup(function(use)
 			{ "nvim-lua/plenary.nvim" },
 		},
 	})
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make",
+	})
 
 	use({
 		"kdheepak/tabline.nvim",
-		requires = { { "hoob3rt/lualine.nvim", opt = true }, { "kyazdani42/nvim-web-devicons", opt = true } },
+		requires = {
+			{ "hoob3rt/lualine.nvim", opt = true },
+			{ "kyazdani42/nvim-web-devicons", opt = true },
+		},
 	})
 end)
