@@ -10,6 +10,10 @@ let
     )
     { inherit (pkgs) system; };
   custompkgs = import ./custompkgs.nix { };
+  overrides = pkgs.callPackage ./overrides.nix {
+    inherit custompkgs neovim-nightly-pkgs;
+    inherit (stdenv) isDarwin;
+  };
 in
 {
   imports = [ <home-manager/nix-darwin> ];
@@ -30,7 +34,7 @@ in
 
   environment.systemPackages =
     let neovim-with-dependencies = [
-      neovim-nightly-pkgs.neovim-nightly
+      overrides.neovim
       (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
         pynvim
       ]))
