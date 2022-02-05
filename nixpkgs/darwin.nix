@@ -105,6 +105,7 @@ in
     "temurin8"
     "tidal"
     "visual-studio-code"
+    "vlc"
   ];
 
   homebrew.brews = [
