@@ -30,6 +30,9 @@ require("user.statusbar")
 -- Code formatter
 require("user.neoformat")
 
+-- Vimtex
+require("user.vimtex")
+
 -- Show git status in sidebar
 require("gitsigns").setup()
 
@@ -50,6 +53,7 @@ require("telescope").load_extension("fzf")
 
 require("coq_3p")({
 	{ src = "nvimlua", short_name = "nLUA", config_only = false },
+	{ src = "vimtex", short_name = "vTeX" },
 })
 
 -- Colour scheme

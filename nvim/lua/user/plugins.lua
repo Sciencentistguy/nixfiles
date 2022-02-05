@@ -11,7 +11,6 @@ return require("packer").startup(function(use)
 	use("williamboman/nvim-lsp-installer")
 
 	use("tpope/vim-surround")
-	-- use "airblade/vim-gitgutter"
 	use("airblade/vim-rooter")
 	use("andymass/vim-matchup")
 	use("windwp/nvim-autopairs")
@@ -26,14 +25,16 @@ return require("packer").startup(function(use)
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
-		-- tag = 'release' -- To use the latest release
 	})
 
 	use("Pocco81/AutoSave.nvim")
 
-	use("ms-jpq/coq_nvim")
+	-- Pinned because of this https://github.com/ms-jpq/coq_nvim/issues/447
+	use({ "ms-jpq/coq_nvim", commit = "b45ca110e43e72aa13d8f762f3e107bd0c107d83" })
+
 	use("ms-jpq/coq.thirdparty")
 	use("ms-jpq/coq.artifacts")
+	use("lervag/vimtex")
 
 	use("numToStr/Comment.nvim")
 
@@ -46,7 +47,7 @@ return require("packer").startup(function(use)
 
 	use("lukas-reineke/indent-blankline.nvim")
 
-    -- use("SirVer/ultisnips")
+	-- use("SirVer/ultisnips")
 
 	use("ray-x/lsp_signature.nvim")
 
