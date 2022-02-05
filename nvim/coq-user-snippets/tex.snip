@@ -1,0 +1,29 @@
+snippet lsi
+abbr lstinline
+ \\colorbox{lightGray}{\\lstinline|${0}|}
+
+snippet lst
+abbr lstlisting
+ \\begin{lstlisting}[language=${1:language}]
+     ${0}
+ \\end{lstlisting}
+
+snippet enum
+ \\begin{enumerate}
+ 	\\item ${0}
+ \\end{enumerate}
+ endsnippet
+
+snippet item
+ \\begin{itemize}
+ 	\\item ${0}
+ \\end{itemize}
+ endsnippet
+
+snippet desc
+ \\begin{description}
+ 	\\item[${1}] ${0}
+ \\end{description}
+ endsnippet
+
+
