@@ -12,7 +12,7 @@ let
   custompkgs = import ./custompkgs.nix { };
   overrides = pkgs.callPackage ./overrides.nix {
     inherit custompkgs neovim-nightly-pkgs;
-    inherit (stdenv) isDarwin;
+    inherit (pkgs.stdenv) isDarwin;
   };
 in
 {
@@ -33,18 +33,7 @@ in
   '';
 
   environment.systemPackages =
-    let neovim-with-dependencies = [
-      overrides.neovim
-      (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
-        pynvim
-      ]))
-      pkgs.shellcheck
-      pkgs.nodejs
-      pkgs.yarn
-      pkgs.shfmt
-      pkgs.python3Packages.autopep8
-      pkgs.stylua
-    ];
+    let neovim-with-dependencies = import ./neovim.nix { inherit pkgs overrides; };
     in
     [
       pkgs.coreutils

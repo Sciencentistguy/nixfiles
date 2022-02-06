@@ -7,6 +7,7 @@ in
       overrides = pkgs.callPackage ./overrides.nix {
         inherit custompkgs neovim-nightly-pkgs isDarwin;
       };
+      neovim-with-dependencies = import ./neovim.nix { inherit pkgs overrides; };
     in
     [
       pkgs.atuin # Store shell history in a SQL database
@@ -48,18 +49,9 @@ in
       pkgs.slack
       pkgs.spotify
 
-      # Installed system-wide on darwin
-      overrides.neovim
-      pkgs.shellcheck
-      pkgs.nodejs
-      pkgs.yarn
-      pkgs.shfmt
-      pkgs.python3Packages.autopep8
-      pkgs.stylua
-
       # Broken on aarch64-darwin
       overrides.beets-with-file-info # Music orginaisation software with a custom plugin
-    ];
+    ] ++ lib.optionals (!isDarwin) neovim-with-dependencies;
 
   # Let Home Manager install and manage itself on linux.
   programs.home-manager.enable = !isDarwin;
