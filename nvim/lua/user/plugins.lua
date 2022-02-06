@@ -27,6 +27,8 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
+	use("nvim-telescope/telescope-ui-select.nvim")
+
 	use("Pocco81/AutoSave.nvim")
 
 	-- Pinned because of this https://github.com/ms-jpq/coq_nvim/issues/447
@@ -36,7 +38,7 @@ return require("packer").startup(function(use)
 	use("ms-jpq/coq.artifacts")
 	use("lervag/vimtex")
 
-	use("numToStr/Comment.nvim")
+	use("Sciencentistguy/nerdcommenter")
 
 	use("nvim-treesitter/nvim-treesitter")
 

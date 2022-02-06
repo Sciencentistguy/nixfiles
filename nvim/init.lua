@@ -45,11 +45,7 @@ require("lsp_signature").setup({
 })
 require("telescope").setup()
 require("telescope").load_extension("fzf")
-
--- TODO:
--- coq_3p
--- vimtex
---
+require("telescope").load_extension("ui-select")
 
 require("coq_3p")({
 	{ src = "nvimlua", short_name = "nLUA", config_only = false },
