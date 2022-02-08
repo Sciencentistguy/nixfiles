@@ -1,7 +1,6 @@
 { pkgs
 , custompkgs
 , isDarwin
-, neovim-nightly-pkgs
 }:
 {
   # btop appears to be a little unstable on aarch64-darwin
@@ -27,7 +26,7 @@
 
   # build neovim nightly rather than the most recent release in nixpkgs
   # also link vi and vim to nvim
-  neovim = neovim-nightly-pkgs.neovim-nightly.overrideAttrs (old: {
+  neovim = pkgs.neovim-nightly.overrideAttrs (old: {
     postInstall = ''
       ln -s $out/bin/nvim $out/bin/vim
       ln -s $out/bin/nvim $out/bin/vi

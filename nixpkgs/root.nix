@@ -1,6 +1,4 @@
-let custompkgs = import ./custompkgs.nix { };
-in
-{ pkgs, lib, isDarwin, custompkgs, neovim-nightly-pkgs }:
+{ pkgs, lib, isDarwin, custompkgs, }:
 {
   home.packages = [
     pkgs.exa

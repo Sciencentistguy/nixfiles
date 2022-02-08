@@ -1,14 +1,14 @@
-let custompkgs = import ./custompkgs.nix { };
+{ config, pkgs, lib, ... }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+  custompkgs = pkgs.callPackage ./custompkgs.nix { };
+  overrides = pkgs.callPackage ./overrides.nix {
+    inherit custompkgs isDarwin;
+  };
+  neovim-with-dependencies = import ./neovim.nix { inherit pkgs overrides; };
 in
-{ pkgs, lib, isDarwin, custompkgs, neovim-nightly-pkgs }:
 {
   home.packages =
-    let
-      overrides = pkgs.callPackage ./overrides.nix {
-        inherit custompkgs neovim-nightly-pkgs isDarwin;
-      };
-      neovim-with-dependencies = import ./neovim.nix { inherit pkgs overrides; };
-    in
     [
       pkgs.atuin # Store shell history in a SQL database
       pkgs.delta # A prettifier for diffs
@@ -39,7 +39,7 @@ in
       overrides.ffmpeg # Video encoder. ffmpeg-full doesn't build on darwin
       overrides.openssh-patched
       overrides.top # Processm monitor
-    ] ++ lib.optionals (!isDarwin) [
+    ] ++ neovim-with-dependencies ++ lib.optionals (!isDarwin) [
       # Nix can't do graphical apps on darwin (not very well, at least)
       pkgs.drawio # Draw diagrams
       pkgs.gimp # Edit images
@@ -51,7 +51,7 @@ in
 
       # Broken on aarch64-darwin
       overrides.beets-with-file-info # Music orginaisation software with a custom plugin
-    ] ++ lib.optionals (!isDarwin) neovim-with-dependencies;
+    ];
 
   # Let Home Manager install and manage itself on linux.
   programs.home-manager.enable = !isDarwin;

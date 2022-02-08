@@ -1,25 +1,17 @@
 { config, pkgs, lib, ... }:
 let
   # This is cursed but it would appear that's just how flakes be
-  neovim-nightly-pkgs = pkgs.callPackage
-    (import
-      (builtins.fetchTarball {
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      })
-      { }
-    )
-    { inherit (pkgs) system; };
-  custompkgs = import ./custompkgs.nix { };
-  overrides = pkgs.callPackage ./overrides.nix {
-    inherit custompkgs neovim-nightly-pkgs;
+  custompkgs = import ../custompkgs.nix { };
+  overrides = pkgs.callPackage ../overrides.nix {
+    inherit custompkgs;
     inherit (pkgs.stdenv) isDarwin;
   };
 in
 {
-  imports = [ <home-manager/nix-darwin> ];
+  # imports = [ <home-manager/nix-darwin> ];
 
   #environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
-  environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
+  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
 
   nix.trustedUsers = [
     "jamie"
@@ -31,16 +23,6 @@ in
   '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
-
-  environment.systemPackages =
-    let neovim-with-dependencies = import ./neovim.nix { inherit pkgs overrides; };
-    in
-    [
-      pkgs.coreutils
-
-      pkgs.coreutils
-      pkgs.gnumake
-    ] ++ neovim-with-dependencies;
 
   environment.shells = with pkgs; [
     bashInteractive
@@ -127,15 +109,5 @@ in
       home = "/Users/jamie";
     };
 
-  home-manager.users.jamie = import ./jamie.nix {
-    inherit pkgs custompkgs neovim-nightly-pkgs;
-    inherit (pkgs) lib;
-    isDarwin = true;
-  };
 
-  home-manager.users.root = import ./root.nix {
-    inherit pkgs custompkgs neovim-nightly-pkgs;
-    inherit (pkgs) lib;
-    isDarwin = true;
-  };
 }
