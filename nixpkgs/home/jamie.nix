@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
   inherit (pkgs.stdenv) isDarwin;
-  custompkgs = pkgs.callPackage ./custompkgs.nix { };
-  overrides = pkgs.callPackage ./overrides.nix {
+  custompkgs = pkgs.callPackage ../common/custompkgs.nix { };
+  overrides = pkgs.callPackage ../common/overrides.nix {
     inherit custompkgs isDarwin;
   };
-  neovim-with-dependencies = import ./neovim.nix { inherit pkgs overrides; };
+  neovim-with-dependencies = import ../common/neovim.nix { inherit pkgs overrides; };
 in
 {
   home.packages =

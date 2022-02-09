@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   # This is cursed but it would appear that's just how flakes be
-  custompkgs = import ../custompkgs.nix { };
-  overrides = pkgs.callPackage ../overrides.nix {
+  custompkgs = import ../common/custompkgs.nix { };
+  overrides = pkgs.callPackage ../common/overrides.nix {
     inherit custompkgs;
     inherit (pkgs.stdenv) isDarwin;
   };
