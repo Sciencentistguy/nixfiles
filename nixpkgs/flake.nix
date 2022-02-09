@@ -45,7 +45,7 @@
           {
             nixpkgs = nixpkgsConfig;
             # Hack to support legacy worklows that use `<nixpkgs>` etc.
-            nix.nixPath = { nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix"; };
+            # nix.nixPath = { nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix"; };
             # `home-manager` config
             users.users.jamie.home = "/Users/jamie";
             home-manager.useGlobalPkgs = true;

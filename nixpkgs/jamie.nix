@@ -31,6 +31,7 @@ in
       pkgs.wget # Download files
       pkgs.xz # Extract xz files
       pkgs.yt-dlp # Download internet videos
+      pkgs.coreutils
 
       custompkgs.shark-radar # Check blåhaj stock
       custompkgs.starship # Nice prompt
