@@ -59,7 +59,7 @@ in
 
   homebrew.casks = [
     "bitwarden"
-    "discord"
+    "discord-canary"
     "firefox"
     "flameshot"
     "ghidra"

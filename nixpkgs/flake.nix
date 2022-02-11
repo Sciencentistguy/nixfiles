@@ -2,9 +2,9 @@
   description = "Jamie's darwin system";
 
   inputs = {
-    nixpkgs-master.url = github:NixOS/nixpkgs/master;
-    nixpkgs-stable.url = github:NixOS/nixpkgs/nixpkgs-21.11-darwin;
+    # nixpkgs-master.url = github:NixOS/nixpkgs/master;
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs-stable.url = github:NixOS/nixpkgs/nixpkgs-21.11-darwin;
     nixos-stable.url = github:NixOS/nixpkgs/nixos-21.11;
 
     # Environment/system management
@@ -15,7 +15,9 @@
 
     # Other sources
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs-unstable";
     naersk.url = "github:nix-community/naersk";
+    naersk.inputs.nixpkgs.follows = "nixpkgs-unstable";
     flake-compat = { url = github:edolstra/flake-compat; flake = false; };
     flake-utils.url = github:numtide/flake-utils;
   };
