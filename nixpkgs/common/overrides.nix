@@ -1,5 +1,4 @@
 { pkgs
-, custompkgs
 , isDarwin
 }:
 {
@@ -37,7 +36,7 @@
   beets-with-file-info =
     pkgs.beets.overrideAttrs (oldAttrs: {
       propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ]) ++ [
-        custompkgs.beets-file-info
+        pkgs.beets-file-info
       ];
     });
 

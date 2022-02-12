@@ -20,6 +20,12 @@
     naersk.inputs.nixpkgs.follows = "nixpkgs-unstable";
     flake-compat = { url = github:edolstra/flake-compat; flake = false; };
     flake-utils.url = github:numtide/flake-utils;
+    custompkgs = {
+      url = github:Sciencentistguy/custompkgs;
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.naersk.follows = "naersk";
+      # flake =true;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
@@ -88,6 +94,7 @@
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay
+        inputs.custompkgs.overlay
       ];
     };
 }

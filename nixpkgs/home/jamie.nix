@@ -1,9 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   inherit (pkgs.stdenv) isDarwin;
-  custompkgs = pkgs.callPackage ../common/custompkgs.nix { };
   overrides = pkgs.callPackage ../common/overrides.nix {
-    inherit custompkgs isDarwin;
+    inherit isDarwin;
   };
   neovim-with-dependencies = import ../common/neovim.nix { inherit pkgs overrides; };
 in
@@ -33,9 +32,11 @@ in
       pkgs.yt-dlp # Download internet videos
       pkgs.coreutils
 
-      custompkgs.shark-radar # Check blåhaj stock
-      custompkgs.starship # Nice prompt
+      # custompkgs
+      pkgs.shark-radar # Check blåhaj stock
+      pkgs.starship # Nice prompt
 
+      # overrides
       overrides.exa-patched # Fancier `ls`
       overrides.ffmpeg # Video encoder. ffmpeg-full doesn't build on darwin
       overrides.openssh-patched
@@ -219,7 +220,7 @@ in
     source /etc/zshenv
   '';
 
-  programs.starship.package = custompkgs.starship;
+  programs.starship.package = pkgs.starship;
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
   programs.starship.enableBashIntegration = false;

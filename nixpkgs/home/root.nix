@@ -1,4 +1,4 @@
-{ pkgs, lib, isDarwin, custompkgs, }:
+{ pkgs, lib, isDarwin, }:
 {
   home.packages = [
     pkgs.exa
@@ -115,7 +115,7 @@
     #bindkey '^[OA' _atuin_search_widget
   '';
 
-  programs.starship.package = custompkgs.starship;
+  programs.starship.package = pkgs.starship;
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
   programs.starship.enableBashIntegration = true;
