@@ -68,6 +68,7 @@ in
     "iterm2"
     "keybase"
     "multimc"
+    "plexamp"
     "private-internet-access"
     "qbittorrent"
     "spotify"
