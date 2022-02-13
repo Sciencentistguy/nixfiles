@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1644676876,
+        "lastModified": 1644676984,
         "narHash": "sha256-Gkg/qpg9pzXnYMdU3K8QtNGUuSqYIVVeVbKMVclJI6U=",
         "owner": "Sciencentistguy",
         "repo": "custompkgs",
-        "rev": "634eac583bbb9130405b2d7f22c10043dd5ba3c7",
+        "rev": "ce3bb8b0fc9e6ec1fec0a79c5a6bc53808bc23f6",
         "type": "github"
       },
       "original": {
@@ -128,11 +128,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1644534280,
-        "narHash": "sha256-Gzf/Jq/F1vvTp6XkzPU+pBCj3OSAFLiR7f0ptwRseiI=",
+        "lastModified": 1644706973,
+        "narHash": "sha256-xOyxrhc5V79u0ZNmnPmJbY3ngtp43dNISEmrb8Ie6wQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6d9d9294d09b5e88df65f8c6651efb8a4d7d2476",
+        "rev": "7c2ae0bdd20ddcaafe41ef669226a1df67f8aa06",
         "type": "github"
       },
       "original": {
@@ -171,11 +171,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1644629754,
-        "narHash": "sha256-OFcOebzxwtpHQF76Xdjq5cgXPxECrWlYZeGgrpvovQs=",
+        "lastModified": 1644723469,
+        "narHash": "sha256-MVpaV2cKd0C82FJb3M96UrELkwy82swPOPNgfel7zr8=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "a7321e37a75fff5c0048b0779cf91d504455d6f3",
+        "rev": "6f5fae08a302bce6de453425a6b1c1d851112914",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1644653578,
-        "narHash": "sha256-x+syOYiqB0CpHstjNbvCo1N0AR0Y2Ud0OJ5GX+XhGI8=",
+        "lastModified": 1644739986,
+        "narHash": "sha256-Jwjfj2LuXWx/hLXsgtfYUvYRAwe++XzhbIrCd01QCc8=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "08b5db099c74e2f266464f9f2b6f821a0183590b",
+        "rev": "93c6019b477175990882db4d901ce5fdb325ae54",
         "type": "github"
       },
       "original": {
