@@ -38,6 +38,8 @@ return require("packer").startup(function(use)
 	use("ms-jpq/coq.artifacts")
 	use("lervag/vimtex")
 
+	use("Druid-of-Luhn/essence.vim")
+
 	use("Sciencentistguy/nerdcommenter")
 
 	use("nvim-treesitter/nvim-treesitter")
