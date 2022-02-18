@@ -4,8 +4,8 @@
   inputs = {
     # nixpkgs-master.url = github:NixOS/nixpkgs/master;
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-    nixpkgs-stable.url = github:NixOS/nixpkgs/nixpkgs-21.11-darwin;
-    nixos-stable.url = github:NixOS/nixpkgs/nixos-21.11;
+    # nixpkgs-stable.url = github:NixOS/nixpkgs/nixpkgs-21.11-darwin;
+    # nixos-stable.url = github:NixOS/nixpkgs/nixos-21.11;
 
     # Environment/system management
     darwin.url = github:LnL7/nix-darwin;
