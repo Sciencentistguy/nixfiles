@@ -11,6 +11,8 @@ in
   #environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
   # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
 
+  nix.package = pkgs.nix;
+
   nix.trustedUsers = [
     "jamie"
   ];
@@ -52,11 +54,10 @@ in
     Numbers = 409203825;
     Pages = 409201541;
     Slack = 803453959;
-    #Xcode = 497799835;
+    Bitwarden = 1352778147;
   };
 
   homebrew.casks = [
-    "bitwarden"
     "discord-canary"
     "firefox"
     "flameshot"
@@ -67,15 +68,16 @@ in
     "intellij-idea-ce"
     "iterm2"
     "keybase"
+    "logitech-options"
     "mullvadvpn"
     "multimc"
     "plexamp"
     "qbittorrent"
+    "sonos"
     "spotify"
     "steam"
     "temurin"
     "temurin8"
-    "tidal"
     "visual-studio-code"
     "vlc"
   ];
@@ -86,7 +88,6 @@ in
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
