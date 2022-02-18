@@ -79,6 +79,7 @@ in
   programs.git.userName = "Jamie Quigley";
   programs.git.extraConfig = {
     init.defaultBranch = "master";
+    pull.ff = "only";
   };
 
   programs.gh.enable = true;

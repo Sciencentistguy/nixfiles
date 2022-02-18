@@ -73,6 +73,7 @@ in
     "multimc"
     "plexamp"
     "qbittorrent"
+    "rectangle"
     "sonos"
     "spotify"
     "steam"
