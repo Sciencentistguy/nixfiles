@@ -77,6 +77,9 @@ in
   };
   programs.git.userEmail = "jamie@quigley.xyz";
   programs.git.userName = "Jamie Quigley";
+  programs.git.extraConfig = {
+    init.defaultBranch = "master";
+  };
 
   programs.gh.enable = true;
   programs.gh.settings.git_protocol = "ssh";
