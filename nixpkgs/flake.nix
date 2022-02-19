@@ -95,6 +95,18 @@
       overlays = [
         inputs.neovim-nightly-overlay.overlay
         inputs.custompkgs.overlay
+        # Patch bat to just output `<EMPTY>` instead of `STDIN: <EMPTY>` on empty stdin
+        (final: orig: {
+          bat = orig.bat.overrideAttrs
+            (oldAttrs: {
+              patches = oldAttrs.patches or [ ] ++ [
+                ./patches/bat.patch
+              ];
+              # The patch changes output, so don't run tests as they'll fail
+              doCheck = false;
+            });
+        }
+        )
       ];
     };
 }
