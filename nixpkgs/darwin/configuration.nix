@@ -79,6 +79,7 @@ in
     "steam"
     "temurin"
     "temurin8"
+    "utm"
     "visual-studio-code"
     "vlc"
   ];
