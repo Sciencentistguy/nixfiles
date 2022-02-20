@@ -1,28 +1,25 @@
 {
-  description = "Jamie's darwin system";
+  description = "Jamie's nix system configurations";
 
   inputs = {
-    # nixpkgs-master.url = github:NixOS/nixpkgs/master;
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-    # nixpkgs-stable.url = github:NixOS/nixpkgs/nixpkgs-21.11-darwin;
-    # nixos-stable.url = github:NixOS/nixpkgs/nixos-21.11;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Environment/system management
-    darwin.url = github:LnL7/nix-darwin;
-    darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    home-manager.url = github:nix-community/home-manager;
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    darwin.url = "github:LnL7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Other sources
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
     naersk.url = "github:nix-community/naersk";
-    naersk.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    flake-compat = { url = github:edolstra/flake-compat; flake = false; };
-    flake-utils.url = github:numtide/flake-utils;
+    naersk.inputs.nixpkgs.follows = "nixpkgs";
+    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
+    flake-utils.url = "github:numtide/flake-utils";
     custompkgs = {
-      url = github:Sciencentistguy/custompkgs;
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:Sciencentistguy/custompkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.follows = "naersk";
       # flake =true;
     };
@@ -31,10 +28,11 @@
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
     let
       nixpkgsConfig = {
+        inherit (self) overlays;
+
         config = {
           allowUnfree = true;
         };
-        overlays = self.overlays;
       };
 
       homeManagerStateVersion = "22.05";
