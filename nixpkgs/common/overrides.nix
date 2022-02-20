@@ -13,15 +13,10 @@
         })
     else pkgs.btop;
 
-  # ffmpeg-full doesn't build on aarch64-darwin
-  ffmpeg =
-    if isDarwin then
-      pkgs.ffmpeg
-    else
-      pkgs.ffmpeg-full.override {
-        nonfreeLicensing = true;
-        fdkaacExtlib = true;
-      };
+  ffmpeg = pkgs.ffmpeg-full.override {
+    nonfreeLicensing = true;
+    fdkaacExtlib = true;
+  };
 
   # build neovim nightly rather than the most recent release in nixpkgs
   # also link vi and vim to nvim
