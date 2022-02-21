@@ -70,6 +70,7 @@ in
     ".vim/"
     ".ccls*/"
     ".clangd"
+    ".DS_Store"
   ];
   programs.git.signing = {
     key = "30BBFF3FAB0BBB3E0435F83C8E8FF66E2AE8D970";
