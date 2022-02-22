@@ -1,10 +1,7 @@
-{ pkgs
-, isDarwin
-}:
-{
-  # btop appears to be a little unstable on aarch64-darwin
+{ pkgs, lib, ... }:
+let
   top =
-    if isDarwin then
+    if pkgs.stdenv.isDarwin then
       pkgs.bpytop.overrideAttrs
         (old: {
           postInstall = ''
@@ -17,15 +14,6 @@
     nonfreeLicensing = true;
     fdkaacExtlib = true;
   };
-
-  # build neovim nightly rather than the most recent release in nixpkgs
-  # also link vi and vim to nvim
-  neovim = pkgs.neovim-nightly.overrideAttrs (old: {
-    postInstall = ''
-      ln -s $out/bin/nvim $out/bin/vim
-      ln -s $out/bin/nvim $out/bin/vi
-    '';
-  });
 
   # bundle beets with a custom plugin
   beets-with-file-info =
@@ -58,4 +46,14 @@
       })
     ];
   });
+in
+{
+  home.packages = [
+    exa-patched # Fancier `ls`
+    ffmpeg # Video encoder. ffmpeg-full doesn't build on darwin
+    openssh-patched
+    top # Processm monitor
+  ] ++ lib.optionals (pkgs.stdenv.isLinux) [
+    beets-with-file-info
+  ];
 }

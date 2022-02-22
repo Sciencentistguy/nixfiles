@@ -1,10 +1,4 @@
 { config, pkgs, lib, ... }:
-let
-  # This is cursed but it would appear that's just how flakes be
-  overrides = pkgs.callPackage ../common/overrides.nix {
-    inherit (pkgs.stdenv) isDarwin;
-  };
-in
 {
   # imports = [ <home-manager/nix-darwin> ];
 

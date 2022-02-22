@@ -1,12 +1,7 @@
-{ pkgs, lib, isDarwin, }:
+{ pkgs, ... }:
 {
-  home.packages = [
-    pkgs.exa
-    pkgs.atuin
-  ];
-
-  programs.bash.enable = true;
-  programs.zsh.enable = true;
+  # programs.bash.enable = true;
+  programs.zsh.enable = false;
   programs.zsh.enableCompletion = true;
   programs.zsh.enableAutosuggestions = true;
   programs.zsh.enableSyntaxHighlighting = true;
@@ -58,6 +53,7 @@
 
   programs.zsh.completionInit = "autoload -U compinit && compinit -C";
   programs.zsh.initExtraBeforeCompInit = "ZSH_DISABLE_COMPFIX=true";
+
 
   programs.zsh.oh-my-zsh.enable = true;
   programs.zsh.oh-my-zsh.plugins = [
@@ -113,59 +109,8 @@
     # depends on terminal mode
     #bindkey '^[[A' _atuin_search_widget
     #bindkey '^[OA' _atuin_search_widget
-  '';
 
-  programs.starship.package = pkgs.starship;
-  programs.starship.enable = true;
-  programs.starship.enableZshIntegration = true;
-  programs.starship.enableBashIntegration = true;
-  programs.starship.settings = {
-    add_newline = false;
-    format = "$all";
-    character = {
-      success_symbol = "[<I>](bold fg:246) [➜](bold green)";
-      cancel_symbol = "[<I>](bold fg:246) [➜](bold yellow)";
-      error_symbol = "[<I>](bold fg:246) [➜](bold red)";
-      vicmd_success_symbol = "[<N>](bold fg:246) [➜](bold green)";
-      vicmd_cancel_symbol = "[<N>](bold fg:246) [➜](bold yellow)";
-      vicmd_error_symbol = "[<N>](bold fg:246) [➜](bold red)";
-    };
-    aws = {
-      disabled = true;
-    };
-    battery = {
-      disabled = !isDarwin;
-    };
-    cmd_duration = {
-      min_time = 5000;
-      show_milliseconds = true;
-    };
-    directory = {
-      truncation_length = 8;
-      truncate_to_repo = true;
-      read_only = " 🔒";
-    };
-    hostname = {
-      ssh_only = false;
-    };
-    username = {
-      show_always = true;
-      format = "[$user]($style)@";
-    };
-    package = {
-      disabled = true;
-    };
-    cmake =
-      if isDarwin then {
-        symbol = "🛆 ";
-      } else
-        { };
-    nix_shell = {
-      impure_msg = "";
-      pure_msg = "";
-      format = "within [$symbol($name)]($style) ";
-    } // (if (!isDarwin) then {
-      symbol = " ";
-    } else { });
-  };
+    unset __ETC_ZSHENV_SOURCED
+    source /etc/zshenv
+  '';
 }

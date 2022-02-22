@@ -38,7 +38,7 @@
       homeManagerStateVersion = "22.05";
       homeManagerCommonConfig = {
         imports = [
-          ./home/jamie.nix
+          ./home/common.nix
           { home.stateVersion = homeManagerStateVersion; }
         ];
       };
