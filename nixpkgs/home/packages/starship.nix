@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let inherit (pkgs.stdenv) isDarwin; in
 {
-  programs.starship.package = pkgs.starship;
+  programs.starship.package = pkgs.starship-sciencentistguy;
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
   programs.starship.enableBashIntegration = false;

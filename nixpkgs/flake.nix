@@ -101,6 +101,25 @@
             });
         }
         )
+        # Use sciencentistguy/starship fork
+        (final: orig: {
+          starship-sciencentistguy = orig.starship.overrideAttrs (old: rec {
+            version = "1.3.0-sciencentistguy";
+            src = orig.fetchFromGitHub {
+              owner = "sciencentistguy";
+              repo = "starship";
+              rev = "78fda3012c68ec807f7e913548061a9b81fd2853";
+              sha256 = "sha256-obZcwpn3zKBR4ND5Q3GWmOrfbOopr3pQQVRELr7o2xQ=";
+            };
+
+            cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
+              name = "${old.pname}-${version}-vendor.tar.gz";
+              inherit src;
+              outputHash = "sha256-lkkhUlkzp3nDPyyydU33/JjOgnRXeUWwoMQ/sGW4lvQ=";
+            });
+          });
+        }
+        )
       ];
     };
 }

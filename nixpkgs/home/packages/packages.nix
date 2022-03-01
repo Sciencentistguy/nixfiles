@@ -25,6 +25,6 @@
 
     # Overrides from custompkgs
     pkgs.shark-radar # Check blåhaj stock
-    pkgs.starship # Nice prompt
+    # pkgs.starship # Nice prompt
   ];
 }
