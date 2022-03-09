@@ -24,6 +24,11 @@ require("user.comment")
 -- Automatically close brackets
 require("user.autopair")
 
+-- Colour scheme
+require("onedark").setup({
+	transparent = true,
+})
+
 -- Fancy statusbar
 require("user.statusbar")
 
@@ -52,10 +57,6 @@ require("coq_3p")({
 	{ src = "vimtex", short_name = "vTeX" },
 })
 
--- Colour scheme
-require("onedark").setup({
-	transparent = true,
-})
 
 vim.g.coq_settings = {
 	auto_start = "shut-up",
