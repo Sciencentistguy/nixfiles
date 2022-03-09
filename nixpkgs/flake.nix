@@ -19,6 +19,8 @@
       url = "github:Sciencentistguy/custompkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    oxalica.url = "github:oxalica/rust-overlay";
+    oxalica.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
@@ -89,6 +91,7 @@
       overlays = [
         inputs.neovim-nightly-overlay.overlay
         inputs.custompkgs.overlay
+        inputs.oxalica.overlay
         # Patch bat to just output `<EMPTY>` instead of `STDIN: <EMPTY>` on empty stdin
         (final: orig: {
           bat = orig.bat.overrideAttrs
@@ -103,21 +106,26 @@
         )
         # Use sciencentistguy/starship fork
         (final: orig: {
-          starship-sciencentistguy = orig.starship.overrideAttrs (old: rec {
-            version = "1.3.0-sciencentistguy";
+          starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {
+            version = "1.4.0-sciencentistguy";
             src = orig.fetchFromGitHub {
               owner = "sciencentistguy";
               repo = "starship";
-              rev = "78fda3012c68ec807f7e913548061a9b81fd2853";
-              sha256 = "sha256-obZcwpn3zKBR4ND5Q3GWmOrfbOopr3pQQVRELr7o2xQ=";
+              rev = "2063ca6b10f5ea3e18ff54b1ccc296dc7f636c2d";
+              sha256 = "sha256-jeDXLKeI1LJUiJP+nekoieY3Mcv/qw9mNiLXDh51fV8";
             };
 
             cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
               name = "${old.pname}-${version}-vendor.tar.gz";
               inherit src;
-              outputHash = "sha256-lkkhUlkzp3nDPyyydU33/JjOgnRXeUWwoMQ/sGW4lvQ=";
+              outputHash = "sha256-17vo3/OKL5vok1AMZoOipuim8ruCSiFWVOsbb+wKs6I";
             });
-          });
+          })).override {
+            rustPlatform = orig.makeRustPlatform {
+              rustc = orig.rust-bin.stable.latest.default;
+              cargo = orig.rust-bin.stable.latest.default;
+            };
+          };
         }
         )
       ];
