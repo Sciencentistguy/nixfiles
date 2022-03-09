@@ -57,7 +57,6 @@ require("coq_3p")({
 	{ src = "vimtex", short_name = "vTeX" },
 })
 
-
 vim.g.coq_settings = {
 	auto_start = "shut-up",
 	keymap = {
