@@ -92,18 +92,19 @@
         inputs.neovim-nightly-overlay.overlay
         inputs.custompkgs.overlay
         inputs.oxalica.overlay
+        # FIXME: this is currently broken
         # Patch bat to just output `<EMPTY>` instead of `STDIN: <EMPTY>` on empty stdin
-        (final: orig: {
-          bat = orig.bat.overrideAttrs
-            (oldAttrs: {
-              patches = oldAttrs.patches or [ ] ++ [
-                ./patches/bat.patch
-              ];
-              # The patch changes output, so don't run tests as they'll fail
-              doCheck = false;
-            });
-        }
-        )
+        # (final: orig: {
+        # bat = orig.bat.overrideAttrs
+        # (oldAttrs: {
+        # patches = oldAttrs.patches or [ ] ++ [
+        # ./patches/bat.patch
+        # ];
+        # # The patch changes output, so don't run tests as they'll fail
+        # doCheck = false;
+        # });
+        # }
+        # )
         # Use sciencentistguy/starship fork
         (final: orig: {
           starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {
@@ -118,7 +119,7 @@
             cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
               name = "${old.pname}-${version}-vendor.tar.gz";
               inherit src;
-              outputHash = "sha256-17vo3/OKL5vok1AMZoOipuim8ruCSiFWVOsbb+wKs6I";
+              outputHash = "sha256-gJ92fxcZNWZKd0MB/y7n3rBva32Ol5TDdIrRvJ9vbMc";
             });
           })).override {
             rustPlatform = orig.makeRustPlatform {
