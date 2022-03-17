@@ -5,6 +5,7 @@
     ./git.nix
     ./linux-only.nix
     ./neovim.nix
+    ./nix.nix
     ./nushell.nix
     ./overrides.nix
     ./packages.nix
