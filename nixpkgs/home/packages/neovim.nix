@@ -13,10 +13,9 @@ in
   home.packages = [
     neovim
 
-    # Dependencies
+    # Runtimes
     (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [ pynvim ]))
     pkgs.nodejs
-    pkgs.yarn
 
     # Linters
     pkgs.shellcheck
@@ -27,9 +26,11 @@ in
     pkgs.shfmt
     pkgs.stylua
     pkgs.nixpkgs-fmt
+    pkgs.nodePackages_latest.prettier
 
     # Language servers
     pkgs.rust-analyzer-nightly
     pkgs.sumneko-lua-language-server
+    pkgs.nodePackages_latest.pyright
   ];
 }

@@ -115,4 +115,7 @@ vim.api.nvim_set_keymap("", "<leader>e", ":Telescope find_files<cr>", { silent =
 -- `,rg` searches text
 vim.api.nvim_set_keymap("", "<leader>rg", ":Telescope live_grep<cr>", { silent = true })
 
+-- `,D` lists diagnostics
+vim.api.nvim_set_keymap("", "<leader>D", ":Telescope diagnostics<cr>", { silent = true })
+
 vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])

@@ -1,24 +1,10 @@
-local lsp_installer = require("nvim-lsp-installer")
 local coq = require("coq")
-
-local function lsp_highlight_document(client)
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-			false
-		)
-	end
-end
-
-local function lsp_keymaps(bufnr)
+local function on_attach(_, bufnr)
+    -- Set keybinds
 	local opts = { noremap = true, silent = true }
+    vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -26,88 +12,69 @@ local function lsp_keymaps(bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<F18>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references<cr>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<m-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", ":Telescope lsp_code_actions<cr>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ac", ":Telescope lsp_code_actions<cr>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<m-cr>", ":Telescope lsp_code_actions<cr>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-	-- vim.api.nvim_buf_set_keymap(
-	-- bufnr,
-	-- "n",
-	-- "gl",
-	-- '<cmd>lua vim.diagnostic.get({ border = "rounded" })<CR>',
-	-- opts
-	-- )
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
-local function on_attach(client, bufnr)
-	if client.name == "tsserver" then
-		client.resolved_capabilities.document_formatting = false
-	end
-	lsp_keymaps(bufnr)
-	lsp_highlight_document(client)
-end
+local lsp = require("lspconfig")
 
-local enhance_server_opts = {
-	["sumneko_lua"] = function(opts)
-		opts.settings = {
-			Lua = {
-				hint = { enable = true },
-				diagnostics = {
-					globals = { "vim" },
-				},
-				workspace = {
-					library = {
-						vim.fn.expand("$VIMRUNTIME/lua"),
-						vim.fn.stdpath("config") .. "/lua",
-					},
-				},
+local f = 5
+
+local sumneko_binary_path = vim.fn.exepath("lua-language-server")
+local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ":h:h:h")
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+	cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+				-- Setup your lua path
+				path = runtime_path,
 			},
-		}
-	end,
-
-	["rust_analyzer"] = function(opts)
-		opts.settings = {
-			["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy",
-                },
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
 			},
-		}
-	end,
-}
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}))
 
-lsp_installer.on_server_ready(function(server)
-	-- Coq needs its own stuff in opts
-	local opts = coq.lsp_ensure_capabilities({
-		on_attach = on_attach,
-	})
+lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+	settings = {
+		["rust-analyzer"] = {
+			checkOnSave = {
+				command = "clippy",
+			},
+		},
+	},
+}))
 
-	-- Enhance the default opts with the server-specific ones
-	if enhance_server_opts[server.name] then
-		enhance_server_opts[server.name](opts)
-	end
+lsp.pyright.setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
 
-	if server.name == "rust_analyzer" then
-		-- Initialize the LSP via rust-tools instead
-		require("rust-tools").setup({
-			-- The "server" property provided in rust-tools setup function are the
-			-- settings rust-tools will provide to lspconfig during init.
-			-- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
-			-- with the user's own settings (opts).
-			server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
-		})
-		server:attach_buffers()
-	else
-		server:setup(opts)
-	end
-end)
+lsp.hls.setup({
+	on_attach = on_attach,
+})
