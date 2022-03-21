@@ -61,6 +61,7 @@ local enhance_server_opts = {
 	["sumneko_lua"] = function(opts)
 		opts.settings = {
 			Lua = {
+				hint = { enable = true },
 				diagnostics = {
 					globals = { "vim" },
 				},
@@ -70,6 +71,16 @@ local enhance_server_opts = {
 						vim.fn.stdpath("config") .. "/lua",
 					},
 				},
+			},
+		}
+	end,
+
+	["rust_analyzer"] = function(opts)
+		opts.settings = {
+			["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy",
+                },
 			},
 		}
 	end,

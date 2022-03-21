@@ -10,17 +10,26 @@ let
   });
 in
 {
-  home.packages =
-    [
-      neovim
+  home.packages = [
+    neovim
 
-      (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [ pynvim ]))
-      pkgs.nodejs
-      pkgs.python3Packages.autopep8
-      pkgs.shellcheck
-      pkgs.shfmt
-      pkgs.stylua
-      pkgs.yarn
-      pkgs.rust-analyzer-nightly
-    ];
+    # Dependencies
+    (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [ pynvim ]))
+    pkgs.nodejs
+    pkgs.yarn
+
+    # Linters
+    pkgs.shellcheck
+
+    # Formatters
+    pkgs.python3Packages.autopep8
+    pkgs.python3Packages.black
+    pkgs.shfmt
+    pkgs.stylua
+    pkgs.nixpkgs-fmt
+
+    # Language servers
+    pkgs.rust-analyzer-nightly
+    pkgs.sumneko-lua-language-server
+  ];
 }

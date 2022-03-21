@@ -6,7 +6,6 @@
     pkgs.fzf # Fuzzy finder
     pkgs.gnupg # PGP implementation
     pkgs.neofetch # Flex mode
-    pkgs.nixpkgs-fmt # Format nix source code
     pkgs.nushell # Functional shell
     pkgs.p7zip # General purpse archive extractor
     pkgs.pandoc # Convert documents between formats
