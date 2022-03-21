@@ -57,27 +57,33 @@ local function on_attach(client, bufnr)
 	lsp_highlight_document(client)
 end
 
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = on_attach,
-	}
-
-	if server.name == "sumneko_lua" then
-		opts = vim.tbl_deep_extend("force", {
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
+local enhance_server_opts = {
+	["sumneko_lua"] = function(opts)
+		opts.settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = {
+						vim.fn.expand("$VIMRUNTIME/lua"),
+						vim.fn.stdpath("config") .. "/lua",
 					},
 				},
 			},
-		}, opts)
+		}
+	end,
+}
+
+lsp_installer.on_server_ready(function(server)
+	-- Coq needs its own stuff in opts
+	local opts = coq.lsp_ensure_capabilities({
+		on_attach = on_attach,
+	})
+
+	-- Enhance the default opts with the server-specific ones
+	if enhance_server_opts[server.name] then
+		enhance_server_opts[server.name](opts)
 	end
 
 	if server.name == "rust_analyzer" then
@@ -87,10 +93,10 @@ lsp_installer.on_server_ready(function(server)
 			-- settings rust-tools will provide to lspconfig during init.
 			-- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
 			-- with the user's own settings (opts).
-			server = vim.tbl_deep_extend("force", server:get_default_options(), coq.lsp_ensure_capabilities(opts)),
+			server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
 		})
 		server:attach_buffers()
 	else
-		server:setup(coq.lsp_ensure_capabilities(opts))
+		server:setup(opts)
 	end
 end)
