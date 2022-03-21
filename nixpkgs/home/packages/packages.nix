@@ -21,6 +21,7 @@
     pkgs.xz # Extract xz files
     pkgs.yt-dlp # Download internet videos
     pkgs.coreutils # macOS defaults are woefully out of date
+    pkgs.jq # Command-line JSON munging
 
     # Overrides from custompkgs
     pkgs.shark-radar # Check blåhaj stock
