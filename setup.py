@@ -18,13 +18,13 @@ def mkdir(path: str):
 def install_packages(packages):
     AUR_HELPER = "pikaur"
     if "--pkg" in sys.argv or "--packages" in sys.argv:
-        subprocess.run([AUR_HELPER, "-S", ] + packages)
+        subprocess.run([AUR_HELPER, "-S"] + packages)
 
 
 def install_coc_plugins() -> None:
     def split_list(ls, n):
         for i in range(0, len(ls), n):
-            yield ls[i:i + n]
+            yield ls[i : i + n]
 
     pluglist = [
         "coc-clangd",
@@ -50,7 +50,8 @@ def install_coc_plugins() -> None:
         "coc-vimtex",
         "coc-word",
         "coc-yaml",
-        "coc-yank"]
+        "coc-yank",
+    ]
 
     for plugs in split_list(pluglist, 10):
         subprocess.run(["nvim", "+CocInstall " + " ".join(plugs)])
@@ -64,8 +65,7 @@ def link(relative_name: str, filepath: str, /, sudo: bool = False) -> None:
     mkdir(filepath if os.path.isdir(filepath) else os.path.dirname(filepath))
     if sudo:
         subprocess.run(["sudo", "rm", "-rf", filepath])
-        subprocess.run(
-            ["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
+        subprocess.run(["sudo", "ln", "-s", os.getcwd() + relative_name, filepath])
     else:
         subprocess.run(["rm", "-rf", filepath])
         subprocess.run(["ln", "-s", os.getcwd() + relative_name, filepath])
@@ -141,8 +141,17 @@ if (not using_nix_cfgs) and should("Install nushell config?"):
     print("Installed nushell.toml")
 
 if should("Install nvim configs?"):
-    install_packages(["neovim-nightly", "vim-plug", "neovim-symlinks",
-                     "nodejs", "texlive-bin", "latex-mk", "ccls"])
+    install_packages(
+        [
+            "neovim-nightly",
+            "vim-plug",
+            "neovim-symlinks",
+            "nodejs",
+            "texlive-bin",
+            "latex-mk",
+            "ccls",
+        ]
+    )
     link("/nvim", "~/.config/nvim")
     print("Installed nvim configs")
     link("/pylintrc", "~/.pylintrc")
@@ -165,8 +174,15 @@ if should("Install tmux config?"):
     print("Installed tmux.conf")
 
 if should("Install zsh configs?"):
-    install_packages(["zsh", "zsh-syntax-highlighting",
-                     "zsh-autocomplete", "pkgfile", "starship-git"])
+    install_packages(
+        [
+            "zsh",
+            "zsh-syntax-highlighting",
+            "zsh-autocomplete",
+            "pkgfile",
+            "starship-git",
+        ]
+    )
     mkdir("~/.zsh")
     link("/zshrc", "~/.zshrc")
     print("Installed zshrc")
