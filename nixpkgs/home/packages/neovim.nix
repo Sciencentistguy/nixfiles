@@ -21,5 +21,6 @@ in
       pkgs.shfmt
       pkgs.stylua
       pkgs.yarn
+      pkgs.rust-analyzer-nightly
     ];
 }

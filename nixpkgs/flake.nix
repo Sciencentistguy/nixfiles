@@ -21,6 +21,10 @@
     };
     oxalica.url = "github:oxalica/rust-overlay";
     oxalica.inputs.nixpkgs.follows = "nixpkgs";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
@@ -92,6 +96,7 @@
         inputs.neovim-nightly-overlay.overlay
         inputs.custompkgs.overlay
         inputs.oxalica.overlay
+        inputs.fenix.overlay
         # FIXME: this is currently broken
         # Patch bat to just output `<EMPTY>` instead of `STDIN: <EMPTY>` on empty stdin
         # (final: orig: {
