@@ -32,5 +32,6 @@ in
     pkgs.rust-analyzer-nightly
     pkgs.sumneko-lua-language-server
     pkgs.nodePackages.pyright
+    pkgs.rnix-lsp
   ];
 }
