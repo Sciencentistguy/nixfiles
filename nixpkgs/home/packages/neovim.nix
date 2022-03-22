@@ -26,11 +26,11 @@ in
     pkgs.shfmt
     pkgs.stylua
     pkgs.nixpkgs-fmt
-    pkgs.nodePackages_latest.prettier
+    pkgs.nodePackages.prettier
 
     # Language servers
     pkgs.rust-analyzer-nightly
     pkgs.sumneko-lua-language-server
-    pkgs.nodePackages_latest.pyright
+    pkgs.nodePackages.pyright
   ];
 }
