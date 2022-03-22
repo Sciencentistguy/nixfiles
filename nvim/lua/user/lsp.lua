@@ -1,31 +1,30 @@
 local coq = require("coq")
-local function on_attach(_, bufnr)
-    -- Set keybinds
-	local opts = { noremap = true, silent = true }
-    vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<F18>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references<cr>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<m-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+vim.lsp.set_log_level("debug")
 
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
-end
+-- Set keybinds
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+
+vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<F18>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<m-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+vim.api.nvim_set_keymap("n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+vim.api.nvim_set_keymap("n", "]g", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+
+vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 
 local lsp = require("lspconfig")
-
-local f = 5
 
 local sumneko_binary_path = vim.fn.exepath("lua-language-server")
 local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ":h:h:h")
@@ -34,7 +33,6 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
-	on_attach = on_attach,
 	cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
@@ -60,21 +58,21 @@ lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	},
 }))
 
-lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
-	on_attach = on_attach,
-	settings = {
-		["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy",
+lsp.pyright.setup(coq.lsp_ensure_capabilities({}))
+
+lsp.hls.setup({})
+
+lsp.rnix.setup({})
+
+-- Rust
+require("rust-tools").setup({
+	server = {
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					command = "clippy",
+				},
 			},
 		},
 	},
-}))
-
-lsp.pyright.setup(coq.lsp_ensure_capabilities({
-	on_attach = on_attach,
-}))
-
-lsp.hls.setup({
-	on_attach = on_attach,
 })

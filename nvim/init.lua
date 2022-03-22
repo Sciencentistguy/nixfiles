@@ -43,7 +43,6 @@ require("gitsigns").setup()
 
 -- Plugin initialisation
 require("crates").setup()
-require("rust-tools").setup()
 require("colorizer").setup()
 require("lsp_signature").setup({
 	hint_prefix = "",
