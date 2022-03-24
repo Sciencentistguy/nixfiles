@@ -15,10 +15,29 @@
     '';
   };
 
-  environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
-    materia-theme
-    paper-icon-theme
-    paper-gtk-theme
-  ];
+  environment.systemPackages =
+    with pkgs; let
+      macos-cursor-theme = pkgs.stdenv.mkDerivation {
+        pname = "apple_cursor";
+        version = "1.2.3";
+        src = fetchTarball {
+          url = "https://github.com/ful1e5/apple_cursor/releases/download/v1.2.3/macOSMonterey.tar.gz";
+          sha256 = "081p1xaymc68yp8b84mnf6skbplsyxkr013wv7zfbba7rnvqpp7n";
+        };
+
+        dontConfigure = true;
+        dontBuild = true;
+        installPhase = ''
+          mkdir -p $out/share/icons/macOSMonterey
+          cp -a * $out/share/icons/macOSMonterey
+        '';
+      };
+    in
+    [
+      gnome.gnome-tweaks
+      materia-theme
+      paper-icon-theme
+      paper-gtk-theme
+      macos-cursor-theme
+    ];
 }
