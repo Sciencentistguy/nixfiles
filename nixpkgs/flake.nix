@@ -73,6 +73,7 @@
                 # cli
                 ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/bat.nix
+                ./programs/cli-tools/btop.nix
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
@@ -121,6 +122,7 @@
                 # cli
                 ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/bat.nix
+                ./programs/cli-tools/btop.nix
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
@@ -164,6 +166,7 @@
                 # cli
                 ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/bat.nix
+                ./programs/cli-tools/btop.nix
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
