@@ -46,8 +46,12 @@
       # Discordia
       darwinConfigurations.discordia = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
+        specialArgs = {
+          system = "discordia";
+          inherit nixpkgsConfig;
+        };
         modules = [
-          (import ./discordia { inherit nixpkgsConfig; })
+          ./discordia
           {
             networking.computerName = "discordia";
             networking.hostName = "discordia";
@@ -144,8 +148,12 @@
       # Chronos
       nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          system = "chronos";
+          inherit nixpkgsConfig;
+        };
         modules = [
-          (import ./chronos { inherit nixpkgsConfig; })
+          ./chronos
           home-manager.nixosModules.home-manager
           ({ pkgs, home-manager, ... }: {
             home-manager.extraSpecialArgs = {

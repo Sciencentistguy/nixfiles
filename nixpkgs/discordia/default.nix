@@ -1,5 +1,4 @@
-{ nixpkgsConfig }:
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nixpkgsConfig, ... }:
 {
   nix.package = pkgs.nix;
   nixpkgs = nixpkgsConfig;
