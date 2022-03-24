@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let inherit (pkgs.stdenv) isDarwin; in
+{ pkgs, isDarwin, ... }:
 {
   programs.starship.package = pkgs.starship-sciencentistguy;
   programs.starship.enable = true;

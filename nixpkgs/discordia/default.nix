@@ -1,11 +1,8 @@
+{ nixpkgsConfig }:
 { config, pkgs, lib, ... }:
 {
-  # imports = [ <home-manager/nix-darwin> ];
-
-  #environment.darwinConfig = "$HOME/.nix-environment/darwin.nix";
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
-
   nix.package = pkgs.nix;
+  nixpkgs = nixpkgsConfig;
 
   nix.trustedUsers = [
     "jamie"
@@ -93,17 +90,15 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-  users.users.root =
-    {
-      name = "root";
-      home = "/var/root";
-    };
+  users.users.root = {
+    name = "root";
+    home = "/var/root";
+  };
 
-  users.users.jamie =
-    {
-      name = "jamie";
-      home = "/Users/jamie";
-    };
+  users.users.jamie = {
+    name = "jamie";
+    home = "/Users/jamie";
+  };
 
 
 }

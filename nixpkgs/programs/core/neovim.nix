@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, lib, isDarwin, system, ... }:
+
 let
   # build neovim nightly rather than the most recent release in nixpkgs
   # also link vi and vim to nvim
@@ -33,5 +34,8 @@ in
     pkgs.sumneko-lua-language-server
     pkgs.nodePackages.pyright
     pkgs.rnix-lsp
+  ] ++ lib.optionals (system == "chronos") [
+    pkgs.xclip
+    pkgs.fzf
   ];
 }

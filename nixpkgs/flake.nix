@@ -38,46 +38,61 @@
       };
 
       homeManagerStateVersion = "22.05";
-      homeManagerCommonConfig = {
-        imports = [
-          ./home/common.nix
-          { home.stateVersion = homeManagerStateVersion; }
-        ];
-      };
 
       nixDarwinModules = [
-        ./darwin/configuration.nix
-        home-manager.darwinModules.home-manager
-        (
-          { config, lib, pkgs, ... }:
-          {
-            nixpkgs = nixpkgsConfig;
-            # Hack to support legacy worklows that use `<nixpkgs>` etc.
-            # nix.nixPath = { nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix"; };
-            # `home-manager` config
-            users.users.jamie.home = "/Users/jamie";
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.jamie = homeManagerCommonConfig;
-            # Add a registry entry for this flake
-            nix.registry.my.flake = self;
-          }
-        )
       ];
     in
     {
-      darwinConfigurations =
-        {
-          discordia = darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = nixDarwinModules ++ [
-              {
-                networking.computerName = "discordia";
-                networking.hostName = "discordia";
-              }
-            ];
-          };
-        };
+      # Discordia
+      darwinConfigurations.discordia = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          (import ./discordia { inherit nixpkgsConfig; })
+          {
+            networking.computerName = "discordia";
+            networking.hostName = "discordia";
+          }
+          home-manager.darwinModules.home-manager
+          ({ pkgs, home-manager, ... }: {
+            # `home-manager` config
+            home-manager.extraSpecialArgs = {
+              isDarwin = true;
+              system = "discordia";
+            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.jamie = {
+              imports = [
+                # core 
+                ./programs/core/git.nix
+                ./programs/core/neovim.nix
+                ./programs/core/starship.nix
+                ./programs/core/atuin.nix
+                ./programs/core/open-sus-sh.nix
+                ./programs/core/coreutils.nix
 
+                # cli
+                ./programs/cli-tools/bat.nix
+                ./programs/cli-tools/delta.nix
+                ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/neofetch.nix
+                ./programs/cli-tools/archive-utils.nix
+                ./programs/cli-tools/procs.nix
+                ./programs/cli-tools/ripgrep.nix
+                ./programs/cli-tools/sad.nix
+                ./programs/cli-tools/speedtest.nix
+                ./programs/cli-tools/watch.nix
+                ./programs/cli-tools/wget.nix
+                ./programs/cli-tools/yt-dlp.nix
+                ./programs/cli-tools/jq.nix
+                ./programs/cli-tools/shark-radar.nix
+              ];
+            };
+          })
+        ];
+      };
+
+      # Atlas
+      # TODO: Put nixos on atlas
       homeConfigurations =
         {
           jamie = inputs.home-manager.lib.homeManagerConfiguration {
@@ -85,31 +100,101 @@
             homeDirectory = "/home/jamie";
             username = "jamie";
             stateVersion = homeManagerStateVersion;
+            extraSpecialArgs = {
+              isDarwin = false;
+              system = "atlas";
+            };
             configuration = {
-              imports = [ homeManagerCommonConfig ];
               nixpkgs = nixpkgsConfig;
+              imports = [
+                # core 
+                ./programs/core/git.nix
+                ./programs/core/neovim.nix
+                ./programs/core/starship.nix
+                ./programs/core/gtk-theme.nix
+                ./programs/core/atuin.nix
+                ./programs/core/open-sus-sh.nix
+                ./programs/core/coreutils.nix
+                ./programs/core/home-manager.nix
+
+                # cli
+                ./programs/cli-tools/bat.nix
+                ./programs/cli-tools/delta.nix
+                ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/neofetch.nix
+                ./programs/cli-tools/archive-utils.nix
+                ./programs/cli-tools/procs.nix
+                ./programs/cli-tools/ripgrep.nix
+                ./programs/cli-tools/sad.nix
+                ./programs/cli-tools/speedtest.nix
+                ./programs/cli-tools/watch.nix
+                ./programs/cli-tools/wget.nix
+                ./programs/cli-tools/yt-dlp.nix
+                ./programs/cli-tools/jq.nix
+                ./programs/cli-tools/shark-radar.nix
+              ];
             };
           };
         };
+
+      # Chronos
+      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          (import ./chronos { inherit nixpkgsConfig; })
+          home-manager.nixosModules.home-manager
+          ({ pkgs, home-manager, ... }: {
+            home-manager.extraSpecialArgs = {
+              isDarwin = false;
+              system = "chronos";
+            };
+            home-manager.users.jamie = {
+              nixpkgs = nixpkgsConfig;
+              imports = [
+                # core
+                ./programs/core/git.nix
+                ./programs/core/neovim.nix
+                ./programs/core/starship.nix
+                ./programs/core/gtk-theme.nix
+                ./programs/core/atuin.nix
+                ./programs/core/open-sus-sh.nix
+
+                # cli
+                ./programs/cli-tools/bat.nix
+                ./programs/cli-tools/delta.nix
+                ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/neofetch.nix
+                ./programs/cli-tools/archive-utils.nix
+                ./programs/cli-tools/procs.nix
+                ./programs/cli-tools/ripgrep.nix
+                ./programs/cli-tools/sad.nix
+                ./programs/cli-tools/speedtest.nix
+                ./programs/cli-tools/watch.nix
+                ./programs/cli-tools/wget.nix
+                ./programs/cli-tools/yt-dlp.nix
+                ./programs/cli-tools/jq.nix
+                ./programs/cli-tools/shark-radar.nix
+
+                # gui
+                ./programs/gui/alacritty.nix
+                ./programs/gui/drawio.nix
+                ./programs/gui/discord.nix
+                ./programs/gui/slack.nix
+                ./programs/gui/spotify.nix
+                ./programs/gui/gitkraken.nix
+              ];
+            };
+          }
+          )
+        ];
+      };
+
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay
         inputs.custompkgs.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
-        # FIXME: this is currently broken
-        # Patch bat to just output `<EMPTY>` instead of `STDIN: <EMPTY>` on empty stdin
-        # (final: orig: {
-        # bat = orig.bat.overrideAttrs
-        # (oldAttrs: {
-        # patches = oldAttrs.patches or [ ] ++ [
-        # ./patches/bat.patch
-        # ];
-        # # The patch changes output, so don't run tests as they'll fail
-        # doCheck = false;
-        # });
-        # }
-        # )
         # Use sciencentistguy/starship fork
         (final: orig: {
           starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {

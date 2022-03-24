@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, home-manager, ... }:
 {
   programs.git.enable = true;
   programs.git.delta.enable = true;
@@ -20,6 +20,6 @@
     pull.ff = "only";
   };
 
-  programs.gh.enable = true;
-  programs.gh.settings.git_protocol = "ssh";
+  #programs.gh.enable = true;
+  #programs.gh.settings.git_protocol = "ssh";
 }
