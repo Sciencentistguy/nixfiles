@@ -195,19 +195,6 @@
         inputs.custompkgs.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
-        # FIXME: this is currently broken
-        # Patch bat to just output `<EMPTY>` instead of `STDIN: <EMPTY>` on empty stdin
-        # (final: orig: {
-        # bat = orig.bat.overrideAttrs
-        # (oldAttrs: {
-        # patches = oldAttrs.patches or [ ] ++ [
-        # ./patches/bat.patch
-        # ];
-        # # The patch changes output, so don't run tests as they'll fail
-        # doCheck = false;
-        # });
-        # }
-        # )
         # Use sciencentistguy/starship fork
         (final: orig: {
           starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {
