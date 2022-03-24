@@ -21,6 +21,11 @@
       };
       size = 14;
     };
+    key_bindings = [{
+      key = "Insert";
+      mods = "Shift";
+      action = "Paste";
+    }];
     colors = {
       primary = {
         background = "#000000";
