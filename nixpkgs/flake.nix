@@ -188,6 +188,7 @@
                 ./programs/gui/drawio.nix
                 ./programs/gui/firefox.nix
                 ./programs/gui/gitkraken.nix
+                ./programs/gui/polymc.nix
                 ./programs/gui/slack.nix
                 ./programs/gui/spotify.nix
               ];
