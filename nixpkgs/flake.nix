@@ -202,8 +202,9 @@
                 ./programs/gui/spotify.nix
 
                 # other
-                ./programs/mpd.nix
                 ./programs/beets.nix
+                ./programs/mpd.nix
+                ./programs/weechat.nix
               ];
             };
           }
