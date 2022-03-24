@@ -199,6 +199,9 @@
                 ./programs/gui/polymc.nix
                 ./programs/gui/slack.nix
                 ./programs/gui/spotify.nix
+
+                # services
+                ./programs/services/mpd.nix
               ];
             };
           }
