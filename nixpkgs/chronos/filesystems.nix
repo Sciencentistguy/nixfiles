@@ -1,5 +1,6 @@
 { pkgs, ... }: {
 
+  # Real disks
   fileSystems = {
     "/hdd" = {
       device = "/dev/disk/by-uuid/08691794-6fea-4a6c-9aac-bab29a4a9818";
@@ -14,6 +15,17 @@
       device = "/dev/disk/by-uuid/149247C59247AA56";
       fsType = "ntfs";
       options = [ "uid=jamie" "gid=users" ];
+    };
+  };
+
+  #Virtual fielsystems
+  fileSystems = {
+    "/binds/music-library" = {
+      device = "/hdd/Music/beets";
+      options = [
+        "bind"
+        "ro"
+      ];
     };
   };
 }
