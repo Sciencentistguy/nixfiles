@@ -9,6 +9,7 @@
     ./fonts.nix
     ./gnome.nix
     ./gpg.nix
+    ./graphics.nix
     ./i18n.nix
     ./networking.nix
     ./nix.nix
