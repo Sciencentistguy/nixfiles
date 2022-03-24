@@ -137,10 +137,12 @@
           };
         };
 
+      # Chronos
       nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           (import ./chronos { inherit nixpkgsConfig; })
+          home-manager.nixosModules.home-manager
           ({ pkgs, home-manager, ... }: {
             home-manager.extraSpecialArgs = {
               isDarwin = false;
