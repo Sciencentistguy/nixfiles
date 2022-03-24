@@ -2,6 +2,12 @@
   services.mpd.enable = true;
   services.mpd.dataDir = "/hdd/Music/mpd";
   services.mpd.musicDirectory = "/binds/music-library";
+  services.mpd.extraConfig = ''
+      audio_output {
+      type "pipewire"
+      name "My PipeWire Output"
+    }
+  '';
 
   services.mpdris2.enable = true;
   services.mpdris2.multimediaKeys = true;

@@ -198,8 +198,9 @@
                 ./programs/gui/slack.nix
                 ./programs/gui/spotify.nix
 
-                # services
-                ./programs/services/mpd.nix
+                # other
+                ./programs/mpd.nix
+                ./programs/beets.nix
               ];
             };
           }
