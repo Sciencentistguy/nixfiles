@@ -7,6 +7,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./filesystems.nix
+      ./audio.nix
     ];
 
   nixpkgs = nixpkgsConfig;
@@ -88,10 +89,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
