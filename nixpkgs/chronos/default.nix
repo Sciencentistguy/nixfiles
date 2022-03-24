@@ -9,6 +9,9 @@
     ];
 
   nixpkgs = nixpkgsConfig;
+  nix.extraOptions = ''
+    experimental-features = flakes nix-command
+  '';
 
   fonts.fonts = with pkgs; [
     corefonts
