@@ -84,6 +84,7 @@
                 ./programs/cli-tools/sad.nix
                 ./programs/cli-tools/shark-radar.nix
                 ./programs/cli-tools/speedtest.nix
+                ./programs/cli-tools/tmux.nix
                 ./programs/cli-tools/watch.nix
                 ./programs/cli-tools/wget.nix
                 ./programs/cli-tools/yt-dlp.nix
@@ -134,6 +135,7 @@
                 ./programs/cli-tools/sad.nix
                 ./programs/cli-tools/shark-radar.nix
                 ./programs/cli-tools/speedtest.nix
+                ./programs/cli-tools/tmux.nix
                 ./programs/cli-tools/watch.nix
                 ./programs/cli-tools/wget.nix
                 ./programs/cli-tools/yt-dlp.nix
@@ -184,6 +186,7 @@
                 ./programs/cli-tools/sad.nix
                 ./programs/cli-tools/shark-radar.nix
                 ./programs/cli-tools/speedtest.nix
+                ./programs/cli-tools/tmux.nix
                 ./programs/cli-tools/watch.nix
                 ./programs/cli-tools/wget.nix
                 ./programs/cli-tools/yt-dlp.nix
