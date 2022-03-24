@@ -12,6 +12,7 @@
     ./i18n.nix
     ./networking.nix
     ./nix.nix
+    ./sudo.nix
     ./time.nix
   ];
 
