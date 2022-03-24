@@ -1,7 +1,3 @@
-{ pkgs, isDarwin, ... }:
-let exa =
-  in {
-    home.packages = with pkgs; [
-      exa
-    ];
-  }
+{ pkgs, isDarwin, ... }: {
+  home.packages = with pkgs; [ exa ];
+}

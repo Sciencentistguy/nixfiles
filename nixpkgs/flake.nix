@@ -63,28 +63,29 @@
             home-manager.users.jamie = {
               imports = [
                 # core 
+                ./programs/core/atuin.nix
+                ./programs/core/coreutils.nix
                 ./programs/core/git.nix
                 ./programs/core/neovim.nix
-                ./programs/core/starship.nix
-                ./programs/core/atuin.nix
                 ./programs/core/open-sus-sh.nix
-                ./programs/core/coreutils.nix
+                ./programs/core/starship.nix
 
                 # cli
+                ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/bat.nix
                 ./programs/cli-tools/delta.nix
+                ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/neofetch.nix
-                ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
                 ./programs/cli-tools/sad.nix
+                ./programs/cli-tools/shark-radar.nix
                 ./programs/cli-tools/speedtest.nix
                 ./programs/cli-tools/watch.nix
                 ./programs/cli-tools/wget.nix
                 ./programs/cli-tools/yt-dlp.nix
-                ./programs/cli-tools/jq.nix
-                ./programs/cli-tools/shark-radar.nix
               ];
             };
           })
@@ -108,30 +109,31 @@
               nixpkgs = nixpkgsConfig;
               imports = [
                 # core 
-                ./programs/core/git.nix
-                ./programs/core/neovim.nix
-                ./programs/core/starship.nix
-                ./programs/core/gtk-theme.nix
                 ./programs/core/atuin.nix
-                ./programs/core/open-sus-sh.nix
                 ./programs/core/coreutils.nix
+                ./programs/core/git.nix
+                ./programs/core/gtk-theme.nix
                 ./programs/core/home-manager.nix
+                ./programs/core/neovim.nix
+                ./programs/core/open-sus-sh.nix
+                ./programs/core/starship.nix
 
                 # cli
+                ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/bat.nix
                 ./programs/cli-tools/delta.nix
+                ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/neofetch.nix
-                ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
                 ./programs/cli-tools/sad.nix
+                ./programs/cli-tools/shark-radar.nix
                 ./programs/cli-tools/speedtest.nix
                 ./programs/cli-tools/watch.nix
                 ./programs/cli-tools/wget.nix
                 ./programs/cli-tools/yt-dlp.nix
-                ./programs/cli-tools/jq.nix
-                ./programs/cli-tools/shark-radar.nix
               ];
             };
           };
@@ -152,36 +154,38 @@
               nixpkgs = nixpkgsConfig;
               imports = [
                 # core
-                ./programs/core/git.nix
-                ./programs/core/neovim.nix
-                ./programs/core/starship.nix
-                ./programs/core/gtk-theme.nix
                 ./programs/core/atuin.nix
+                ./programs/core/git.nix
+                ./programs/core/gtk-theme.nix
+                ./programs/core/neovim.nix
                 ./programs/core/open-sus-sh.nix
+                ./programs/core/starship.nix
 
                 # cli
+                ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/bat.nix
                 ./programs/cli-tools/delta.nix
+                ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/neofetch.nix
-                ./programs/cli-tools/archive-utils.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
                 ./programs/cli-tools/sad.nix
+                ./programs/cli-tools/shark-radar.nix
                 ./programs/cli-tools/speedtest.nix
                 ./programs/cli-tools/watch.nix
                 ./programs/cli-tools/wget.nix
                 ./programs/cli-tools/yt-dlp.nix
-                ./programs/cli-tools/jq.nix
-                ./programs/cli-tools/shark-radar.nix
 
                 # gui
                 ./programs/gui/alacritty.nix
-                ./programs/gui/drawio.nix
                 ./programs/gui/discord.nix
+                ./programs/gui/drawio.nix
+                ./programs/gui/firefox.nix
+                ./programs/gui/gitkraken.nix
                 ./programs/gui/slack.nix
                 ./programs/gui/spotify.nix
-                ./programs/gui/gitkraken.nix
               ];
             };
           }
