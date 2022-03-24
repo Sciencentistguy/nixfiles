@@ -153,6 +153,7 @@
               system = "chronos";
             };
             home-manager.users.jamie = {
+              home.stateVersion = homeManagerStateVersion;
               nixpkgs = nixpkgsConfig;
               imports = [
                 # core
