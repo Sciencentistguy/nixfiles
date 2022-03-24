@@ -14,6 +14,7 @@
     ./networking.nix
     ./nix.nix
     ./sudo.nix
+    ./steam.nix
     ./time.nix
   ];
 
