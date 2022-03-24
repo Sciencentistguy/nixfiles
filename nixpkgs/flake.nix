@@ -31,16 +31,11 @@
     let
       nixpkgsConfig = {
         inherit (self) overlays;
-
         config = {
           allowUnfree = true;
         };
       };
-
       homeManagerStateVersion = "22.05";
-
-      nixDarwinModules = [
-      ];
     in
     {
       # Discordia
@@ -71,6 +66,7 @@
                 ./programs/core/coreutils.nix
                 ./programs/core/git.nix
                 ./programs/core/neovim.nix
+                ./programs/core/nix.nix
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/starship.nix
 
@@ -120,6 +116,7 @@
                 ./programs/core/gtk-theme.nix
                 ./programs/core/home-manager.nix
                 ./programs/core/neovim.nix
+                ./programs/core/nix.nix
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/starship.nix
 
@@ -169,6 +166,7 @@
                 ./programs/core/git.nix
                 ./programs/core/gtk-theme.nix
                 ./programs/core/neovim.nix
+                ./programs/core/nix.nix
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/starship.nix
 
