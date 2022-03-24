@@ -100,6 +100,10 @@
             homeDirectory = "/home/jamie";
             username = "jamie";
             stateVersion = homeManagerStateVersion;
+            extraSpecialArgs = {
+              isDarwin = false;
+              system = "atlas";
+            };
             configuration = {
               nixpkgs = nixpkgsConfig;
               imports = [
@@ -111,6 +115,7 @@
                 ./programs/core/atuin.nix
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/coreutils.nix
+                ./programs/core/home-manager.nix
 
                 # cli
                 ./programs/cli-tools/bat.nix
