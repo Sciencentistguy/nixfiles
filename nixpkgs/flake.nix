@@ -209,7 +209,6 @@
 
                 # other
                 ./programs/beets.nix
-                ./programs/dev/rust.nix
                 ./programs/mpd.nix
                 ./programs/weechat.nix
               ];
