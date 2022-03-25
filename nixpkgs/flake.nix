@@ -156,6 +156,7 @@
         specialArgs = {
           system = "chronos";
           inherit nixpkgsConfig;
+          inherit inputs;
         };
         modules = [
           ./chronos
