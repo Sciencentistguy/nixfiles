@@ -77,7 +77,9 @@
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/file.nix
                 ./programs/cli-tools/jq.nix
+                ./programs/cli-tools/killall.nix
                 ./programs/cli-tools/neofetch.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
@@ -128,7 +130,9 @@
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/file.nix
                 ./programs/cli-tools/jq.nix
+                ./programs/cli-tools/killall.nix
                 ./programs/cli-tools/neofetch.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
@@ -179,7 +183,9 @@
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/file.nix
                 ./programs/cli-tools/jq.nix
+                ./programs/cli-tools/killall.nix
                 ./programs/cli-tools/neofetch.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
