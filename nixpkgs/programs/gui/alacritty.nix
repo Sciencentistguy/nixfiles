@@ -19,7 +19,8 @@
       normal = {
         family = "Iosevka Term";
       };
-      size = 12;
+      size = 14;
+      scale_with_dpi = false;
     };
     key_bindings = [{
       key = "Insert";
