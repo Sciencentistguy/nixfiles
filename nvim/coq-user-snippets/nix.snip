@@ -1,0 +1,9 @@
+snippet hmprog
+ {pkgs, ${1}...}: {
+   home.packages = with pkgs; [ ${0} ];
+ }
+
+snippet hmopt
+ {pkgs, ${1}...}: {
+   ${0}
+ }
