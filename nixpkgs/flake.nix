@@ -77,6 +77,7 @@
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/ffmpeg.nix
                 ./programs/cli-tools/file.nix
                 ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/killall.nix
@@ -130,6 +131,7 @@
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/ffmpeg.nix
                 ./programs/cli-tools/file.nix
                 ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/killall.nix
@@ -183,6 +185,7 @@
                 ./programs/cli-tools/delta.nix
                 ./programs/cli-tools/exa.nix
                 ./programs/cli-tools/fd.nix
+                ./programs/cli-tools/ffmpeg.nix
                 ./programs/cli-tools/file.nix
                 ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/killall.nix
