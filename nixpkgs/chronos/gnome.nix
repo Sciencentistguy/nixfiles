@@ -36,6 +36,7 @@
     [
       gnome.gnome-tweaks
       materia-theme
+      materia-kde-theme
       paper-icon-theme
       paper-gtk-theme
       macos-cursor-theme
