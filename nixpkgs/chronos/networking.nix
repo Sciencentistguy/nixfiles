@@ -4,4 +4,6 @@
 
   networking.firewall.enable = false;
   services.openssh.enable = true;
+  services.mullvad-vpn.enable = true;
+  environment.systemPackages = with pkgs; [ mullvad-vpn ];
 }
