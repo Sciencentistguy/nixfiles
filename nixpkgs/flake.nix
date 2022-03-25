@@ -205,6 +205,7 @@
                 ./programs/gui/gitkraken.nix
                 ./programs/gui/polymc.nix
                 ./programs/gui/slack.nix
+                ./programs/gui/soulseek.nix
                 ./programs/gui/spotify.nix
 
                 # other
