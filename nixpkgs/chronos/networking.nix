@@ -6,4 +6,8 @@
   services.openssh.enable = true;
   services.mullvad-vpn.enable = true;
   environment.systemPackages = with pkgs; [ mullvad-vpn ];
+
+  networking.hosts = {
+    "192.168.1.51" = [ "atlas" ];
+  };
 }
