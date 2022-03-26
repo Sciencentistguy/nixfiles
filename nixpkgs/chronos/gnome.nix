@@ -15,6 +15,11 @@
     '';
   };
 
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   environment.systemPackages =
     with pkgs; let
       macos-cursor-theme = pkgs.stdenv.mkDerivation {
