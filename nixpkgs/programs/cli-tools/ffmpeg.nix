@@ -6,5 +6,5 @@ let ffmpeg = pkgs.ffmpeg-full.override {
 };
 in
 {
-  home.packages = [ ffmpeg ];
+  home.packages = [ ffmpeg pkgs.videoconverter ];
 }

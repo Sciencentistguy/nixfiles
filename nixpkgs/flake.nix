@@ -25,6 +25,9 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    videoconverter.url = "github:Sciencentistguy/videoconverter";
+    videoconverter.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
@@ -229,6 +232,7 @@
         inputs.custompkgs.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
+        inputs.videoconverter.overlay
         # Use sciencentistguy/starship fork
         (final: orig: {
           starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {
