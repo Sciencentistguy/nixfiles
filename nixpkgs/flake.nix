@@ -28,6 +28,8 @@
 
     videoconverter.url = "github:Sciencentistguy/videoconverter";
     videoconverter.inputs.nixpkgs.follows = "nixpkgs";
+    nix-script.url = "github:BrianHicks/nix-script";
+    nix-script.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
@@ -85,6 +87,7 @@
                 ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/killall.nix
                 ./programs/cli-tools/neofetch.nix
+                ./programs/cli-tools/nix-script.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
                 ./programs/cli-tools/sad.nix
@@ -139,6 +142,7 @@
                 ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/killall.nix
                 ./programs/cli-tools/neofetch.nix
+                ./programs/cli-tools/nix-script.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
                 ./programs/cli-tools/sad.nix
@@ -194,6 +198,7 @@
                 ./programs/cli-tools/jq.nix
                 ./programs/cli-tools/killall.nix
                 ./programs/cli-tools/neofetch.nix
+                ./programs/cli-tools/nix-script.nix
                 ./programs/cli-tools/procs.nix
                 ./programs/cli-tools/ripgrep.nix
                 ./programs/cli-tools/sad.nix
@@ -233,6 +238,7 @@
         inputs.oxalica.overlay
         inputs.fenix.overlay
         inputs.videoconverter.overlay
+        inputs.nix-script.overlay
         # Use sciencentistguy/starship fork
         (final: orig: {
           starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {
