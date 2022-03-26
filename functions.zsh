@@ -29,10 +29,6 @@ ffcompare() {
     ffplay $2
 }
 
-vmaf() {
-    ffmpeg -hwaccel auto -i $1 -hwaccel auto -i $2 -lavfi libvmaf="model_path=/usr/share/model/vmaf_v0.6.1.pkl" -an -f null -
-}
-
 ex() {
     if [ -f $1 ]; then
         case $1 in
@@ -49,12 +45,6 @@ ex() {
     else
         echo "'$1' is not a valid file"
     fi
-}
-
-videodownload() {
-    cd ~/Videos/
-    tmux new -d aria2c $i
-    cd -
 }
 
 update-music-library() {
