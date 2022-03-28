@@ -49,6 +49,7 @@
         specialArgs = {
           system = "discordia";
           inherit nixpkgsConfig;
+          inherit inputs;
         };
         modules = [
           ./discordia
