@@ -75,28 +75,7 @@
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/starship.nix
 
-                # cli
-                ./programs/cli-tools/archive-utils.nix
-                ./programs/cli-tools/bat.nix
-                ./programs/cli-tools/btop.nix
-                ./programs/cli-tools/delta.nix
-                ./programs/cli-tools/exa.nix
-                ./programs/cli-tools/fd.nix
-                ./programs/cli-tools/ffmpeg.nix
-                ./programs/cli-tools/file.nix
-                ./programs/cli-tools/jq.nix
-                ./programs/cli-tools/killall.nix
-                ./programs/cli-tools/neofetch.nix
-                ./programs/cli-tools/nix-script.nix
-                ./programs/cli-tools/procs.nix
-                ./programs/cli-tools/ripgrep.nix
-                ./programs/cli-tools/sad.nix
-                ./programs/cli-tools/shark-radar.nix
-                ./programs/cli-tools/speedtest.nix
-                ./programs/cli-tools/tmux.nix
-                ./programs/cli-tools/watch.nix
-                ./programs/cli-tools/wget.nix
-                ./programs/cli-tools/yt-dlp.nix
+                ./programs/cli-tools
               ];
             };
           })
@@ -130,28 +109,7 @@
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/starship.nix
 
-                # cli
-                ./programs/cli-tools/archive-utils.nix
-                ./programs/cli-tools/bat.nix
-                ./programs/cli-tools/btop.nix
-                ./programs/cli-tools/delta.nix
-                ./programs/cli-tools/exa.nix
-                ./programs/cli-tools/fd.nix
-                ./programs/cli-tools/ffmpeg.nix
-                ./programs/cli-tools/file.nix
-                ./programs/cli-tools/jq.nix
-                ./programs/cli-tools/killall.nix
-                ./programs/cli-tools/neofetch.nix
-                ./programs/cli-tools/nix-script.nix
-                ./programs/cli-tools/procs.nix
-                ./programs/cli-tools/ripgrep.nix
-                ./programs/cli-tools/sad.nix
-                ./programs/cli-tools/shark-radar.nix
-                ./programs/cli-tools/speedtest.nix
-                ./programs/cli-tools/tmux.nix
-                ./programs/cli-tools/watch.nix
-                ./programs/cli-tools/wget.nix
-                ./programs/cli-tools/yt-dlp.nix
+                ./programs/cli-tools
               ];
             };
           };
@@ -186,28 +144,7 @@
                 ./programs/core/open-sus-sh.nix
                 ./programs/core/starship.nix
 
-                # cli
-                ./programs/cli-tools/archive-utils.nix
-                ./programs/cli-tools/bat.nix
-                ./programs/cli-tools/btop.nix
-                ./programs/cli-tools/delta.nix
-                ./programs/cli-tools/exa.nix
-                ./programs/cli-tools/fd.nix
-                ./programs/cli-tools/ffmpeg.nix
-                ./programs/cli-tools/file.nix
-                ./programs/cli-tools/jq.nix
-                ./programs/cli-tools/killall.nix
-                ./programs/cli-tools/neofetch.nix
-                ./programs/cli-tools/nix-script.nix
-                ./programs/cli-tools/procs.nix
-                ./programs/cli-tools/ripgrep.nix
-                ./programs/cli-tools/sad.nix
-                ./programs/cli-tools/shark-radar.nix
-                ./programs/cli-tools/speedtest.nix
-                ./programs/cli-tools/tmux.nix
-                ./programs/cli-tools/watch.nix
-                ./programs/cli-tools/wget.nix
-                ./programs/cli-tools/yt-dlp.nix
+                ./programs/cli-tools
 
                 # gui
                 ./programs/gui/alacritty.nix
