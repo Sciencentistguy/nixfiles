@@ -1,8 +1,15 @@
 { pkgs, nixpkgsConfig, inputs, ... }: {
   nixpkgs = nixpkgsConfig;
+
+  nix.enable = true;
   nix.extraOptions = ''
+    auto-optimise-store = true
     experimental-features = flakes nix-command
   '';
+
+  nix.trustedUsers = [
+    "jamie"
+  ];
 
   nix.nixPath = [ "/etc/nix/path" ];
   # the version of nixpkgs used to build the system
