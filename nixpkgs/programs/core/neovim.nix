@@ -34,8 +34,10 @@ in
     pkgs.sumneko-lua-language-server
     pkgs.nodePackages.pyright
     pkgs.rnix-lsp
-  ] ++ lib.optionals (system == "chronos") [
-    pkgs.xclip
+
+    # Utilities
     pkgs.fzf
+  ] ++ lib.optionals (!isDarwin) [
+    pkgs.xclip
   ];
 }
