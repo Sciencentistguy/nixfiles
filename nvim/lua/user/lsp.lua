@@ -5,7 +5,6 @@ vim.lsp.set_log_level("debug")
 -- Set keybinds
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
