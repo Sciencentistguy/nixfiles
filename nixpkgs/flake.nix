@@ -180,18 +180,18 @@
         # Use sciencentistguy/starship fork
         (final: orig: {
           starship-sciencentistguy = (orig.starship.overrideAttrs (old: rec {
-            version = "1.4.0-sciencentistguy";
+            version = "1.5.4-sciencentistguy";
             src = orig.fetchFromGitHub {
               owner = "sciencentistguy";
               repo = "starship";
-              rev = "2063ca6b10f5ea3e18ff54b1ccc296dc7f636c2d";
-              sha256 = "sha256-jeDXLKeI1LJUiJP+nekoieY3Mcv/qw9mNiLXDh51fV8";
+              rev = "422ea6518b3c0d6dfe4239e16e96bb356bdda9d7";
+              sha256 = "sha256-8ykmVCeUjFUf/mRLJSOWz5fHtcRy/4Zqe22J7wa6guY=";
             };
 
             cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
               name = "${old.pname}-${version}-vendor.tar.gz";
               inherit src;
-              outputHash = "sha256-gJ92fxcZNWZKd0MB/y7n3rBva32Ol5TDdIrRvJ9vbMc";
+              outputHash = "sha256-bRXD/yyFnnrH/dBBcqaFF0AmkqnNJFJtkCMEX8ijd1A=";
             });
           })).override {
             rustPlatform = orig.makeRustPlatform {
