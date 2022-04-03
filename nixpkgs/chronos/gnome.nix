@@ -45,5 +45,6 @@
       paper-icon-theme
       paper-gtk-theme
       macos-cursor-theme
+      flameshot
     ];
 }

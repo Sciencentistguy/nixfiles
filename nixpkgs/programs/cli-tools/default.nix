@@ -11,6 +11,7 @@
     ./file.nix
     ./jq.nix
     ./killall.nix
+    ./mpv.nix
     ./neofetch.nix
     ./nix-script.nix
     ./procs.nix
