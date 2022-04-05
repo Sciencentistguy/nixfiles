@@ -20,6 +20,7 @@
     pull.ff = "only";
   };
 
-  #programs.gh.enable = true;
-  #programs.gh.settings.git_protocol = "ssh";
+  programs.gh.enable = true;
+  programs.gh.settings.git_protocol = "ssh";
+
 }
