@@ -18,6 +18,7 @@
   programs.git.extraConfig = {
     init.defaultBranch = "master";
     pull.ff = "only";
+    url."https://github.com/".insteadOf = "git://github.com/";
   };
 
   programs.gh.enable = true;
