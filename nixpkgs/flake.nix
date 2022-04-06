@@ -150,6 +150,7 @@
                 # gui
                 ./programs/gui/alacritty.nix
                 ./programs/gui/discord.nix
+                ./programs/gui/dolhin-emu.nix
                 ./programs/gui/drawio.nix
                 ./programs/gui/firefox.nix
                 ./programs/gui/gitkraken.nix
