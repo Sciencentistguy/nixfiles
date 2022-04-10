@@ -49,11 +49,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1648794432,
-        "narHash": "sha256-gO37eKLtxDm6GB6dzqGLQCcYm4IgDqZHWcijggffs2c=",
+        "lastModified": 1649226351,
+        "narHash": "sha256-5fQwF5kYpPC7w0SOfdbE9Z7o5/i/dyo1BxMLVCA2h3E=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "7cadbf5e02367ac445c8b416f56589a28e32c380",
+        "rev": "c7e184561fe843abb861cd7d22c23066987078e2",
         "type": "github"
       },
       "original": {
@@ -208,11 +208,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1648751066,
-        "narHash": "sha256-pYUSID9rSgYnl4PNa45/haCaHUKzY+Ul0fkqqSGflxs=",
+        "lastModified": 1649392573,
+        "narHash": "sha256-dCPEJZzExz2+i7AjUuViZUgHC+JXDlBBG/IzuSYWCh8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cf62e96bf7c72e6a88e0bd43165110f42e44cdb4",
+        "rev": "f911ebbec927e8e9b582f2e32e2b35f730074cfc",
         "type": "github"
       },
       "original": {
@@ -231,11 +231,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1648784445,
-        "narHash": "sha256-8H68++NZ2mUB1/DHrHsfUoT5vSRsLADCW6xS4a45+CE=",
+        "lastModified": 1649546002,
+        "narHash": "sha256-okZVjjrwos+jXd5WSJCVJ7jw61G1GfD42YDEDTOdTV4=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "973e91007ce3f343f7aeed8d30d70a8616ab6bb5",
+        "rev": "ff726cc569994aab61a42c40270e679dc80cca7c",
         "type": "github"
       },
       "original": {
@@ -254,11 +254,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1648801045,
-        "narHash": "sha256-F7HYMmowe7G4TS1zoT138ni0O3sPnbK6oPXMlXM22+U=",
+        "lastModified": 1649578465,
+        "narHash": "sha256-G0ERl/DXjFMx1nA8XrvmEENl69OW9cpshMUEX5jmp0U=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "a720dae02765dd611f974ec95a83f353cb334a99",
+        "rev": "10e7407aa9e687bad3e167c46d2efd15eef47673",
         "type": "github"
       },
       "original": {
@@ -276,11 +276,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1646315804,
-        "narHash": "sha256-FRGfDLIV0UDD4AIwd3p7EY6tRJWVRXlXayLpVBNwCaI=",
+        "lastModified": 1649066780,
+        "narHash": "sha256-07z/wvU3R2wffkt0aEFmRmArLMUHEWd1khx8BYWb710=",
         "owner": "BrianHicks",
         "repo": "nix-script",
-        "rev": "726bd302f9902cbd29a3c787ecd4e472e71eb744",
+        "rev": "c116eee9626d01a23656c7e6a9f51b7c7f61014e",
         "type": "github"
       },
       "original": {
@@ -313,11 +313,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1648780952,
-        "narHash": "sha256-PLhquuUzdO9jjtAEwhP0Q2efsumX2Ayh/mdNFtJtgM0=",
+        "lastModified": 1649558046,
+        "narHash": "sha256-2aq7wmOTP2VkGaUgxjdiUAV0f1yDc1edH+8H+Q3XsPM=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "d1a45bb5f2d135b4b842e81d0f886466a22f6a52",
+        "rev": "d99b1ef2725f121ffb9536d26b994581b9675cc6",
         "type": "github"
       },
       "original": {
@@ -344,11 +344,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1648735478,
-        "narHash": "sha256-pjd9HpP3O30DcybWErg2srHbimavUEI2FbmyHaKcNaQ=",
+        "lastModified": 1649178056,
+        "narHash": "sha256-dcf7vKAkpdNvjd243LTGkUD6zLaLPN5deM2WTysG/Zs=",
         "owner": "rust-analyzer",
         "repo": "rust-analyzer",
-        "rev": "a1d684e95130cca21fc78f1642b02811ad09db15",
+        "rev": "2366d8e05f5f3585f95058fa7427cbde079914ed",
         "type": "github"
       },
       "original": {
@@ -382,11 +382,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1648485498,
-        "narHash": "sha256-0Jb9lEkiiXE+NixJM14WHhLe4Nr8Ojy8Rg69ynR2gD8=",
+        "lastModified": 1649324642,
+        "narHash": "sha256-74ZdMrJNJRzemPk+mn62FmLN9X1V1jnEOpAvRUVdvU4=",
         "owner": "Sciencentistguy",
         "repo": "videoconverter",
-        "rev": "3961ac6cea9f47afdb7c6c8b6da0c68c17e32773",
+        "rev": "83e7fee4384046018b8d45c88004f7c4760681fd",
         "type": "github"
       },
       "original": {
