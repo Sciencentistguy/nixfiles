@@ -63,6 +63,8 @@ lsp.hls.setup({})
 
 lsp.rnix.setup({})
 
+lsp.clangd.setup({})
+
 -- Rust
 require("rust-tools").setup({
 	server = {
