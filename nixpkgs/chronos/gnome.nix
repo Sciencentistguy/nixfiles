@@ -53,9 +53,9 @@
         pname = "gnome-shell-extension-clear-top-bar-unstable";
         version = "2022-04-16";
         src = fetchFromGitHub {
-          owner = "Sciencentistguy"; # remove when PR merges
+          owner = "superterran";
           repo = "gnome-shell-extension-clear-top-bar";
-          rev = "5623807b50331ed6efe6a86f43bbe1018a854907";
+          rev = "54cd98047980b0ddc70121b25094d153adc9acd8";
           sha256 = "sha256-rggFQiyag2PbaiXa48TUFhlbknKLICWxJuKFXJdbUPk=";
         };
         installPhase = ''
