@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   security.sudo.wheelNeedsPassword = false;
 }

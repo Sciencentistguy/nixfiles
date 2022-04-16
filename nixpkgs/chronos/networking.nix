@@ -1,13 +1,17 @@
-{ pkgs, system, ... }: {
+{
+  pkgs,
+  system,
+  ...
+}: {
   networking.hostName = system; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   networking.firewall.enable = false;
   services.openssh.enable = true;
   services.mullvad-vpn.enable = true;
-  environment.systemPackages = with pkgs; [ mullvad-vpn ];
+  environment.systemPackages = with pkgs; [mullvad-vpn];
 
   networking.hosts = {
-    "192.168.1.51" = [ "atlas" ];
+    "192.168.1.51" = ["atlas"];
   };
 }

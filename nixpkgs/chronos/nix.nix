@@ -1,4 +1,9 @@
-{ pkgs, nixpkgsConfig, inputs, ... }: {
+{
+  pkgs,
+  nixpkgsConfig,
+  inputs,
+  ...
+}: {
   nixpkgs = nixpkgsConfig;
 
   nix.enable = true;
@@ -11,7 +16,7 @@
     "jamie"
   ];
 
-  nix.nixPath = [ "/etc/nix/path" ];
+  nix.nixPath = ["/etc/nix/path"];
   # the version of nixpkgs used to build the system
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   environment.etc."nix/path/nixpkgs".source = inputs.nixpkgs;

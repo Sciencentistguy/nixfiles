@@ -1,7 +1,11 @@
-{ pkgs, system, lib, ... }:
-let onDiscordia = system == "discordia";
-in
 {
+  pkgs,
+  system,
+  lib,
+  ...
+}: let
+  onDiscordia = system == "discordia";
+in {
   programs.starship.package = pkgs.starship-sciencentistguy;
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;

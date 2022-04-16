@@ -1,4 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ watch ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [watch];
 }
-

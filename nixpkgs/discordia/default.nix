@@ -1,5 +1,10 @@
-{ config, pkgs, lib, nixpkgsConfig, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  nixpkgsConfig,
+  ...
+}: {
   imports = [
     ./gpg.nix
     ./homebrew.nix

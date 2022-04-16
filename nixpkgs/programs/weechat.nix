@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ tmux weechat ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [tmux weechat];
 }

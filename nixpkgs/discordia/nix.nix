@@ -1,4 +1,9 @@
-{ pkgs, nixpkgsConfig, inputs, ... }: {
+{
+  pkgs,
+  nixpkgsConfig,
+  inputs,
+  ...
+}: {
   nixpkgs = nixpkgsConfig;
 
   nix.extraOptions = ''
@@ -17,7 +22,7 @@
   programs.zsh.variables.NIX_PATH = "/etc/nix/path";
 
   # specify <nixpkgs>
-  nix.nixPath = [ "/etc/nix/path" ];
+  nix.nixPath = ["/etc/nix/path"];
   # the version of nixpkgs used to build the system
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   environment.etc."nix/path/nixpkgs".source = inputs.nixpkgs;

@@ -1,5 +1,8 @@
-{ pkgs, home-manager, ... }:
 {
+  pkgs,
+  home-manager,
+  ...
+}: {
   programs.git.enable = true;
   programs.git.delta.enable = true;
   programs.git.ignores = [
@@ -23,5 +26,4 @@
 
   programs.gh.enable = true;
   programs.gh.settings.git_protocol = "ssh";
-
 }

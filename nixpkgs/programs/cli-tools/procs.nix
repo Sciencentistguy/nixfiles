@@ -1,4 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ procs ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [procs];
 }
-

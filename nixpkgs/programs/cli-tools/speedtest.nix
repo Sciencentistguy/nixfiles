@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ speedtest-cli ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [speedtest-cli];
 }

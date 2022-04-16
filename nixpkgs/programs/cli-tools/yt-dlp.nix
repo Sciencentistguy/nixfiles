@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ yt-dlp ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [yt-dlp];
 }

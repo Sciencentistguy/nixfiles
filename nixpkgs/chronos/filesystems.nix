@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   # Real disks
   fileSystems = {
     "/hdd" = {
@@ -9,12 +8,12 @@
     "/windows/c" = {
       device = "/dev/disk/by-uuid/4CCE434ACE432B90";
       fsType = "ntfs";
-      options = [ "uid=jamie" "gid=users" ];
+      options = ["uid=jamie" "gid=users"];
     };
     "/windows/d" = {
       device = "/dev/disk/by-uuid/149247C59247AA56";
       fsType = "ntfs";
-      options = [ "uid=jamie" "gid=users" ];
+      options = ["uid=jamie" "gid=users"];
     };
   };
 

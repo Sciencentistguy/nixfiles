@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.tmux.enable = true;
   programs.tmux.aggressiveResize = true;
   programs.tmux.keyMode = "vi";
@@ -7,4 +7,3 @@
   '';
   programs.tmux.historyLimit = 100000;
 }
-

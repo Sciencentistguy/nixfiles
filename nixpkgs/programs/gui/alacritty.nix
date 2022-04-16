@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
-    env = { TERM = "alacritty"; };
+    env = {TERM = "alacritty";};
     window = {
       dynamic_title = false;
       opacity = 0.85;
@@ -22,11 +22,13 @@
       size = 14;
       scale_with_dpi = false;
     };
-    key_bindings = [{
-      key = "Insert";
-      mods = "Shift";
-      action = "Paste";
-    }];
+    key_bindings = [
+      {
+        key = "Insert";
+        mods = "Shift";
+        action = "Paste";
+      }
+    ];
     colors = {
       primary = {
         background = "#000000";
@@ -39,7 +41,6 @@
       selection = {
         text = "#eaeaea";
         background = "#404040";
-
       };
       normal = {
         black = "#282c34";

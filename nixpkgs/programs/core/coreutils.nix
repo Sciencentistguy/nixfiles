@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ coreutils ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [coreutils];
 }

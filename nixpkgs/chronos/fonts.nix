@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts.fonts = with pkgs; [
     corefonts
     carlito
     noto-fonts
     (
       nerdfonts.override {
-        fonts = [ "Iosevka" "Inconsolata" ];
+        fonts = ["Iosevka" "Inconsolata"];
       }
     )
   ];
@@ -13,7 +13,7 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = [ "Iosevka" ];
+      monospace = ["Iosevka"];
     };
   };
 }

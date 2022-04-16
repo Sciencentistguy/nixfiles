@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ drawio ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [drawio];
 }

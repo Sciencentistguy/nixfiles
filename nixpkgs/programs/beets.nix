@@ -1,11 +1,12 @@
-{ pkgs, ... }:
-let beets = pkgs.beets.overrideAttrs (oldAttrs: {
-  propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ]) ++ [
-    pkgs.beets-file-info
-  ];
-});
-in
-{
+{pkgs, ...}: let
+  beets = pkgs.beets.overrideAttrs (oldAttrs: {
+    propagatedBuildInputs =
+      (oldAttrs.propagatedBuildInputs or [])
+      ++ [
+        pkgs.beets-file-info
+      ];
+  });
+in {
   programs.beets.enable = true;
   programs.beets.package = beets;
   programs.beets.settings = {

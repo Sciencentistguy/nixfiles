@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   services.mpd.enable = true;
   services.mpd.dataDir = "/hdd/Music/mpd";
   services.mpd.musicDirectory = "/binds/music-library";

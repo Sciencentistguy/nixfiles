@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ gitkraken ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [gitkraken];
 }
