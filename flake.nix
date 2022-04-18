@@ -50,39 +50,73 @@
       };
     };
     homeManagerStateVersion = "22.05";
-  in {
-    # Discordia
-    darwinConfigurations.discordia = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = {
-        system = "discordia";
-        inherit nixpkgsConfig;
-        inherit inputs;
+  in
+    {
+      # Discordia
+      darwinConfigurations.discordia = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {
+          system = "discordia";
+          inherit nixpkgsConfig;
+          inherit inputs;
+        };
+        modules = [
+          ./discordia
+          {
+            networking.computerName = "discordia";
+            networking.hostName = "discordia";
+          }
+          home-manager.darwinModules.home-manager
+          ({
+            pkgs,
+            home-manager,
+            ...
+          }: {
+            # `home-manager` config
+            home-manager.extraSpecialArgs = {
+              isDarwin = true;
+              system = "discordia";
+            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.jamie = {
+              imports = [
+                # core
+                ./programs/core/atuin.nix
+                ./programs/core/coreutils.nix
+                ./programs/core/git.nix
+                ./programs/core/neovim.nix
+                ./programs/core/nix.nix
+                ./programs/core/open-sus-sh.nix
+                ./programs/core/starship.nix
+
+                ./programs/cli-tools
+              ];
+            };
+          })
+        ];
       };
-      modules = [
-        ./discordia
-        {
-          networking.computerName = "discordia";
-          networking.hostName = "discordia";
-        }
-        home-manager.darwinModules.home-manager
-        ({
-          pkgs,
-          home-manager,
-          ...
-        }: {
-          # `home-manager` config
-          home-manager.extraSpecialArgs = {
-            isDarwin = true;
-            system = "discordia";
+
+      # Atlas
+      # TODO: Put nixos on atlas
+      homeConfigurations = {
+        jamie = inputs.home-manager.lib.homeManagerConfiguration {
+          system = "x86_64-linux";
+          homeDirectory = "/home/jamie";
+          username = "jamie";
+          stateVersion = homeManagerStateVersion;
+          extraSpecialArgs = {
+            isDarwin = false;
+            system = "atlas";
           };
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.jamie = {
+          configuration = {
+            nixpkgs = nixpkgsConfig;
             imports = [
               # core
               ./programs/core/atuin.nix
               ./programs/core/coreutils.nix
               ./programs/core/git.nix
+              ./programs/core/gtk-theme.nix
+              ./programs/core/home-manager.nix
               ./programs/core/neovim.nix
               ./programs/core/nix.nix
               ./programs/core/open-sus-sh.nix
@@ -91,135 +125,109 @@
               ./programs/cli-tools
             ];
           };
-        })
-      ];
-    };
+        };
+      };
 
-    # Atlas
-    # TODO: Put nixos on atlas
-    homeConfigurations = {
-      jamie = inputs.home-manager.lib.homeManagerConfiguration {
+      # Chronos
+      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        homeDirectory = "/home/jamie";
-        username = "jamie";
-        stateVersion = homeManagerStateVersion;
-        extraSpecialArgs = {
-          isDarwin = false;
-          system = "atlas";
+        specialArgs = {
+          system = "chronos";
+          inherit nixpkgsConfig;
+          inherit inputs;
         };
-        configuration = {
-          nixpkgs = nixpkgsConfig;
-          imports = [
-            # core
-            ./programs/core/atuin.nix
-            ./programs/core/coreutils.nix
-            ./programs/core/git.nix
-            ./programs/core/gtk-theme.nix
-            ./programs/core/home-manager.nix
-            ./programs/core/neovim.nix
-            ./programs/core/nix.nix
-            ./programs/core/open-sus-sh.nix
-            ./programs/core/starship.nix
+        modules = [
+          ./chronos
+          home-manager.nixosModules.home-manager
+          (
+            {
+              pkgs,
+              home-manager,
+              ...
+            }: {
+              home-manager.extraSpecialArgs = {
+                isDarwin = false;
+                system = "chronos";
+              };
+              home-manager.users.jamie = {
+                home.stateVersion = homeManagerStateVersion;
+                nixpkgs = nixpkgsConfig;
+                imports = [
+                  # core
+                  ./programs/core/atuin.nix
+                  ./programs/core/git.nix
+                  ./programs/core/gtk-theme.nix
+                  ./programs/core/neovim.nix
+                  ./programs/core/nix.nix
+                  ./programs/core/open-sus-sh.nix
+                  ./programs/core/starship.nix
 
-            ./programs/cli-tools
-          ];
-        };
-      };
-    };
+                  ./programs/cli-tools
 
-    # Chronos
-    nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        system = "chronos";
-        inherit nixpkgsConfig;
-        inherit inputs;
+                  # gui
+                  ./programs/gui/alacritty.nix
+                  ./programs/gui/discord.nix
+                  ./programs/gui/dolhin-emu.nix
+                  ./programs/gui/drawio.nix
+                  ./programs/gui/firefox.nix
+                  ./programs/gui/gitkraken.nix
+                  ./programs/gui/polymc.nix
+                  ./programs/gui/slack.nix
+                  ./programs/gui/soulseek.nix
+                  ./programs/gui/spotify.nix
+
+                  # other
+                  ./programs/beets.nix
+                  ./programs/mpd.nix
+                  ./programs/weechat.nix
+                ];
+              };
+            }
+          )
+        ];
       };
-      modules = [
-        ./chronos
-        home-manager.nixosModules.home-manager
+
+      overlays = [
+        inputs.neovim-nightly-overlay.overlay
+        inputs.custompkgs.overlay
+        inputs.oxalica.overlay
+        inputs.fenix.overlay
+        inputs.videoconverter.overlay
+        inputs.nix-script.overlay
+        # Use sciencentistguy/starship fork
         (
-          {
-            pkgs,
-            home-manager,
-            ...
-          }: {
-            home-manager.extraSpecialArgs = {
-              isDarwin = false;
-              system = "chronos";
-            };
-            home-manager.users.jamie = {
-              home.stateVersion = homeManagerStateVersion;
-              nixpkgs = nixpkgsConfig;
-              imports = [
-                # core
-                ./programs/core/atuin.nix
-                ./programs/core/git.nix
-                ./programs/core/gtk-theme.nix
-                ./programs/core/neovim.nix
-                ./programs/core/nix.nix
-                ./programs/core/open-sus-sh.nix
-                ./programs/core/starship.nix
+          final: orig: {
+            starship-sciencentistguy =
+              (orig.starship.overrideAttrs (old: rec {
+                version = "1.5.4-sciencentistguy";
+                src = orig.fetchFromGitHub {
+                  owner = "sciencentistguy";
+                  repo = "starship";
+                  rev = "422ea6518b3c0d6dfe4239e16e96bb356bdda9d7";
+                  sha256 = "sha256-8ykmVCeUjFUf/mRLJSOWz5fHtcRy/4Zqe22J7wa6guY=";
+                };
 
-                ./programs/cli-tools
-
-                # gui
-                ./programs/gui/alacritty.nix
-                ./programs/gui/discord.nix
-                ./programs/gui/dolhin-emu.nix
-                ./programs/gui/drawio.nix
-                ./programs/gui/firefox.nix
-                ./programs/gui/gitkraken.nix
-                ./programs/gui/polymc.nix
-                ./programs/gui/slack.nix
-                ./programs/gui/soulseek.nix
-                ./programs/gui/spotify.nix
-
-                # other
-                ./programs/beets.nix
-                ./programs/mpd.nix
-                ./programs/weechat.nix
-              ];
-            };
+                cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
+                  name = "${old.pname}-${version}-vendor.tar.gz";
+                  inherit src;
+                  outputHash = "sha256-bRXD/yyFnnrH/dBBcqaFF0AmkqnNJFJtkCMEX8ijd1A=";
+                });
+              }))
+              .override {
+                rustPlatform = orig.makeRustPlatform {
+                  rustc = orig.rust-bin.stable.latest.default;
+                  cargo = orig.rust-bin.stable.latest.default;
+                };
+              };
           }
         )
       ];
-    };
-
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-      inputs.custompkgs.overlay
-      inputs.oxalica.overlay
-      inputs.fenix.overlay
-      inputs.videoconverter.overlay
-      inputs.nix-script.overlay
-      # Use sciencentistguy/starship fork
-      (
-        final: orig: {
-          starship-sciencentistguy =
-            (orig.starship.overrideAttrs (old: rec {
-              version = "1.5.4-sciencentistguy";
-              src = orig.fetchFromGitHub {
-                owner = "sciencentistguy";
-                repo = "starship";
-                rev = "422ea6518b3c0d6dfe4239e16e96bb356bdda9d7";
-                sha256 = "sha256-8ykmVCeUjFUf/mRLJSOWz5fHtcRy/4Zqe22J7wa6guY=";
-              };
-
-              cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
-                name = "${old.pname}-${version}-vendor.tar.gz";
-                inherit src;
-                outputHash = "sha256-bRXD/yyFnnrH/dBBcqaFF0AmkqnNJFJtkCMEX8ijd1A=";
-              });
-            }))
-            .override {
-              rustPlatform = orig.makeRustPlatform {
-                rustc = orig.rust-bin.stable.latest.default;
-                cargo = orig.rust-bin.stable.latest.default;
-              };
-            };
-        }
-      )
-    ];
-  };
+    }
+    // (flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      packages = {
+        shark-radar = pkgs.callPackage ./packages/shark-radar {};
+      };
+    }));
 }
