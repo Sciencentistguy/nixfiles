@@ -228,6 +228,9 @@
     in {
       packages = {
         shark-radar = pkgs.callPackage ./packages/shark-radar {};
+        starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
+          inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
+        };
       };
     }));
 }
