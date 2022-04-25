@@ -1,9 +1,13 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  flakePkgs,
+  ...
+}: let
   beets = pkgs.beets.overrideAttrs (oldAttrs: {
     propagatedBuildInputs =
       (oldAttrs.propagatedBuildInputs or [])
       ++ [
-        pkgs.beets-file-info
+        flakePkgs.beets-file-info
       ];
   });
 in {

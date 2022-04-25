@@ -1,9 +1,9 @@
 {
   pkgs,
-  system,
+  systemName,
   ...
 }: {
-  networking.hostName = system; # Define your hostname.
+  networking.hostName = systemName; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   networking.firewall.enable = false;

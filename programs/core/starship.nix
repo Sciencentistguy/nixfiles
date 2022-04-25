@@ -1,12 +1,13 @@
 {
   pkgs,
-  system,
+  flakePkgs,
+  systemName,
   lib,
   ...
 }: let
-  onDiscordia = system == "discordia";
+  onDiscordia = systemName == "discordia";
 in {
-  programs.starship.package = pkgs.starship-sciencentistguy;
+  programs.starship.package = flakePkgs.starship-sciencentistguy;
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
   programs.starship.enableBashIntegration = false;

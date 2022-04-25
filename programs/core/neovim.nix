@@ -2,7 +2,6 @@
   pkgs,
   lib,
   isDarwin,
-  system,
   ...
 }: let
   # build neovim nightly rather than the most recent release in nixpkgs

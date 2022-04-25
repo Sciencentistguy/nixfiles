@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, flakePkgs, ...}: {
   # TODO: flake this properly
-  home.packages = with pkgs; [shark-radar];
+  home.packages = with flakePkgs; [shark-radar];
 }

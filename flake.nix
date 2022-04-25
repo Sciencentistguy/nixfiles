@@ -53,12 +53,14 @@
   in
     {
       # Discordia
-      darwinConfigurations.discordia = darwin.lib.darwinSystem {
+      darwinConfigurations.discordia = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
         specialArgs = {
           system = "discordia";
           inherit nixpkgsConfig;
           inherit inputs;
+          isDarwin = true;
+          flakePkgs = self.packages.${system};
         };
         modules = [
           ./discordia
@@ -73,10 +75,11 @@
             ...
           }: {
             # `home-manager` config
-            home-manager.extraSpecialArgs = {
-              isDarwin = true;
-              system = "discordia";
-            };
+            home-manager.extraSpecialArgs = specialArgs;
+            # {
+            # isDarwin = true;
+            # system = "discordia";
+            # };
             home-manager.useGlobalPkgs = true;
             home-manager.users.jamie = {
               imports = [
@@ -99,14 +102,17 @@
       # Atlas
       # TODO: Put nixos on atlas
       homeConfigurations = {
-        jamie = inputs.home-manager.lib.homeManagerConfiguration {
+        jamie = inputs.home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-linux";
           homeDirectory = "/home/jamie";
           username = "jamie";
           stateVersion = homeManagerStateVersion;
           extraSpecialArgs = {
+            systemName = "chronos";
             isDarwin = false;
-            system = "atlas";
+            inherit nixpkgsConfig;
+            inherit inputs;
+            flakePkgs = self.packages.${system};
           };
           configuration = {
             nixpkgs = nixpkgsConfig;
@@ -129,12 +135,14 @@
       };
 
       # Chronos
-      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          system = "chronos";
+          systemName = "chronos";
+          isDarwin = false;
           inherit nixpkgsConfig;
           inherit inputs;
+          flakePkgs = self.packages.${system};
         };
         modules = [
           ./chronos
@@ -145,10 +153,7 @@
               home-manager,
               ...
             }: {
-              home-manager.extraSpecialArgs = {
-                isDarwin = false;
-                system = "chronos";
-              };
+              home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.jamie = {
                 home.stateVersion = homeManagerStateVersion;
                 nixpkgs = nixpkgsConfig;
@@ -189,38 +194,11 @@
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay
-        inputs.custompkgs.overlay
+        # inputs.custompkgs.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
         inputs.videoconverter.overlay
         inputs.nix-script.overlay
-        # Use sciencentistguy/starship fork
-        (
-          final: orig: {
-            starship-sciencentistguy =
-              (orig.starship.overrideAttrs (old: rec {
-                version = "1.5.4-sciencentistguy";
-                src = orig.fetchFromGitHub {
-                  owner = "sciencentistguy";
-                  repo = "starship";
-                  rev = "422ea6518b3c0d6dfe4239e16e96bb356bdda9d7";
-                  sha256 = "sha256-8ykmVCeUjFUf/mRLJSOWz5fHtcRy/4Zqe22J7wa6guY=";
-                };
-
-                cargoDeps = old.cargoDeps.overrideAttrs (orig.lib.const {
-                  name = "${old.pname}-${version}-vendor.tar.gz";
-                  inherit src;
-                  outputHash = "sha256-bRXD/yyFnnrH/dBBcqaFF0AmkqnNJFJtkCMEX8ijd1A=";
-                });
-              }))
-              .override {
-                rustPlatform = orig.makeRustPlatform {
-                  rustc = orig.rust-bin.stable.latest.default;
-                  cargo = orig.rust-bin.stable.latest.default;
-                };
-              };
-          }
-        )
       ];
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
@@ -228,6 +206,7 @@
     in {
       packages = {
         shark-radar = pkgs.callPackage ./packages/shark-radar {};
+        beets-file-info = pkgs.callPackage ./packages/beets-file-info {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
