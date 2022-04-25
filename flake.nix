@@ -102,14 +102,17 @@
       # Atlas
       # TODO: Put nixos on atlas
       homeConfigurations = {
-        jamie = inputs.home-manager.lib.homeManagerConfiguration {
+        jamie = inputs.home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-linux";
           homeDirectory = "/home/jamie";
           username = "jamie";
           stateVersion = homeManagerStateVersion;
           extraSpecialArgs = {
+            systemName = "chronos";
             isDarwin = false;
-            system = "atlas";
+            inherit nixpkgsConfig;
+            inherit inputs;
+            flakePkgs = self.packages.${system};
           };
           configuration = {
             nixpkgs = nixpkgsConfig;
