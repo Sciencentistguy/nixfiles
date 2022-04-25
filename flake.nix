@@ -53,12 +53,14 @@
   in
     {
       # Discordia
-      darwinConfigurations.discordia = darwin.lib.darwinSystem {
+      darwinConfigurations.discordia = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
         specialArgs = {
           system = "discordia";
           inherit nixpkgsConfig;
           inherit inputs;
+          isDarwin = true;
+          flakePkgs = self.packages.${system};
         };
         modules = [
           ./discordia
@@ -73,10 +75,11 @@
             ...
           }: {
             # `home-manager` config
-            home-manager.extraSpecialArgs = {
-              isDarwin = true;
-              system = "discordia";
-            };
+            home-manager.extraSpecialArgs = specialArgs ;
+            # {
+              # isDarwin = true;
+              # system = "discordia";
+            # };
             home-manager.useGlobalPkgs = true;
             home-manager.users.jamie = {
               imports = [
@@ -189,7 +192,7 @@
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay
-        inputs.custompkgs.overlay
+        # inputs.custompkgs.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
         inputs.videoconverter.overlay
