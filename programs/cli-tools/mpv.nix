@@ -1,8 +1,8 @@
 {
   pkgs,
-  system,
+  systemName,
   lib,
   ...
 }: {
-  home.packages = with pkgs; lib.optionals (system != "atlas") [mpv];
+  home.packages = with pkgs; lib.optionals (systemName != "atlas") [mpv];
 }

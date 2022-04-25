@@ -75,10 +75,10 @@
             ...
           }: {
             # `home-manager` config
-            home-manager.extraSpecialArgs = specialArgs ;
+            home-manager.extraSpecialArgs = specialArgs;
             # {
-              # isDarwin = true;
-              # system = "discordia";
+            # isDarwin = true;
+            # system = "discordia";
             # };
             home-manager.useGlobalPkgs = true;
             home-manager.users.jamie = {
@@ -132,12 +132,14 @@
       };
 
       # Chronos
-      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.chronos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          system = "chronos";
+          systemName = "chronos";
+          isDarwin = false;
           inherit nixpkgsConfig;
           inherit inputs;
+          flakePkgs = self.packages.${system};
         };
         modules = [
           ./chronos
@@ -148,10 +150,7 @@
               home-manager,
               ...
             }: {
-              home-manager.extraSpecialArgs = {
-                isDarwin = false;
-                system = "chronos";
-              };
+              home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.jamie = {
                 home.stateVersion = homeManagerStateVersion;
                 nixpkgs = nixpkgsConfig;
@@ -231,6 +230,7 @@
     in {
       packages = {
         shark-radar = pkgs.callPackage ./packages/shark-radar {};
+        beets-file-info = pkgs.callPackage ./packages/beets-file-info {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };

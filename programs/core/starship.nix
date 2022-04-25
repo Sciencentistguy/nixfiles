@@ -1,10 +1,10 @@
 {
   pkgs,
-  system,
+  systemName,
   lib,
   ...
 }: let
-  onDiscordia = system == "discordia";
+  onDiscordia = systemName == "discordia";
 in {
   programs.starship.package = pkgs.starship-sciencentistguy;
   programs.starship.enable = true;
