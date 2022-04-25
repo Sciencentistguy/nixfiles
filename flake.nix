@@ -2,37 +2,48 @@
   description = "Jamie's nix system configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    };
 
     # Environment/system management
-    darwin.url = "github:LnL7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Other sources
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
-    flake-utils.url = "github:numtide/flake-utils";
-    custompkgs = {
-      url = "github:Sciencentistguy/custompkgs";
+    darwin = {
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    oxalica.url = "github:oxalica/rust-overlay";
-    oxalica.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Packages
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-script = {
+      url = "github:BrianHicks/nix-script";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    videoconverter = {
+      url = "github:Sciencentistguy/videoconverter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Libraries
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    videoconverter.url = "github:Sciencentistguy/videoconverter";
-    videoconverter.inputs.nixpkgs.follows = "nixpkgs";
-    nix-script.url = "github:BrianHicks/nix-script";
-    nix-script.inputs.nixpkgs.follows = "nixpkgs";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+    flake-utils = {url = "github:numtide/flake-utils";};
+    oxalica = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
