@@ -94,15 +94,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.jamie = {
               imports = [
-                # core
-                ./programs/core/atuin.nix
-                ./programs/core/coreutils.nix
-                ./programs/core/git.nix
-                ./programs/core/neovim.nix
-                ./programs/core/nix.nix
-                ./programs/core/open-sus-sh.nix
-                ./programs/core/starship.nix
-
+                ./programs/core
                 ./programs/cli-tools
               ];
             };
@@ -128,17 +120,7 @@
           configuration = {
             nixpkgs = nixpkgsConfig;
             imports = [
-              # core
-              ./programs/core/atuin.nix
-              ./programs/core/coreutils.nix
-              ./programs/core/git.nix
-              ./programs/core/gtk-theme.nix
-              ./programs/core/home-manager.nix
-              ./programs/core/neovim.nix
-              ./programs/core/nix.nix
-              ./programs/core/open-sus-sh.nix
-              ./programs/core/starship.nix
-
+              ./programs/core
               ./programs/cli-tools
             ];
           };
@@ -169,15 +151,7 @@
                 home.stateVersion = homeManagerStateVersion;
                 nixpkgs = nixpkgsConfig;
                 imports = [
-                  # core
-                  ./programs/core/atuin.nix
-                  ./programs/core/git.nix
-                  ./programs/core/gtk-theme.nix
-                  ./programs/core/neovim.nix
-                  ./programs/core/nix.nix
-                  ./programs/core/open-sus-sh.nix
-                  ./programs/core/starship.nix
-
+                  ./programs/core
                   ./programs/cli-tools
 
                   # gui
