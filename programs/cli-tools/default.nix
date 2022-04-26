@@ -4,7 +4,6 @@
     ./bat.nix
     ./btop.nix
     ./comma.nix
-    ./delta.nix
     ./exa.nix
     ./fd.nix
     ./ffmpeg.nix

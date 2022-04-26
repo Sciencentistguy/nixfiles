@@ -4,7 +4,7 @@
   ...
 }: {
   programs.git.enable = true;
-  programs.git.delta.enable = true;
+  programs.git.difftastic.enable = true;
   programs.git.ignores = [
     "tags"
     ".vim/"
