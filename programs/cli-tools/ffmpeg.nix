@@ -9,5 +9,8 @@
     nvenc = systemName == "chronos";
   };
 in {
-  home.packages = [ffmpeg pkgs.videoconverter];
+  home.packages = [
+    ffmpeg
+    pkgs.videoconverter
+  ];
 }

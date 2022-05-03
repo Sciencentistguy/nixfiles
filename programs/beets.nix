@@ -8,6 +8,7 @@
       (oldAttrs.propagatedBuildInputs or [])
       ++ [
         flakePkgs.beets-file-info
+        pkgs.python3Packages.pillow
       ];
   });
 in {
