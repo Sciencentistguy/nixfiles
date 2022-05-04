@@ -67,7 +67,7 @@
       darwinConfigurations.discordia = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
         specialArgs = {
-          system = "discordia";
+          systemName = "discordia";
           inherit nixpkgsConfig;
           inherit inputs;
           isDarwin = true;
