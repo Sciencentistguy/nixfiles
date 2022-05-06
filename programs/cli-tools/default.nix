@@ -12,7 +12,6 @@
     ./killall.nix
     ./mpv.nix
     ./neofetch.nix
-    ./nix-script.nix
     ./procs.nix
     ./ripgrep.nix
     ./sad.nix
