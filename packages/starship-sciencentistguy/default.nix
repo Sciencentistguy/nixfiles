@@ -14,13 +14,13 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "starship";
-  version = "1.5.4-scincentistguy";
+  version = "1.6.3-scincentistguy";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
     repo = pname;
-    rev = "422ea6518b3c0d6dfe4239e16e96bb356bdda9d7";
-    sha256 = "sha256-8ykmVCeUjFUf/mRLJSOWz5fHtcRy/4Zqe22J7wa6guY=";
+    rev = "4b530cef1ee3f26800479855bff886679a9d61ff";
+    sha256 = "sha256-2yaxHHOghje0X/sT3G4rrSO3Bskx+cAFgXycC24nPUQ=";
   };
 
   nativeBuildInputs = [installShellFiles pkg-config];
@@ -34,7 +34,14 @@ rustPlatform.buildRustPackage rec {
     done
   '';
 
-  cargoSha256 = "sha256-eR317guD75Lo+CtuRyKv2KHE7FiJyN5XICFCQs0AI2g=";
+  buildNoDefaultFeatures = true;
+  # the "notify" feature is currently broken on darwin
+  buildFeatures =
+    if stdenv.isDarwin
+    then ["battery"]
+    else ["default"];
+
+  cargoSha256 = "sha256-e9bcCTiftveg8+LNYPl5dSzJ7CUhxxtrIOlgr5+FN6k=";
 
   preCheck = ''
     HOME=$TMPDIR
