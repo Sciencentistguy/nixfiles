@@ -60,15 +60,11 @@ in {
     git_status = {
       style = "bold #E06C75";
     };
-    cmake = {
-      # Nerd fonts are hard on darwin
-      symbol = lib.optional onDiscordia "🛆 ";
-    };
     nix_shell = {
       impure_msg = "";
       pure_msg = "";
       format = "within [$symbol($name)]($style) ";
-      symbol = lib.optional (!onDiscordia) " ";
+      symbol = "  ";
     };
     shell = {
       disabled = false;
