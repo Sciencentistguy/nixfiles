@@ -21,10 +21,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-script = {
-      url = "github:BrianHicks/nix-script";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     videoconverter = {
       url = "github:Sciencentistguy/videoconverter";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -179,11 +175,9 @@
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay
-        # inputs.custompkgs.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
         inputs.videoconverter.overlay
-        inputs.nix-script.overlay
       ];
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
