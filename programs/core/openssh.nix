@@ -25,5 +25,9 @@ in {
   programs.ssh.matchBlocks."seedbox".identityFile = "~/.ssh/seedbox";
   programs.ssh.matchBlocks."seedbox".user = "sciencentistguy";
   programs.ssh.matchBlocks."aur.archlinux.org".identityFile = "~/.ssh/aur";
-  programs.ssh.matchBlocks."*.york.ac.uk".user = "jehq500";
+  programs.ssh.matchBlocks."ssh.york.ac.uk".user = "jehq500";
+  programs.ssh.matchBlocks."rts001.cs.york.ac.uk" = {
+    user = "jehq500";
+    proxyCommand = "ssh -A -T -o Compression=no ssh.york.ac.uk -W %h:%p";
+  };
 }
