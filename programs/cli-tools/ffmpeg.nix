@@ -1,5 +1,6 @@
 {
   pkgs,
+  flakePkgs,
   systemName,
   ...
 }: let
@@ -11,6 +12,6 @@
 in {
   home.packages = [
     ffmpeg
-    pkgs.videoconverter
+    flakePkgs.videoconverter
   ];
 }

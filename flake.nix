@@ -17,6 +17,10 @@
     };
 
     # Packages
+    generic-rust-shell = {
+      url = "github:Sciencentistguy/generic-rust-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +61,10 @@
       };
     };
     homeManagerStateVersion = "22.05";
+    flakePkgs' = system:
+      self.packages.${system}
+      // inputs.videoconverter.packages.${system}
+      // inputs.generic-rust-shell.packages.${system};
   in
     {
       # Discordia
@@ -66,8 +74,8 @@
           systemName = "discordia";
           inherit nixpkgsConfig;
           inherit inputs;
+          flakePkgs = flakePkgs' system;
           isDarwin = true;
-          flakePkgs = self.packages.${system};
         };
         modules = [
           ./discordia
@@ -111,7 +119,7 @@
             isDarwin = false;
             inherit nixpkgsConfig;
             inherit inputs;
-            flakePkgs = self.packages.${system};
+            flakePkgs = flakePkgs' system;
           };
           configuration = {
             nixpkgs = nixpkgsConfig;
@@ -131,7 +139,7 @@
           isDarwin = false;
           inherit nixpkgsConfig;
           inherit inputs;
-          flakePkgs = self.packages.${system};
+          flakePkgs = flakePkgs' system;
         };
         modules = [
           ./chronos
@@ -177,7 +185,6 @@
         inputs.neovim-nightly-overlay.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
-        inputs.videoconverter.overlay
       ];
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
