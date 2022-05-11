@@ -64,7 +64,10 @@ in {
       impure_msg = "";
       pure_msg = "";
       format = "within [$symbol($name)]($style) ";
-      symbol = "  ";
+      symbol =
+        if onDiscordia
+        then "  "
+        else " ";
     };
     shell = {
       disabled = false;
