@@ -107,11 +107,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1652557277,
-        "narHash": "sha256-jSes9DaIVMdmwBB78KkFUVrlDzawmD62vrUg0GS2500=",
+        "lastModified": 1652733177,
+        "narHash": "sha256-mRpdBbVk8tbYVgEE6oTBbFT1vkVdF7EzaP7bMQ26wWA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "12806d31a381e7cd169a6bac35590e7b36dc5fe5",
+        "rev": "04b4d989fda8f14e6fcd1fee631eab9c54d15b97",
         "type": "github"
       },
       "original": {
@@ -189,11 +189,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1652310938,
-        "narHash": "sha256-cMCDVSio7OYTTST0chEZfVseRVCSl3B+oulvsFrDFh0=",
+        "lastModified": 1652735774,
+        "narHash": "sha256-j5Dtb11AUITcRhdaZg1XnSSxKhU1b79qiUdLx0tuw+I=",
         "owner": "Sciencentistguy",
         "repo": "generic-rust-shell",
-        "rev": "52a548260e40a09169c60ccf936a5fd9ada157a1",
+        "rev": "1aca5eba4a5269244d1c77b2f807173ba991d5b5",
         "type": "github"
       },
       "original": {
