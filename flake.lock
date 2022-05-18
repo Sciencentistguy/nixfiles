@@ -189,11 +189,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1652735774,
-        "narHash": "sha256-j5Dtb11AUITcRhdaZg1XnSSxKhU1b79qiUdLx0tuw+I=",
+        "lastModified": 1652833712,
+        "narHash": "sha256-7GJ+D4Qpr7B8gTAlZWaqugvahfQG01/sTqbOcd8EnZE=",
         "owner": "Sciencentistguy",
         "repo": "generic-rust-shell",
-        "rev": "1aca5eba4a5269244d1c77b2f807173ba991d5b5",
+        "rev": "db21e7763fd696f3387faa0436e40d5440b29378",
         "type": "github"
       },
       "original": {
