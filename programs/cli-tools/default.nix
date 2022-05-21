@@ -8,7 +8,7 @@
     ./fd.nix
     ./ffmpeg.nix
     ./file.nix
-    ./generic-rust-shell.nix
+    ./rust-nix-shell.nix
     ./jq.nix
     ./killall.nix
     ./mpv.nix

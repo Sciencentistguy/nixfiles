@@ -17,8 +17,8 @@
     };
 
     # Packages
-    generic-rust-shell = {
-      url = "github:Sciencentistguy/generic-rust-shell";
+    rust-nix-shell = {
+      url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
@@ -64,7 +64,7 @@
     flakePkgs' = system:
       self.packages.${system}
       // inputs.videoconverter.packages.${system}
-      // inputs.generic-rust-shell.packages.${system};
+      // inputs.rust-nix-shell.packages.${system};
   in
     {
       # Discordia
