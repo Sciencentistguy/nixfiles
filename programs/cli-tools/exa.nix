@@ -3,5 +3,8 @@
   isDarwin,
   ...
 }: {
-  home.packages = with pkgs; [exa];
+  programs.exa = {
+    enable = true;
+    enableAliases = false;
+  };
 }
