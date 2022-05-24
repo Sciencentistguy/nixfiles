@@ -25,6 +25,7 @@
 
   homebrew.casks = [
     "discord-canary"
+    "drawio"
     "firefox"
     "flameshot"
     "ghidra"
