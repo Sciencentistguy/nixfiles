@@ -169,6 +169,7 @@
                   ./programs/gui/slack.nix
                   ./programs/gui/soulseek.nix
                   ./programs/gui/spotify.nix
+                  ./programs/gui/vscode.nix
 
                   # other
                   ./programs/beets.nix
