@@ -212,6 +212,7 @@
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
+        ex = pkgs.callPackage ./packages/ex {};
       };
     }));
 }
