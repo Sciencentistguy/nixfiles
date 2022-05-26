@@ -19,7 +19,6 @@
     ./shark-radar.nix
     ./speedtest.nix
     ./tmux.nix
-    ./unzip.nix
     ./watch.nix
     ./wget.nix
     ./yt-dlp.nix

@@ -1,8 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    p7zip
-    gzip
-    zip
     bzip2
+    gzip
+    p7zip
+    unzip
+    zip
   ];
 }
