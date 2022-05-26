@@ -1,9 +1,17 @@
 # nixfiles
 
-This repo contains nix configurations for my systems, as well as some packages that I use.
+The nix-based configurations for my systems
+
+Currently, this flake describes:
+- `chronos`: A desktop PC, running NixOS
+- `discordia`: A 2021 MacBook Pro (M1 Max), running macOS and [nix-darwin](https://github.com/LnL7/nix-darwin)
+- `atlas`: A server, currently running Arch Linux
+
+This flake also outputs some packages that I use in my systems:
+- `starship-sciencenitstguy` (https://github.com/Sciencentistguy/starship): A fork of [Starship](https://starship.rs/)
+- `beets-file-info` (https://github.com/Sciencentistguy/beets-file-info): A beets plugin to display audio information.
+- `shark-radar` (https://git.lavender.software/charlotte/shark-radar): A scraper for blåhaj stock in UK IKEAs.
 
 ---
 
-> One Flake to rule them all, One Flake to find them, One Flake to bring them all, and in the darkness configure them
-
-Available under the terms of version 2.0 of the Mozilla Public Licence
+All files in this repo, unless stated otherwise, are avaialable under the terms of version 2.0 of the Mozilla Public Licence.
