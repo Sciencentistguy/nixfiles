@@ -262,6 +262,26 @@
         "type": "github"
       }
     },
+    "nixpkgs-unfree": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1652009198,
+        "narHash": "sha256-sIVOJKfFgk+esQhdvq7B7i405HscuuzHYrhwC0RL72Y=",
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "rev": "ee6356c2bf6dc91d9a2d2d654eb7e49b8a89e098",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "type": "github"
+      }
+    },
     "oxalica": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -292,6 +312,7 @@
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unfree": "nixpkgs-unfree",
         "oxalica": "oxalica",
         "rust-nix-shell": "rust-nix-shell",
         "videoconverter": "videoconverter"

@@ -5,6 +5,10 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Environment/system management
     darwin = {
@@ -205,6 +209,7 @@
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgsUnfree = inputs.nixpkgs-unfree.legacyPackages.${system};
     in {
       packages = {
         shark-radar = pkgs.callPackage ./packages/shark-radar {};
@@ -212,7 +217,7 @@
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
-        ex = pkgs.callPackage ./packages/ex {};
+        ex = pkgsUnfree.callPackage ./packages/ex {};
       };
     }));
 }
