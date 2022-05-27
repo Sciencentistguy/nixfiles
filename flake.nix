@@ -32,6 +32,7 @@
     videoconverter = {
       url = "github:Sciencentistguy/videoconverter";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-unfree.follows = "nixpkgs-unfree";
     };
 
     # Libraries
