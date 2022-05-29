@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [procs];
+{ pkgs, systemName, ... }: {
+  home.packages = with pkgs; if systemName != "discordia" then [ procs ] else [];
 }

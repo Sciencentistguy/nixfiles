@@ -191,21 +191,6 @@
         inputs.neovim-nightly-overlay.overlay
         inputs.oxalica.overlay
         inputs.fenix.overlay
-        (
-          self: super: {
-            python = super.python.override {
-              packageOverrides = python-self: python-super: {
-                pyopenssl = python-super.pyopenssl.overrideAttrs (old: {
-                  # See: https://github.com/NixOS/nixpkgs/pull/172397,
-                  # https://github.com/pyca/pyopenssl/issues/87
-                  # This is (imo) better than just marking it broken and not letting aarch64-darwin
-                  # use nix
-                  meta = old.meta // {broken = false;};
-                });
-              };
-            };
-          }
-        )
       ];
     }
     // (flake-utils.lib.eachDefaultSystem (system: let

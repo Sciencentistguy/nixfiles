@@ -25,8 +25,6 @@ in {
       pkgs.shellcheck
 
       # Formatters
-      pkgs.python3Packages.autopep8
-      pkgs.python3Packages.black
       pkgs.shfmt
       pkgs.stylua
       pkgs.alejandra
@@ -43,5 +41,6 @@ in {
     ]
     ++ lib.optionals (!isDarwin) [
       pkgs.xclip
+      pkgs.python3Packages.black
     ];
 }
