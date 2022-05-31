@@ -45,10 +45,6 @@
       flake = false;
     };
     flake-utils = {url = "github:numtide/flake-utils";};
-    oxalica = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
@@ -191,7 +187,6 @@
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay
-        inputs.oxalica.overlay
         inputs.fenix.overlay
       ];
     }
