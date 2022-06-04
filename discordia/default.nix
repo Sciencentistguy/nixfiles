@@ -8,6 +8,7 @@
   imports = [
     ./gpg.nix
     ./homebrew.nix
+    ./macos-packages.nix
     ./nix.nix
   ];
 

@@ -8,13 +8,14 @@
     ./fd.nix
     ./ffmpeg.nix
     ./file.nix
-    ./rust-nix-shell.nix
     ./jq.nix
     ./killall.nix
     ./mpv.nix
     ./neofetch.nix
     ./procs.nix
     ./ripgrep.nix
+    ./rsync.nix
+    ./rust-nix-shell.nix
     ./sad.nix
     ./shark-radar.nix
     ./speedtest.nix

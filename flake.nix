@@ -105,6 +105,8 @@
               imports = [
                 ./programs/core
                 ./programs/cli-tools
+
+                ./programs/gui/alacritty.nix
               ];
             };
           })
