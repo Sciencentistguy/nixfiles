@@ -152,11 +152,11 @@
     },
     "flake-utils_4": {
       "locked": {
-        "lastModified": 1652776076,
-        "narHash": "sha256-gzTw/v1vj4dOVbpBSJX4J0DwUR6LIyXo7/SuuTJp1kM=",
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "04c1b180862888302ddfb2e3ad9eaa63afc60cf8",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
         "type": "github"
       },
       "original": {
@@ -326,17 +326,14 @@
         "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "nixpkgs-unfree": [
-          "nixpkgs-unfree"
         ]
       },
       "locked": {
-        "lastModified": 1653664733,
-        "narHash": "sha256-IMXzLYUrOrvxzBjdlMsHcnTAfVKEKsZAgUoWkUU1nfg=",
+        "lastModified": 1654627028,
+        "narHash": "sha256-pLpDC4xVWkNG3+q2FQaRhLJYKPgvQJJ7JoOflhytBbE=",
         "owner": "Sciencentistguy",
         "repo": "videoconverter",
-        "rev": "c365c4ce5e2bb907dcd0753080aee5f6b8fbbb95",
+        "rev": "9d4ba16027bcee0559dc0edef4d273b0018a7efe",
         "type": "github"
       },
       "original": {
