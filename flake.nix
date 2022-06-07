@@ -201,6 +201,7 @@
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
         ex = pkgsUnfree.callPackage ./packages/ex {};
+        sherlock = pkgs.callPackage ./packages/sherlock {};
       };
     }));
 }
