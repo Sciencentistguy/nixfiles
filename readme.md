@@ -15,6 +15,7 @@ This flake also outputs some packages that I use in my systems:
 - `shark-radar` (https://git.lavender.software/charlotte/shark-radar): A scraper for blåhaj stock in UK IKEAs.
 - `ex`: A bash script to extract many kinds of archive.
 - `sherlock` (https://github.com/sherlock-project/sherlock): A program to hunt down social media accounts by username across social networks.
+- `otf-apple`: Apple OTF fonts.
 
 ---
 

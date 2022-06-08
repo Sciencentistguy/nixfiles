@@ -202,6 +202,7 @@
         };
         ex = pkgsUnfree.callPackage ./packages/ex {};
         sherlock = pkgs.callPackage ./packages/sherlock {};
+        otf-apple = pkgsUnfree.callPackage ./packages/otf-apple {};
       };
     }));
 }
