@@ -203,6 +203,7 @@
         ex = pkgsUnfree.callPackage ./packages/ex {};
         sherlock = pkgs.callPackage ./packages/sherlock {};
         otf-apple = pkgsUnfree.callPackage ./packages/otf-apple {};
+        ttf-ms-win11 = pkgsUnfree.callPackage ./packages/ttf-ms-win11 {};
       };
     }));
 }

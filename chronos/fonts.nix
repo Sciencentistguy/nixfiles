@@ -4,11 +4,13 @@
   ...
 }: {
   fonts.fonts = with pkgs; [
-    flakePkgs.otf-apple
-
     corefonts
     carlito
     noto-fonts
+
+    flakePkgs.otf-apple
+    flakePkgs.ttf-ms-win11
+
     (
       nerdfonts.override {
         fonts = ["Iosevka" "Inconsolata"];

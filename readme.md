@@ -16,6 +16,7 @@ This flake also outputs some packages that I use in my systems:
 - `ex`: A bash script to extract many kinds of archive.
 - `sherlock` (https://github.com/sherlock-project/sherlock): A program to hunt down social media accounts by username across social networks.
 - `otf-apple`: Apple OTF fonts.
+- `ttf-ms-win11`: Microsoft TTF fonts.
 
 ---
 
