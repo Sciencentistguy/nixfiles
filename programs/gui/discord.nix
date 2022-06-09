@@ -3,8 +3,26 @@
   inputs,
   ...
 }: {
-  home.packages = [pkgs.discord];
-
+  home.packages = let
+    # Make makeDesktopItem overrideable
+    pkgs' = import "${inputs.nixpkgs}" {
+      system = pkgs.stdenv.system;
+      config.allowUnfree = true;
+      overlays = [
+        (
+          final: orig: {
+            makeDesktopItem = orig.lib.makeOverridable orig.makeDesktopItem;
+          }
+        )
+      ];
+    };
+    discord-exec-string = "${pkgs'.discord}/bin/Discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy";
+  in [
+    (pkgs'.discord.overrideAttrs (oldAttrs: rec {
+      desktopItem = oldAttrs.desktopItem.override {exec = discord-exec-string;};
+      installPhase = builtins.replaceStrings ["${oldAttrs.desktopItem}"] ["${desktopItem}"] oldAttrs.installPhase;
+    }))
+  ];
 
   home.file.".config/discord/settings.json" = {
     text = builtins.toJSON {
