@@ -31,7 +31,16 @@ in {
       pkgs.nodePackages.prettier
 
       # Language servers
-      pkgs.rust-analyzer-nightly
+      # Pin rust-analyzer. See https://github.com/rust-lang/rust-analyzer/issues/12482
+      # pkgs.rust-analyzer-nightly
+      (
+        pkgs.fenix.toolchainOf {
+          channel = "nightly";
+          date = "2022-05-30";
+          sha256 = "sha256-N9V9NJ3BDUC81tIbYxAXQemrhR1l9jLd5t9L70NfcZo=";
+        }
+      )
+      .rust-analyzer-preview
       pkgs.sumneko-lua-language-server
       pkgs.nodePackages.pyright
       pkgs.rnix-lsp
