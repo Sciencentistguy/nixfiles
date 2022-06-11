@@ -9,8 +9,12 @@
   networking.firewall.enable = false;
   services.openssh.enable = true;
   services.mullvad-vpn.enable = true;
-  environment.systemPackages = with pkgs; [mullvad-vpn];
+  services.tailscale.enable = true;
 
+  environment.systemPackages = with pkgs; [mullvad-vpn tailscale];
+
+  networking.nameservers = ["100.100.100.100" "1.1.1.1" "8.8.8.8"];
+  networking.search = ["quigley.xyz.beta.tailscale.net"];
   networking.hosts = {
     "192.168.1.51" = ["atlas"];
   };
