@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      url = "github:DeterminateSystems/nixpkgs/bootspec-rfc";
     };
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
@@ -43,6 +43,10 @@
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
+    };
+    bootspec-secureboot = {
+      url = "github:DeterminateSystems/bootspec-secureboot/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils = {url = "github:numtide/flake-utils";};
   };
@@ -147,6 +151,7 @@
         modules = [
           ./chronos
           home-manager.nixosModules.home-manager
+          inputs.bootspec-secureboot.nixosModules.bootspec-secureboot
           (
             {
               pkgs,

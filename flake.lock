@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "bootspec-secureboot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1654020464,
+        "narHash": "sha256-t5FxD2rZk2QqmuDrvHpLAiZxGl5Rcjy4pUJtLCINntk=",
+        "owner": "DeterminateSystems",
+        "repo": "bootspec-secureboot",
+        "rev": "222da4e2deca447195a39dac06e09f4b174b3cbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DeterminateSystems",
+        "ref": "main",
+        "repo": "bootspec-secureboot",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -28,11 +49,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1654842375,
-        "narHash": "sha256-Mfx2Pz+ulZA6Vpa5HuOOpvDZf8sVUhfODNEEK0BsIq0=",
+        "lastModified": 1654928694,
+        "narHash": "sha256-EpPyaLBGN7uwAz02KI/YcQBP6fWbBDyGp3g7DKMFVg8=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "ccd2a0808b160e7236bcc0c89749ec5b44749703",
+        "rev": "592e9c0c0f1ee0906f7e17ea316acfbca3a3fc02",
         "type": "github"
       },
       "original": {
@@ -215,11 +236,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1654843232,
-        "narHash": "sha256-u7t5150uc3bHBttMrgVKogGGJ6Q+KMV7pHODpLMRJC8=",
+        "lastModified": 1654923859,
+        "narHash": "sha256-NZsVwayJgb9Wm9eFGjvNdkorOst1QrwHPKVUoAE5YiY=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "6eaf10502c99e96704daa07987f73658d6c4d68a",
+        "rev": "2b539d6fdf985d765ce03964be320c69d02b376c",
         "type": "github"
       },
       "original": {
@@ -238,11 +259,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654848955,
-        "narHash": "sha256-op14ngHHXvNiFZJ2elEcxOfa4S00iUXc2xDtGayBuQ0=",
+        "lastModified": 1654935302,
+        "narHash": "sha256-W0rkH015PycYh30FO8Hi/QDy5Sv6Z2uqr3XskOCnOGc=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "b57a05a4f762d08f13b38fe43145580188ee0b5f",
+        "rev": "3cc883597f9feb6f7d20b3a2115a653f003e43ce",
         "type": "github"
       },
       "original": {
@@ -253,16 +274,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1654845941,
-        "narHash": "sha256-uXulXu4BQ9ch1ItV0FlL2Ns8X83m6unT5h/0X//VRLQ=",
-        "owner": "NixOS",
+        "lastModified": 1654561320,
+        "narHash": "sha256-tyde8RbdQTRCfukxhaPDhqYAXS+kIFVpzK4QWPlQpJQ=",
+        "owner": "DeterminateSystems",
         "repo": "nixpkgs",
-        "rev": "7b3e907a6fef935794b5049c2c57c519853deb90",
+        "rev": "06171a5d51048143f37384413addc9178c205957",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "DeterminateSystems",
+        "ref": "bootspec-rfc",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -321,6 +342,7 @@
     },
     "root": {
       "inputs": {
+        "bootspec-secureboot": "bootspec-secureboot",
         "darwin": "darwin",
         "fenix": "fenix",
         "flake-compat": "flake-compat",
@@ -336,11 +358,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1654700117,
-        "narHash": "sha256-x3rF4IMwZUYnwF3JUnJvtIJmixrYkrl74K9EjhJMSr8=",
+        "lastModified": 1654904138,
+        "narHash": "sha256-wuwrD8cMD0PlArfkzBayJmVx3d7xOz6nyu0RFIjyhDI=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "79a4a464b07d626de17bd4b5f2382b5634644f7d",
+        "rev": "ba329913fa33c29d4ccabf46998d3a0cfac57b0c",
         "type": "github"
       },
       "original": {
