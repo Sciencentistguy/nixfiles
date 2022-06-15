@@ -13,6 +13,9 @@
 
   environment.systemPackages = with pkgs; [mullvad-vpn tailscale];
 
+  # Tailscale ran out of fds ??
+  systemd.services.tailscaled.serviceConfig.LimitNOFILE = "infinity";
+
   networking.nameservers = ["100.100.100.100" "1.1.1.1" "8.8.8.8"];
   networking.search = ["quigley.xyz.beta.tailscale.net"];
   networking.hosts = {
