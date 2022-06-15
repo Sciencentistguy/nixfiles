@@ -4,8 +4,7 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./hardware.nix
 
     ./audio.nix
     ./bootloader.nix
@@ -20,6 +19,7 @@
     ./steam.nix
     ./sudo.nix
     ./time.nix
+    ./xone.nix
   ];
 
   programs.zsh.enable = true;
