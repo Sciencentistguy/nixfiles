@@ -20,6 +20,22 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1655401343,
+        "narHash": "sha256-Yb1QiP+NcSqY4FC49jYv33ujEjHSAGnFT/ZyQk1ChU4=",
+        "owner": "Sciencentistguy",
+        "repo": "dotfiles",
+        "rev": "283848a41e5926769be410b61f4043950a3f35fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Sciencentistguy",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -322,6 +338,7 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
+        "dotfiles": "dotfiles",
         "fenix": "fenix",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
