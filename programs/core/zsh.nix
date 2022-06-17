@@ -3,6 +3,8 @@
   inputs,
   ...
 }: {
+  home.packages = with pkgs; [fzf];
+
   home.file.".zshrc".source = "${inputs.dotfiles}/zshrc";
   home.file.".zsh/functions.zsh".source = "${inputs.dotfiles}/functions.zsh";
   home.file.".zsh/aliases.zsh".source = "${inputs.dotfiles}/aliases.zsh";
