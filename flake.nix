@@ -39,6 +39,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-unfree.follows = "nixpkgs-unfree";
     };
+    polymc = {
+      url = "github:PolyMC/PolyMC";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Libraries
     fenix = {
@@ -69,8 +73,9 @@
     homeManagerStateVersion = "22.05";
     flakePkgs' = system:
       self.packages.${system}
-      // inputs.videoconverter.packages.${system}
-      // inputs.rust-nix-shell.packages.${system};
+      // inputs.polymc.packages.${system}
+      // inputs.rust-nix-shell.packages.${system}
+      // inputs.videoconverter.packages.${system};
   in
     {
       # Discordia
