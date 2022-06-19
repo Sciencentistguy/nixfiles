@@ -6,7 +6,7 @@
   home.packages = let
     # Make makeDesktopItem overrideable
     pkgs' = import "${inputs.nixpkgs}" {
-      system = pkgs.stdenv.system;
+      inherit (pkgs.stdenv) system;
       config.allowUnfree = true;
       overlays = [
         (
