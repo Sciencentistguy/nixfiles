@@ -16,8 +16,7 @@
   # Tailscale ran out of fds ??
   systemd.services.tailscaled.serviceConfig.LimitNOFILE = "infinity";
 
-  networking.nameservers = ["100.100.100.100" "1.1.1.1" "8.8.8.8"];
-  networking.search = ["quigley.xyz.beta.tailscale.net"];
+  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
   networking.hosts = {
     "192.168.1.51" = ["atlas"];
   };
