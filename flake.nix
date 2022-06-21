@@ -30,8 +30,8 @@
       url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
+    neovim = {
+      url = "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     videoconverter = {
@@ -65,7 +65,6 @@
     ...
   }: let
     nixpkgsConfig = {
-      inherit (self) overlays;
       config = {
         allowUnfree = true;
       };
@@ -73,6 +72,8 @@
     homeManagerStateVersion = "22.05";
     flakePkgs' = system:
       self.packages.${system}
+      // inputs.fenix.packages.${system}
+      // inputs.neovim.packages.${system}
       // inputs.polymc.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
       // inputs.videoconverter.packages.${system};
@@ -197,11 +198,6 @@
           )
         ];
       };
-
-      overlays = [
-        inputs.neovim-nightly-overlay.overlay
-        inputs.fenix.overlay
-      ];
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
