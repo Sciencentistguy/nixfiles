@@ -126,6 +126,7 @@
       # TODO: Put nixos on atlas
       homeConfigurations = {
         jamie = inputs.home-manager.lib.homeManagerConfiguration rec {
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
           system = "x86_64-linux";
           homeDirectory = "/home/jamie";
           username = "jamie";
