@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  systemName,
+  ...
+}: let
+  inherit (pkgs) lib;
+in {
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
     env = {TERM = "alacritty";};
@@ -22,13 +28,21 @@
       size = 14;
       scale_with_dpi = false;
     };
-    key_bindings = [
-      {
-        key = "Insert";
-        mods = "Shift";
-        action = "Paste";
-      }
-    ];
+    key_bindings =
+      [
+        {
+          key = "Insert";
+          mods = "Shift";
+          action = "Paste";
+        }
+      ]
+      ++ lib.optionals (systemName == "discordia") [
+        {
+          key = "N";
+          mods = "Command";
+          action = "CreateNewWindow";
+        }
+      ];
     colors = {
       primary = {
         background = "#000000";
