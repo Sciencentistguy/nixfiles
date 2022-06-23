@@ -74,9 +74,13 @@
       self.packages.${system}
       // inputs.fenix.packages.${system}
       // inputs.neovim.packages.${system}
-      // inputs.polymc.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
-      // inputs.videoconverter.packages.${system};
+      // inputs.videoconverter.packages.${system}
+      // (
+        if (system == "x86_64-linux")
+        then inputs.polymc.packages.${system}
+        else {}
+      );
   in
     {
       # Discordia
