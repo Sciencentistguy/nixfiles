@@ -113,7 +113,7 @@
             # };
             home-manager.useGlobalPkgs = true;
             home-manager.users.jamie = {
-              stateVersion = homeManagerStateVersion;
+              home.stateVersion = homeManagerStateVersion;
               imports = [
                 ./programs/core
                 ./programs/cli-tools
