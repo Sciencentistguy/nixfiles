@@ -81,13 +81,13 @@ in {
     # but alas https://github.com/NixOS/nixpkgs/issues/178438
     patchPhase = ''
       substituteInPlace neoformat.lua \
-       --replace "exe = \"shfmt\"" "exe = \"${pkgs.shfmt}\"" \
+       --replace "exe = \"shfmt\"" "exe = \"${pkgs.shfmt}/bin/shfmt\"" \
 
       substituteInPlace neoformat.lua \
-       --replace "exe = \"prettier\"" "exe = \"${pkgs.nodePackages.prettier}\""
+       --replace "exe = \"prettier\"" "exe = \"${pkgs.nodePackages.prettier}/bin/prettier\""
 
       substituteInPlace neoformat.lua \
-       --replace "exe = \"rustfmt\"" "exe = \"${pkgs.rustfmt}\"" \
+       --replace "exe = \"rustfmt\"" "exe = \"${pkgs.rustfmt}/bin/rustfmt\"" \
     '';
     installPhase = ''
       install -Dm644 neoformat.lua $out
