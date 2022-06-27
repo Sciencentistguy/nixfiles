@@ -4,7 +4,6 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    alacritty
   ];
 
   system.activationScripts.applications.text = let

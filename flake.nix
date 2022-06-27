@@ -118,8 +118,6 @@
                 ./programs/core
                 ./programs/cli-tools
                 ./programs/dev
-
-                ./programs/gui/alacritty.nix
               ];
             };
           })
