@@ -1,19 +1,52 @@
-{pkgs, ...}: {
-  # Shadow many macos-provided commands - they're mostly outdated or strange BSD flavoured copies.
+{pkgs, ...}: let
+  # lib.lowPrio isn't heavy enough - things still clash. This is.
+  superLowPrio = x: x.overrideAttrs (old: {meta = old.meta // {priority = 100;};});
+in {
   environment.systemPackages = with pkgs; [
-    coreutils
-    (darwin.shell_cmds.overrideAttrs (old: {meta = old.meta // {priority = 100;};}))
     (
+      # I don't really want to be dealing with anything from `/bin` if I can help it,
+      # but I also don't want to use bsd versions where a gnu-flavoured alternative
+      # is available in nixpkgs, hence the low priority.
+      superLowPrio darwin.shell_cmds
+    )
+
+    # macOS coretuils are BSD flavoured and outdated
+    pkgs.coreutils
+
+    (
+      # macOS ships a tcsh at `/bin/tcsh` and `/bin/csh`
       tcsh.overrideAttrs (old: {
         postInstall = ''
           ln $out/bin/tcsh $out/bin/csh
         '';
       })
     )
+
     dash
     ed
     ksh
     pax
     ps
+
+    (
+      # macOS places apple-clang stuff everywhere - not just the usual places where you find clang.
+      clang.overrideAttrs
+      (old: {
+        installPhase =
+          old.installPhase
+          + ''
+            ln -s $out/bin/c++ $out/bin/llvm-g++
+            ln -s $out/bin/cc $out/bin/llvm-gcc
+          '';
+      })
+    )
+
+    (
+      # GCC on macOS? its more likely than you think. See the comment on clang.
+      superLowPrio gcc
+    )
+
+    # macOS ships with python 3.8 :sob:
+    python3
   ];
 }
