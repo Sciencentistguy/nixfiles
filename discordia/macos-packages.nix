@@ -48,5 +48,21 @@ in {
 
     # macOS ships with python 3.8 :sob:
     python3
+
+    (
+      # `/usr/bin/objdump` etc
+      superLowPrio llvmPackages.bintools
+    )
+
+    bzip2
+    curl
+    diffutils
+    findutils
+    gawk
+    gnugrep
+    gnumake
+    gzip
+    xz
+
   ];
 }

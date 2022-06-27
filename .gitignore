@@ -1,5 +1,7 @@
 tags
 error.log
+bin
+usrbin
 
 result
 nvim/plugin
