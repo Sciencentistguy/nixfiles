@@ -63,6 +63,7 @@ in {
     gnumake
     gzip
     xz
+    perl
 
   ];
 }
