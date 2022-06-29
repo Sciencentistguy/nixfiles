@@ -50,7 +50,7 @@ in {
     python3
 
     (
-      # `/usr/bin/objdump` etc
+      # `/usr/bin/objdump` etc. Collides with clang, so superLowPrio.
       superLowPrio llvmPackages.bintools
     )
 
@@ -62,8 +62,10 @@ in {
     gnugrep
     gnumake
     gzip
-    xz
+    openjdk
     perl
+    ruby
+    xz
 
   ];
 }
