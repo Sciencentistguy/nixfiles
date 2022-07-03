@@ -115,9 +115,9 @@
             home-manager.users.jamie = {
               home.stateVersion = homeManagerStateVersion;
               imports = [
-                ./programs/core
-                ./programs/cli-tools
-                ./programs/dev
+                ./home/core
+                ./home/cli-tools
+                ./home/dev
               ];
             };
           })
@@ -143,9 +143,9 @@
           configuration = {
             nixpkgs = nixpkgsConfig;
             imports = [
-              ./programs/core
-              ./programs/cli-tools
-              ./programs/dev
+              ./home/core
+              ./home/cli-tools
+              ./home/dev
             ];
           };
         };
@@ -175,27 +175,27 @@
                 home.stateVersion = homeManagerStateVersion;
                 nixpkgs = nixpkgsConfig;
                 imports = [
-                  ./programs/core
-                  ./programs/cli-tools
-                  ./programs/dev
+                  ./home/core
+                  ./home/cli-tools
+                  ./home/dev
 
                   # gui
-                  ./programs/gui/alacritty.nix
-                  ./programs/gui/discord.nix
-                  ./programs/gui/dolhin-emu.nix
-                  ./programs/gui/drawio.nix
-                  ./programs/gui/firefox.nix
-                  ./programs/gui/gitkraken.nix
-                  ./programs/gui/polymc.nix
-                  ./programs/gui/slack.nix
-                  ./programs/gui/soulseek.nix
-                  ./programs/gui/spotify.nix
-                  ./programs/gui/vscode.nix
+                  ./home/gui/alacritty.nix
+                  ./home/gui/discord.nix
+                  ./home/gui/dolhin-emu.nix
+                  ./home/gui/drawio.nix
+                  ./home/gui/firefox.nix
+                  ./home/gui/gitkraken.nix
+                  ./home/gui/polymc.nix
+                  ./home/gui/slack.nix
+                  ./home/gui/soulseek.nix
+                  ./home/gui/spotify.nix
+                  ./home/gui/vscode.nix
 
                   # other
-                  ./programs/beets.nix
-                  ./programs/mpd.nix
-                  ./programs/weechat.nix
+                  ./home/beets.nix
+                  ./home/mpd.nix
+                  ./home/weechat.nix
                 ];
               };
             }
