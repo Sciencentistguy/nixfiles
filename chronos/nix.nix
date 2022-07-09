@@ -12,7 +12,7 @@
     experimental-features = flakes nix-command
   '';
 
-  nix.trustedUsers = [
+  nix.settings.trusted-users = [
     "jamie"
   ];
 
