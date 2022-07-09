@@ -5,5 +5,5 @@
   programs.tmux.extraConfig = ''
     set -g mouse on
   '';
-  programs.tmux.historyLimit = 100000;
+  programs.tmux.historyLimit = 1000000;
 }
