@@ -3,9 +3,15 @@
   services.mpd.dataDir = "/hdd/Music/mpd";
   services.mpd.musicDirectory = "/binds/music-library";
   services.mpd.extraConfig = ''
-      audio_output {
+    audio_output {
       type "pipewire"
-      name "My PipeWire Output"
+      name "pipewire"
+    }
+    audio_output {
+      type   "fifo"
+      name   "FIFO"
+      path   "/tmp/mpd.fifo"
+      format "44100:16:2"
     }
   '';
 
@@ -13,6 +19,9 @@
   services.mpdris2.multimediaKeys = true;
 
   programs.ncmpcpp.enable = true;
+  programs.ncmpcpp.package = pkgs.ncmpcpp.override {
+    visualizerSupport = true;
+  };
   programs.ncmpcpp.settings = {
     visualizer_fps = 144;
     user_interface = "alternative";
