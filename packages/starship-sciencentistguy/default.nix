@@ -13,14 +13,14 @@
   Cocoa,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "starship";
-  version = "1.8.0-scincentistguy";
+  pname = "starship-sciencentistguy";
+  version = "1.9.1";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
-    repo = pname;
-    rev = "873885b199c36e71a39f8488158ee92a6f93d1c2";
-    sha256 = "sha256-e7Vw3GpvR3EHotnbHWC6kbVgmyGV4POlCl9dMXrauu4=";
+    repo = "starship";
+    rev = "3d8208cb13f077110a8d3617fc24e967dab41b6b";
+    sha256 = "sha256-ibmNVxf37UB9fb2ymT/mglDnNCAwpSZlKp4CVICW1TM=";
   };
 
   nativeBuildInputs = [installShellFiles pkg-config];
@@ -41,7 +41,7 @@ rustPlatform.buildRustPackage rec {
     then ["battery"]
     else ["default"];
 
-  cargoSha256 = "sha256-KWRpu1AIlHMSzH4m6KaGXZlKYrd5RQKCe4c+PrgoihA=";
+  cargoSha256 = "sha256-8gmfwvkh6pC3538XXCz+Dvlm3N7MJ4cfyA6oLQL6hvQ=";
 
   preCheck = ''
     HOME=$TMPDIR

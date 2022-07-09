@@ -20,9 +20,9 @@ in {
       success_symbol = "[<I>](bold fg:246) [➜](bold #98C379)";
       cancel_symbol = "[<I>](bold fg:246) [➜](bold #EFC07B)";
       error_symbol = "[<I>](bold fg:246) [➜](bold #E06C75)";
-      vicmd_success_symbol = "[<N>](bold fg:246) [➜](bold #98C379)";
-      vicmd_cancel_symbol = "[<N>](bold fg:246) [➜](bold #EFC07B)";
-      vicmd_error_symbol = "[<N>](bold fg:246) [➜](bold #E06C75)";
+      vimcmd_success_symbol = "[<N>](bold fg:246) [➜](bold #98C379)";
+      vimcmd_cancel_symbol = "[<N>](bold fg:246) [➜](bold #EFC07B)";
+      vimcmd_error_symbol = "[<N>](bold fg:246) [➜](bold #E06C75)";
     };
     cmd_duration = {
       min_time = 5000;
