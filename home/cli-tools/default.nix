@@ -8,6 +8,7 @@
     ./fd.nix
     ./ffmpeg.nix
     ./file.nix
+    ./gping.nix
     ./jq.nix
     ./killall.nix
     ./mpv.nix
