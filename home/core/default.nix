@@ -10,7 +10,7 @@
       ./coreutils.nix
       ./git.nix
       ./home-manager.nix
-      ./neovim.nix
+      ./neovim
       ./nix.nix
       ./openssh.nix
       ./starship.nix

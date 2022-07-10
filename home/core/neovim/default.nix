@@ -6,56 +6,18 @@
   lib,
   ...
 }: let
-  # build neovim nightly rather than the most recent release in nixpkgs
-  # also link vi and vim to nvim
-  neovim' = flakePkgs.neovim.overrideAttrs (old: {
+  # Link vi and vim to nvim
+  neovim-unwrapped = flakePkgs.neovim.overrideAttrs (_: {
     postInstall = ''
       ln -s $out/bin/nvim $out/bin/vim
       ln -s $out/bin/nvim $out/bin/vi
     '';
   });
 
-  # Nvim needs things from path; don't install them globally just because of that.
-  neovim = pkgs.symlinkJoin {
-    name = "neovim";
-    paths = [neovim'];
-    buildInputs = [pkgs.makeWrapper];
-    postBuild = let
-      python = pkgs.python3.withPackages (pp: with pp; [pynvim black]);
-    in ''
-      wrapProgram $out/bin/nvim\
-        --prefix PATH : ${lib.makeBinPath (with pkgs;
-        [
-          curl
-          fd
-          fzf
-          git
-          nodejs
-          perl
-          python
-          ripgrep
-          stdenv.cc
-          tree-sitter
-          zathura
-
-          # Linters
-          shellcheck
-
-          # Formatters
-          stylua
-          alejandra
-          nodePackages.prettier
-
-          # Language servers
-          flakePkgs.rust-analyzer
-          sumneko-lua-language-server
-          nodePackages.pyright
-          rnix-lsp
-        ]
-        ++ lib.optionals (!isDarwin) [
-          pkgs.xclip
-        ])}
-    '';
+  # Nvim needs a lot of things in $PATH; don't install them globally just because of that.
+  neovim = pkgs.callPackage ./neovim.nix {
+    inherit (flakePkgs) rust-analyzer;
+    inherit neovim-unwrapped;
   };
 in {
   home.packages = [neovim];
