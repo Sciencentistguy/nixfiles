@@ -33,9 +33,20 @@ in {
   home.file.".config/nvim/lua/user/plugins.lua".source = "${inputs.dotfiles}/nvim/lua/user/plugins.lua";
   home.file.".config/nvim/lua/user/statusbar.lua".source = "${inputs.dotfiles}/nvim/lua/user/statusbar.lua";
   home.file.".config/nvim/lua/user/vim-opts.lua".source = "${inputs.dotfiles}/nvim/lua/user/vim-opts.lua";
-  home.file.".config/nvim/lua/user/vimtex.lua".source = "${inputs.dotfiles}/nvim/lua/user/vimtex.lua";
 
-  home.file.".config/nvim/lua/user/neoformat.lua".source = pkgs.stdenv.mkDerivation {
+  home.file.".config/nvim/lua/user/vimtex.lua".source = pkgs.stdenvNoCC.mkDerivation {
+    name = "vimtex.lua";
+    src = "${inputs.dotfiles}/nvim/lua/user";
+    patchPhase = ''
+      substituteInPlace vimtex.lua \
+       --replace "zathura" "${pkgs.zathura}" \
+    '';
+    installPhase = ''
+      install -Dm644 vimtex.lua $out
+    '';
+  };
+
+  home.file.".config/nvim/lua/user/neoformat.lua".source = pkgs.stdenvNoCC.mkDerivation {
     name = "neoformat.lua";
     src = "${inputs.dotfiles}/nvim/lua/user";
     dontBuild = true;
