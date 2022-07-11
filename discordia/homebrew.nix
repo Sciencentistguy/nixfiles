@@ -32,6 +32,7 @@
     "ghidra"
     "gimp"
     "gitkraken"
+    "google-chrome"
     "google-drive"
     "intellij-idea-ce"
     "iterm2"
