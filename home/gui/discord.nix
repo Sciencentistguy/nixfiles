@@ -27,13 +27,16 @@
       "--enable-zero-copy"
       "--no-sandbox"
     ];
-  in [
-    (pkgs'.discord.overrideAttrs (oldAttrs: rec {
+    discord = pkgs'.discord.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
         exec = "${pkgs'.discord}/bin/Discord " + lib.concatStringsSep " " discord-flags;
       };
       installPhase = builtins.replaceStrings ["${oldAttrs.desktopItem}"] ["${desktopItem}"] oldAttrs.installPhase;
-    }))
+    });
+  in [
+    (discord.override {
+      nss = pkgs'.nss_latest;
+    })
   ];
 
   home.file.".config/discord/settings.json" = {
