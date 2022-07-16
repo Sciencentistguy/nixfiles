@@ -1,9 +1,10 @@
 {
   pkgs,
   inputs,
+  flakePkgs,
   ...
 }: {
-  home.packages = with pkgs; [fzf];
+  home.packages = with flakePkgs; [search-edit];
 
   home.file.".zshrc".source = "${inputs.dotfiles}/zshrc";
   home.file.".zsh/functions.zsh".source = "${inputs.dotfiles}/functions.zsh";
