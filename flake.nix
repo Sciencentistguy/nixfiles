@@ -187,7 +187,7 @@
                   ./home/dev
 
                   # gui
-                  ./home/gui/alacritty.nix
+                  ./home/gui/alacritty
                   ./home/gui/discord
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/drawio.nix

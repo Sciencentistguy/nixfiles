@@ -6,6 +6,13 @@
   inherit (pkgs) lib;
 in {
   programs.alacritty.enable = true;
+  programs.alacritty.package = pkgs.alacritty.overrideAttrs (old: {
+    patches =
+      (old.patches or [])
+      ++ [
+        ./stfu-alacritty.patch
+      ];
+  });
   programs.alacritty.settings = {
     env = {TERM = "alacritty";};
     window = {

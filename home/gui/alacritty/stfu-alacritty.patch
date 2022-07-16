@@ -1,0 +1,15 @@
+diff --git a/alacritty/src/event.rs b/alacritty/src/event.rs
+index b4248dc7..5800b166 100644
+--- a/alacritty/src/event.rs
++++ b/alacritty/src/event.rs
+@@ -1109,8 +1109,7 @@ impl input::Processor<EventProxy, ActionContext<'_, Notifier, EventProxy>> {
+                     TerminalEvent::Bell => {
+                         // Set window urgency.
+                         if self.ctx.terminal.mode().contains(TermMode::URGENCY_HINTS) {
+-                            let focused = self.ctx.terminal.is_focused;
+-                            self.ctx.window().set_urgent(!focused);
++                            // Actually no don't
+                         }
+ 
+                         // Ring visual bell.
+
