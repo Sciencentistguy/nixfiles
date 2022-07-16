@@ -30,7 +30,7 @@ writeTextFile rec {
   '';
 
   meta = with lib; {
-    description = "A bash script to extract many kinds of archive";
+    description = "Interactively open a file for editing.";
     license = licenses.mpl20;
   };
 }
