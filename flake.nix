@@ -68,6 +68,13 @@
       config = {
         allowUnfree = true;
       };
+      overlays = [
+        (
+          final: orig: {
+            makeDesktopItem = orig.lib.makeOverridable orig.makeDesktopItem;
+          }
+        )
+      ];
     };
     homeManagerStateVersion = "22.05";
     flakePkgs' = system:
@@ -181,7 +188,7 @@
 
                   # gui
                   ./home/gui/alacritty.nix
-                  ./home/gui/discord.nix
+                  ./home/gui/discord
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/drawio.nix
                   ./home/gui/firefox.nix
