@@ -16,6 +16,9 @@ alacritty.overrideAttrs (old: rec {
     inherit src;
     outputHash = "sha256-Lw2X59nBIk7Y+OrDINOT9bXQNqouYlX64xseNzzfO6g=";
   });
+
+  postInstall = builtins.replaceStrings ["io.alacritty"] ["org.alacritty"] old.postInstall;
+
   patches =
     (old.patches or [])
     ++ [
