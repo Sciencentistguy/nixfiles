@@ -235,7 +235,7 @@
       pkgsUnfree = inputs.nixpkgs-unfree.legacyPackages.${system};
     in {
       packages = {
-        shark-radar = pkgs.callPackage ./packages/shark-radar {};
+        shark-radar = pkgsUnfree.callPackage ./packages/shark-radar {};
         beets-file-info = pkgs.callPackage ./packages/beets-file-info {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
@@ -244,7 +244,7 @@
         sherlock = pkgs.callPackage ./packages/sherlock {};
         otf-apple = pkgsUnfree.callPackage ./packages/otf-apple {};
         ttf-ms-win11 = pkgsUnfree.callPackage ./packages/ttf-ms-win11 {};
-        search-edit = pkgsUnfree.callPackage ./packages/search-edit {};
+        search-edit = pkgs.callPackage ./packages/search-edit {};
       };
     }));
 }

@@ -3,6 +3,7 @@
   python3Packages,
   fetchgit,
   dos2unix,
+  lib,
 }:
 stdenv.mkDerivation rec {
   name = "shark-radar";
@@ -38,4 +39,6 @@ stdenv.mkDerivation rec {
     colorama
     requests
   ];
+
+  meta.license = with lib.licenses; unfree;
 }
