@@ -74,6 +74,22 @@
             makeDesktopItem = orig.lib.makeOverridable orig.makeDesktopItem;
           }
         )
+        (
+          final: orig: {
+            # See https://github.com/LnL7/nix-darwin/issues/477
+            nix =
+              if final.stdenv.isDarwin
+              then
+                orig.nix.overrideAttrs (old: {
+                  patches =
+                    (old.patches or [])
+                    ++ [
+                      ./patches/hush-nix-darwin.patch
+                    ];
+                })
+              else orig.nix;
+          }
+        )
       ];
     };
     homeManagerStateVersion = "22.05";
