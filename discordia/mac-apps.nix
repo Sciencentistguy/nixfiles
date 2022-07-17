@@ -4,6 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    (callPackage ../home/gui/alacritty/alacritty.nix {})
   ];
 
   system.activationScripts.applications.text = let

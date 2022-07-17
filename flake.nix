@@ -125,6 +125,8 @@
                 ./home/core
                 ./home/cli-tools
                 ./home/dev
+
+                ./home/gui/alacritty
               ];
             };
           })

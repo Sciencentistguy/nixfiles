@@ -6,13 +6,7 @@
   inherit (pkgs) lib;
 in {
   programs.alacritty.enable = true;
-  programs.alacritty.package = pkgs.alacritty.overrideAttrs (old: {
-    patches =
-      (old.patches or [])
-      ++ [
-        ./stfu-alacritty.patch
-      ];
-  });
+  programs.alacritty.package = pkgs.callPackage ./alacritty.nix {};
   programs.alacritty.settings = {
     env = {TERM = "alacritty";};
     window = {
@@ -30,9 +24,15 @@ in {
     };
     font = {
       normal = {
-        family = "Iosevka Term";
+        family =
+          if systemName == "discordia"
+          then "Iosevka Nerd Font"
+          else "Iosevka Term";
       };
-      size = 14;
+      size =
+        if systemName == "discordia"
+        then 15
+        else 14;
       scale_with_dpi = false;
     };
     key_bindings =
