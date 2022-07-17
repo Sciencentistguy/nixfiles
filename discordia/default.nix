@@ -18,10 +18,12 @@
     zsh
   ];
 
+
   environment.systemPackages = with pkgs; [
     vim
   ];
 
+  programs.bash.enable = true;
   programs.zsh.enable = true; # default shell on catalina
 
   users.users.root = {

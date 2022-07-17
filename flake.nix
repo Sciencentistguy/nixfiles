@@ -114,10 +114,6 @@
           }: {
             # `home-manager` config
             home-manager.extraSpecialArgs = specialArgs;
-            # {
-            # isDarwin = true;
-            # system = "discordia";
-            # };
             home-manager.useGlobalPkgs = true;
             home-manager.users.jamie = {
               home.stateVersion = homeManagerStateVersion;
@@ -127,6 +123,12 @@
                 ./home/dev
 
                 ./home/gui/alacritty
+              ];
+            };
+            home-manager.users.root = {
+              home.stateVersion = homeManagerStateVersion;
+              imports = [
+                ./discordia/root
               ];
             };
           })
