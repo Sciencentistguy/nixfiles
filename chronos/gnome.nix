@@ -48,6 +48,7 @@
 
     gnomeExtensions.impatience
     gnomeExtensions.hide-top-bar
+    gnomeExtensions.custom-hot-corners-extended
     (with pkgs;
       stdenv.mkDerivation {
         pname = "gnome-shell-extension-clear-top-bar-unstable";
