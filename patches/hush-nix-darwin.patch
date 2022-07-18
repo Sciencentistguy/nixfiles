@@ -7,7 +7,7 @@ index 28df30fef..7c1b8c597 100644
                  }
              } else if (st.st_uid != geteuid()) {
 -                warn("$HOME ('%s') is not owned by you, falling back to the one defined in the 'passwd' file", *homeDir);
-+                warn("$HOME ('%s') is not owned by you, falling back to the one defined in the 'passwd' file. home owend by uid %d, you are uid %d", *homeDir, st.st_uid, geteuid());
++                // warn("$HOME ('%s') is not owned by you, falling back to the one defined in the 'passwd' file", *homeDir);
                  homeDir.reset();
              }
          }
