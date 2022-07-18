@@ -1,13 +1,18 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   programs.bash.enable = true;
-  programs.bash.initExtra = lib.concatStringsSep "\n" [
-    (builtins.readFile ./ps1.bash)
-  ];
-  # programs.bash.sessionVariables = {
-  # "PS1" = "\\[33[1;32m\\][nix-shell:\\w]\\$\\[\\033[0m\\]";
-  # };
+  programs.bash.initExtra = let
+    # Wow this is cursed. It is not possible to access the contents nixos modules from darwin in a
+    # nice way. This works (for now).
+    nixos-bash-module = import "${inputs.nixpkgs}/nixos/modules/programs/bash/bash.nix" {
+      config = {};
+      inherit pkgs lib;
+    };
+    promptInit = nixos-bash-module.options.programs.bash.promptInit.default;
+  in
+    promptInit;
 }
