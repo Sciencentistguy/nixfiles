@@ -74,6 +74,8 @@
             makeDesktopItem = orig.lib.makeOverridable orig.makeDesktopItem;
           }
         )
+        # Afaict it is not possible to overlay specifically the nixpkgs of self.inputs.nix-darwin.
+        # Global overlay it is :sigh:
         (
           final: orig: {
             # See https://github.com/LnL7/nix-darwin/issues/477

@@ -15,6 +15,7 @@
   rnix-lsp,
   rust-analyzer, # flake
   shellcheck,
+  shfmt,
   stdenv,
   stylua,
   sumneko-lua-language-server,
@@ -50,6 +51,7 @@ symlinkJoin {
         stylua
         alejandra
         nodePackages.prettier
+        shfmt
 
         # Language servers
         rust-analyzer
