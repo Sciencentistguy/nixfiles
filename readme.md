@@ -18,6 +18,7 @@ This flake also outputs some packages that I use in my systems:
 - `otf-apple`: Apple OTF fonts.
 - `ttf-ms-win11`: Microsoft TTF fonts.
 - `search-edit`: Interactively open a file for editing.
+- `apple-cursor-theme` (https://github.com/ful1e5/apple_cursor): macOS cursors.
 
 ---
 

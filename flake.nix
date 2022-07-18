@@ -245,6 +245,7 @@
         otf-apple = pkgsUnfree.callPackage ./packages/otf-apple {};
         ttf-ms-win11 = pkgsUnfree.callPackage ./packages/ttf-ms-win11 {};
         search-edit = pkgs.callPackage ./packages/search-edit {};
+        apple-cursor-theme = pkgs.callPackage ./packages/apple-cursor-theme {};
       };
     }));
 }

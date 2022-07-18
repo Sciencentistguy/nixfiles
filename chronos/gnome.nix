@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  flakePkgs,
+  ...
+}: {
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -21,48 +25,19 @@
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  environment.systemPackages = with pkgs; let
-    macos-cursor-theme = pkgs.stdenv.mkDerivation {
-      pname = "apple_cursor";
-      version = "1.2.3";
-      src = fetchTarball {
-        url = "https://github.com/ful1e5/apple_cursor/releases/download/v1.2.3/macOSMonterey.tar.gz";
-        sha256 = "081p1xaymc68yp8b84mnf6skbplsyxkr013wv7zfbba7rnvqpp7n";
-      };
-
-      dontConfigure = true;
-      dontBuild = true;
-      installPhase = ''
-        mkdir -p $out/share/icons/macOSMonterey
-        cp -a * $out/share/icons/macOSMonterey
-      '';
-    };
-  in [
+  environment.systemPackages = with pkgs; [
+    flameshot
     gnome.gnome-tweaks
+
     materia-theme
     materia-kde-theme
     paper-icon-theme
     paper-gtk-theme
-    macos-cursor-theme
-    flameshot
+    flakePkgs.apple-cursor-theme
 
     gnomeExtensions.impatience
     gnomeExtensions.hide-top-bar
     gnomeExtensions.custom-hot-corners-extended
-    (with pkgs;
-      stdenv.mkDerivation {
-        pname = "gnome-shell-extension-clear-top-bar-unstable";
-        version = "2022-04-16";
-        src = fetchFromGitHub {
-          owner = "superterran";
-          repo = "gnome-shell-extension-clear-top-bar";
-          rev = "54cd98047980b0ddc70121b25094d153adc9acd8";
-          sha256 = "sha256-rggFQiyag2PbaiXa48TUFhlbknKLICWxJuKFXJdbUPk=";
-        };
-        installPhase = ''
-          mkdir -p $out/share/gnome-shell/extensions
-          cp -a src $out/share/gnome-shell/extensions/clear-top-bar@superterran.net
-        '';
-      })
+    gnomeExtensions.clear-top-bar
   ];
 }
