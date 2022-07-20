@@ -6,7 +6,7 @@
 }:
 writeTextFile rec {
   name = "search-edit";
-  executable = "true";
+  executable = true;
   destination = "/bin/${name}";
 
   text = ''
@@ -16,7 +16,7 @@ writeTextFile rec {
 
     case $? in
       0)
-        >&2 echo "Editing ''${filename}..."
+        >&2 echo "vim ''${filename}"
         vim $filename
         ;;
       1)
