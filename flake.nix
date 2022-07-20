@@ -242,7 +242,7 @@
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
-        ex = pkgsUnfree.callPackage ./packages/ex {};
+        extract = pkgsUnfree.callPackage ./packages/extract {};
         sherlock = pkgs.callPackage ./packages/sherlock {};
         otf-apple = pkgsUnfree.callPackage ./packages/otf-apple {};
         ttf-ms-win11 = pkgsUnfree.callPackage ./packages/ttf-ms-win11 {};

@@ -9,10 +9,10 @@
   unzip,
   writeTextFile,
 }:
-writeTextFile {
-  name = "ex-script";
+writeTextFile rec {
+  name = "extract";
   executable = true;
-  destination = "/bin/ex";
+  destination = "/bin/${name}";
   text = ''
     #!${bash}/bin/bash
 

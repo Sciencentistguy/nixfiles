@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    flakePkgs.ex
+    flakePkgs.extract
 
     bzip2
     gzip
