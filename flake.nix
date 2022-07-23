@@ -153,34 +153,41 @@
         ];
       };
 
-      # Atlas
-      # TODO: Put nixos on atlas
-      homeConfigurations = {
-        jamie = inputs.home-manager.lib.homeManagerConfiguration rec {
-          pkgs = inputs.nixpkgs.legacyPackages.${system};
-          system = "x86_64-linux";
-          homeDirectory = "/home/jamie";
-          username = "jamie";
-          stateVersion = homeManagerStateVersion;
-          extraSpecialArgs = {
-            systemName = "chronos";
-            isDarwin = false;
-            inherit nixpkgsConfig;
-            inherit inputs;
-            flakePkgs = flakePkgs' system;
-          };
-          configuration = {
-            nixpkgs = nixpkgsConfig;
-            imports = [
-              ./home/core
-              ./home/cli-tools
-              ./home/dev
-            ];
-          };
+      # Atlas - Server
+      nixosConfigurations.atlas = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          systemName = "atlas";
+          isDarwin = false;
+          inherit nixpkgsConfig;
+          inherit inputs;
+          flakePkgs = flakePkgs' system;
         };
+        modules = [
+          ./atlas
+          home-manager.nixosModules.home-manager
+          (
+            {
+              pkgs,
+              home-manager,
+              ...
+            }: {
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.users.jamie = {
+                home.stateVersion = homeManagerStateVersion;
+                nixpkgs = nixpkgsConfig;
+                imports = [
+                  ./home/core
+                  ./home/cli-tools
+                  ./home/dev
+                ];
+              };
+            }
+          )
+        ];
       };
 
-      # Chronos
+      # Chronos - Primary desktop
       nixosConfigurations.chronos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
