@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./hardware.nix
+    ./services
 
     ./bootloader.nix
     ./filesystems.nix
@@ -20,7 +21,11 @@
 
   users.users.jamie = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [
+      "wheel"
+      # Yes I know this is a big no-no, but I also have passwordless sudo, so ¯\_(ツ)_/¯
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
