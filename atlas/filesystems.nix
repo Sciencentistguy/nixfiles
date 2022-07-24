@@ -5,4 +5,29 @@
       fsType = "btrfs";
     };
   };
+
+  #Virtual fielsystems
+  fileSystems = {
+    "/music" = {
+      device = "/nas/plex/Music";
+      options = [
+        "bind"
+        "ro"
+      ];
+    };
+    "/tv" = {
+      device = "/nas/plex/TV";
+      options = [
+        "bind"
+        "ro"
+      ];
+    };
+    "/movies" = {
+      device = "/nas/plex/Films";
+      options = [
+        "bind"
+        "ro"
+      ];
+    };
+  };
 }
