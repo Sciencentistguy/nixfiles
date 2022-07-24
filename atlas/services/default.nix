@@ -1,7 +1,9 @@
 {pkgs, ...}: {
   imports = [
-    ./plex.nix
-    ./telegraf.nix
+    ./bonkbot.nix
     ./docker.nix
+    ./plex.nix
+    ./susbot.nix
+    ./telegraf.nix
   ];
 }

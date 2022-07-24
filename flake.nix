@@ -26,12 +26,20 @@
     };
 
     # Packages
+    bonkbot = {
+      url = "github:Sciencentistguy/bonkbot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-nix-shell = {
       url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
       url = "github:neovim/neovim?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    susbot = {
+      url = "github:Sciencentistguy/susbot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     videoconverter = {
@@ -97,9 +105,11 @@
     homeManagerStateVersion = "22.05";
     flakePkgs' = system:
       self.packages.${system}
+      // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
       // inputs.neovim.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
+      // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}
       // (
         if (system == "x86_64-linux")
