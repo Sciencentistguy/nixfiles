@@ -27,4 +27,6 @@
       ];
     };
   };
+
+  boot.tmpOnTmpfs = true;
 }

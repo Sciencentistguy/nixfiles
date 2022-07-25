@@ -30,4 +30,6 @@
       ];
     };
   };
+
+  boot.tmpOnTmpfs = true;
 }
