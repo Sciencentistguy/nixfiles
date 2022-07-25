@@ -52,8 +52,4 @@
     "visual-studio-code"
     "vlc"
   ];
-
-  homebrew.brews = [
-    "llvm@13"
-  ];
 }

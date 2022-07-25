@@ -1,3 +1,5 @@
+### macOS ships a bunch of outdated (or just otherwise *weird*) packages in /bin and /usr/bin
+### Theoretically, I'd want to replace all of those with nix packages in environment.systemPackages
 {pkgs, ...}: let
   # lib.lowPrio isn't heavy enough - things still clash. This is.
   superLowPrio = x: x.overrideAttrs (old: {meta = old.meta // {priority = 100;};});
@@ -66,6 +68,5 @@ in {
     perl
     ruby
     xz
-
   ];
 }
