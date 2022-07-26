@@ -26,6 +26,10 @@
     };
 
     # Packages
+    beets-file-info = {
+      url = "github:Sciencentistguy/beets-file-info";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     bonkbot = {
       url = "github:Sciencentistguy/bonkbot";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -105,6 +109,7 @@
     homeManagerStateVersion = "22.05";
     flakePkgs' = system:
       self.packages.${system}
+      // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
       // inputs.neovim.packages.${system}
@@ -255,7 +260,6 @@
     in {
       packages = {
         shark-radar = pkgsUnfree.callPackage ./packages/shark-radar {};
-        beets-file-info = pkgs.callPackage ./packages/beets-file-info {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };

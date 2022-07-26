@@ -11,7 +11,6 @@ Currently, this flake describes:
 This flake also outputs some packages that I use in my systems:
 
 - `starship-sciencenitstguy` (https://github.com/Sciencentistguy/starship): A fork of [Starship](https://starship.rs/)
-- `beets-file-info` (https://github.com/Sciencentistguy/beets-file-info): A beets plugin to display audio information.
 - `shark-radar` (https://git.lavender.software/charlotte/shark-radar): A scraper for blåhaj stock in UK IKEAs.
 - `extract`: A bash script to extract many kinds of archive.
 - `sherlock` (https://github.com/sherlock-project/sherlock): A program to hunt down social media accounts by username across social networks.
