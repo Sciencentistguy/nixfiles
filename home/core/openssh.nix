@@ -16,7 +16,7 @@ in {
   home.packages = [open-sus-sh];
 
   programs.ssh.enable = true;
-  programs.ssh.compression = true;
+  programs.ssh.compression = false;
 
   programs.ssh.matchBlocks."github.com".identityFile = "~/.ssh/github";
   programs.ssh.matchBlocks."*.github.com".identityFile = "~/.ssh/github";
