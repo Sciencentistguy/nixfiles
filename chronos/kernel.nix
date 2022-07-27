@@ -1,0 +1,3 @@
+{pkgs, ...}: {
+  boot.kernelModules = ["sg"];
+}

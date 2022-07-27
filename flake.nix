@@ -237,6 +237,7 @@
                   ./home/gui/drawio.nix
                   ./home/gui/firefox.nix
                   ./home/gui/gitkraken.nix
+                  ./home/gui/makemkv.nix
                   ./home/gui/polymc.nix
                   ./home/gui/slack.nix
                   ./home/gui/soulseek.nix
