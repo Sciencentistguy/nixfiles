@@ -12,7 +12,7 @@
     ./jq.nix
     ./killall.nix
     ./mpv.nix
-    ./neofetch.nix
+    ./hyfetch.nix
     ./procs.nix
     ./ripgrep.nix
     ./rsync.nix
