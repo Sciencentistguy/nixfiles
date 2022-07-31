@@ -23,5 +23,6 @@ alacritty.overrideAttrs (old: rec {
     (old.patches or [])
     ++ [
       ./stfu-alacritty.patch
+      ./create-new-window-cwd.patch
     ];
 })

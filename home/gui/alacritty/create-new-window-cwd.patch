@@ -1,0 +1,25 @@
+diff --git a/alacritty/src/event.rs b/alacritty/src/event.rs
+index aea6010d..8c479e65 100644
+--- a/alacritty/src/event.rs
++++ b/alacritty/src/event.rs
+@@ -39,7 +39,6 @@ use crate::clipboard::Clipboard;
+ use crate::config::ui_config::{HintAction, HintInternalAction};
+ use crate::config::{self, UiConfig};
+ #[cfg(not(windows))]
+-use crate::daemon::foreground_process_path;
+ use crate::daemon::spawn_daemon;
+ use crate::display::hint::HintMatch;
+ use crate::display::window::Window;
+@@ -380,10 +379,7 @@ impl<'a, N: Notify + 'a, T: EventListener> input::ActionContext<T> for ActionCon
+ 
+     #[cfg(not(windows))]
+     fn create_new_window(&mut self) {
+-        let mut options = WindowOptions::default();
+-        if let Ok(working_directory) = foreground_process_path(self.master_fd, self.shell_pid) {
+-            options.terminal_options.working_directory = Some(working_directory);
+-        }
++        let options = WindowOptions::default();
+ 
+         let _ = self.event_proxy.send_event(Event::new(EventType::CreateWindow(options), None));
+     }
+
