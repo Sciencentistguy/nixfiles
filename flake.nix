@@ -81,11 +81,6 @@
         allowUnfree = true;
       };
       overlays = [
-        (
-          final: orig: {
-            makeDesktopItem = orig.lib.makeOverridable orig.makeDesktopItem;
-          }
-        )
         # Afaict it is not possible to overlay specifically the nixpkgs of self.inputs.nix-darwin.
         # Global overlay it is :sigh:
         (
