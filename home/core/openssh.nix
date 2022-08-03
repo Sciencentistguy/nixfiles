@@ -20,6 +20,7 @@ in {
 
   programs.ssh.matchBlocks."github.com".identityFile = "~/.ssh/github";
   programs.ssh.matchBlocks."*.github.com".identityFile = "~/.ssh/github";
+  programs.ssh.matchBlocks."git.quigley.xyz".identityFile = "~/.ssh/github";
   programs.ssh.matchBlocks."gitlab.com".identityFile = "~/.ssh/github";
   programs.ssh.matchBlocks."*.gitlab.com".identityFile = "~/.ssh/github";
   programs.ssh.matchBlocks."seedbox".identityFile = "~/.ssh/seedbox";
