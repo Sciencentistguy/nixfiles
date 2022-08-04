@@ -31,7 +31,6 @@ in {
       "missing"
       "scrub"
     ];
-    # acoustid.apikey = builtins.readfile config.age.secrets.secret1.path;
     fetchart.minwidth = 1000;
     import.timid = true;
   };
