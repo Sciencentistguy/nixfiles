@@ -288,11 +288,11 @@
     },
     "flake-utils_7": {
       "locked": {
-        "lastModified": 1653893745,
-        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "lastModified": 1656928814,
+        "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "rev": "7e2a3b3dfd9af950a856d66b0a7d01e3c18aa249",
         "type": "github"
       },
       "original": {
@@ -523,11 +523,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659227079,
-        "narHash": "sha256-ibFrrgwUhPrQFEOfPK5K68el37ptZqSjgN7Ojs+qKvk=",
+        "lastModified": 1659620006,
+        "narHash": "sha256-VT4htKdam88Qmi43hA3vrfxZKriopfR0CVNIVbZHoOI=",
         "owner": "Sciencentistguy",
         "repo": "videoconverter",
-        "rev": "383b859467de777f9ff064cb9d4c8d8a5971a78b",
+        "rev": "ac694874df829c343f33818c5aa1f0cecc1ebf8f",
         "type": "github"
       },
       "original": {
