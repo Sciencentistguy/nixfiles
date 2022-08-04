@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659202682,
-        "narHash": "sha256-zw5X76lO/sBL/ZrgZ15XUw0vb30o/cu54fBy1RbLFNA=",
+        "lastModified": 1659319606,
+        "narHash": "sha256-7oEk1Rs8JmtWp8JLunzdjHH26fsdXHM8wfjpimlnFm0=",
         "owner": "Sciencentistguy",
         "repo": "bonkbot",
-        "rev": "2bd3913e28dbb77553c567cc7491d09c9bf28f31",
+        "rev": "81e698b4862139319d0544de7d38965a312f03c5",
         "type": "github"
       },
       "original": {
@@ -87,11 +87,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1659248763,
-        "narHash": "sha256-YCaOwmtgpnEJGmZNHwnQArCeB3arQf1LPr/OSZVmHZ8=",
+        "lastModified": 1659594640,
+        "narHash": "sha256-r3hRON/vj79TcC//2CsAzXwHq34hjCEUYhN7GwZHWzI=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "e4787a9b299117979bd04d396466c9c7cb4ac568",
+        "rev": "04139cdad3f65929f372f8c2707c1ed812e7243f",
         "type": "github"
       },
       "original": {
@@ -309,11 +309,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1659232160,
-        "narHash": "sha256-RYKbKAYooiART2RUEpUnP7tAYM6+2i1m9+QI14wljZU=",
+        "lastModified": 1659484873,
+        "narHash": "sha256-6VoPiGyDdjBHOJ3IpS24lY1lrDiOHeuEefOFI0qz3WE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7146638e9ef74aba6736cbbf12dbe60e1ed24c1e",
+        "rev": "d8d9ff0b2df77defa10375c6665b51f0251c34d6",
         "type": "github"
       },
       "original": {
@@ -347,11 +347,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1659267480,
-        "narHash": "sha256-/xnMIrHUhpcZShIuW31xCCQOwPrFjZJc9BqtNQ7Jz5g=",
+        "lastModified": 1659582349,
+        "narHash": "sha256-ew2vvIYsq+i8nc/BgZZEC9w3L4V7GIik5ZfcnJXFoTs=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "86110ec93303a80ea14561d3976214ca27f0be63",
+        "rev": "27ce21ac852cb520740210ba68062e981657b6f4",
         "type": "github"
       },
       "original": {
@@ -363,11 +363,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1659190188,
-        "narHash": "sha256-LudYrDFPFaQMW0l68TYkPWRPKmqpxIFU1nWfylIp9AQ=",
+        "lastModified": 1659542688,
+        "narHash": "sha256-7Ye59iW/DUWb8PzptEqdyYPlv6y+IhqKecaoZl3q68A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a3fddd46a7f3418d7e3940ded94701aba569161d",
+        "rev": "81094ccd6a0aa13ed176c815a60c4e25b49f072d",
         "type": "github"
       },
       "original": {
@@ -406,11 +406,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659202953,
-        "narHash": "sha256-e/EB7H5aqGrNKL0Xs0D631kJ1k13/yS51YsLDEgTbYA=",
+        "lastModified": 1659378671,
+        "narHash": "sha256-fyb7hZRSHUbAe8EIL1RYvA4xFm+jJmdXjYiCVx9h9bM=",
         "owner": "PolyMC",
         "repo": "PolyMC",
-        "rev": "b15544c163ccbca08ea498b3b3a51c82d7fb3e12",
+        "rev": "6fd3672618f425bb539f4d554a5fda5d1236d042",
         "type": "github"
       },
       "original": {
@@ -441,11 +441,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1659167628,
-        "narHash": "sha256-hl3zom2TrPnwadl0bdoTxNXcSSW8OTx/iASF8VsrRlc=",
+        "lastModified": 1659543829,
+        "narHash": "sha256-+UefdzcBQYF4B6rLjyAZ44X9+jg6X4QP6F9N48ByVDw=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "e0ff4befdacf187621bebba84f824d2e41ab0607",
+        "rev": "4904b2bdf8797f14fff3b585d18207161126acce",
         "type": "github"
       },
       "original": {
@@ -486,11 +486,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659202670,
-        "narHash": "sha256-5PjHrPmfVAIZgZaTf9/9QBu+euYWv51RaQFN+yxyE0Q=",
+        "lastModified": 1659326132,
+        "narHash": "sha256-pgoinfgrTMK3GstoYHxRJf6vmqEdf7H4vMWKX2Z+3Zw=",
         "owner": "Sciencentistguy",
         "repo": "susbot",
-        "rev": "b2fe162b0a2c83391e1345b50c53e47e1e2cfc75",
+        "rev": "b8dbef679508f0315e155b6fe358a954fa1a5c21",
         "type": "github"
       },
       "original": {
