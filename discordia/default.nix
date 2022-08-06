@@ -10,14 +10,15 @@
     ./homebrew.nix
     ./mac-apps.nix
     ./macos-packages.nix
+    ./networking.nix
     ./nix.nix
+    ./pam.nix
   ];
 
   environment.shells = with pkgs; [
     bashInteractive
     zsh
   ];
-
 
   environment.systemPackages = with pkgs; [
     vim

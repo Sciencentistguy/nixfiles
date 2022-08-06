@@ -66,6 +66,14 @@
       flake = false;
     };
     flake-utils = {url = "github:numtide/flake-utils";};
+
+    # Modules
+    malob = {
+      url = "github:malob/nixpkgs";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
+      inputs.darwin.follows = "darwin";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = inputs @ {
@@ -130,36 +138,41 @@
         };
         modules = [
           ./discordia
-          {
-            networking.computerName = "discordia";
-            networking.hostName = "discordia";
-          }
-          home-manager.darwinModules.home-manager
-          ({
-            pkgs,
-            home-manager,
-            ...
-          }: {
-            # `home-manager` config
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.jamie = {
-              home.stateVersion = homeManagerStateVersion;
-              imports = [
-                ./home/core
-                ./home/cli-tools
-                ./home/dev
 
-                ./home/gui/alacritty
-              ];
-            };
-            home-manager.users.root = {
-              home.stateVersion = homeManagerStateVersion;
-              imports = [
-                ./discordia/root
-              ];
-            };
-          })
+          home-manager.darwinModules.home-manager
+          # TODO: This might get merged into nix-darwin at some point
+          # See: https://github.com/LnL7/nix-darwin/pull/228
+          inputs.malob.darwinModules.security-pam
+
+          (
+            {
+              pkgs,
+              home-manager,
+              ...
+            }: {
+              # `home-manager` config
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.useGlobalPkgs = true;
+
+              home-manager.users.jamie = {
+                home.stateVersion = homeManagerStateVersion;
+                imports = [
+                  ./home/core
+                  ./home/cli-tools
+                  ./home/dev
+
+                  ./home/gui/alacritty
+                ];
+              };
+
+              home-manager.users.root = {
+                home.stateVersion = homeManagerStateVersion;
+                imports = [
+                  ./discordia/root
+                ];
+              };
+            }
+          )
         ];
       };
 
