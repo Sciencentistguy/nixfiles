@@ -22,6 +22,7 @@
     init.defaultBranch = "master";
     pull.ff = "only";
     url."https://github.com/".insteadOf = "git://github.com/";
+    push.autoSetupRemote = true;
   };
 
   programs.gh.enable = true;
