@@ -8,5 +8,6 @@
     wantedBy = ["multi-user.target"];
 
     serviceConfig.ExecStart = "${flakePkgs.bonkbot}/bin/bonkbot /secrets/bonkbot_token /secrets/bonkbot_appid";
+    serviceConfig.Restart = "on-failure";
   };
 }
