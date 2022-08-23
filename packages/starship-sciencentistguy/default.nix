@@ -1,29 +1,30 @@
 {
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  rustPlatform,
-  installShellFiles,
-  libiconv,
-  libgit2,
-  pkg-config,
-  nixosTests,
-  Security,
-  Foundation,
   Cocoa,
+  Foundation,
+  Security,
+  cmake,
+  fetchFromGitHub,
+  installShellFiles,
+  lib,
+  libgit2,
+  libiconv,
+  nixosTests,
+  pkg-config,
+  rustPlatform,
+  stdenv,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "starship-sciencentistguy";
-  version = "1.9.1";
+  version = "1.10.1";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
     repo = "starship";
-    rev = "3d8208cb13f077110a8d3617fc24e967dab41b6b";
-    sha256 = "sha256-ibmNVxf37UB9fb2ymT/mglDnNCAwpSZlKp4CVICW1TM=";
+    rev = "bcc4b156327cd7d5a6cc170ee40c8b357640b32f";
+    sha256 = "sha256-SSFQlVF0YAYIoogcibQ6cBO9XZcWABKkJw9J6t3eaXQ=";
   };
 
-  nativeBuildInputs = [installShellFiles pkg-config];
+  nativeBuildInputs = [installShellFiles pkg-config cmake];
 
   buildInputs = [libgit2] ++ lib.optionals stdenv.isDarwin [libiconv Security Foundation Cocoa];
 
@@ -41,7 +42,7 @@ rustPlatform.buildRustPackage rec {
     then ["battery"]
     else ["default"];
 
-  cargoSha256 = "sha256-8gmfwvkh6pC3538XXCz+Dvlm3N7MJ4cfyA6oLQL6hvQ=";
+  cargoSha256 = "sha256-3ge+yFo8JmizpBAyeLKo9NuZ5xbar+xS9w4oZ0boJ8c=";
 
   preCheck = ''
     HOME=$TMPDIR
