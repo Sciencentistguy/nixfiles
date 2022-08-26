@@ -16,4 +16,9 @@
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   networking.hostFiles = [/secrets/seedbox_host];
+
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.forwarding" = true;
+    "net.ipv6.conf.all.forwarding" = true;
+  };
 }
