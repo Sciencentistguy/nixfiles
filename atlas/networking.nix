@@ -4,10 +4,8 @@
   ...
 }: {
   networking.hostName = systemName; # Define your hostname.
-
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  networking.firewall.enable = false;
   services.openssh.enable = true;
   services.tailscale.enable = true;
 
@@ -21,4 +19,8 @@
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv6.conf.all.forwarding" = true;
   };
+
+  networking.firewall.enable = true;
+  networking.firewall.allowedUDPPorts = [41641];
+  networking.firewall.checkReversePath = "loose";
 }
