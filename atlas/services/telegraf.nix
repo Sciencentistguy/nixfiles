@@ -44,7 +44,8 @@
         };
 
         internet_speed = {
-          interval = "5m";
+          interval = "15m";
+          collection_jitter = "5m";
         };
 
         diskio = {};
