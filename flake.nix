@@ -119,10 +119,8 @@
       // inputs.rust-nix-shell.packages.${system}
       // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}
-      // (
-        if (system == "x86_64-linux")
-        then inputs.polymc.packages.${system}
-        else {}
+      // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
+        inputs.polymc.packages.${system}
       );
   in
     {
