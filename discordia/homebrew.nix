@@ -33,6 +33,7 @@
     "google-drive"
     "iterm2"
     "logitech-options"
+    "manymc"
     "mullvadvpn"
     "multimc"
     "plexamp"
@@ -40,10 +41,10 @@
     "rectangle"
     "spotify"
     "steam"
-    "temurin"
-    "temurin8"
     "utm"
     "visual-studio-code"
     "vlc"
+    "zulu"
+    "zulu8"
   ];
 }
