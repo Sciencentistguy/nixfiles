@@ -18,6 +18,11 @@
   neovim = pkgs.callPackage ./neovim.nix {
     inherit (flakePkgs) rust-analyzer;
     inherit neovim-unwrapped;
+    # Cooliot needs node v16 or v17 on M1, and v17 isn't packaged
+    nodejs =
+      if isDarwin
+      then pkgs.nodejs-16_x
+      else pkgs.nodejs;
   };
 in {
   home.packages = [neovim];
