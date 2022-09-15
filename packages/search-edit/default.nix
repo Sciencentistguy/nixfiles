@@ -1,36 +1,31 @@
 {
-  bash,
+  fetchgit,
   fzf,
   lib,
-  writeTextFile,
+  stdenvNoCC,
 }:
-writeTextFile rec {
-  name = "search-edit";
-  executable = true;
-  destination = "/bin/${name}";
+stdenvNoCC.mkDerivation {
+  name = "search-edit.sh";
 
-  text = ''
-    #!${bash}/bin/bash
+  src = fetchgit {
+    url = "https://gist.github.com/0bc58405b9f37dcbc544a5f879d3ff91.git";
+    rev = "be131a1ffe972f22016906f256ea86f26c38e653";
+    sha256 = "sha256-s0zWfmwLYDkrkB3/k/111YDdmjFuvSLHm+jkrnmp9V8=";
+  };
 
-    filename=$(${fzf}/bin/fzf)
+  dontConfigure = true;
+  dontBuild = true;
 
-    case $? in
-      0)
-        >&2 echo "vim ''${filename}"
-        vim $filename
-        ;;
-      1)
-        >&2 echo "No file with that name found"
-        exit $?
-        ;;
-      130)
-        exit $?
-        ;;
-    esac
+  prePatch = ''
+    substituteInPlace search-edit.sh --replace "fzf" "${fzf}/bin/fzf"
+  '';
+
+  installPhase = ''
+    install -Dm755 search-edit.sh $out/bin/search-edit
   '';
 
   meta = with lib; {
-    description = "Interactively open a file for editing.";
+    description = "A script to interactively find a file, and open it in an editor";
     license = licenses.mpl20;
   };
 }
