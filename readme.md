@@ -6,7 +6,7 @@ Currently, this flake describes:
 
 - `chronos`: A desktop PC, running NixOS
 - `discordia`: A 2021 MacBook Pro (M1 Max), running macOS and [nix-darwin](https://github.com/LnL7/nix-darwin)
-- `atlas`: A server, currently running Arch Linux
+- `atlas`: A server, running NixOS
 
 This flake also outputs some packages that I use in my systems:
 
