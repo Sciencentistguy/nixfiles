@@ -93,11 +93,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1661288390,
-        "narHash": "sha256-MSLGK18HyljzLW3dOD7M8etdJlFaPv0+QBlzAjHQx1g=",
+        "lastModified": 1663280886,
+        "narHash": "sha256-Qf5pt2GpbiyasXt0oq9jbG5RrHewf60NlfohnPIS3RQ=",
         "owner": "Sciencentistguy",
         "repo": "dotfiles",
-        "rev": "409d651d5525b4995ab92715b5b6bff206c784eb",
+        "rev": "8649b2c84bc55ccb26fe6505d846bc2581db24be",
         "type": "github"
       },
       "original": {
