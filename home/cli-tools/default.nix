@@ -9,15 +9,16 @@
     ./ffmpeg.nix
     ./file.nix
     ./gping.nix
+    ./hyfetch.nix
     ./jq.nix
     ./killall.nix
     ./mpv.nix
-    ./hyfetch.nix
     ./procs.nix
     ./ripgrep.nix
     ./rsync.nix
     ./rust-nix-shell.nix
     ./sad.nix
+    ./scripts.nix
     ./shark-radar.nix
     ./speedtest.nix
     ./tmux.nix

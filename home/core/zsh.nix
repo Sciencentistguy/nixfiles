@@ -5,8 +5,6 @@
   flakePkgs,
   ...
 }: {
-  home.packages = with flakePkgs; [search-edit];
-
   home.file.".zshrc".source = "${inputs.dotfiles}/zshrc";
   home.file.".zsh/functions.zsh".source = "${inputs.dotfiles}/functions.zsh";
   home.file.".zsh/aliases.zsh".source = "${inputs.dotfiles}/aliases.zsh";
