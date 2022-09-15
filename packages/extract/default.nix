@@ -1,39 +1,40 @@
 {
-  lib,
-  bash,
   bzip2,
+  fetchgit,
   gnutar,
   gzip,
+  lib,
+  makeWrapper,
   p7zip,
+  stdenvNoCC,
   unrar,
   unzip,
-  writeTextFile,
 }:
-writeTextFile rec {
-  name = "extract";
-  executable = true;
-  destination = "/bin/${name}";
-  text = ''
-    #!${bash}/bin/bash
+stdenvNoCC.mkDerivation {
+  name = "extract.sh";
 
-    if [ -f "$1" ]; then
-        case $1 in
-        *.tar*) ${gnutar}/bin/tar xvf "$1" ;;
-        *.bz2) ${bzip2}/bin/bunzip2 "$1" ;;
-        *.rar) ${unrar}/bin/unrar x "$1" ;;
-        *.gz) ${gzip}/bin/gunzip "$1" ;;
-        *.t*z*) ${gnutar}/bin/tar xvf "$1" ;;
-        *.zip) ${unzip}/bin/unzip "$1" ;;
-        *.Z) ${gzip}/bin/uncompress "$1" ;;
-        *.7z) ${p7zip}/bin/7z x "$1" ;;
-        *) echo "'$1' cannot be extracted via ex()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
+  src = fetchgit {
+    url = "https://gist.github.com/a99876efb08a9b4ae76846cd69274a4b.git";
+    rev = "d9978592df5ab8d10ed1d21bbfebd28eaa3818e4";
+    sha256 = "sha256-8GGBju/wLU9PQ8oi6XPV0mWoqAOb554OVsgmD99DHzg=";
+  };
+
+  nativeBuildInputs = [makeWrapper];
+
+  dontConfigure = true;
+  dontBuild = true;
+
+  installPhase = ''
+    install -Dm755 extract.sh $out/bin/extract
   '';
+
+  postFixup = ''
+    wrapProgram $out/bin/extract \
+      --set PATH ${lib.makeBinPath [bzip2 gnutar gzip p7zip unrar unzip]}
+  '';
+
   meta = with lib; {
-    description = "A bash script to extract many kinds of archive";
+    description = "A script to extract many kinds of archive";
     license = licenses.mpl20;
   };
 }
