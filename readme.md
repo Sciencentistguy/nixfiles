@@ -18,6 +18,7 @@ This flake also outputs some packages that I use in my systems:
 - `ttf-ms-win11`: Microsoft TTF fonts.
 - `search-edit`: Interactively open a file for editing.
 - `apple-cursor-theme` (https://github.com/ful1e5/apple_cursor): macOS cursors.
+- `update-music-library` (https://gist.github.com/Sciencentistguy/159dd62ef4a2ed1886420ebc04b27dbe): A script to sync my music library from my desktop PC to my server, using tailscale and rsync
 
 ---
 

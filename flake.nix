@@ -259,6 +259,7 @@
         ttf-ms-win11 = pkgsUnfree.callPackage ./packages/ttf-ms-win11 {};
         search-edit = pkgs.callPackage ./packages/search-edit {};
         apple-cursor-theme = pkgs.callPackage ./packages/apple-cursor-theme {};
+        update-music-library = pkgs.callPackage ./packages/update-music-library {};
       };
     }));
 }
