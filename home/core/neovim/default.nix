@@ -15,60 +15,17 @@
   });
 
   # Nvim needs a lot of things in $PATH; don't install them globally just because of that.
-  neovim = pkgs.callPackage ./neovim.nix {
+  neovim-wrapped = pkgs.callPackage ./neovim.nix {
     inherit (flakePkgs) rust-analyzer;
     inherit neovim-unwrapped;
-    # Cooliot needs node v16 or v17 on M1, and v17 isn't packaged
-    nodejs =
-      if isDarwin
-      then pkgs.nodejs-16_x
-      else pkgs.nodejs;
+
+    # Copliot needs node v16 or v17 on M1, and v12-v17 on linux.
+    nodejs = pkgs.nodejs-16_x;
   };
+
+  neovimConfig = pkgs.callPackage ./config.nix {src = inputs.dotfiles;};
 in {
-  home.packages = [neovim];
+  home.packages = [neovim-wrapped];
 
-  home.file.".config/nvim/init.lua".source = "${inputs.dotfiles}/nvim/init.lua";
-
-  home.file.".config/nvim/coq-user-snippets".source = "${inputs.dotfiles}/nvim/coq-user-snippets";
-  home.file.".config/nvim/spell".source = "${inputs.dotfiles}/nvim/spell/en.utf-8.add";
-
-  home.file.".config/nvim/lua/user/autopair.lua".source = "${inputs.dotfiles}/nvim/lua/user/autopair.lua";
-  home.file.".config/nvim/lua/user/comment.lua".source = "${inputs.dotfiles}/nvim/lua/user/comment.lua";
-  home.file.".config/nvim/lua/user/lsp.lua".source = "${inputs.dotfiles}/nvim/lua/user/lsp.lua";
-  home.file.".config/nvim/lua/user/plugins.lua".source = "${inputs.dotfiles}/nvim/lua/user/plugins.lua";
-  home.file.".config/nvim/lua/user/statusbar.lua".source = "${inputs.dotfiles}/nvim/lua/user/statusbar.lua";
-  home.file.".config/nvim/lua/user/vim-opts.lua".source = "${inputs.dotfiles}/nvim/lua/user/vim-opts.lua";
-
-  home.file.".config/nvim/lua/user/vimtex.lua".source = pkgs.stdenvNoCC.mkDerivation {
-    name = "vimtex.lua";
-    src = "${inputs.dotfiles}/nvim/lua/user";
-    patchPhase = ''
-      substituteInPlace vimtex.lua \
-       --replace "zathura" "${pkgs.zathura}" \
-    '';
-    installPhase = ''
-      install -Dm644 vimtex.lua $out
-    '';
-  };
-
-  home.file.".config/nvim/lua/user/neoformat.lua".source = pkgs.stdenvNoCC.mkDerivation {
-    name = "neoformat.lua";
-    src = "${inputs.dotfiles}/nvim/lua/user";
-    dontBuild = true;
-    # I'd love to use `build-support/substitute` here,
-    # but alas https://github.com/NixOS/nixpkgs/issues/178438
-    patchPhase = ''
-      substituteInPlace neoformat.lua \
-       --replace "exe = \"shfmt\"" "exe = \"${pkgs.shfmt}/bin/shfmt\"" \
-
-      substituteInPlace neoformat.lua \
-       --replace "exe = \"prettier\"" "exe = \"${pkgs.nodePackages.prettier}/bin/prettier\""
-
-      substituteInPlace neoformat.lua \
-       --replace "exe = \"rustfmt\"" "exe = \"${pkgs.rustfmt}/bin/rustfmt\"" \
-    '';
-    installPhase = ''
-      install -Dm644 neoformat.lua $out
-    '';
-  };
+  home.file.".config/nvim".source = neovimConfig;
 }
