@@ -31,6 +31,8 @@
     main_window_color = "green";
     color1 = "white";
     color2 = "yellow";
+    now_playing_prefix = "$b$(red)";
+    now_playing_suffix = "$(end)$/b";
     progressbar_color = "black:b";
     progressbar_elapsed_color = "red:b";
   };
