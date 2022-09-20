@@ -10,6 +10,7 @@
     ./bootloader.nix
     ./filesystems.nix
     ./gpg.nix
+    ./gpu.nix
     ./i18n.nix
     ./networking.nix
     ./nix.nix
