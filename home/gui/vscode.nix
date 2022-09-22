@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  flakePkgs,
+  ...
+}: let
   clang-format-style = {
     AccessModifierOffset = -3;
     "AlignAfterOpenBracket" = "Align";
@@ -108,10 +112,19 @@ in {
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
       ms-vscode.cpptools
+      rust-lang.rust-analyzer
+      # asvetliakov.vscode-neovim
+      ms-python.python
+      ms-python.vscode-pylance
     ];
 
     mutableExtensionsDir = false;
+    # keybindings = {
+    # "K"
+    # };
     userSettings = {
+      "keyboard.dispatch" = "keyCode";
+
       "editor.fontFamily" = "Iosevka Term";
       "editor.renderWhitespace" = "trailing";
 
@@ -126,6 +139,12 @@ in {
       "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
       "C_Cpp.codeAnalysis.clangTidy.path" = "${pkgs.clang-tools}/bin/clang-tidy";
       "C_Cpp.clang_format_style" = builtins.toJSON clang-format-style;
+
+      # "vscode-neovim.neovimExecutablePaths.linux" = "${flakePkgs.neovim}/bin/nvim";
+
+      "python.defaultInterpreterPath" = "${pkgs.python3}/bin/python";
+      "python.formatting.blackPath" = "${pkgs.black}/bin/black";
+      "python.formatting.provider" = "black";
     };
   };
 }
