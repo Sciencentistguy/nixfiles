@@ -230,7 +230,7 @@
                   ./home/gui/slack.nix
                   ./home/gui/soulseek.nix
                   ./home/gui/spotify.nix
-                  ./home/gui/vscode.nix
+                  ./home/gui/vscode
 
                   # other
                   ./home/beets.nix
