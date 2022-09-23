@@ -58,21 +58,24 @@ in {
       "python.formatting.blackPath" = "${pkgs.black}/bin/black";
       "python.formatting.provider" = "black";
 
-      #Nix
+      # Nix
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${pkgs.rnix-lsp}/bin/rnix-lsp";
 
-      "vim.normalModeKeyBindings" = bindings.normal;
-      "vim.visualModeKeyBindings" = bindings.visual;
-      "vim.insertModeKeyBindings" = bindings.insert;
-
+      # Vim
       "vim.enableNeovim" = true;
       "vim.highlightedyank.enable" = true;
       "vim.highlightedyank.textColor" = "#d19a66";
+      "vim.insertModeKeyBindings" = bindings.insert;
       "vim.leader" = ",";
       "vim.neovimPath" = "${flakePkgs.neovim}/bin/nvim";
+      "vim.normalModeKeyBindings" = bindings.normal;
       "vim.shell" = "${pkgs.zsh}/bin/zsh";
       "vim.textwidth" = 100;
+      "vim.visualModeKeyBindings" = bindings.visual;
+
+      # Rust-analyzer
+      "rust-analyzer.checkOnSave.command" = "clippy";
     };
   };
 }

@@ -73,6 +73,15 @@
       before = ["<leader>" "h"];
       commands = ["workbench.action.previousEditor"];
     }
+
+    {
+      before = ["]" "g"];
+      commands = ["editor.action.marker.next"];
+    }
+    {
+      before = ["[" "g"];
+      commands = ["editor.action.marker.prev"];
+    }
   ];
 
   visual = [
