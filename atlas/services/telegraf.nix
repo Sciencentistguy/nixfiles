@@ -30,10 +30,19 @@
           collect_cpu_time = true;
           report_active = true;
         };
-
         disk = {
-          ignore_fs = ["tmpfs" "devtmpfs" "devfs" "iso9660" "overlay" "aufs" "squashfs"];
+          ignore_fs = [
+            "tmpfs"
+            "devtmpfs"
+            "devfs"
+            "iso9660"
+            "overlay"
+            "aufs"
+            "squashfs"
+          ];
         };
+
+        diskio = {};
 
         ethtool = {
           interface_include = ["enp0s31f6"];
@@ -43,23 +52,37 @@
           interval = "5m";
         };
 
+        internal = {};
+
         internet_speed = {
           interval = "15m";
           collection_jitter = "5m";
         };
 
-        diskio = {};
-        kernel = {};
-        mem = {};
-        processes = {};
-        system = {};
-        internal = {};
         interrupts = {};
+
+        kernel = {};
+
         kernel_vmstat = {};
+
         linux_sysctl_fs = {};
+
+        mem = {};
+
         net = {};
+
+        nvidia_smi = {
+          bin_path = "${pkgs.linuxPackages.nvidia_x11.bin}/bin/nvidia-smi";
+        };
+
+        processes = {};
+
         sensors = {};
+
+        system = {};
+
         systemd_units = {};
+
         temp = {};
       };
     };
