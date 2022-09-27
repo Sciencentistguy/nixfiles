@@ -49,6 +49,10 @@
       before = ["s" "s"];
       after = ["\"" "_" "d" "d"];
     }
+    {
+      before = ["S"];
+      after = ["\"" "_" "D"];
+    }
 
     {
       before = ["0"];
@@ -81,6 +85,11 @@
     {
       before = ["[" "g"];
       commands = ["editor.action.marker.prev"];
+    }
+
+    {
+      before = ["<leader>" "a" "c"];
+      commands = ["editor.action.quickFix"];
     }
   ];
 

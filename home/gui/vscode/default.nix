@@ -17,6 +17,7 @@ in {
         ms-python.vscode-pylance
         ms-vscode.cpptools
         rust-lang.rust-analyzer
+        vadimcn.vscode-lldb
         vscodevim.vim
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -33,20 +34,34 @@ in {
           version = "1.46.6822";
           sha256 = "sha256-L71mC0190ZubqNVliu7es4SDsBTGVokePpcNupABI8Q=";
         }
+        {
+          name = "makefile-tools";
+          publisher = "ms-vscode";
+          version = "0.6.0";
+          sha256 = "sha256-Sd1bLdRBdLVK8y09wL/CJF+/kThPTH8MHw2mFQt+6h8=";
+        }
       ];
 
     mutableExtensionsDir = false;
     userSettings = {
       # vscode core settings
+      "editor.cursorSurroundingLines" = 7;
       "editor.fontFamily" = "Iosevka Term";
+      "editor.inlineSuggest.enabled" = true;
       "editor.minimap.enabled" = false;
       "editor.renderWhitespace" = "trailing";
+      "editor.rulers" = [100];
       "files.autoGuessEncoding" = true;
       "keyboard.dispatch" = "keyCode";
       "telemetry.telemetryLevel" = "off";
+      "terminal.integrated.defaultProfile.linux" = "zsh";
+      "terminal.integrated.profiles.linux" = {
+        zsh = {
+          path = "${pkgs.zsh}/bin/zsh";
+        };
+      };
       "update.mode" = "none";
       "window.zoomLevel" = 1;
-      "workbench.colorTheme" = "onedark.nvim";
 
       # C/C++
       "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
@@ -78,4 +93,22 @@ in {
       "rust-analyzer.checkOnSave.command" = "clippy";
     };
   };
+
+  #   home.file.".vscode/c_cpp_properties.json".text = builtins.toJSON {
+  #     "configurations" = [
+  #       {
+  #         "name" = "Linux";
+  #         "includePath" = [
+  #           "\${workspaceFolder}/**"
+  #           "${pkgs.stdenv.libc}/include"
+  #           "${pkgs.stdenv.cc}/include"
+  #         ];
+  #         "defines" = [];
+  #         "cStandard" = "c17";
+  #         "cppStandard" = "c++17";
+  #         "intelliSenseMode" = "linux-gcc-x64";
+  #       }
+  #     ];
+  #     "version" = 4;
+  #   };
 }
