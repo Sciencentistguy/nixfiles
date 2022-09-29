@@ -10,7 +10,7 @@ in {
     enable = true;
     extensions = with pkgs.vscode-extensions;
       [
-        # bartoszmaka95.onedark
+        arrterian.nix-env-selector
         jnoortheen.nix-ide
         kamadorueda.alejandra
         ms-python.python
