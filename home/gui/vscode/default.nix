@@ -17,6 +17,7 @@ in {
         ms-python.vscode-pylance
         ms-vscode.cpptools
         rust-lang.rust-analyzer
+        timonwong.shellcheck
         vadimcn.vscode-lldb
         vscodevim.vim
       ]
@@ -91,6 +92,9 @@ in {
 
       # Rust-analyzer
       "rust-analyzer.checkOnSave.command" = "clippy";
+
+      # Shellcheck
+      "shellcheck.executablePath" = "${pkgs.shellcheck}/bin/shellcheck";
     };
   };
 
