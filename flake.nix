@@ -65,14 +65,6 @@
       flake = false;
     };
     flake-utils = {url = "github:numtide/flake-utils";};
-
-    # Modules
-    malob = {
-      url = "github:malob/nixpkgs";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
-      inputs.darwin.follows = "darwin";
-      inputs.home-manager.follows = "home-manager";
-    };
   };
 
   outputs = inputs @ {
@@ -120,9 +112,6 @@
           ./discordia
 
           home-manager.darwinModules.home-manager
-          # TODO: This might get merged into nix-darwin at some point
-          # See: https://github.com/LnL7/nix-darwin/pull/228
-          inputs.malob.darwinModules.security-pam
 
           (
             {
