@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1664851754,
-        "narHash": "sha256-e3b3e352NlQeuE566LAsm8W6UzDBXEv190W3NCihonE=",
+        "lastModified": 1665115296,
+        "narHash": "sha256-jzDivKmXvcrAX2MAXPiuYojAPf7RuuXSeFutQ8dAezc=",
         "owner": "Sciencentistguy",
         "repo": "bonkbot",
-        "rev": "9d3655822672019377ed90760f7bb823b4011a56",
+        "rev": "e2bf67107efbef663badce4eb3a6d902f66676f3",
         "type": "github"
       },
       "original": {
@@ -87,11 +87,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1664952317,
-        "narHash": "sha256-aGfZTPxeIQV4NT4UNs9dYKiogGmdmFdnKrF2DMBPp/Y=",
+        "lastModified": 1665124759,
+        "narHash": "sha256-QHusyi8aDtbuGxLHFuuE2kMQF6yGrnXUkAXKZBtJPvA=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "83a96c8a653a9e3c10c2974c6b4459050c13f341",
+        "rev": "57a65b818c22c56e235dea851a22f56718e0d174",
         "type": "github"
       },
       "original": {
@@ -309,11 +309,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1664783440,
-        "narHash": "sha256-KlMwR7mUf5h8MPnzV7nGFUAt6ih/euW5xgvZ5x+hwvI=",
+        "lastModified": 1665119273,
+        "narHash": "sha256-neL/ZRrwk47Ke1nfjk8ltlIm+NRZyA3MBcNbqEGSBeE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e4e639dd4dc3e431aa5b5f95325f9a66ac7e0dd9",
+        "rev": "9fcae11ff29ca5f959b05c206f3724486c28ff07",
         "type": "github"
       },
       "original": {
@@ -347,11 +347,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1664974707,
-        "narHash": "sha256-TQpHKE8XnXwcm+ER9GwbzA1UNTeRcBkwXUE545wozYw=",
+        "lastModified": 1665106996,
+        "narHash": "sha256-ExG1NVu1HYGjSTmcg8ufSYrdfHS8SetkWocdjgUic0w=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "1f2ded459a6f26635bf013da4100b3dedb777f73",
+        "rev": "cfdb4cbada8c65aa57e69776bcc0f7b8b298317a",
         "type": "github"
       },
       "original": {
@@ -363,11 +363,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1664847737,
-        "narHash": "sha256-Wxl0CtRH3Vo8+qEZ/PbCcx+9D8wEEi56tJPmROum2ss=",
+        "lastModified": 1665056165,
+        "narHash": "sha256-2C7VfNphJa0FxPoT+suMOmUDVrQ5RIE+NKfDWqElvE4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "de80d1d04ee691279e1302a1128c082bbda3ab01",
+        "rev": "27a89ba43b0fb735ce867e8ab3d2442f8cc61dad",
         "type": "github"
       },
       "original": {
@@ -442,11 +442,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1664908003,
-        "narHash": "sha256-IStLL1GT7qcWHMpVgqjXb2LmZNUQJdqojirJN/ZndNI=",
+        "lastModified": 1665059630,
+        "narHash": "sha256-+v3oi70FpNm8ynQZyAki7PfnvOte0W+I3ucS/GHuCnk=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "476d0438749e3a5b2669811f9429da79a6628e8a",
+        "rev": "a415fb4c4e00da1b4138f5a7787ae9838e8ab576",
         "type": "github"
       },
       "original": {
@@ -465,11 +465,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1664849469,
-        "narHash": "sha256-CGRDrPMzsMMzIY+OkPPduoVl62cAPm3YiVc6taiy9/E=",
+        "lastModified": 1665025636,
+        "narHash": "sha256-LXLn5gDSebtE6CtulPQjy1nNc5m7nsRHJCf33xv/osM=",
         "owner": "Sciencentistguy",
         "repo": "rust-nix-shell",
-        "rev": "db104d9f6fa8c7bfaf50c7ab69e205795508160a",
+        "rev": "37a184ae537552265f46930f839d383e2f0b7f13",
         "type": "github"
       },
       "original": {
@@ -487,11 +487,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1664852951,
-        "narHash": "sha256-LyyZXiIx3+h6B9CStZh1VqQJi/Rhx6uhvQJhibO6FD4=",
+        "lastModified": 1665107820,
+        "narHash": "sha256-hIjk4iu+MSOyMEX/drvS5v24zup7KhVombTBFljYw3M=",
         "owner": "Sciencentistguy",
         "repo": "susbot",
-        "rev": "bb46942bd348eacdd1a4ced3498e2e7c30fc8de3",
+        "rev": "0a43c15c87bc9afbe7cd4a60e5e8b0a70c04d165",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1664854622,
-        "narHash": "sha256-6/T5lwpmzAoH8aPDGkLQ8SQpypFqphJSM4OJgR5UaJg=",
+        "lastModified": 1665113403,
+        "narHash": "sha256-SniVzQoEhav8WrQ753H3rOvZb6H4bqGJtIuaWJdE6zY=",
         "owner": "Sciencentistguy",
         "repo": "videoconverter",
-        "rev": "e105f0bac4394be46016f0c6e9e1267d0b0b976c",
+        "rev": "940f06d387394e64ecc98a76649e85558e6ed87e",
         "type": "github"
       },
       "original": {
