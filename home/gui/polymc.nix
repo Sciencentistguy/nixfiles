@@ -1,3 +1,3 @@
 {pkgs, flakePkgs, ...}: {
-  home.packages = with flakePkgs; [polymc];
+  home.packages = with pkgs; [polymc];
 }
