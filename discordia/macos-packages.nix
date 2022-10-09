@@ -68,5 +68,6 @@ in {
     perl
     ruby
     xz
+    time
   ];
 }
