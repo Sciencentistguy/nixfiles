@@ -5,6 +5,11 @@
 #   '';
 # }
 {
+  lls = ''
+    clear;
+    ls
+  '';
+
   mkcdir = ''
     mkdir -p -- "$1" && cd -P -- "$1"
   '';
@@ -42,5 +47,24 @@
     for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
         git branch --track "''${branch##*/}" "$branch"
     done
+  '';
+
+  sudo-command-line = ''
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="''${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="''${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == vim\ * ]]; then
+        LBUFFER="''${LBUFFER#vim }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="''${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
+    else
+        LBUFFER="sudo $LBUFFER"
+    fi
+
   '';
 }
