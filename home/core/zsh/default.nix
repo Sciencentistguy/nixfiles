@@ -1,0 +1,52 @@
+{
+  pkgs,
+  lib,
+  config,
+  flakePkgs,
+  inputs,
+  isDarwin,
+  isNixOS,
+  ...
+}: {
+  home.file.".zshrc".source = ./zshrc;
+
+  home.file.".zsh/path.zsh".text = let
+    path = import ./path.nix {
+      inherit
+        config
+        isDarwin
+        isNixOS
+        lib
+        ;
+    };
+  in ''
+    export PATH="${lib.concatStringsSep ":" path}:$PATH"
+  '';
+
+  home.file.".zsh/aliases.zsh".text = let
+    aliases = import ./aliases.nix;
+  in
+    lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (k: v: "alias ${k}=${lib.escapeShellArg v}") aliases.regular
+    )
+    + lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (k: v: "alias -g ${k}=${lib.escapeShellArg v}") aliases.global
+    );
+
+  home.file.".zsh/functions.zsh".text = let
+    functions = import ./functions.nix;
+  in
+    lib.concatStringsSep "\n\n" (
+      lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions
+    );
+
+  home.file.".zsh/plugins/zsh-autosuggestions".source = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+  home.file.".zsh/plugins/zsh-nix-shell".source = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+  home.file.".zsh/plugins/zsh-syntax-highlighting".source = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
+  home.file.".zsh/plugins/zsh-vi-mode".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/";
+
+  home.file.".zsh/plugins/git.plugin.zsh".source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh";
+  home.file.".zsh/plugins/globalias.plugin.zsh".source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/globalias/globalias.plugin.zsh";
+
+  home.file.".zsh/command-not-found.zsh".source = "${pkgs.nix-index-unwrapped}/etc/profile.d/command-not-found.sh";
+}

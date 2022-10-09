@@ -102,11 +102,11 @@
       darwinConfigurations.discordia = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
         specialArgs = {
-          systemName = "discordia";
-          inherit nixpkgsConfig;
-          inherit inputs;
+          inherit inputs nixpkgsConfig;
           flakePkgs = flakePkgs' system;
           isDarwin = true;
+          isNixOS = false;
+          systemName = "discordia";
         };
         modules = [
           ./discordia
@@ -149,11 +149,11 @@
       nixosConfigurations.atlas = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          systemName = "atlas";
-          isDarwin = false;
-          inherit nixpkgsConfig;
-          inherit inputs;
+          inherit inputs nixpkgsConfig;
           flakePkgs = flakePkgs' system;
+          isDarwin = false;
+          isNixOS = true;
+          systemName = "atlas";
         };
         modules = [
           ./atlas
@@ -183,11 +183,11 @@
       nixosConfigurations.chronos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          systemName = "chronos";
-          isDarwin = false;
-          inherit nixpkgsConfig;
-          inherit inputs;
+          inherit inputs nixpkgsConfig;
           flakePkgs = flakePkgs' system;
+          isDarwin = false;
+          isNixOS = true;
+          systemName = "chronos";
         };
         modules = [
           ./chronos

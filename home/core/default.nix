@@ -14,7 +14,7 @@
       ./nix.nix
       ./openssh.nix
       ./starship.nix
-      ./zsh.nix
+      ./zsh
     ]
     ++ lib.optionals (systemName == "chronos") [
       ./gtk-theme.nix
