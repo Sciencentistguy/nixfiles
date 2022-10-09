@@ -66,7 +66,7 @@ in {
 
       # C/C++
       "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
-      "C_Cpp.clang_format_style" = builtins.toJSON clang-format-style;
+      "C_Cpp.clang_format_style" = clang-format-style;
       "C_Cpp.codeAnalysis.clangTidy.path" = "${pkgs.clang-tools}/bin/clang-tidy";
 
       # Python
