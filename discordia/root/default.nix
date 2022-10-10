@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./shell.nix
   ];

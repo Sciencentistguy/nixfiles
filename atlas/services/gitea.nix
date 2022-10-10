@@ -5,7 +5,7 @@
     domain = "git.quigley.xyz";
     rootUrl = "https://git.quigley.xyz";
     # settings = {
-      # server.ROOT_URL = "";
+    # server.ROOT_URL = "";
     # };
   };
 }
