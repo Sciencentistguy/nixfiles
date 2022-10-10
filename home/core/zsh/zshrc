@@ -16,9 +16,6 @@ unsetopt correct_all
 
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu select
-HISTFILE=~/.zsh_history
-HISTSIZE=10000000
-SAVEHIST=10000
 
 # Path
 source "$HOME/.zsh/path.zsh"
@@ -38,11 +35,7 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 
 # Environment
-export GPG_TTY=$(tty)
-export MAKEFLAGS="-j$(nproc)"
-export NODE_OPTIONS="--max_old_space_size=16384"
-export RUST_BACKTRACE=1
-export XDG_DATA_DIRS=$HOME/.nix-profile/share:$HOME/.share:"${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
+source ~/.zsh/environment.zsh
 
 if [[ $(uname) == "Darwin" ]]; then
     if [ -f "/etc/static/zshrc" ]; then
@@ -55,10 +48,6 @@ if type git >/dev/null && [[ $(git config diff.external) == "" ]]; then
     if type bat >/dev/null && type delta >/dev/null; then
         export GIT_PAGER='delta | bat --style=numbers,header'
     fi
-fi
-
-if type rg >/dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files'
 fi
 
 if type clang >/dev/null; then
