@@ -41,8 +41,8 @@
   };
 
   global = {
-    "sd" = "~/ScratchArea";
-    "dl" = "~/Downloads";
+    sd = "~/ScratchArea";
+    dl = "~/Downloads";
     "..." = "../..";
     "...." = "../../..";
     "....." = "../../../..";

@@ -29,6 +29,7 @@
     lib.concatStringsSep "\n" (
       lib.mapAttrsToList (k: v: "alias ${k}=${lib.escapeShellArg v}") aliases.regular
     )
+    + "\n"
     + lib.concatStringsSep "\n" (
       lib.mapAttrsToList (k: v: "alias -g ${k}=${lib.escapeShellArg v}") aliases.global
     );
