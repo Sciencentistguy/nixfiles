@@ -3,8 +3,5 @@
   systemName,
   ...
 }: {
-  home.packages = with pkgs;
-    if systemName != "discordia"
-    then [procs]
-    else [];
+  home.packages = with pkgs; [procs];
 }
