@@ -11,6 +11,11 @@
       intel-media-driver
       vaapiVdpau
       libvdpau
+      vulkan-loader
+    ];
+    extraPackages32 = with pkgs; [
+      vulkan-loader
+      gst_all_1.gst-libav
     ];
   };
 
