@@ -19,6 +19,7 @@ This flake also outputs some packages that I use in my systems:
 - `search-edit`: (https://gist.github.com/Sciencentistguy/0bc58405b9f37dcbc544a5f879d3ff91) A script to interactively find a file, and open it in an editor.
 - `apple-cursor-theme` (https://github.com/ful1e5/apple_cursor): macOS cursors.
 - `update-music-library` (https://gist.github.com/Sciencentistguy/159dd62ef4a2ed1886420ebc04b27dbe): A script to sync my music library from my desktop PC to my server, using tailscale and rsync
+- `asp` (https://github.com/falconindy/asp): Archlinux source build tool.
 
 ---
 

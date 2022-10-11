@@ -250,6 +250,7 @@
         search-edit = pkgs.callPackage ./packages/search-edit {};
         apple-cursor-theme = pkgs.callPackage ./packages/apple-cursor-theme {};
         update-music-library = pkgs.callPackage ./packages/update-music-library {};
+        asp = pkgs.callPackage ./packages/asp {};
       };
     }));
 }
