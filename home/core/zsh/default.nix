@@ -11,7 +11,12 @@
   home.file.".zshrc".source = ./zshrc;
 
   home.file.".zsh/environment.zsh".text = let
-    environment = import ./environment.nix {inherit (lib) escapeShellArg;};
+    environment = import ./environment.nix {
+      inherit
+        (lib)
+        escapeShellArg
+        ;
+    };
   in
     lib.concatStringsSep "\n" (
       lib.mapAttrsToList (k: v: "export ${k}=${v}") environment

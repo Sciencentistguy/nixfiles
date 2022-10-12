@@ -34,12 +34,16 @@
       url = "github:Sciencentistguy/bonkbot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-nix-shell = {
-      url = "github:Sciencentistguy/rust-nix-shell";
+    polymc = {
+      url = "github:PolyMC/PolyMC";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
       url = "github:neovim/neovim?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-nix-shell = {
+      url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     susbot = {
@@ -48,10 +52,6 @@
     };
     videoconverter = {
       url = "github:Sciencentistguy/videoconverter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    polymc = {
-      url = "github:PolyMC/PolyMC";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -98,53 +98,6 @@
       );
   in
     {
-      # Discordia
-      darwinConfigurations.discordia = darwin.lib.darwinSystem rec {
-        system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs nixpkgsConfig;
-          flakePkgs = flakePkgs' system;
-          isDarwin = true;
-          isNixOS = false;
-          systemName = "discordia";
-        };
-        modules = [
-          ./discordia
-
-          home-manager.darwinModules.home-manager
-
-          (
-            {
-              pkgs,
-              home-manager,
-              ...
-            }: {
-              # `home-manager` config
-              home-manager.extraSpecialArgs = specialArgs;
-              home-manager.useGlobalPkgs = true;
-
-              home-manager.users.jamie = {
-                home.stateVersion = homeManagerStateVersion;
-                imports = [
-                  ./home/core
-                  ./home/cli-tools
-                  ./home/dev
-
-                  ./home/gui/alacritty
-                ];
-              };
-
-              home-manager.users.root = {
-                home.stateVersion = homeManagerStateVersion;
-                imports = [
-                  ./discordia/root
-                ];
-              };
-            }
-          )
-        ];
-      };
-
       # Atlas - Server
       nixosConfigurations.atlas = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -227,6 +180,53 @@
                   ./home/beets.nix
                   ./home/mpd.nix
                   ./home/weechat.nix
+                ];
+              };
+            }
+          )
+        ];
+      };
+
+      # Discordia - Macbook Pro 2021
+      darwinConfigurations.discordia = darwin.lib.darwinSystem rec {
+        system = "aarch64-darwin";
+        specialArgs = {
+          inherit inputs nixpkgsConfig;
+          flakePkgs = flakePkgs' system;
+          isDarwin = true;
+          isNixOS = false;
+          systemName = "discordia";
+        };
+        modules = [
+          ./discordia
+
+          home-manager.darwinModules.home-manager
+
+          (
+            {
+              pkgs,
+              home-manager,
+              ...
+            }: {
+              # `home-manager` config
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.useGlobalPkgs = true;
+
+              home-manager.users.jamie = {
+                home.stateVersion = homeManagerStateVersion;
+                imports = [
+                  ./home/core
+                  ./home/cli-tools
+                  ./home/dev
+
+                  ./home/gui/alacritty
+                ];
+              };
+
+              home-manager.users.root = {
+                home.stateVersion = homeManagerStateVersion;
+                imports = [
+                  ./discordia/root
                 ];
               };
             }
