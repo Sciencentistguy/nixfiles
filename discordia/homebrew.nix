@@ -19,7 +19,6 @@
     Keynote = 409183694;
     Numbers = 409203825;
     Pages = 409201541;
-    Slack = 803453959;
     Bitwarden = 1352778147;
     Tailscale = 1475387142;
   };
@@ -35,7 +34,6 @@
     "logitech-options"
     "manymc"
     "mullvadvpn"
-    "multimc"
     "plexamp"
     "qbittorrent"
     "rectangle"
