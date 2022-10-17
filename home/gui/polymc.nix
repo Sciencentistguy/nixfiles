@@ -3,5 +3,5 @@
   flakePkgs,
   ...
 }: {
-  home.packages = with pkgs; [polymc];
+  home.packages = with flakePkgs; [polymc];
 }
