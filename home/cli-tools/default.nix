@@ -13,6 +13,7 @@
     ./jq.nix
     ./killall.nix
     ./mpv.nix
+    ./ncdu.nix
     ./procs.nix
     ./ripgrep.nix
     ./rsync.nix
