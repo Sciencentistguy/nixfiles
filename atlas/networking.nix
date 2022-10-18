@@ -5,6 +5,7 @@
 }: {
   networking.hostName = systemName; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.hostId = "d2ba5a8d";
 
   services.openssh.enable = true;
   services.tailscale.enable = true;

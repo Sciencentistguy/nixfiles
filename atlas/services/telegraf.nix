@@ -84,6 +84,10 @@
         systemd_units = {};
 
         temp = {};
+
+        zfs = {
+          poolMetrics = true;
+        };
       };
     };
 
