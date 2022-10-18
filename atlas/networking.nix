@@ -10,14 +10,14 @@
   services.openssh.enable = true;
   services.tailscale.enable = true;
 
-  services.fail2ban = {
-    enable = true;
-    maxretry = 5;
-    ignoreIP = [
-      "100.64.0.0/10" # tailscale IP range
-      "192.168.0.0/16" # LAN IP range
-    ];
-  };
+  # services.fail2ban = {
+    # enable = true;
+    # maxretry = 5;
+    # ignoreIP = [
+      # "100.64.0.0/10" # tailscale IP range
+      # "192.168.0.0/16" # LAN IP range
+    # ];
+  # };
 
   environment.systemPackages = with pkgs; [tailscale];
 
@@ -30,7 +30,8 @@
     "net.ipv6.conf.all.forwarding" = true;
   };
 
-  networking.firewall.enable = true;
-  networking.firewall.allowedUDPPorts = [41641 9354];
-  networking.firewall.checkReversePath = "loose";
+  # networking.firewall.enable = false;
+  # networking.firewall.allowedUDPPorts = [41641 9354];
+  # networking.firewall.checkReversePath = "loose";
+  # networking.firewall.trustedInterfaces = ["tailscale0" "docker0" "veth823d546"];
 }
