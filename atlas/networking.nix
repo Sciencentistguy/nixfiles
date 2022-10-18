@@ -31,6 +31,6 @@
   };
 
   networking.firewall.enable = true;
-  networking.firewall.allowedUDPPorts = [41641];
+  networking.firewall.allowedUDPPorts = [41641 9354];
   networking.firewall.checkReversePath = "loose";
 }
