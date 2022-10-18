@@ -34,8 +34,8 @@
       url = "github:Sciencentistguy/bonkbot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    polymc = {
-      url = "github:PolyMC/PolyMC";
+    prism-launcher = {
+      url = "github:PlaceholderMC/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
@@ -94,7 +94,7 @@
       // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}
       // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
-        inputs.polymc.packages.${system}
+        inputs.prism-launcher.packages.${system}
       );
   in
     {
@@ -169,7 +169,7 @@
                   ./home/gui/gitkraken.nix
                   ./home/gui/lutris.nix
                   ./home/gui/makemkv.nix
-                  ./home/gui/polymc.nix
+                  ./home/gui/prism-launcher.nix
                   ./home/gui/slack.nix
                   ./home/gui/soulseek.nix
                   ./home/gui/spotify.nix
