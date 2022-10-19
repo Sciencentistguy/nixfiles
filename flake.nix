@@ -56,6 +56,10 @@
     };
 
     # Libraries
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -86,6 +90,7 @@
     homeManagerStateVersion = "22.05";
     flakePkgs' = system:
       self.packages.${system}
+      // inputs.agenix.packages.${system}
       // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
@@ -145,6 +150,7 @@
         modules = [
           ./chronos
           home-manager.nixosModules.home-manager
+          inputs.agenix.nixosModules.age
           (
             {
               pkgs,

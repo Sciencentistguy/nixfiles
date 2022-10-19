@@ -6,6 +6,7 @@
 }: {
   imports =
     [
+      ./agenix.nix
       ./atuin.nix
       ./coreutils.nix
       ./git.nix
