@@ -11,7 +11,9 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         arrterian.nix-env-selector
+        haskell.haskell
         jnoortheen.nix-ide
+        justusadam.language-haskell
         kamadorueda.alejandra
         ms-python.python
         ms-python.vscode-pylance
@@ -95,24 +97,9 @@ in {
 
       # Shellcheck
       "shellcheck.executablePath" = "${pkgs.shellcheck}/bin/shellcheck";
+
+      # Haskell
+      "haskell.serverExecutablePath" = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
     };
   };
-
-  #   home.file.".vscode/c_cpp_properties.json".text = builtins.toJSON {
-  #     "configurations" = [
-  #       {
-  #         "name" = "Linux";
-  #         "includePath" = [
-  #           "\${workspaceFolder}/**"
-  #           "${pkgs.stdenv.libc}/include"
-  #           "${pkgs.stdenv.cc}/include"
-  #         ];
-  #         "defines" = [];
-  #         "cStandard" = "c17";
-  #         "cppStandard" = "c++17";
-  #         "intelliSenseMode" = "linux-gcc-x64";
-  #       }
-  #     ];
-  #     "version" = 4;
-  #   };
 }
