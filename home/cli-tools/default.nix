@@ -15,6 +15,7 @@
     ./mpv.nix
     ./ncdu.nix
     ./procs.nix
+    ./rink.nix
     ./ripgrep.nix
     ./rsync.nix
     ./rust-nix-shell.nix
