@@ -30,7 +30,7 @@
     "net.ipv6.conf.all.forwarding" = true;
   };
 
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
   # networking.firewall.allowedUDPPorts = [41641 9354];
   networking.firewall.checkReversePath = "loose";
   # networking.firewall.trustedInterfaces = ["tailscale0" "docker0" "veth823d546"];

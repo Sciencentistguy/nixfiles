@@ -14,30 +14,5 @@
     };
   };
 
-  #Virtual fielsystems
-  fileSystems = {
-    "/music" = {
-      device = "/storage-pool/media/Music";
-      options = [
-        "bind"
-        "ro"
-      ];
-    };
-    "/tv" = {
-      device = "/storage-pool/media/TV";
-      options = [
-        "bind"
-        "ro"
-      ];
-    };
-    "/movies" = {
-      device = "/storage-pool/media/Films";
-      options = [
-        "bind"
-        "ro"
-      ];
-    };
-  };
-
   boot.tmpOnTmpfs = true;
 }

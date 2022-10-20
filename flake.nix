@@ -116,6 +116,7 @@
         modules = [
           ./atlas
           home-manager.nixosModules.home-manager
+          inputs.agenix.nixosModules.age
           (
             {
               pkgs,
