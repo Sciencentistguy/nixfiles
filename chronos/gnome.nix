@@ -38,6 +38,5 @@
     gnomeExtensions.impatience
     gnomeExtensions.hide-top-bar
     gnomeExtensions.custom-hot-corners-extended
-    gnomeExtensions.clear-top-bar
   ];
 }
