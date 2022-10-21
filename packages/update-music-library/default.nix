@@ -13,8 +13,8 @@ stdenvNoCC.mkDerivation {
 
   src = fetchgit {
     url = "https://gist.github.com/159dd62ef4a2ed1886420ebc04b27dbe.git";
-    rev = "4284b02032905061c8a348d944608ab6ac9a7882";
-    sha256 = "sha256-2XsHL48YnjBjfD+N221W3JabWRsRONvQ3w/u2ISYpG8=";
+    rev = "2c0e6395185bb52825277e3d3a7f57dc7de2e860";
+    sha256 = "sha256-YJni7OuPL9X04XRSDaa0X6r5a3x1dcBq0zaK8STw/Lc=";
   };
 
   nativeBuildInputs = [makeWrapper];
