@@ -1,4 +1,7 @@
 {
+  lib,
+  writeZsh,
+}: let
   regular = {
     ":q" = "exit";
     cp = "cp -av --reflink=auto";
@@ -47,4 +50,13 @@
     "...." = "../../..";
     "....." = "../../../..";
   };
-}
+in
+  writeZsh "aliases.zsh" (
+    lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (k: v: "alias ${k}=${lib.escapeShellArg v}") regular
+    )
+    + "\n"
+    + lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (k: v: "alias -g ${k}=${lib.escapeShellArg v}") global
+    )
+  )
