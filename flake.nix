@@ -117,6 +117,8 @@
           ./atlas
           home-manager.nixosModules.home-manager
           inputs.agenix.nixosModules.age
+          inputs.bonkbot.nixosModules.${system}.bonkbot
+          inputs.susbot.nixosModules.${system}.susbot
           (
             {
               pkgs,
