@@ -50,11 +50,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665706603,
-        "narHash": "sha256-aTiR/XimdZEz2uxNWuHfxS6NVU9wqKI5unbYrGWWoRM=",
+        "lastModified": 1666453262,
+        "narHash": "sha256-X2wBaKa5vENqx0GRfwMPWBDMAIw/dgHSZfLGsg9BTXo=",
         "owner": "Sciencentistguy",
         "repo": "bonkbot",
-        "rev": "0e7d8fd7c2b8895c2adfa472694f3251211ca2ff",
+        "rev": "b3d3fd885dbc1bd7400a0713c34e4592220d23da",
         "type": "github"
       },
       "original": {
@@ -508,11 +508,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665707764,
-        "narHash": "sha256-ENej0mnjKkcOYbCK/Hize63xWtZFGQor4tXF90TaDmM=",
+        "lastModified": 1666453309,
+        "narHash": "sha256-UYuWsHxouhw1Z7dKOg/rNwWGOYUVmcp7/1YLBlOVBpE=",
         "owner": "Sciencentistguy",
         "repo": "susbot",
-        "rev": "bfdab07e80e2d4487b79c0e5da87f58895c96294",
+        "rev": "f573b14c66a7bdee910b709f7f96d00c9a497ef1",
         "type": "github"
       },
       "original": {
