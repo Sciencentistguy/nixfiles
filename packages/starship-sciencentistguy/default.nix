@@ -15,13 +15,13 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "starship-sciencentistguy";
-  version = "1.10.1-unstable-2022-09-22";
+  version = "1.11.0";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
     repo = "starship";
-    rev = "90033526949c92225114ead106857d76432eceab";
-    sha256 = "sha256-rgVU9REpVfFznLfm6iI6Zh/qC+tWt1LEC9n0dM1uYuQ=";
+    rev = "fdb3c56f3d021f76a9a25107e104a1c5b754470e";
+    sha256 = "sha256-QFM9mTIRMLjN4qfMwbmiLqiGunSf4hC4tsQPfwMXns0=";
   };
 
   nativeBuildInputs = [installShellFiles pkg-config cmake];
@@ -42,7 +42,7 @@ rustPlatform.buildRustPackage rec {
     then ["battery"]
     else ["default"];
 
-  cargoSha256 = "sha256-JOkSCVZ1rpl68yrTfYLRm3e4YQvCxeuWFeaJE4uJoIM=";
+  cargoSha256 = "sha256-UeDLVmvIQyJEwCIo8MNyDXCPyqalsvZiMRDiYtNYfnQ=";
 
   preCheck = ''
     HOME=$TMPDIR
