@@ -4,9 +4,7 @@
   systemName,
   ...
 }: let
-  ffmpeg = pkgs.ffmpeg-full.override {
-    nonfreeLicensing = true;
-    fdkaacExtlib = true;
+  ffmpeg = flakePkgs.videoconverter.ffmpeg.override {
     nvenc = systemName == "chronos";
   };
 in {
