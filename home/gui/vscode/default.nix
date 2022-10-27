@@ -11,6 +11,7 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         arrterian.nix-env-selector
+        dracula-theme.theme-dracula
         haskell.haskell
         jnoortheen.nix-ide
         justusadam.language-haskell
@@ -34,8 +35,8 @@ in {
           # `pkgs.vscode-extensions.github.copilot` is massively outdated
           name = "copilot";
           publisher = "github";
-          version = "1.46.6822";
-          sha256 = "sha256-L71mC0190ZubqNVliu7es4SDsBTGVokePpcNupABI8Q=";
+          version = "1.55.7117";
+          sha256 = "sha256-06uTcRfT1QPI1eJyJSq0bbg8bIgaAtsmApjSMGtstYY=";
         }
         {
           name = "makefile-tools";
@@ -58,13 +59,13 @@ in {
       "keyboard.dispatch" = "keyCode";
       "telemetry.telemetryLevel" = "off";
       "terminal.integrated.defaultProfile.linux" = "zsh";
-      "terminal.integrated.profiles.linux" = {
-        zsh = {
-          path = "${pkgs.zsh}/bin/zsh";
-        };
-      };
+      "terminal.integrated.profiles.linux" = {zsh = {path = "${pkgs.zsh}/bin/zsh";};};
       "update.mode" = "none";
       "window.zoomLevel" = 1;
+      "workbench.colorTheme" = "Dracula Soft";
+      "workbench.editSessions.autoResume" = "off";
+      "workbench.editSessions.continueOn" = "off";
+      "workbench.experimental.editSessions.autoStore" = "off";
 
       # C/C++
       "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
