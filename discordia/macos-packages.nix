@@ -13,7 +13,7 @@ in {
     )
 
     # macOS coretuils are BSD flavoured and outdated
-    pkgs.coreutils
+    pkgs.coreutils-full
 
     (
       # macOS ships a tcsh at `/bin/tcsh` and `/bin/csh`
