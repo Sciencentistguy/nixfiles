@@ -11,6 +11,10 @@ in {
   home.packages = [
     ffmpeg
     flakePkgs.videoconverter
+
+    (pkgs.mkvtoolnix.override {
+      withGUI = false;
+    })
   ];
 
   # ffmpeg nnedi filter needs weights downloaded separately

@@ -178,6 +178,7 @@
                   ./home/gui/gitkraken.nix
                   ./home/gui/lutris.nix
                   ./home/gui/makemkv.nix
+                  ./home/gui/mkvtoolnix.nix
                   ./home/gui/prism-launcher.nix
                   ./home/gui/slack.nix
                   ./home/gui/soulseek.nix
