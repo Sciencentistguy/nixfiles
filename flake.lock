@@ -427,15 +427,15 @@
         "tomlplusplus": "tomlplusplus"
       },
       "locked": {
-        "lastModified": 1667336186,
-        "narHash": "sha256-XXxJ+T4NlqgyYkOFwzpsl0ynpRnhd3eIE1xQyXdCV3w=",
-        "owner": "PlaceholderMC",
+        "lastModified": 1667716059,
+        "narHash": "sha256-NJxBhiPi3F6jdz+ohrfrdvQRrqlayMeO7LMSo5NtPZs=",
+        "owner": "PrismLauncher",
         "repo": "PrismLauncher",
-        "rev": "f6a3fa55b1fb4b10780065fd8e1df722cd40efd8",
+        "rev": "126bbd67f7bdeb26905520a068d8dc1968f2659c",
         "type": "github"
       },
       "original": {
-        "owner": "PlaceholderMC",
+        "owner": "PrismLauncher",
         "repo": "PrismLauncher",
         "type": "github"
       }

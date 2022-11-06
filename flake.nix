@@ -35,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     prism-launcher = {
-      url = "github:PlaceholderMC/PrismLauncher";
+      url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
