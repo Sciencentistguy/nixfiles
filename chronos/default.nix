@@ -8,6 +8,7 @@
 
     ./audio.nix
     ./bootloader.nix
+    ./docker.nix
     ./filesystems.nix
     ./fonts.nix
     ./gnome.nix
