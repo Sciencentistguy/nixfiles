@@ -11,7 +11,10 @@ in {
     env = {TERM = "alacritty";};
     window = {
       dynamic_title = false;
-      opacity = 0.85;
+      opacity =
+        if systemName == "chronos"
+        then 0.85
+        else 1.0;
       title = "Terminal";
       dimensions = {
         columns = 125;
