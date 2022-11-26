@@ -13,8 +13,8 @@ in {
       dynamic_title = false;
       opacity =
         if systemName == "chronos"
-        then 0.85
-        else 1.0;
+        then 1.0
+        else 0.85;
       title = "Terminal";
       dimensions = {
         columns = 125;
