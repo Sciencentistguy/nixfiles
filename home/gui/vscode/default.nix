@@ -26,12 +26,6 @@ in {
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
-          name = "onedark";
-          publisher = "bartoszmaka95";
-          version = "0.2.0";
-          sha256 = "sha256-5yhIDyR0bU4HHEiGn5ZvFxfYOvp96FrnEe/ITfMSqpY=";
-        }
-        {
           # `pkgs.vscode-extensions.github.copilot` is massively outdated
           name = "copilot";
           publisher = "github";
@@ -43,6 +37,12 @@ in {
           publisher = "ms-vscode";
           version = "0.6.0";
           sha256 = "sha256-Sd1bLdRBdLVK8y09wL/CJF+/kThPTH8MHw2mFQt+6h8=";
+        }
+        {
+          name = "one-monokai";
+          publisher = "azemoh";
+          version = "0.5.0";
+          sha256 = "sha256-ardM7u9lXkkTTPsDVqTl4yniycERYdwTzTQxaa4dD+c=";
         }
       ];
 
@@ -62,7 +62,7 @@ in {
       "terminal.integrated.profiles.linux" = {zsh = {path = "${pkgs.zsh}/bin/zsh";};};
       "update.mode" = "none";
       "window.zoomLevel" = 1;
-      "workbench.colorTheme" = "Dracula Soft";
+      "workbench.colorTheme" = "One Monokai";
       "workbench.editSessions.autoResume" = "off";
       "workbench.editSessions.continueOn" = "off";
       "workbench.experimental.editSessions.autoStore" = "off";
