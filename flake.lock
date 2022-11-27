@@ -759,11 +759,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1669321262,
-        "narHash": "sha256-2BjYyXKIvMI12ouPObpFJtcPsR36Vo0zF/vWYYJbuKM=",
+        "lastModified": 1669558045,
+        "narHash": "sha256-hAryTTQNiNEquGVUSbpZigDU/SIErAK1gufJasOjFTo=",
         "owner": "Sciencentistguy",
         "repo": "videoconverter",
-        "rev": "4fe4da070cdad1c3f1e7d8c126985b77963aefd0",
+        "rev": "5a1d55826788691e52d4b5b991384c894406598d",
         "type": "github"
       },
       "original": {
