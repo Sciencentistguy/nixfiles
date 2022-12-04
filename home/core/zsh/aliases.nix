@@ -23,6 +23,7 @@
     mm = "make -j$(nproc)";
     mount = "sudo mount";
     mv = "mv -v";
+    ncmpcpp = "ncmpcpp -q";
     neofetch = "clear; neofetch";
     poweroff = "sudo poweroff";
     reboot = "sudo reboot";
