@@ -1,6 +1,7 @@
 {
   lib,
   writeZsh,
+  xclip,
 }: let
   functions = {
     lls = ''
@@ -17,7 +18,7 @@
     '';
 
     imgpaste = ''
-      xclip -t image/png -o >$1
+      ${xclip}/bin/xclip -t image/png -o >$1
     '';
 
     borderless = ''
