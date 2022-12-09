@@ -10,7 +10,7 @@ if [ -f "$1" ]; then
     *.bz2) bunzip2 "$1" ;;
     *.rar) unrar x "$1" ;;
     *.gz) gunzip "$1" ;;
-    *.t*z*) tar xvf "$1" ;;
+    *.t?z) tar xvf "$1" ;;
     *.zip) unzip "$1" ;;
     *.Z) uncompress "$1" ;;
     *.7z) 7z x "$1" ;;
