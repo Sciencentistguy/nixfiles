@@ -37,6 +37,7 @@
     "prismlauncher"
     "qbittorrent"
     "rectangle"
+    "sonos"
     "spotify"
     "steam"
     "utm"
