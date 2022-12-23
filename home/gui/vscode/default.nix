@@ -11,6 +11,7 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         arrterian.nix-env-selector
+        bungcip.better-toml
         dracula-theme.theme-dracula
         haskell.haskell
         jnoortheen.nix-ide
@@ -25,6 +26,12 @@ in {
         vscodevim.vim
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "language-x86-64-assembly";
+          publisher = "13xforever";
+          version = "3.0.0";
+          sha256 = "sha256-wIsY6Fuhs676EH8rSz4fTHemVhOe5Se9SY3Q9iAqr1M=";
+        }
         {
           # `pkgs.vscode-extensions.github.copilot` is massively outdated
           name = "copilot";
@@ -95,6 +102,8 @@ in {
 
       # Rust-analyzer
       "rust-analyzer.checkOnSave.command" = "clippy";
+      "rust-analyzer.lens.implementations.enable" = false;
+      "rust-analyzer.lens.run.enable" = false;
 
       # Shellcheck
       "shellcheck.executablePath" = "${pkgs.shellcheck}/bin/shellcheck";
