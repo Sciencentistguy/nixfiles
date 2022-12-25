@@ -30,7 +30,7 @@ symlinkJoin {
   buildInputs = [makeWrapper];
   postBuild = let
     python = python3.withPackages (pp: with pp; [pynvim black]);
-    binPath = lib.makeBinPath (
+    path =
       [
         curl
         fd
@@ -61,10 +61,10 @@ symlinkJoin {
       ]
       ++ lib.optionals (!stdenv.isDarwin) [
         xclip
-      ]
-    );
+      ];
   in ''
     wrapProgram $out/bin/nvim\
-      --prefix PATH : ${binPath}
+      --prefix PATH : ${lib.makeBinPath path} \
+      --set LD_LIBRARY_PATH ${stdenv.cc.cc.lib}/lib
   '';
 }
