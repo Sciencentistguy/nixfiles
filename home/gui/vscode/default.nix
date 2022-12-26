@@ -94,7 +94,7 @@ in {
       "vim.highlightedyank.textColor" = "#d19a66";
       "vim.insertModeKeyBindings" = bindings.insert;
       "vim.leader" = ",";
-      "vim.neovimPath" = "${flakePkgs.neovim}/bin/nvim";
+      "vim.neovimPath" = "${pkgs.neovim-unwrapped}/bin/nvim";
       "vim.normalModeKeyBindings" = bindings.normal;
       "vim.shell" = "${pkgs.zsh}/bin/zsh";
       "vim.textwidth" = 100;

@@ -38,10 +38,6 @@
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "github:neovim/neovim?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rust-nix-shell = {
       url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -94,7 +90,6 @@
       // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
-      // inputs.neovim.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
       // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}
