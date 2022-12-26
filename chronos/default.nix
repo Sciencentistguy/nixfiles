@@ -15,7 +15,6 @@
     ./gpg.nix
     ./graphics.nix
     ./i18n.nix
-    ./mpdscribble.nix
     ./networking.nix
     ./nix.nix
     ./steam.nix
