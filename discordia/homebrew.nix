@@ -32,6 +32,7 @@
     "google-drive"
     "iterm2"
     "logitech-options"
+    "makemkv"
     "mullvadvpn"
     "plexamp"
     "prismlauncher"

@@ -5,6 +5,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     (callPackage ../home/gui/alacritty/alacritty.nix {})
+    mpv
   ];
 
   system.activationScripts.applications.text = let
