@@ -65,6 +65,9 @@
           LBUFFER="sudo $LBUFFER"
       fi
     '';
+    zlibd = ''
+      printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - "$@" | gzip -dc
+    '';
   };
 in
   writeZsh "functions.zsh" (
