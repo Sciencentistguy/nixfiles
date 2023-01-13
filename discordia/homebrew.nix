@@ -24,7 +24,7 @@
   };
 
   homebrew.casks = [
-    "discord-canary"
+    "discord"
     "drawio"
     "firefox"
     "gitkraken"
