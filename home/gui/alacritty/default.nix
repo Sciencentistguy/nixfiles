@@ -27,10 +27,8 @@ in {
     };
     font = {
       normal = {
-        family =
-          if systemName == "discordia"
-          then "Iosevka Nerd Font"
-          else "Iosevka Term";
+        family = "IosevkaTerm Nerd Font";
+        style = "Regular";
       };
       size =
         if systemName == "discordia"
