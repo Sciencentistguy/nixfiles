@@ -4,6 +4,7 @@
   Security,
   cmake,
   fetchFromGitHub,
+  git,
   installShellFiles,
   lib,
   libgit2,
@@ -15,16 +16,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "starship-sciencentistguy";
-  version = "1.11.0";
+  version = "1.12.0";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
     repo = "starship";
-    rev = "fdb3c56f3d021f76a9a25107e104a1c5b754470e";
-    sha256 = "sha256-QFM9mTIRMLjN4qfMwbmiLqiGunSf4hC4tsQPfwMXns0=";
+    rev = "6c614828088f532e009de8b157819069479a9883";
+    sha256 = "sha256-CjshHuBeA3cTP3l38ARi1qmMoDzNfintVYhNIovlYg0=";
   };
 
-  nativeBuildInputs = [installShellFiles pkg-config cmake];
+  nativeBuildInputs = [installShellFiles pkg-config cmake git];
 
   buildInputs = [libgit2] ++ lib.optionals stdenv.isDarwin [libiconv Security Foundation Cocoa];
 
@@ -42,7 +43,7 @@ rustPlatform.buildRustPackage rec {
     then ["battery"]
     else ["default"];
 
-  cargoSha256 = "sha256-UeDLVmvIQyJEwCIo8MNyDXCPyqalsvZiMRDiYtNYfnQ=";
+  cargoSha256 = "sha256-8uXD/5aBI2O1I/rvwk9MgA9J6VO2s1K29heOfmlIFDI=";
 
   preCheck = ''
     HOME=$TMPDIR
