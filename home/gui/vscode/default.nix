@@ -19,8 +19,8 @@ in {
         jnoortheen.nix-ide
         justusadam.language-haskell
         kamadorueda.alejandra
-        ms-python.python
-        ms-python.vscode-pylance
+        # ms-python.python
+        # ms-python.vscode-pylance
         ms-vscode.cpptools
         rust-lang.rust-analyzer
         timonwong.shellcheck
