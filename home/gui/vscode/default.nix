@@ -59,7 +59,7 @@ in {
     userSettings = {
       # vscode core settings
       "editor.cursorSurroundingLines" = 7;
-      "editor.fontFamily" = "Iosevka Term";
+      "editor.fontFamily" = "IosevkaTerm Nerd Font";
       "editor.inlineSuggest.enabled" = true;
       "editor.minimap.enabled" = false;
       "editor.renderWhitespace" = "trailing";
