@@ -1,6 +1,7 @@
 {
   lib,
   writeZsh,
+  isDarwin,
 }: let
   regular = {
     ":q" = "exit";
@@ -11,7 +12,10 @@
     e = "search-edit";
     ex = "extract";
     feh = "feh --conversion-timeout 1";
-    fex = "nautilus . 2>/dev/null";
+    fex =
+      if isDarwin
+      then "open ."
+      else "nautilus . 2>/dev/null";
     ffmpeg = "ffmpeg -hide_banner";
     ffplay = "ffplay -hide_banner";
     ffprobe = "ffprobe -hide_banner";

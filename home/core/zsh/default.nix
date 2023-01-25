@@ -20,10 +20,12 @@ in {
   home.file.".zsh/environment.zsh".source = callPackage ./environment.nix {};
 
   home.file.".zsh/path.zsh".source = callPackage ./path.nix {
-    inherit config isDarwin isNixOS lib;
+    inherit config isDarwin isNixOS;
   };
 
-  home.file.".zsh/aliases.zsh".source = callPackage ./aliases.nix {};
+  home.file.".zsh/aliases.zsh".source = callPackage ./aliases.nix {
+    inherit isDarwin;
+  };
 
   home.file.".zsh/functions.zsh".source = callPackage ./functions.nix {};
 
