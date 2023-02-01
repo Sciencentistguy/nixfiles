@@ -15,6 +15,11 @@
       fsType = "ntfs";
       options = ["uid=jamie" "gid=users"];
     };
+    "/atlas" = {
+      fsType = "fuse";
+      device = "${pkgs.sshfs-fuse}/bin/sshfs#jamie@100.64.224.103:/";
+      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other"];
+    };
   };
 
   #Virtual fielsystems
