@@ -38,8 +38,8 @@ in {
           # `pkgs.vscode-extensions.github.copilot` is massively outdated
           name = "copilot";
           publisher = "github";
-          version = "1.55.7117";
-          sha256 = "sha256-06uTcRfT1QPI1eJyJSq0bbg8bIgaAtsmApjSMGtstYY=";
+          version = "1.71.8269";
+          sha256 = "sha256-btN0VNPid6dsmqXWrHBXxAQoP5qBOpOC2McPxuF2Nbg=";
         }
         {
           name = "makefile-tools";
