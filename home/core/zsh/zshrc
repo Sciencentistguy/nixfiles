@@ -18,7 +18,10 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' menu select
 
 # Path
-source "$HOME/.zsh/path.zsh"
+if [ -z "${IN_NIX_SHELL}" ]; then
+    #TODO: `nix shell` does not set IN_NIX_SHELL
+    source "$HOME/.zsh/path.zsh"
+fi
 
 # Prompt
 if type starship >/dev/null; then
