@@ -19,8 +19,8 @@ in {
         jnoortheen.nix-ide
         justusadam.language-haskell
         kamadorueda.alejandra
-        # ms-python.python
-        # ms-python.vscode-pylance
+        ms-python.python
+        ms-python.vscode-pylance
         ms-vscode.cpptools
         rust-lang.rust-analyzer
         timonwong.shellcheck
@@ -55,7 +55,7 @@ in {
         }
       ];
 
-    mutableExtensionsDir = true;
+    mutableExtensionsDir = false;
     userSettings = {
       # vscode core settings
       "editor.cursorSurroundingLines" = 7;
@@ -114,55 +114,4 @@ in {
       "haskell.serverExecutablePath" = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
     };
   };
-
-  home.file = let
-    inherit (lib) mkMerge concatMap;
-    cfg = config.programs.vscode;
-    subDir = "share/vscode/extensions";
-    extensionPath = ".vscode/extensions";
-
-    # Adapted from https://discourse.nixos.org/t/vscode-extensions-setup/1801/2
-    toPaths = ext:
-      map (k: {"${extensionPath}/${k}".source = "${ext}/${subDir}/${k}";})
-      (
-        if ext ? vscodeExtUniqueId
-        then [ext.vscodeExtUniqueId]
-        else builtins.attrNames (builtins.readDir (ext + "/${subDir}"))
-      );
-  in (mkMerge ((concatMap toPaths cfg.extensions)
-    ++ [
-      {
-        ".vscode/extensions/extensions.json".text = let
-          toExtensionJsonEntry = drv: rec {
-            identifier = {
-              id = "${drv.vscodeExtPublisher}.${drv.vscodeExtName} ";
-              uuid = "";
-            };
-
-            version = drv.version;
-
-            location = {
-              "$mid" = 1;
-              fsPath = drv.outPath + "/share/vscode/extensions/${drv.vscodeExtUniqueId}";
-              path = location.fsPath;
-              scheme = "file";
-            };
-
-            metadata = {
-              id = identifier.uuid;
-              publisherId = "";
-              publisherDisplayName = drv.vscodeExtPublisher;
-              targetPlatform = "undefined";
-              isApplicationScoped = false;
-              updated = false;
-              isPreReleaseVersion = false;
-              installedTimestamp = 0;
-              preRelease = false;
-            };
-          };
-          x = builtins.toJSON (map toExtensionJsonEntry config.programs.vscode.extensions);
-        in
-          builtins.trace x x;
-      }
-    ]));
 }
