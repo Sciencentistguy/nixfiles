@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  boot.supportedFilesystems = ["zfs"];
+  boot.supportedFilesystems = ["zfs" "ntfs"];
   boot.zfs.extraPools = ["scratch" "storage-pool"];
 
   # limit ZFS arc size to 16 GiB
