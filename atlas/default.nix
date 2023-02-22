@@ -14,6 +14,7 @@
     ./i18n.nix
     ./networking.nix
     ./nix.nix
+    ./openrgb.nix
     ./sudo.nix
     ./time.nix
   ];
