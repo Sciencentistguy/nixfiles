@@ -14,6 +14,7 @@
   ripgrep,
   rnix-lsp,
   rust-analyzer, # flake
+  rustfmt,
   shellcheck,
   shfmt,
   stdenv,
@@ -52,6 +53,7 @@ symlinkJoin {
         alejandra
         nodePackages.prettier
         shfmt
+        rustfmt
 
         # Language servers
         rust-analyzer

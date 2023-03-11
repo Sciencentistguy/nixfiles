@@ -22,10 +22,9 @@
     # Copliot needs node v16 or v17 on M1, and v12-v17 on linux.
     nodejs = pkgs.nodejs-16_x;
   };
-
-  neovimConfig = pkgs.callPackage ./config.nix {src = inputs.dotfiles;};
 in {
   home.packages = [neovim-wrapped];
 
-  home.file.".config/nvim".source = neovimConfig;
+  home.file.".config/nvim/lua/user".source = ./lua/user;
+  home.file.".config/nvim/init.lua".source = ./init.lua;
 }
