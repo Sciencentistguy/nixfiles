@@ -28,7 +28,6 @@ in {
   programs.beets.settings = {
     directory = "~/Music/beets";
     plugins = [
-      "acousticbrainz"
       "badfiles"
       "chroma"
       "duplicates"
