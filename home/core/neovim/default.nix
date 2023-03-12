@@ -17,6 +17,7 @@
   # Nvim needs a lot of things in $PATH; don't install them globally just because of that.
   neovim-wrapped = pkgs.callPackage ./neovim.nix {
     inherit (pkgs) rust-analyzer;
+    inherit (flakePkgs) nil;
     inherit neovim-unwrapped;
 
     # Copliot needs node v16 or v17 on M1, and v12-v17 on linux.

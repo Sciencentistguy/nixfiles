@@ -7,12 +7,12 @@
   lib,
   makeWrapper,
   neovim-unwrapped, # flake
+  nil, # flake
   nodePackages,
   nodejs,
   perl,
   python3,
   ripgrep,
-  rnix-lsp,
   rust-analyzer, # flake
   rustfmt,
   shellcheck,
@@ -59,7 +59,7 @@ symlinkJoin {
         rust-analyzer
         sumneko-lua-language-server
         nodePackages.pyright
-        rnix-lsp
+        nil
       ]
       ++ lib.optionals (!stdenv.isDarwin) [
         xclip

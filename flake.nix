@@ -50,6 +50,10 @@
       url = "github:Sciencentistguy/videoconverter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Libraries
     agenix = {
@@ -90,6 +94,7 @@
       // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
+      // inputs.nil.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
       // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}

@@ -42,6 +42,11 @@ in {
       "scrub"
     ];
     fetchart.minwidth = 1000;
+    fetchart.sources = [
+      "filesystem"
+      {coverart = "release";}
+      {coverart = "releasegroup";}
+    ];
     import.timid = true;
   };
 }

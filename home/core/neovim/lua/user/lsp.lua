@@ -36,8 +36,6 @@ lsp.pyright.setup({})
 
 lsp.hls.setup({})
 
-lsp.rnix.setup({})
-
 lsp.clangd.setup({})
 
 lsp.solargraph.setup({})
@@ -73,3 +71,5 @@ lsp.lua_ls.setup({
         },
     },
 })
+
+lsp.nil_ls.setup({})
