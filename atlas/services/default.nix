@@ -1,5 +1,6 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
+    ./awair
     ./bonkbot.nix
     ./borg.nix
     ./docker.nix
