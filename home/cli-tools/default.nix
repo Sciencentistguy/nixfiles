@@ -9,7 +9,7 @@
     ./ffmpeg.nix
     ./file.nix
     ./gping.nix
-    ./hyfetch.nix
+    ./hyfetch
     ./jq.nix
     ./killall.nix
     ./mpv.nix

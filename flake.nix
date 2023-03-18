@@ -10,11 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dotfiles = {
-      url = "github:Sciencentistguy/dotfiles";
-      flake = false;
-    };
-
     # Environment/system management
     darwin = {
       url = "github:LnL7/nix-darwin";

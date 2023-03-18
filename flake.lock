@@ -154,22 +154,6 @@
         "type": "github"
       }
     },
-    "dotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1672077360,
-        "narHash": "sha256-Jr7Hrbn/PvRrzYixiWJxoOVSmiocGDENzjK5rCUky3I=",
-        "owner": "Sciencentistguy",
-        "repo": "dotfiles",
-        "rev": "2f81cfd07d8ebd9e2104244a958cbc04f4ef8868",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Sciencentistguy",
-        "repo": "dotfiles",
-        "type": "github"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -545,7 +529,6 @@
         "beets-file-info": "beets-file-info",
         "bonkbot": "bonkbot",
         "darwin": "darwin_2",
-        "dotfiles": "dotfiles",
         "fenix": "fenix",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_4",
