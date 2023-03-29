@@ -24,6 +24,7 @@
 
   networking.firewall.enable = true;
   networking.firewall.allowedUDPPorts = [41641];
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   networking.firewall.extraCommands = ''
     ${pkgs.nftables}/bin/nft -f - <<EOF
