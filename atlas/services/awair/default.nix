@@ -11,6 +11,10 @@
         name = "jamies-office";
         ip = "192.168.1.150";
       }
+      {
+        name = "jamies-bedroom";
+        ip = "192.168.1.151";
+      }
     ];
     sensors' = builtins.map (sensor: ''-s "${sensor.name}":"${sensor.ip}"'') sensors;
   in {
