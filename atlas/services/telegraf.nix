@@ -71,10 +71,6 @@
 
         net = {};
 
-        nvidia_smi = {
-          bin_path = "${pkgs.linuxPackages.nvidia_x11.bin}/bin/nvidia-smi";
-        };
-
         processes = {};
 
         sensors = {};
