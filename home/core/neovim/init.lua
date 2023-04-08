@@ -32,3 +32,11 @@ require("nvim-treesitter.parsers").ft_to_lang = function(ft)
     end
     return ft_to_lang(ft)
 end
+
+-- Reopen where you left off
+vim.cmd([[
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+]])
