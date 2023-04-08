@@ -4,9 +4,7 @@
   systemName,
   ...
 }: let
-  ffmpeg = flakePkgs.videoconverter.ffmpeg.override {
-    nvenc = systemName == "chronos";
-  };
+  ffmpeg = flakePkgs.videoconverter.ffmpeg;
 in {
   home.packages = [
     ffmpeg
