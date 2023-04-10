@@ -1,0 +1,74 @@
+diff --git a/whipper/program/cdparanoia.py b/whipper/program/cdparanoia.py
+index 5c4b779..b207b6f 100644
+--- a/whipper/program/cdparanoia.py
++++ b/whipper/program/cdparanoia.py
+@@ -271,10 +271,10 @@ class ReadTrackTask(task.Task):
+ 
+         bufsize = 1024
+         if self._overread:
+-            argv = ["cd-paranoia", "--stderr-progress",
++            argv = ["cdparanoia", "--stderr-progress",
+                     "--sample-offset=%d" % self._offset, "--force-overread", ]
+         else:
+-            argv = ["cd-paranoia", "--stderr-progress",
++            argv = ["cdparanoia", "--stderr-progress",
+                     "--sample-offset=%d" % self._offset, ]
+         if self._device:
+             argv.extend(["--force-cdrom-device", self._device, ])
+@@ -283,20 +283,9 @@ class ReadTrackTask(task.Task):
+             stopTrack, common.framesToHMSF(stopOffset)),
+             self.path])
+         logger.debug('running %s', (" ".join(argv), ))
+-        if self._offset > 587:
+-            logger.warning(
+-                "because of a cd-paranoia upstream bug whipper may fail to "
+-                "work correctly when using offset values > 587 (current "
+-                "value: %d) and print warnings like this: 'file size 0 did "
+-                "not match expected size'. For more details please check the "
+-                "following issues: "
+-                "https://github.com/whipper-team/whipper/issues/234 and "
+-                "https://github.com/rocky/libcdio-paranoia/issues/14",
+-                self._offset
+-            )
+         if stopTrack == 99:
+             logger.warning(
+-                "because of a cd-paranoia upstream bug whipper may fail to "
++                "because of a cdparanoia upstream bug whipper may fail to "
+                 "rip the last track of a CD when it has got 99 of them. "
+                 "For more details please check the following issue: "
+                 "https://github.com/whipper-team/whipper/issues/302"
+@@ -310,7 +299,7 @@ class ReadTrackTask(task.Task):
+                                          close_fds=True)
+         except OSError as e:
+             if e.errno == errno.ENOENT:
+-                raise common.MissingDependencyException('cd-paranoia')
++                raise common.MissingDependencyException('cdparanoia')
+ 
+             raise
+ 
+@@ -572,8 +561,8 @@ _VERSION_RE = re.compile(
+ 
+ 
+ def getCdParanoiaVersion():
+-    getter = common.VersionGetter('cd-paranoia',
+-                                  ["cd-paranoia", "-V"],
++    getter = common.VersionGetter('cdparanoia',
++                                  ["cdparanoia", "-V"],
+                                   _VERSION_RE,
+                                   "%(version)s %(release)s")
+ 
+@@ -599,12 +588,12 @@ class AnalyzeTask(ctask.PopenTask):
+     def __init__(self, device=None):
+         # cdparanoia -A *always* writes cdparanoia.log
+         self.cwd = tempfile.mkdtemp(suffix='.whipper.cache')
+-        self.command = ['cd-paranoia', '-A']
++        self.command = ['cdparanoia', '-A']
+         if device:
+             self.command += ['-d', device]
+ 
+     def commandMissing(self):
+-        raise common.MissingDependencyException('cd-paranoia')
++        raise common.MissingDependencyException('cdparanoia')
+ 
+     def readbyteserr(self, bytes_stderr):
+         self._output.append(bytes_stderr)

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./archive-utils.nix
     ./bat.nix
@@ -26,6 +26,7 @@
     ./tmux.nix
     ./watch.nix
     ./wget.nix
+    ./whipper
     ./yt-dlp.nix
   ];
 }
