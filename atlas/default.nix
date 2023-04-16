@@ -17,6 +17,7 @@
     ./openrgb.nix
     ./sudo.nix
     ./time.nix
+    ./virtualisation.nix
   ];
 
   programs.zsh.enable = true;
@@ -27,6 +28,8 @@
       "wheel"
       # Yes I know this is a big no-no, but I also have passwordless sudo, so ¯\_(ツ)_/¯
       "docker"
+      "libvirtd"
+      "kvm"
     ];
     shell = pkgs.zsh;
   };
