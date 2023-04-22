@@ -15,6 +15,7 @@
     ./gpg.nix
     ./graphics.nix
     ./i18n.nix
+    ./mouse.nix
     ./networking.nix
     ./nix.nix
     ./steam.nix
