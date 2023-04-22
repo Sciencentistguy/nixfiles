@@ -51,7 +51,9 @@ in {
       "missing"
       "scrub"
     ];
-    fetchart.minwidth = 1000;
+    # Ideally this would be higher, but if the only art that exists is <1000, I still want to
+    # fetch it.
+    fetchart.minwidth = 500;
     fetchart.sources = [
       "filesystem"
       {coverart = "release";}
