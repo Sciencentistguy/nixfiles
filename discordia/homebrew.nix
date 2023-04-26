@@ -31,7 +31,7 @@
     "google-chrome"
     "google-drive"
     "iterm2"
-    "logitech-options"
+    "logi-options-plus"
     "makemkv"
     "mullvadvpn"
     "plexamp"
