@@ -1,9 +1,8 @@
 {pkgs, ...}: {
   home.packages = let
-    # This is needed to fix external links being broken in spotify.
-    # See: https://github.com/NixOS/nixpkgs/issues/47885
+    # Horrible hack - see https://github.com/NixOS/nixpkgs/issues/227449
     spotify = pkgs.spotify.override {
-      nss = pkgs.nss_latest;
+      callPackage = p: attrs: pkgs.callPackage p (attrs // {nss = pkgs.nss_latest;});
     };
   in [spotify];
 }
