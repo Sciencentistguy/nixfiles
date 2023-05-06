@@ -11,7 +11,7 @@
     ./docker.nix
     ./filesystems.nix
     ./fonts.nix
-    ./gnome.nix
+    ./gnome
     ./gpg.nix
     ./graphics.nix
     ./i18n.nix
