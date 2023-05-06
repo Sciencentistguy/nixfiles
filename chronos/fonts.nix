@@ -13,7 +13,7 @@
 
     (
       nerdfonts.override {
-        fonts = ["Iosevka" "Inconsolata"];
+        fonts = ["Iosevka" "IosevkaTerm" "Inconsolata"];
       }
     )
   ];
