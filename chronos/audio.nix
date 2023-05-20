@@ -59,6 +59,6 @@ in {
     source = (pkgs.formats.json {}).generate "99-input-denoising.conf" pw_rnnoise_cfg;
   };
   environment.etc."pipewire/pipewire.conf.d/98-sample-rates.conf" = {
-    source = (pkgs.formats.json {}).generate "98-input-denoising.conf" sample_rate_cfg;
+    source = (pkgs.formats.json {}).generate "98-sample-rates.conf" sample_rate_cfg;
   };
 }
