@@ -21,7 +21,7 @@
     inherit neovim-unwrapped;
 
     # Copliot needs node v16 or v17 on M1, and v12-v17 on linux.
-    nodejs = pkgs.nodejs-16_x;
+    # nodejs = pkgs.nodejs-16_x;
   };
 in {
   home.packages = [neovim-wrapped];
