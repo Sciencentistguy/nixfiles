@@ -13,7 +13,7 @@
       ./home-manager.nix
       ./neovim
       ./nix.nix
-      ./openssh.nix
+      ./openssh
       ./starship.nix
       ./zsh
     ]
