@@ -1,21 +1,12 @@
 {pkgs, ...}: let
   open-sus-sh = pkgs.openssh.overrideAttrs (oldAttrs: {
-    patches =
-      oldAttrs.patches
-      or []
-      ++ [
-        (pkgs.fetchpatch {
-          url = "https://gist.githubusercontent.com/Sciencentistguy/18f94bde5ce06b63d760a736322b1aa0/raw/be75bcf34fe98fd49a68d2fccf366c5e51c06915/sussh.patch";
-          sha256 = "sha256-PKrlujoTkvTDCl02AGR5vmlZVeSoLYZqQGERc1sI+hM";
-        })
-      ];
+    patches = oldAttrs.patches or [] ++ [./sussh.patch];
     dontCheck = true;
     checkTarget = [];
   });
 in {
-  home.packages = [open-sus-sh];
-
   programs.ssh.enable = true;
+  programs.ssh.package = open-sus-sh;
   programs.ssh.compression = false;
 
   programs.ssh.matchBlocks."github.com".identityFile = "~/.ssh/github";
