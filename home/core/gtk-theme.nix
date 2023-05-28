@@ -8,7 +8,7 @@
       gtk-application-prefer-dark-theme = 0;
     };
   in {
-    enable = true;
+    enable = false;
     cursorTheme = {
       name = "MacOSMonterey";
       package = flakePkgs.apple-cursor-theme;
