@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   services.nfs.server.exports = ''
     /storage-pool/   100.64.0.0/10(rw,fsid=0,no_subtree_check,insecure,nohide)
+    /storage-pool/   192.168.1.0/24(rw,fsid=0,subtree_check,insecure,nohide)
     /nas/   100.64.0.0/10(rw,fsid=0,no_subtree_check,insecure,nohide)
   '';
 
