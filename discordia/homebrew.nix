@@ -45,6 +45,7 @@
     "utm"
     "visual-studio-code"
     "vlc"
+    "warp"
     "zulu"
     "zulu8"
   ];
