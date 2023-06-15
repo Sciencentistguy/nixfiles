@@ -69,5 +69,18 @@ in {
     ruby
     xz
     time
+
+    inetutils
+    (superLowPrio nettools)
+
+    lsof
+    tcpdump
+    (
+      nano.overrideAttrs (old: {
+        postInstall = ''
+          ln $out/bin/nano $out/bin/pico
+        '';
+      })
+    )
   ];
 }
