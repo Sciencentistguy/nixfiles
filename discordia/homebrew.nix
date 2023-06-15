@@ -47,6 +47,7 @@
     "vlc"
     "warp"
     "zulu"
+    "zulu17"
     "zulu8"
   ];
 }
