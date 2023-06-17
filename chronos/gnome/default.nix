@@ -36,18 +36,7 @@
     flakePkgs.apple-cursor-theme
 
     gnomeExtensions.impatience
-    (gnomeExtensions.hide-top-bar.overrideAttrs (old: {
-      patches =
-        old.patches
-        or []
-        ++ [
-          ./fix-gnome-44.patch
-          # (fetchpatch {
-          # url = "https://gitlab.gnome.org/tuxor1337/hidetopbar/-/commit/0e35d85c96e035c9ad8ee11133c56282bbba4192.diff";
-          # sha256 = "sha256-2p9x2cG7tXjHggDTPgO613Bp6v45Ab6drz5S8QABA1o=";
-          # })
-        ];
-    }))
+    gnomeExtensions.hide-top-bar
     gnomeExtensions.custom-hot-corners-extended
     gnomeExtensions.blur-my-shell
   ];
