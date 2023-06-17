@@ -172,7 +172,7 @@
                   ./home/gui/firefox.nix
                   ./home/gui/gitkraken.nix
                   ./home/gui/lutris.nix
-                  ./home/gui/makemkv.nix
+                  ./home/gui/makemkv
                   ./home/gui/mkvtoolnix.nix
                   ./home/gui/picard.nix
                   ./home/gui/prism-launcher.nix
