@@ -306,12 +306,15 @@
       }
     },
     "flake-utils_10": {
+      "inputs": {
+        "systems": "systems_3"
+      },
       "locked": {
-        "lastModified": 1678901627,
-        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
+        "lastModified": 1687709756,
+        "narHash": "sha256-Y5wKlQSkgEK2weWdOu4J3riRd+kV/VCgHsqLNTTWQ/0=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
+        "rev": "dbabf0ca0c0c4bce6ea5eaf65af5cb694d2082c7",
         "type": "github"
       },
       "original": {
@@ -845,6 +848,21 @@
         "type": "github"
       }
     },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "videoconverter": {
       "inputs": {
         "flake-compat": "flake-compat_6",
@@ -854,11 +872,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1686335615,
-        "narHash": "sha256-uBYtxM4QTq69w0QNpbQBkxlPWCUab5pdS7MiTILtcYU=",
+        "lastModified": 1688419026,
+        "narHash": "sha256-pa/419xtT5fa0uhdVKRBzzhDYugx8wfHBYy/HOkx7dk=",
         "owner": "Sciencentistguy",
         "repo": "videoconverter",
-        "rev": "c9979b191a8ad9de54a0f7c14aee1e5cecfcaac9",
+        "rev": "de4e27e67945a37b80fe089696aafd046bfeca1e",
         "type": "github"
       },
       "original": {
