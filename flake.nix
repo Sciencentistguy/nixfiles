@@ -128,6 +128,8 @@
                   ./home/core
                   ./home/cli-tools
                   ./home/dev
+
+                  ./home/beets.nix
                 ];
               };
             }
@@ -183,7 +185,6 @@
                   ./home/gui/vscode
 
                   # other
-                  ./home/beets.nix
                   ./home/mpd.nix
                   ./home/weechat.nix
                 ];

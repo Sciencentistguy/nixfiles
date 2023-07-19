@@ -3,8 +3,9 @@
   lib,
   flakePkgs,
   ...
-}: let
-  beets = pkgs.beets.overrideAttrs (oldAttrs: {
+}: {
+  programs.beets.enable = true;
+  programs.beets.package = pkgs.beets.overrideAttrs (oldAttrs: {
     propagatedBuildInputs =
       (oldAttrs.propagatedBuildInputs or [])
       ++ [
@@ -32,11 +33,9 @@
     dontCheck = true;
     doInstallCheck = false;
   });
-in {
-  programs.beets.enable = true;
-  programs.beets.package = beets;
+
   programs.beets.settings = {
-    directory = "~/Music/beets";
+    directory = "/storage-pool/media/Music";
     plugins = [
       "badfiles"
       "chroma"
