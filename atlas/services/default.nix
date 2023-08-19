@@ -8,6 +8,7 @@
     ./jellyfin.nix
     ./nfs.nix
     ./plex.nix
+    ./samba.nix
     ./susbot.nix
     ./telegraf.nix
   ];
