@@ -5,6 +5,7 @@
       ./bat.nix
       ./btop.nix
       ./comma.nix
+      ./exiftool.nix
       ./eza.nix
       ./fd.nix
       ./ffmpeg.nix
