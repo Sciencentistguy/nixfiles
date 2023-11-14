@@ -10,6 +10,7 @@
     ./plex.nix
     ./samba.nix
     ./susbot.nix
+    ./syncthing.nix
     ./telegraf.nix
   ];
 }
