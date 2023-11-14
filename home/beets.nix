@@ -4,16 +4,7 @@
   ...
 }: {
   programs.beets.enable = true;
-  programs.beets.package = pkgs.beets-unstable.overrideAttrs (oldAttrs: {
-    propagatedBuildInputs =
-      (oldAttrs.propagatedBuildInputs or [])
-      ++ [
-        flakePkgs.beets-file-info
-        pkgs.python3Packages.pillow
-      ];
-    dontCheck = true;
-    doInstallCheck = false;
-  });
+  programs.beets.package = pkgs.beets-unstable; # TODO: reinstate beets-file-info at some point
 
   programs.beets.settings = {
     directory = "/storage-pool/media/Music";
