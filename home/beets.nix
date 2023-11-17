@@ -15,7 +15,7 @@
       "edit"
       "embedart"
       "fetchart"
-      "fileinfo"
+      # "fileinfo"
       "fromfilename"
       "mbsubmit"
       "mbsync"
