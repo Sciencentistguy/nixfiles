@@ -25,6 +25,7 @@
 
   homebrew.casks = [
     "discord"
+    "disk-inventory-x"
     "drawio"
     "firefox"
     "gitkraken"
@@ -43,6 +44,7 @@
     "sonos"
     "spotify"
     "steam"
+    "syncthing"
     "utm"
     "visual-studio-code"
     "vlc"
