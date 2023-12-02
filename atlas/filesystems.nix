@@ -7,5 +7,5 @@
     bytes = 16 * (1024 * 1024 * 1024);
   in ["zfs.zfs_arc_max=${toString bytes}"];
 
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
 }

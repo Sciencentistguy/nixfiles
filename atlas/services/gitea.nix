@@ -1,11 +1,10 @@
 {pkgs, ...}: {
   services.gitea = {
     enable = true;
-    httpPort = 3001;
-    domain = "git.quigley.xyz";
-    rootUrl = "https://git.quigley.xyz";
-    # settings = {
-    # server.ROOT_URL = "";
-    # };
+    settings.server = {
+      ROOT_URL = "https://git.quigley.xyz";
+      HTTP_PORT = 3001;
+      DOMAIN = "git.quigley.xyz";
+    };
   };
 }
