@@ -2,7 +2,7 @@
   # Real disks
   fileSystems = {
     "/hdd" = {
-      device = "/dev/disk/by-uuid/08691794-6fea-4a6c-9aac-bab29a4a9818";
+      device = "/dev/disk/by-uuid/5e7178bf-d45a-4b45-8a07-2099cafd4ea6";
       fsType = "btrfs";
     };
     "/windows/c" = {
