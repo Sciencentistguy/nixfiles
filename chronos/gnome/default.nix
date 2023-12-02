@@ -29,8 +29,6 @@
     flameshot
     gnome.gnome-tweaks
 
-    materia-theme
-    materia-kde-theme
     paper-icon-theme
     paper-gtk-theme
     flakePkgs.apple-cursor-theme
