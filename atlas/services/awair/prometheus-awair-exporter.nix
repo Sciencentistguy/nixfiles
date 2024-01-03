@@ -12,5 +12,5 @@ buildGoModule {
     rev = "f154bbdc401886a1311d80d19d4461a0915ed310";
     sha256 = "sha256-wyBWBfd6r5a4MbiDHYUiMm+JJYRrfD4KFVSgCh/SHqA=";
   };
-  vendorSha256 = "sha256-tPdKG26/Hlf2K58b2b3wO4FlaLehxTCk+qpBGN3/od8=";
+  vendorHash = "sha256-tPdKG26/Hlf2K58b2b3wO4FlaLehxTCk+qpBGN3/od8=";
 }
