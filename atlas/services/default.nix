@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./awair
+    ./backup
     ./bonkbot.nix
     ./borg.nix
     ./docker.nix
