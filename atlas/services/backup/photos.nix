@@ -18,7 +18,9 @@
           /storage-pool/photos/Files \
           photos: \
           --exclude '{{${regexp}}}' \
-          --exclude 'Thumbs.db'
+          --exclude 'Thumbs.db' \
+          --stats=30s \
+          --stats-one-line
     '';
     serviceConfig = {
       Type = "oneshot";
