@@ -19,8 +19,9 @@
           photos: \
           --exclude '{{${regexp}}}' \
           --exclude 'Thumbs.db' \
-          --stats=30s \
-          --stats-one-line
+          --stats 30s \
+          --stats-one-line \
+          --stats-log-level NOTICE
     '';
     serviceConfig = {
       Type = "oneshot";
