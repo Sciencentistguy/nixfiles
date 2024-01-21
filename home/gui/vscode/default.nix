@@ -13,7 +13,7 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         arrterian.nix-env-selector
-        bungcip.better-toml
+        tamasfe.even-better-toml
         dracula-theme.theme-dracula
         haskell.haskell
         jnoortheen.nix-ide
@@ -22,10 +22,10 @@ in {
         ms-python.python
         ms-python.vscode-pylance
         ms-vscode.cpptools
+        ms-vscode.cmake-tools
         rust-lang.rust-analyzer
         timonwong.shellcheck
         vadimcn.vscode-lldb
-        # vscodevim.vim
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
@@ -33,13 +33,6 @@ in {
           publisher = "13xforever";
           version = "3.0.0";
           sha256 = "sha256-wIsY6Fuhs676EH8rSz4fTHemVhOe5Se9SY3Q9iAqr1M=";
-        }
-        {
-          # `pkgs.vscode-extensions.github.copilot` is massively outdated
-          name = "copilot";
-          publisher = "github";
-          version = "1.71.8269";
-          sha256 = "sha256-btN0VNPid6dsmqXWrHBXxAQoP5qBOpOC2McPxuF2Nbg=";
         }
         {
           name = "makefile-tools";
@@ -75,7 +68,13 @@ in {
       "keyboard.dispatch" = "keyCode";
       "telemetry.telemetryLevel" = "off";
       "terminal.integrated.defaultProfile.linux" = "zsh";
-      "terminal.integrated.profiles.linux" = {zsh = {path = "${pkgs.zsh}/bin/zsh";};};
+      "terminal.integrated.profiles.linux" = {
+        zsh = {
+          path = let
+            zsh = pkgs.zsh;
+          in "${pkgs.zsh}/bin/zsh";
+        };
+      };
       "update.mode" = "none";
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "One Monokai";
