@@ -17,7 +17,7 @@
     };
     "/atlas" = {
       fsType = "fuse";
-      device = "${pkgs.sshfs-fuse}/bin/sshfs#jamie@100.64.224.103:/";
+      device = "${pkgs.sshfs-fuse}/bin/sshfs#jamie@100.88.57.38:/";
       options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other"];
     };
   };
