@@ -245,7 +245,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       pkgsUnfree = inputs.nixpkgs-unfree.legacyPackages.${system};
     in {
-      packages = {
+      packages = rec {
         shark-radar = pkgsUnfree.callPackage ./packages/shark-radar {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
@@ -258,6 +258,8 @@
         apple-cursor-theme = pkgs.callPackage ./packages/apple-cursor-theme {};
         update-music-library = pkgs.callPackage ./packages/update-music-library {};
         asp = pkgs.callPackage ./packages/asp {};
+        vuescan-unwrapped = pkgs.callPackage ./packages/vuescan/unwrapped.nix {};
+        vuescan = pkgs.callPackage ./packages/vuescan/wrapper.nix {inherit vuescan-unwrapped;};
       };
     }));
 }

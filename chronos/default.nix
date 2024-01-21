@@ -21,6 +21,7 @@
     ./steam.nix
     ./sudo.nix
     ./time.nix
+    ./vuescan.nix
     ./xone.nix
   ];
 
