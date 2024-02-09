@@ -49,6 +49,10 @@
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Libraries
     agenix = {
@@ -89,6 +93,7 @@
       // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
+      // inputs.nix-minecraft.packages.${system}
       // inputs.nil.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
       // inputs.susbot.packages.${system}
@@ -114,6 +119,7 @@
           inputs.agenix.nixosModules.age
           inputs.bonkbot.nixosModules.${system}.bonkbot
           inputs.susbot.nixosModules.${system}.susbot
+          inputs.nix-minecraft.nixosModules.minecraft-servers 
           (
             {
               pkgs,
@@ -260,6 +266,7 @@
         asp = pkgs.callPackage ./packages/asp {};
         vuescan-unwrapped = pkgs.callPackage ./packages/vuescan/unwrapped.nix {};
         vuescan = pkgs.callPackage ./packages/vuescan/wrapper.nix {inherit vuescan-unwrapped;};
+        minecraft-prometheus-exporter = pkgs.callPackage ./packages/minecraft-prometheus-exporter {};
       };
     }));
 }

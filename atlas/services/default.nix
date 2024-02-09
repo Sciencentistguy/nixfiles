@@ -8,6 +8,7 @@
     ./docker.nix
     ./gitea.nix
     ./jellyfin.nix
+    ./minecraft.nix
     ./nfs.nix
     ./plex.nix
     ./prometheus.nix
