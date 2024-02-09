@@ -10,6 +10,7 @@
     ./jellyfin.nix
     ./nfs.nix
     ./plex.nix
+    ./prometheus.nix
     ./samba.nix
     ./susbot.nix
     ./syncthing.nix
