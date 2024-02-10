@@ -33,9 +33,9 @@
     paper-gtk-theme
     flakePkgs.apple-cursor-theme
 
-    gnomeExtensions.impatience
-    gnomeExtensions.hide-top-bar
-    gnomeExtensions.custom-hot-corners-extended
     gnomeExtensions.blur-my-shell
+    gnomeExtensions.custom-hot-corners-extended
+    gnomeExtensions.impatience
+    gnomeExtensions.just-perfection
   ];
 }
