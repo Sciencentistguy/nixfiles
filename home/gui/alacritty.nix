@@ -6,7 +6,7 @@
   inherit (pkgs) lib;
 in {
   programs.alacritty.enable = true;
-  programs.alacritty.package = pkgs.callPackage ./alacritty.nix {};
+  # programs.alacritty.package = pkgs.callPackage ./alacritty.nix {};
   programs.alacritty.settings = {
     env = {TERM = "alacritty";};
     window = {
@@ -31,14 +31,24 @@ in {
         if systemName == "discordia"
         then 15
         else 14;
-      scale_with_dpi = false;
+      # scale_with_dpi = false;
     };
-    key_bindings =
+    keyboard.bindings =
       [
         {
           key = "Insert";
           mods = "Shift";
           action = "Paste";
+        }
+        {
+            key = "Home";
+            chars = "\\u001b[H1;3D";
+            mode = "~AppCursor";
+        }
+        {
+            key = "End";
+            chars = "\\u001b[H1;3C";
+            mode = "~AppCursor";
         }
       ]
       ++ lib.optionals (systemName == "discordia") [

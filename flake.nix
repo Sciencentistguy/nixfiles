@@ -173,7 +173,7 @@
                   ./home/dev
 
                   # gui
-                  ./home/gui/alacritty
+                  ./home/gui/alacritty.nix
                   ./home/gui/discord
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/drawio.nix
@@ -232,7 +232,7 @@
                   ./home/cli-tools
                   ./home/dev
 
-                  ./home/gui/alacritty
+                  ./home/gui/alacritty.nix
                 ];
               };
 
