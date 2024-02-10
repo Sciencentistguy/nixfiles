@@ -145,4 +145,9 @@ function zvm_after_init() {
     zvm_bindkey vicmd '^R' _atuin_search_widget
 }
 
-zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
+zvm_after_init_commands+=(
+    "bindkey '^[[A' up-line-or-search"
+    "bindkey '^[[B' down-line-or-search"
+    "bindkey '^[OH' beginning-of-line"
+    "bindkey '^[OF' end-of-line"
+)
