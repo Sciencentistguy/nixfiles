@@ -4,7 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    (callPackage ../home/gui/alacritty/alacritty.nix {})
+    alacritty
     mpv
   ];
 
