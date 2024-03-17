@@ -182,6 +182,7 @@
                   ./home/gui/lutris.nix
                   ./home/gui/makemkv
                   ./home/gui/mkvtoolnix.nix
+                  ./home/gui/obs.nix
                   ./home/gui/picard.nix
                   ./home/gui/prism-launcher.nix
                   ./home/gui/slack.nix
