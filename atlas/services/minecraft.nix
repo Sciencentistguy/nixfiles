@@ -24,7 +24,8 @@
         };
         "mods/noisium.jar" = fetchurl {
           url = "https://cdn.modrinth.com/data/KuNKN7d2/versions/7p5BqRHp/noisium-1.0.2%2Bmc1.20.x.jar";
-          sha512 = "037a0696ba20d053568d9733f9fc0d1dc2b3f980036eaa67eed970b84b5d37f9c1b2ebabdd91de401a27472fcf98383be00fe8e8edb5cb96c5c69d4a3c101ee5"; };
+          sha512 = "037a0696ba20d053568d9733f9fc0d1dc2b3f980036eaa67eed970b84b5d37f9c1b2ebabdd91de401a27472fcf98383be00fe8e8edb5cb96c5c69d4a3c101ee5";
+        };
         "mods/fabric-api.jar" = fetchurl {
           url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/cpC3P6YE/fabric-api-0.95.4%2B1.20.4.jar";
           sha512 = "a50ad75003e89289930e9fe65be18b1cabe9aa4bc5179c72f2f23096451f92064d93625f74c0094d9ae8a02f43ad847d2f4fb11fafe88534ebd1a566b0d9d7f1";
@@ -32,6 +33,18 @@
         "mods/no-chat-report.jar" = fetchurl {
           url = "https://cdn.modrinth.com/data/qQyHxfxd/versions/t4a6hnh0/NoChatReports-FORGE-1.20.4-v2.5.0.jar";
           sha512 = "33b608846c40550e71dfef20fe9d3532d7d4631725d26947d124fcc8a20ef4de8995283db919dba835f139472c3015cfadf9298cc94aa1d2ed0da581b48a1f31";
+        };
+        "mods/leaves-be-gone.jar" = fetchurl {
+          url = "https://cdn.modrinth.com/data/AVq17PqV/versions/fSg7kLcG/LeavesBeGone-v20.4.0-1.20.4-Fabric.jar";
+          sha512 = "768e3081aa75f33c65fcd61baf65ddac3b82542f7ceba1076056717e1555d0356a2647e28ee984ec6b8f3938ed20f5acfad2a8c0ed1a8199a7beef13e81790d4";
+        };
+        "mods/forge-config-api-port.jar" = fetchurl {
+          url = "https://cdn.modrinth.com/data/ohNO6lps/versions/xbVGsTLe/ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar";
+          sha512 = "d1eb1bc1aad0bcd3d97deee3d8f3b3eeaa43c332697be043260b7af132c7ee3da6c8b35f635ef7e4a431a95fa6f13dd4a796badeba91bba2b67eff6dc855d8e5";
+        };
+        "mods/puzzles-lib.jar" = fetchurl {
+          url = "https://cdn.modrinth.com/data/QAGBst4M/versions/4pPSXzLY/PuzzlesLib-v20.4.21-1.20.4-Fabric.jar";
+          sha512 = "26122eafe99e33aa18d0771ad045f4c32358a0e840b5fc3c2187563743bb62f53745e75692867c922c95bbc34958ad0f306b809662f02c1d3462673b024c652e";
         };
       };
     };
