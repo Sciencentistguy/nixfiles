@@ -94,7 +94,7 @@ in {
 
       # Nix
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+      "nix.serverPath" = "${pkgs.nil}/bin/nil";
 
       # Vim
       "vim.enableNeovim" = true;

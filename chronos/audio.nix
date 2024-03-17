@@ -55,10 +55,12 @@ in {
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  environment.etc."pipewire/pipewire.conf.d/99-input-denoising.conf" = {
-    source = (pkgs.formats.json {}).generate "99-input-denoising.conf" pw_rnnoise_cfg;
-  };
-  environment.etc."pipewire/pipewire.conf.d/98-sample-rates.conf" = {
-    source = (pkgs.formats.json {}).generate "98-sample-rates.conf" sample_rate_cfg;
-  };
+  services.pipewire.configPackages = [
+    (
+      pkgs.writeTextDir "share/pipewire/config.d/99-input-denoising.conf" ((pkgs.formats.json {}).generate "99-input-denoising.conf" pw_rnnoise_cfg)
+    )
+    (
+      pkgs.writeTextDir "share/pipewire/config.d/98-sample-rates.conf" ((pkgs.formats.json {}).generate "98-sample-rates.conf" sample_rate_cfg)
+    )
+  ];
 }
