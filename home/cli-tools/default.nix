@@ -17,6 +17,7 @@
       ./mpv.nix
       ./ncdu.nix
       ./procs.nix
+      ./qobuz-identifier.nix
       ./rink.nix
       ./ripgrep.nix
       ./rsync.nix

@@ -33,6 +33,10 @@
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    qobuz-identifier = {
+      url = "github:Sciencentistguy/qobuz_identifier";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-nix-shell = {
       url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -93,8 +97,9 @@
       // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
       // inputs.fenix.packages.${system}
-      // inputs.nix-minecraft.packages.${system}
       // inputs.nil.packages.${system}
+      // inputs.nix-minecraft.packages.${system}
+      // inputs.qobuz-identifier.packages.${system}
       // inputs.rust-nix-shell.packages.${system}
       // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}
@@ -119,7 +124,7 @@
           inputs.agenix.nixosModules.age
           inputs.bonkbot.nixosModules.${system}.bonkbot
           inputs.susbot.nixosModules.${system}.susbot
-          inputs.nix-minecraft.nixosModules.minecraft-servers 
+          inputs.nix-minecraft.nixosModules.minecraft-servers
           (
             {
               pkgs,
