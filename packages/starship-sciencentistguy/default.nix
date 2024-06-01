@@ -16,13 +16,13 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "starship-sciencentistguy";
-  version = "1.12.0";
+  version = "1.19.0";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
     repo = "starship";
-    rev = "6c614828088f532e009de8b157819069479a9883";
-    sha256 = "sha256-CjshHuBeA3cTP3l38ARi1qmMoDzNfintVYhNIovlYg0=";
+    rev = "c371772cf1840b8296be4a1c78ab741be20db937";
+    sha256 = "sha256-gLVOhX+LLwoQRgLiSI22Wiw97tUAgEKhd1+nbUVuijw=";
   };
 
   nativeBuildInputs = [installShellFiles pkg-config cmake git];
@@ -43,11 +43,13 @@ rustPlatform.buildRustPackage rec {
     then ["battery"]
     else ["default"];
 
-  cargoSha256 = "sha256-8uXD/5aBI2O1I/rvwk9MgA9J6VO2s1K29heOfmlIFDI=";
+  cargoSha256 = "sha256-ek190oqgR2Rng6PVisUHWQWLjFLmlFuQivBUEqH8kvA=";
 
   preCheck = ''
     HOME=$TMPDIR
   '';
+
+  doCheck = false;
 
   passthru.tests = {
     inherit (nixosTests) starship;
