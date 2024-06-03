@@ -5,13 +5,6 @@
   ...
 }: {
   programs.git.enable = true;
-  programs.git.package =
-    if isDarwin
-    then
-      pkgs.git.overrideAttrs (old: {
-        buildInputs = old.buildInputs ++ [pkgs.hello]; # Force build-from-source on darwin to avoid https://github.com/NixOS/nixpkgs/issues/208951
-      })
-    else pkgs.git;
   programs.git.difftastic.enable = true;
   programs.git.ignores = [
     "tags"
