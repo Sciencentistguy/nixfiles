@@ -15,14 +15,11 @@ in {
     # macOS coretuils are BSD flavoured and outdated
     pkgs.coreutils-full
 
-    (
-      # macOS ships a tcsh at `/bin/tcsh` and `/bin/csh`
-      tcsh.overrideAttrs (old: {
-        postInstall = ''
-          ln $out/bin/tcsh $out/bin/csh
-        '';
-      })
-    )
+    # macOS ships a tcsh at `/bin/tcsh` and `/bin/csh`
+    tcsh
+    (runCommand "csh-wrapper" {} ''
+      install -Dm755 ${tcsh}/bin/tcsh $out/bin/csh
+    '')
 
     dash
     ed
@@ -30,18 +27,12 @@ in {
     pax
     ps
 
-    (
-      # macOS places apple-clang stuff everywhere - not just the usual places where you find clang.
-      clang.overrideAttrs
-      (old: {
-        installPhase =
-          old.installPhase
-          + ''
-            ln -s $out/bin/c++ $out/bin/llvm-g++
-            ln -s $out/bin/cc $out/bin/llvm-gcc
-          '';
-      })
-    )
+    # macOS places apple-clang stuff everywhere - not just the usual places where you find clang.
+    clang
+    (runCommand "clang-wrapper" {} ''
+      install -Dm755 ${clang}/bin/c++ $out/bin/llvm-g++
+      install -Dm755 ${clang}/bin/cc $out/bin/llvm-gcc
+    '')
 
     (
       # GCC on macOS? its more likely than you think. See the comment on clang.
@@ -75,12 +66,11 @@ in {
 
     lsof
     tcpdump
-    (
-      nano.overrideAttrs (old: {
-        postInstall = ''
-          ln $out/bin/nano $out/bin/pico
-        '';
-      })
-    )
+
+    # macOS ships UW Pico as well as nano - nixpkgs does not package this, so just override with nano
+    nano
+    (runCommand "pico-wrapper" {} ''
+      install -Dm755 ${nano}/bin/nano $out/bin/pico
+    '')
   ];
 }
