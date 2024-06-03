@@ -4,6 +4,7 @@
   fd,
   fzf,
   git,
+  gnumake,
   lib,
   makeWrapper,
   neovim-unwrapped, # flake
@@ -44,6 +45,7 @@ symlinkJoin {
         stdenv.cc
         tree-sitter
         zathura
+        gnumake
 
         # Linters
         shellcheck

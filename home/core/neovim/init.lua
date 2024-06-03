@@ -1,5 +1,21 @@
 vim.g.mapleader = ","
 
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+print(lazypath)
+
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
 -- Packer.nvim plugin file
 require("user.plugins")
 
@@ -9,29 +25,6 @@ require("user.lsp")
 require("user.neoformat")
 require("user.statusbar")
 require("user.vim-opts")
-
--- Cannot be in the packer `config` block for... some reason
-require("onedark").setup({
-    transparent = true,
-})
-require("onedark").load()
-
-require("nvim-treesitter.configs").setup({
-    highlight = {
-        enable = true,
-    },
-    matchup = {
-        enbale = true,
-    },
-})
-
-local ft_to_lang = require("nvim-treesitter.parsers").ft_to_lang
-require("nvim-treesitter.parsers").ft_to_lang = function(ft)
-    if ft == "zsh" then
-        return "bash"
-    end
-    return ft_to_lang(ft)
-end
 
 -- Reopen where you left off
 vim.cmd([[
