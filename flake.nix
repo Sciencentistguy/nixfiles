@@ -190,6 +190,7 @@
                   ./home/gui/obs.nix
                   ./home/gui/picard.nix
                   ./home/gui/prism-launcher.nix
+                  ./home/gui/rawtherapee.nix
                   ./home/gui/slack.nix
                   ./home/gui/soulseek.nix
                   ./home/gui/spotify.nix
