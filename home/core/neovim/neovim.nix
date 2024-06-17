@@ -12,6 +12,7 @@
   nodePackages,
   nodejs,
   perl,
+  pyright,
   python3,
   ripgrep,
   rust-analyzer, # flake
@@ -60,7 +61,7 @@ symlinkJoin {
         # Language servers
         rust-analyzer
         sumneko-lua-language-server
-        nodePackages.pyright
+        pyright
         nil
       ]
       ++ lib.optionals (!stdenv.isDarwin) [
