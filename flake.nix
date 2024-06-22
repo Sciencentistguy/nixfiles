@@ -179,6 +179,7 @@
 
                   # gui
                   ./home/gui/alacritty.nix
+                  ./home/gui/chrome.nix
                   ./home/gui/discord
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/drawio.nix
