@@ -275,6 +275,7 @@
         vuescan-unwrapped = pkgs.callPackage ./packages/vuescan/unwrapped.nix {};
         vuescan = pkgs.callPackage ./packages/vuescan/wrapper.nix {inherit vuescan-unwrapped;};
         minecraft-prometheus-exporter = pkgs.callPackage ./packages/minecraft-prometheus-exporter {};
+        adobe-dcp-camera-profiles = pkgs.callPackage ./packages/adobe-dcp-camera-profiles {};
       };
     }));
 }

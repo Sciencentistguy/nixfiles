@@ -1,3 +1,7 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [rawtherapee];
+{
+  pkgs,
+  flakePkgs,
+  ...
+}: {
+  home.packages = with pkgs; with flakePkgs; [rawtherapee adobe-dcp-camera-profiles];
 }
