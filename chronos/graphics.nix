@@ -3,7 +3,7 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
