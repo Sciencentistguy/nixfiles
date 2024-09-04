@@ -5,7 +5,7 @@
 
   hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       intel-media-driver
