@@ -5,25 +5,27 @@
   stdenvNoCC,
   xar,
 }:
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation rec {
   name = "adobe-dcp-camera-profiles";
 
   src = fetchurl {
     url = "https://www.adobe.com/go/dng_converter_mac";
-    sha256 = "sha256-CFlT6TCvY6eJLXdszTM/QeInXhRskI4UnqcLwQYh1Yk=";
+    sha256 = "sha256-b88CHHYFqgNcaWAsjb+vJXKI/wgzWbhYUGWwsWbNzxk=";
   };
+
+  fileVersion = "16_5";
 
   nativeBuildInputs = [p7zip xar cpio];
 
   unpackCmd = ''
     7z x "$src"
-    cd DNGConverter_16_4
-    xar -x -f DNGConverter_16_4.pkg
+    cd DNGConverter_${fileVersion}
+    xar -x -f DNGConverter_${fileVersion}.pkg
     cd CameraRawProfiles.pkg
     gzip -d < Payload | cpio --extract
   '';
 
-  sourceRoot = "/build/DNGConverter_16_4/CameraRawProfiles.pkg";
+  sourceRoot = "/build/DNGConverter_${fileVersion}/CameraRawProfiles.pkg";
 
   dontBuild = true;
 
