@@ -8,7 +8,7 @@
   services.xserver.displayManager.gdm.wayland = false;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.gnome = {
-    extraGSettingsOverridePackages = with pkgs; [gnome.gnome-settings-daemon];
+    extraGSettingsOverridePackages = with pkgs; [gnome-settings-daemon];
     extraGSettingsOverrides = ''
       [org.gnome.settings-daemon.plugins.media-keys]
       custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
@@ -28,7 +28,7 @@
 
   environment.systemPackages = with pkgs; [
     flameshot
-    gnome.gnome-tweaks
+    gnome-tweaks
 
     paper-icon-theme
     paper-gtk-theme
