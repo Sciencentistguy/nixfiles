@@ -8,12 +8,8 @@
     # sensors ::  [{ name :: String, ip :: String }]
     sensors = [
       {
-        name = "jamies-office";
-        ip = "192.168.1.150";
-      }
-      {
         name = "jamies-bedroom";
-        ip = "192.168.1.151";
+        ip = "10.2.100.1";
       }
     ];
     sensors' = builtins.map (sensor: ''-s "${sensor.name}":"${sensor.ip}"'') sensors;
