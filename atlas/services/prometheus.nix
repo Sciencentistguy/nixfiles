@@ -1,6 +1,7 @@
 {...}: {
   services.prometheus = {
     enable = true;
+    globalConfig.scrape_interval = "15s"; # "1m"
     scrapeConfigs = [
       {
         job_name = "deluge_local";
