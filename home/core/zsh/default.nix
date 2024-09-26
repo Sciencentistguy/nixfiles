@@ -11,7 +11,8 @@
   writeZsh = name: expr: let
     text = pkgs.writeText name expr;
   in
-    pkgs.runCommandLocal name {} "${pkgs.shfmt}/bin/shfmt -i 4 ${text} > $out";
+    text;
+    # pkgs.runCommandLocal name {} "${pkgs.shfmt}/bin/shfmt -i 4 ${text} > $out";
 
   callPackage = x: attrs: pkgs.callPackage x ({inherit writeZsh;} // attrs);
 in {
