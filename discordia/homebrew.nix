@@ -35,7 +35,6 @@
     "logi-options-plus"
     "makemkv"
     "mpv"
-    "mullvadvpn"
     "musicbrainz-picard"
     "plexamp"
     "prismlauncher"
