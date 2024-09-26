@@ -25,7 +25,7 @@
       #use sendfile = yes
       #max protocol = smb2
       # allow local network and tailscale
-      hosts allow = 192.168.0.0/16 100.64.0.0/10
+      hosts allow = 10.0.0.0/16 100.64.0.0/10
       hosts deny = 0.0.0.0/0
       guest account = nobody
       map to guest = bad user
