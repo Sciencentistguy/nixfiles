@@ -5,7 +5,7 @@
   ...
 }: {
   services.minecraft-servers = {
-    enable = true;
+    enable = false;
     eula = true;
     openFirewall = true;
     servers.early-2024 = {
