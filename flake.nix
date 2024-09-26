@@ -132,6 +132,7 @@
               ...
             }: {
               home-manager.extraSpecialArgs = specialArgs;
+              home-manager.backupFileExtension = ".hm-bak";
               home-manager.users.jamie = {
                 home.stateVersion = homeManagerStateVersion;
                 nixpkgs = nixpkgsConfig;
@@ -169,6 +170,7 @@
               ...
             }: {
               home-manager.extraSpecialArgs = specialArgs;
+              home-manager.backupFileExtension = ".hm-bak";
               home-manager.users.jamie = {
                 home.stateVersion = homeManagerStateVersion;
                 nixpkgs = nixpkgsConfig;
@@ -232,6 +234,7 @@
               # `home-manager` config
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.useGlobalPkgs = true;
+              home-manager.backupFileExtension = ".hm-bak";
 
               home-manager.users.jamie = {
                 home.stateVersion = homeManagerStateVersion;
