@@ -18,8 +18,6 @@
   # Tailscale ran out of fds ??
   systemd.services.tailscaled.serviceConfig.LimitNOFILE = "infinity";
 
-  networking.hosts."192.168.1.3" = ["atlas"];
-
   # networking.firewall.enable = true;
   networking.firewall.enable = false;
   networking.firewall.allowedUDPPorts = [41641];
