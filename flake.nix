@@ -186,7 +186,6 @@
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/drawio.nix
                   ./home/gui/firefox.nix
-                  ./home/gui/gitkraken.nix
                   ./home/gui/lutris.nix
                   ./home/gui/makemkv
                   ./home/gui/mkvtoolnix.nix
