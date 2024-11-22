@@ -1,8 +1,4 @@
-{
-  pkgs,
-  systemName,
-  ...
-}: {
+{systemName, ...}: {
   services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
   networking.firewall.allowedTCPPorts = [
     5357 # wsdd
@@ -17,20 +13,18 @@
 
   services.samba = {
     enable = true;
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = ${systemName}
-      netbios name = ${systemName}
-      security = user
-      #use sendfile = yes
-      #max protocol = smb2
-      # allow local network and tailscale
-      hosts allow = 10.0.0.0/16 100.64.0.0/10
-      hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
-    '';
-    shares = {
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = systemName;
+        "netbios name" = systemName;
+        "security" = "user";
+        # allow local network and tailscale;
+        "hosts allow" = ["10.0.0.0/16" "100.64.0.0/10"];
+        "hosts deny" = ["0.0.0.0/0"];
+        "guest account" = "nobody";
+        "map to guest" = ["bad user"];
+      };
       jamie = {
         path = "/storage-pool/nas/jamie";
         browseable = true;
@@ -55,14 +49,6 @@
         "fruit:aapl" = "yes";
         "valid users" = "jamie";
       };
-      # philip = {
-      # path = "/storage-pool/nas/philip";
-      # browseable = true;
-      # "read only" = "no";
-      # "guest ok" = "no";
-      # "create mask" = "0664";
-      # "directory mask" = "0755";
-      # };
     };
   };
 }
