@@ -50,21 +50,21 @@
     };
   };
 
-  systemd.services."minecraft-prometheus-exporter-early-2024" = {
-    description = "minecraft-prometheus-exporter-early-2024";
-    wantedBy = ["multi-user.target"];
-    after = ["minecraft-server-early-2024.service"];
-    environment = {
-      MC_RCON_ADDRESS = "127.0.0.1:25575";
-      MC_WORLD = "${config.services.minecraft-servers.dataDir}/early-2024/world";
-      WEB_DISABLE_EXPORTER_METRICS = "true";
-    };
-    serviceConfig = {
-      ExecStart = "${flakePkgs.minecraft-prometheus-exporter}/bin/minecraft-exporter";
-      EnvironmentFile = "/secrets/minecraft-prometheus-exporter-early-2024";
-      User = "minecraft";
-      Group = "minecraft";
-      Type = "simple";
-    };
-  };
+  # systemd.services."minecraft-prometheus-exporter-early-2024" = {
+    # description = "minecraft-prometheus-exporter-early-2024";
+    # wantedBy = ["multi-user.target"];
+    # after = ["minecraft-server-early-2024.service"];
+    # environment = {
+      # MC_RCON_ADDRESS = "127.0.0.1:25575";
+      # MC_WORLD = "${config.services.minecraft-servers.dataDir}/early-2024/world";
+      # WEB_DISABLE_EXPORTER_METRICS = "true";
+    # };
+    # serviceConfig = {
+      # ExecStart = "${flakePkgs.minecraft-prometheus-exporter}/bin/minecraft-exporter";
+      # EnvironmentFile = "/secrets/minecraft-prometheus-exporter-early-2024";
+      # User = "minecraft";
+      # Group = "minecraft";
+      # Type = "simple";
+    # };
+  # };
 }
