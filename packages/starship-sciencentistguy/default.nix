@@ -16,13 +16,13 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "starship-sciencentistguy";
-  version = "1.20.1";
+  version = "1.21.1";
 
   src = fetchFromGitHub {
     owner = "Sciencentistguy";
     repo = "starship";
-    rev = "c43f95131debc27e44dc2f555690e7113fe71bf3";
-    sha256 = "sha256-70Mja7dBTOl4SoOO68HFKASlludVwFaH3TZEAvvwDq0=";
+    rev = "6f4d0abc6d3ce73bba7cc3669f44cfc0a6a952e6";
+    sha256 = "sha256-Yu8R4komg/B+3oZ0A7iYPhZTNEIgaOsHtPhIze6PtHQ=";
   };
 
   nativeBuildInputs = [installShellFiles pkg-config cmake git];
@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage rec {
     HOME=$TMPDIR
   '';
 
-  cargoHash = "sha256-BYtq0C42sUHMufTf7WsG1pGAsfEQg9hRJTgMRfFwgP0=";
+  cargoHash = "sha256-sThc9zyJENkcuPqJ1BKNCx+IPHvvaaf0GJLC6ONjLsI=";
 
   doCheck = false;
 
