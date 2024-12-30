@@ -26,6 +26,8 @@ in {
         rust-lang.rust-analyzer
         timonwong.shellcheck
         vadimcn.vscode-lldb
+        github.copilot
+        github.copilot-chat
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
@@ -118,6 +120,7 @@ in {
 
       # Haskell
       "haskell.serverExecutablePath" = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+      "files.autoSave" = "onFocusChange";
     };
   };
 }
