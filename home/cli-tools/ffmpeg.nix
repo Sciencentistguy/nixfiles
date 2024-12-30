@@ -9,6 +9,7 @@ in {
   home.packages = [
     ffmpeg
     flakePkgs.videoconverter
+    pkgs.ab-av1
 
     (pkgs.mkvtoolnix.override {
       withGUI = false;
