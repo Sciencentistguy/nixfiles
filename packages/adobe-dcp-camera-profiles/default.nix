@@ -1,6 +1,7 @@
 {
   cpio,
   fetchurl,
+  libxml2,
   p7zip,
   stdenvNoCC,
   xar,
@@ -15,7 +16,18 @@ stdenvNoCC.mkDerivation rec {
 
   fileVersion = "16_5";
 
-  nativeBuildInputs = [p7zip xar cpio];
+  nativeBuildInputs = let
+    # xar is broken on linux since gcc14. See https://github.com/NixOS/nixpkgs/pull/368920
+    xar' = if stdenvNoCC.isLinux then xar.overrideAttrs (old: {
+      env.NIX_CFLAGS_COMPILE = toString [
+        # libxml2 hack (see nixpkgs)
+        "-isystem ${libxml2.dev}/include/libxml2"
+        # fix build on GCC 14
+        "-Wno-error=implicit-function-declaration"
+        "-Wno-error=incompatible-pointer-types"
+      ];
+    }) else xar;
+  in [p7zip xar' cpio];
 
   unpackCmd = ''
     7z x "$src"
