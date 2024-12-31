@@ -23,7 +23,7 @@
       mkdir -p /Applications/Nix\ Apps
 
       find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-          while read src; do
+          while read -r src; do
             cp -aL "$src" /Applications/Nix\ Apps
           done
     '';
