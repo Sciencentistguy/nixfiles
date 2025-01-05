@@ -32,7 +32,6 @@
     "google-chrome"
     "google-drive"
     "iterm2"
-    "logi-options-plus"
     "makemkv"
     "mpv"
     "musicbrainz-picard"
