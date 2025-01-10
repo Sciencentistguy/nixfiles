@@ -21,6 +21,7 @@
       "mbsync"
       "missing"
       "scrub"
+      "rewrite"
     ];
     # Ideally this would be set, but if the only art that exists is <1000, I still want to fetch
     # it.
@@ -31,5 +32,8 @@
       {coverart = "releasegroup";}
     ];
     import.timid = true;
+    rewrite = {
+      "artist r u s s e l b u c k" = "russelbuck";
+    };
   };
 }
