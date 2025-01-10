@@ -21,7 +21,7 @@
       }
     ];
     extraFlags = [
-      "--storage.tsdb.retention=10y"
+      "--storage.tsdb.retention.time=10y"
     ];
   };
 }
