@@ -19,6 +19,7 @@
     ./mouse.nix
     ./networking.nix
     ./nix.nix
+    ./ollama.nix
     ./steam.nix
     ./sudo.nix
     ./time.nix
