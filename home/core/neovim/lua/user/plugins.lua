@@ -113,6 +113,4 @@ require("lazy").setup({
     "lukas-reineke/indent-blankline.nvim",
     "Sciencentistguy/nerdcommenter",
     "godlygeek/tabular",
-
-    "github/copilot.vim",
 })
