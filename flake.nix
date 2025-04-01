@@ -149,6 +149,47 @@
         ];
       };
 
+      # Hercules - LXC
+      nixosConfigurations.hercules = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs nixpkgsConfig;
+          flakePkgs = flakePkgs' system;
+          isDarwin = false;
+          isNixOS = true;
+          systemName = "hercules";
+        };
+        modules = [
+          ./hercules
+          home-manager.nixosModules.home-manager
+          inputs.agenix.nixosModules.age
+          inputs.bonkbot.nixosModules.${system}.bonkbot
+          inputs.susbot.nixosModules.${system}.susbot
+          inputs.nix-minecraft.nixosModules.minecraft-servers
+          (
+            {
+              pkgs,
+              home-manager,
+              ...
+            }: {
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.backupFileExtension = ".hm-bak";
+              home-manager.users.jamie = {
+                home.stateVersion = homeManagerStateVersion;
+                nixpkgs = nixpkgsConfig;
+                imports = [
+                  ./home/core
+                  ./home/cli-tools
+                  ./home/dev
+
+                  ./home/beets.nix
+                ];
+              };
+            }
+          )
+        ];
+      };
+
       # Chronos - Primary desktop
       nixosConfigurations.chronos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
