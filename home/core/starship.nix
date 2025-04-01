@@ -28,6 +28,7 @@ in {
       min_time = 5000;
       show_milliseconds = true;
     };
+    container.disabled = true;
     directory = {
       truncation_length = 8;
       truncate_to_repo = true;
