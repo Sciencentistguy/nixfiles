@@ -1,7 +1,6 @@
 {
   pkgs,
   flakePkgs,
-  systemName,
   ...
 }: let
   ffmpeg = flakePkgs.videoconverter.ffmpeg;
@@ -10,6 +9,7 @@ in {
     ffmpeg
     flakePkgs.videoconverter
     pkgs.ab-av1
+    pkgs.mediainfo
 
     (pkgs.mkvtoolnix.override {
       withGUI = false;
