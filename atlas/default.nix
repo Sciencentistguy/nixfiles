@@ -8,6 +8,7 @@
     ./services
 
     ./bootloader.nix
+    ./borg.nix
     ./filesystems.nix
     ./gpg.nix
     ./gpu.nix

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   services.plex = {
-    enable = true;
+    enable = false;
     dataDir = "/storage-pool/services/plex/library_data";
     openFirewall = true;
   };
