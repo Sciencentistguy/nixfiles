@@ -7,6 +7,7 @@
     ./archive-utils.nix
     ./bat.nix
     ./btop.nix
+    ./bulkrename.nix
     ./comma.nix
     ./exiftool.nix
     ./eza.nix

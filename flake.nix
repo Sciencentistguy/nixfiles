@@ -29,6 +29,10 @@
       url = "github:Sciencentistguy/bonkbot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    bulkrename = {
+      url = "github:Sciencentistguy/bulkrename";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     prism-launcher = {
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -96,6 +100,7 @@
       // inputs.agenix.packages.${system}
       // inputs.beets-file-info.packages.${system}
       // inputs.bonkbot.packages.${system}
+      // inputs.bulkrename.packages.${system}
       // inputs.fenix.packages.${system}
       // inputs.nil.packages.${system}
       // inputs.nix-minecraft.packages.${system}
