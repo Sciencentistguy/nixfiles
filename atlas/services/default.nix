@@ -4,7 +4,6 @@
     ./backup
     ./bonkbot.nix
     ./borg.nix
-    ./ddclient.nix
     ./docker.nix
     ./gitea.nix
     ./jellyfin.nix
