@@ -24,6 +24,7 @@
   };
 
   homebrew.casks = [
+    "audacity"
     "discord"
     "disk-inventory-x"
     "drawio"
