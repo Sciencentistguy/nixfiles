@@ -17,9 +17,6 @@
     "jamie"
   ];
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-
   programs.zsh.variables.NIX_PATH = "/etc/nix/path";
 
   nix.nixPath = ["/etc/nix/path"];
