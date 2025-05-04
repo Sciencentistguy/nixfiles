@@ -33,6 +33,7 @@
     ./tmux.nix
     ./watch.nix
     ./wget.nix
+    ./xattr.nix
     ./yt-dlp.nix
   ];
 }
