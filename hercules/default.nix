@@ -3,8 +3,9 @@
     ./base.nix
     ./config.nix
     ./gpg.nix
-    ./users.nix
     ./i18n.nix
+    ./time.nix
+    ./users.nix
   ];
 
   programs.zsh.enable = true;
