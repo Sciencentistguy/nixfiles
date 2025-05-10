@@ -15,11 +15,11 @@
       "edit"
       "embedart"
       "fetchart"
-      # "fileinfo"
       "fromfilename"
       "mbsubmit"
       "mbsync"
       "missing"
+      "replaygain"
       "scrub"
     ];
     # Ideally this would be set, but if the only art that exists is <1000, I still want to fetch
@@ -31,5 +31,9 @@
       {coverart = "releasegroup";}
     ];
     import.timid = true;
+    replaygain = {
+      auto = false;
+      backend = "ffmpeg";
+    };
   };
 }
