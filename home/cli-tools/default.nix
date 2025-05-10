@@ -12,7 +12,7 @@
     ./exiftool.nix
     ./eza.nix
     ./fd.nix
-    ./ffmpeg.nix
+    ./ffmpeg
     ./file.nix
     ./gping.nix
     ./hyfetch

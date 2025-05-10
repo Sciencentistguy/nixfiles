@@ -11,6 +11,8 @@ in {
     pkgs.ab-av1
     pkgs.mediainfo
 
+    (pkgs.callPackage ./plot-dovi.nix {inherit ffmpeg;})
+
     (pkgs.mkvtoolnix.override {
       withGUI = false;
     })
