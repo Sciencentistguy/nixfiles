@@ -7,14 +7,14 @@
   xar,
 }:
 stdenvNoCC.mkDerivation rec {
-  name = "adobe-dcp-camera-profiles";
+  pname = "adobe-dcp-camera-profiles";
 
   src = fetchurl {
     url = "https://www.adobe.com/go/dng_converter_mac";
-    sha256 = "sha256-b88CHHYFqgNcaWAsjb+vJXKI/wgzWbhYUGWwsWbNzxk=";
+    sha256 = "sha256-HC6IJvXxi8xB7sD05qeu8S5z+ZXzmttOz6V9E3x2OeM=";
   };
 
-  fileVersion = "16_5";
+  version = "17_3_1";
 
   nativeBuildInputs = let
     # xar is broken on linux since gcc14. See https://github.com/NixOS/nixpkgs/pull/368920
@@ -31,13 +31,14 @@ stdenvNoCC.mkDerivation rec {
 
   unpackCmd = ''
     7z x "$src"
-    cd DNGConverter_${fileVersion}
-    xar -x -f DNGConverter_${fileVersion}.pkg
+    ls
+    cd DNGConverter_${version}
+    xar -x -f DNGConverter_${version}.pkg
     cd CameraRawProfiles.pkg
     gzip -d < Payload | cpio --extract
   '';
 
-  sourceRoot = "/build/DNGConverter_${fileVersion}/CameraRawProfiles.pkg";
+  sourceRoot = "/build/DNGConverter_${version}/CameraRawProfiles.pkg";
 
   dontBuild = true;
 
