@@ -20,16 +20,24 @@
       device = "${pkgs.sshfs-fuse}/bin/sshfs#jamie@100.88.57.38:/";
       options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other"];
     };
+    # nfs
+    "/photos" = {
+      device = "fileserver.axolotl-shark.ts.net:/share/photos";
+      fsType = "nfs";
+      options = ["noauto" "x-systemd.automount"];
+    };
+    "/media" = {
+      device = "fileserver.axolotl-shark.ts.net:/share/media";
+      fsType = "nfs";
+      options = ["noauto" "x-systemd.automount"];
+    };
   };
 
   #Virtual fielsystems
   fileSystems = {
     "/binds/music-library" = {
-      device = "/hdd/Music/beets";
-      options = [
-        "bind"
-        "ro"
-      ];
+      device = "/media/Music";
+      options = ["bind" "ro"];
     };
   };
 
