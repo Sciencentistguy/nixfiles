@@ -8,7 +8,7 @@
 
   # nix.enable = true;
   nix.extraOptions = ''
-    auto-optimise-store = true
+    auto-optimise-store = false # see https://github.com/NixOS/nix/issues/7273
     experimental-features = flakes nix-command
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
