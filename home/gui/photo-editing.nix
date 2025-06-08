@@ -3,10 +3,11 @@
   flakePkgs,
   ...
 }: {
-  home.packages = with pkgs;
-  with flakePkgs; [
-    adobe-dcp-camera-profiles
-    darktable
-    rawtherapee
+  home.packages = [
+    pkgs.bottles # for adobe dng converter
+    flakePkgs.darktable
+
+    flakePkgs.adobe-dcp-camera-profiles
+    pkgs.rawtherapee
   ];
 }
