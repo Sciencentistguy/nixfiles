@@ -33,6 +33,10 @@
       url = "github:Sciencentistguy/bulkrename";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darktable-src = {
+      url = "git+https://github.com/darktable-org/darktable.git?submodules=1";
+      flake = false;
+    };
     prism-launcher = {
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -324,6 +328,7 @@
         vuescan = pkgs.callPackage ./packages/vuescan/wrapper.nix {inherit vuescan-unwrapped;};
         minecraft-prometheus-exporter = pkgs.callPackage ./packages/minecraft-prometheus-exporter {};
         adobe-dcp-camera-profiles = pkgs.callPackage ./packages/adobe-dcp-camera-profiles {};
+        darktable = pkgs.callPackage ./packages/darktable {inherit (inputs) darktable-src;};
       };
     }));
 }
