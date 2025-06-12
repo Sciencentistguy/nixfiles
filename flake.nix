@@ -278,6 +278,7 @@
             {
               pkgs,
               home-manager,
+              flakePkgs,
               ...
             }: {
               # `home-manager` config
@@ -294,6 +295,7 @@
 
                   ./home/gui/alacritty.nix
                 ];
+                home.packages = with flakePkgs; [darktable];
               };
 
               home-manager.users.root = {

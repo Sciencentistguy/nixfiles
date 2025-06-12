@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    ./filesystems
     ./gpg.nix
     ./homebrew.nix
     ./mac-apps.nix
