@@ -295,7 +295,6 @@
 
                   ./home/gui/alacritty.nix
                 ];
-                home.packages = with flakePkgs; [darktable];
               };
 
               home-manager.users.root = {
