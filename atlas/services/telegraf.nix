@@ -54,11 +54,6 @@
 
         internal = {};
 
-        internet_speed = {
-          interval = "15m";
-          collection_jitter = "5m";
-        };
-
         interrupts = {};
 
         kernel = {};
