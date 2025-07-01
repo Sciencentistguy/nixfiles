@@ -74,11 +74,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751357733,
-        "narHash": "sha256-zNICIMRLY7nKPqphhJAkYCg91oQJXliOy8V9kH7I25c=",
+        "lastModified": 1751357943,
+        "narHash": "sha256-YcBmBslQ+prqXaNr++aK6RHag19DS1lTKTDkQHlB2t8=",
         "owner": "Sciencentistguy",
         "repo": "bulkrename",
-        "rev": "80a6bb43e9835842c703a79bed7f2b446ab27a4b",
+        "rev": "a068a8a735a32c19a2b7111009ad7bb5271c4ba7",
         "type": "github"
       },
       "original": {
