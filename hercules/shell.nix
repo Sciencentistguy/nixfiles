@@ -3,7 +3,6 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [atuin];
   programs.zsh = {
     enable = true;
   };
@@ -236,16 +235,16 @@
   };
 
   # needed for atuin on zfs
-  systemd.user.services.atuin-daemon = {
-    enable = true;
-    wantedBy = ["default.target"];
-    serviceConfig = {
-      ExecStart = "${pkgs.atuin}/bin/atuin daemon";
-      ProtectHome = "off";
-      Restart = "always";
-      RestartSec = "5s";
-    };
-  };
+  # systemd.user.services.atuin-daemon = {
+    # enable = true;
+    # wantedBy = ["default.target"];
+    # serviceConfig = {
+      # ExecStart = "${pkgs.atuin}/bin/atuin daemon";
+      # ProtectHome = "off";
+      # Restart = "always";
+      # RestartSec = "5s";
+    # };
+  # };
 
   users.users.root.shell = pkgs.zsh;
 }
