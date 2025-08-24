@@ -11,11 +11,11 @@
     ./comma.nix
     ./exiftool.nix
     ./eza.nix
+    ./fetch.nix
     ./fd.nix
     ./ffmpeg
     ./file.nix
     ./gping.nix
-    ./hyfetch
     ./jq.nix
     ./killall.nix
     ./mpv.nix
