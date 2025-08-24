@@ -18,18 +18,23 @@
     "/atlas" = {
       fsType = "fuse";
       device = "${pkgs.sshfs-fuse}/bin/sshfs#jamie@100.88.57.38:/";
-      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other"];
+      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other" "nobootwait"];
     };
     # nfs
+    "/ingest" = {
+      device = "fileserver.axolotl-shark.ts.net:/share/ingest";
+      fsType = "nfs";
+      options = ["noauto" "x-systemd.automount" "nobootwait"];
+    };
     "/photos" = {
       device = "fileserver.axolotl-shark.ts.net:/share/photos";
       fsType = "nfs";
-      options = ["noauto" "x-systemd.automount"];
+      options = ["noauto" "x-systemd.automount" "nobootwait"];
     };
     "/media" = {
       device = "fileserver.axolotl-shark.ts.net:/share/media";
       fsType = "nfs";
-      options = ["noauto" "x-systemd.automount"];
+      options = ["noauto" "x-systemd.automount" "nobootwait"];
     };
   };
 
