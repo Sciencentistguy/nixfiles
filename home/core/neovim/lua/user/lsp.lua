@@ -30,33 +30,16 @@ vim.api.nvim_set_keymap(
 
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 
-local lsp = require("lspconfig")
 
-lsp.pyright.setup({})
+vim.lsp.enable("pyright")
 
-lsp.hls.setup({})
+vim.lsp.enable("hls")
 
-lsp.clangd.setup({})
+vim.lsp.enable("clangd")
 
-lsp.solargraph.setup({})
+vim.lsp.enable("solargraph")
 
--- Rust
-require("rust-tools").setup({
-    server = {
-        settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy",
-                },
-                inlayHints = {
-                    locationLinks = false,
-                },
-            },
-        },
-    },
-})
-
-lsp.lua_ls.setup({
+vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
@@ -71,5 +54,6 @@ lsp.lua_ls.setup({
         },
     },
 })
+vim.lsp.enable("lua_ls")
 
-lsp.nil_ls.setup({})
+vim.lsp.enable("nil_ls")
