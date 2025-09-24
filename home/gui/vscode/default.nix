@@ -12,7 +12,7 @@ in {
     enable = true;
     extensions = with pkgs.vscode-extensions;
       [
-        arrterian.nix-env-selector
+        # arrterian.nix-env-selector
         tamasfe.even-better-toml
         dracula-theme.theme-dracula
         haskell.haskell
@@ -26,8 +26,9 @@ in {
         rust-lang.rust-analyzer
         timonwong.shellcheck
         vadimcn.vscode-lldb
-        github.copilot
-        github.copilot-chat
+        # github.copilot
+        # github.copilot-chat
+        vscodevim.vim
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
@@ -47,12 +48,6 @@ in {
           publisher = "azemoh";
           version = "0.5.0";
           sha256 = "sha256-ardM7u9lXkkTTPsDVqTl4yniycERYdwTzTQxaa4dD+c=";
-        }
-        {
-          name = "vim";
-          publisher = "vscodevim";
-          version = "1.25.1";
-          sha256 = "sha256-hSymHde+fuef2mb958zqHPPCAkyP/ClXYvomx6spm3c=";
         }
       ];
 
