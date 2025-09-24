@@ -18,27 +18,27 @@
     "/atlas" = {
       fsType = "fuse";
       device = "${pkgs.sshfs-fuse}/bin/sshfs#jamie@100.88.57.38:/";
-      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other" "nobootwait"];
+      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other" "nofail" "x-systemd.device-timeout=15s"];
     };
     # nfs
     "/ingest" = {
       device = "fileserver.axolotl-shark.ts.net:/share/ingest";
       fsType = "nfs";
-      options = ["noauto" "x-systemd.automount" "nobootwait"];
+      options = ["noauto" "x-systemd.automount" "nofail" "x-systemd.device-timeout=15s"];
     };
     "/photos" = {
       device = "fileserver.axolotl-shark.ts.net:/share/photos";
       fsType = "nfs";
-      options = ["noauto" "x-systemd.automount" "nobootwait"];
+      options = ["noauto" "x-systemd.automount" "nofail" "x-systemd.device-timeout=15s"];
     };
     "/media" = {
       device = "fileserver.axolotl-shark.ts.net:/share/media";
       fsType = "nfs";
-      options = ["noauto" "x-systemd.automount" "nobootwait"];
+      options = ["noauto" "x-systemd.automount" "nofail" "x-systemd.device-timeout=15s"];
     };
   };
 
-  #Virtual fielsystems
+  # Virtual fielsystems
   fileSystems = {
     "/binds/music-library" = {
       device = "/media/Music";

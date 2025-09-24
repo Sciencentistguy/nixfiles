@@ -11,7 +11,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://www.adobe.com/go/dng_converter_mac";
-    sha256 = "sha256-HC6IJvXxi8xB7sD05qeu8S5z+ZXzmttOz6V9E3x2OeM=";
+    sha256 = "sha256-HYsBz1DeZTMhP4v4n6865RWiL2LUU0PfPGmC2MnAL/M=";
   };
 
   version = "17_3_1";
