@@ -138,11 +138,11 @@
     "darktable-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1760591625,
-        "narHash": "sha256-A0tUWKDDn/MvYeOXQiSBZLz2CAUwY3SOkxrPCcnE6u4=",
+        "lastModified": 1762206435,
+        "narHash": "sha256-8RSqB9N6+/olCDJ373H7mesKpzDNJE0lTeu6aDrd27g=",
         "ref": "refs/heads/master",
-        "rev": "31df4bcb336a95491dbc309b892360ecef77eaac",
-        "revCount": 44270,
+        "rev": "789b60164954f2c754256ad3c3192e7d4b1faff1",
+        "revCount": 44404,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/darktable-org/darktable.git"
