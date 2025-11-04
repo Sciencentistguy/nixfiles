@@ -62,10 +62,6 @@ if [ -f "$HOME/.config/python/startup.py" ]; then
     export PYTHONSTARTUP="$HOME/.config/python/startup.py"
 fi
 
-if type bat >/dev/null; then
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
-
 if [ -d "/etc/nix/path" ]; then
     export NIX_PATH="/etc/nix/path"
 fi
