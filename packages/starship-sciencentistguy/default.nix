@@ -1,7 +1,4 @@
 {
-  Cocoa,
-  Foundation,
-  Security,
   cmake,
   fetchFromGitHub,
   git,
@@ -27,7 +24,7 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [installShellFiles pkg-config cmake git];
 
-  buildInputs = [libgit2] ++ lib.optionals stdenv.isDarwin [libiconv Security Foundation Cocoa];
+  buildInputs = [libgit2];
 
   postInstall = ''
     for shell in bash fish zsh; do

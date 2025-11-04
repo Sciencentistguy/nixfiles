@@ -315,7 +315,7 @@
       packages = rec {
         shark-radar = pkgsUnfree.callPackage ./packages/shark-radar {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
-          inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
+          # inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
         extract = pkgsUnfree.callPackage ./packages/extract {};
         sherlock = pkgs.callPackage ./packages/sherlock {};

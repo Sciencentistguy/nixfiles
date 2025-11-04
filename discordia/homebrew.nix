@@ -34,7 +34,6 @@
     "google-drive"
     "iterm2"
     "makemkv"
-    "mpv"
     "musicbrainz-picard"
     "plexamp"
     "prismlauncher"
