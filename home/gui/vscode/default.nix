@@ -51,7 +51,7 @@ in {
         }
       ];
 
-    mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
     userSettings = {
       # vscode core settings
       "editor.cursorSurroundingLines" = 7;
@@ -116,6 +116,7 @@ in {
       # Haskell
       "haskell.serverExecutablePath" = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
       "files.autoSave" = "onFocusChange";
+      "python.analysis.typeCheckingMode" = "strict";
     };
   };
 }
