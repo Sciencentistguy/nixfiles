@@ -4,7 +4,7 @@
   ...
 }: {
   programs.beets.enable = true;
-  programs.beets.package = pkgs.beets-unstable; # TODO: reinstate beets-file-info at some point
+  programs.beets.package = pkgs.beets;
 
   programs.beets.settings = {
     directory = "/media/Music";
