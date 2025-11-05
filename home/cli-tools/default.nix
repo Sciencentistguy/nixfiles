@@ -28,7 +28,6 @@
     ./rust-nix-shell.nix
     ./sad.nix
     ./scripts.nix
-    ./shark-radar.nix
     ./speedtest.nix
     ./tmux.nix
     ./watch.nix

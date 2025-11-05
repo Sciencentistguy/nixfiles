@@ -313,7 +313,6 @@
       pkgsUnfree = inputs.nixpkgs-unfree.legacyPackages.${system};
     in {
       packages = rec {
-        shark-radar = pkgsUnfree.callPackage ./packages/shark-radar {};
         starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
           # inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
         };
