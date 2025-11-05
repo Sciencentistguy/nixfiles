@@ -9,11 +9,13 @@
       device = "/dev/disk/by-uuid/4CCE434ACE432B90";
       fsType = "ntfs";
       options = ["uid=jamie" "gid=users"];
+      noCheck = true;
     };
     "/windows/d" = {
       device = "/dev/disk/by-uuid/149247C59247AA56";
       fsType = "ntfs";
       options = ["uid=jamie" "gid=users"];
+      noCheck = true;
     };
     "/atlas" = {
       fsType = "fuse";
@@ -42,7 +44,7 @@
   fileSystems = {
     "/binds/music-library" = {
       device = "/media/Music";
-      options = ["bind" "ro"];
+      options = ["bind" "ro" "noauto"];
     };
   };
 
