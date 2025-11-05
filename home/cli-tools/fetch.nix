@@ -1,3 +1,3 @@
-{pkgs,...}: {
-    home.packages = with pkgs; [fastfetch];
+{pkgs, ...}: {
+  home.packages = with pkgs; [fastfetch];
 }

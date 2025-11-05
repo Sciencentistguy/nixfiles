@@ -9,7 +9,7 @@
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       intel-media-driver
-      vaapiVdpau
+      libva-vdpau-driver
       libvdpau
       vulkan-loader
     ];

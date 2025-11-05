@@ -12,7 +12,7 @@
     text = pkgs.writeText name expr;
   in
     text;
-    # pkgs.runCommandLocal name {} "${pkgs.shfmt}/bin/shfmt -i 4 ${text} > $out";
+  # pkgs.runCommandLocal name {} "${pkgs.shfmt}/bin/shfmt -i 4 ${text} > $out";
 
   callPackage = x: attrs: pkgs.callPackage x ({inherit writeZsh;} // attrs);
 in {

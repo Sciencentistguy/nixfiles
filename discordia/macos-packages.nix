@@ -5,12 +5,12 @@
   superLowPrio = x: x.overrideAttrs (old: {meta = old.meta // {priority = 100;};});
 in {
   environment.systemPackages = with pkgs; [
-        # (
-        #   # I don't really want to be dealing with anything from `/bin` if I can help it,
-        #   # but I also don't want to use bsd versions where a gnu-flavoured alternative
-        #   # is available in nixpkgs, hence the low priority.
-        #   superLowPrio darwin.shell_cmds
-        # )
+    # (
+    #   # I don't really want to be dealing with anything from `/bin` if I can help it,
+    #   # but I also don't want to use bsd versions where a gnu-flavoured alternative
+    #   # is available in nixpkgs, hence the low priority.
+    #   superLowPrio darwin.shell_cmds
+    # )
 
     # macOS coretuils are BSD flavoured and outdated
     pkgs.coreutils-full

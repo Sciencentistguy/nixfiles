@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [dolphin-emu-beta];
+  home.packages = with pkgs; [dolphin-emu];
 }

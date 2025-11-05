@@ -41,14 +41,14 @@ in {
           action = "Paste";
         }
         {
-            key = "Home";
-            chars = "\\u001b[H1;3D";
-            mode = "~AppCursor";
+          key = "Home";
+          chars = "\\u001b[H1;3D";
+          mode = "~AppCursor";
         }
         {
-            key = "End";
-            chars = "\\u001b[H1;3C";
-            mode = "~AppCursor";
+          key = "End";
+          chars = "\\u001b[H1;3C";
+          mode = "~AppCursor";
         }
       ]
       ++ lib.optionals (systemName == "discordia") [

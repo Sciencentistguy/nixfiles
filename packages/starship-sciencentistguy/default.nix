@@ -44,8 +44,6 @@ rustPlatform.buildRustPackage rec {
     HOME=$TMPDIR
   '';
 
-  useFetchCargoVendor = true;
-
   cargoHash = "sha256-WtfpolAFn/cqEXYy/c4r8CYvwCpfUrL7e03XERQAjkQ=";
 
   doCheck = false;

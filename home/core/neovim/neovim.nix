@@ -21,7 +21,7 @@
   shfmt,
   stdenv,
   stylua,
-  sumneko-lua-language-server,
+  lua-language-server,
   symlinkJoin,
   tree-sitter,
   xclip,
@@ -60,7 +60,7 @@ symlinkJoin {
 
         # Language servers
         rust-analyzer
-        sumneko-lua-language-server
+        lua-language-server
         pyright
         nil
       ]

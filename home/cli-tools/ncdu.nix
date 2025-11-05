@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ncdu_2];
+  home.packages = with pkgs; [ncdu];
 }

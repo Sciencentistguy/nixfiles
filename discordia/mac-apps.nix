@@ -5,7 +5,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     alacritty
-        #mpv
+    #mpv
   ];
 
   system.activationScripts.applications.text = let
