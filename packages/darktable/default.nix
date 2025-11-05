@@ -1,6 +1,6 @@
 {
-lib,
-stdenv,
+  lib,
+  stdenv,
   darktable,
   darktable-src,
 }:
@@ -11,7 +11,9 @@ darktable.overrideAttrs (old: {
     echo skipped...
   '';
 
-    cmakeFlags = old.cmakeFlags ++ (lib.optionals (stdenv.isDarwin) [
-        "-DCMAKE_OSX_DEPLOYMENT_TARGET=26"
+  cmakeFlags =
+    old.cmakeFlags
+    ++ (lib.optionals (stdenv.isDarwin) [
+      "-DCMAKE_OSX_DEPLOYMENT_TARGET=26"
     ]);
 })
