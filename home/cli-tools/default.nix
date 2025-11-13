@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./audio-tools.nix
     ./archive-utils.nix
     ./bat.nix
     ./btop.nix
@@ -18,10 +19,8 @@
     ./gping.nix
     ./jq.nix
     ./killall.nix
-    ./mpv.nix
     ./ncdu.nix
     ./procs.nix
-    ./qobuz-identifier.nix
     ./rink.nix
     ./ripgrep.nix
     ./rsync.nix

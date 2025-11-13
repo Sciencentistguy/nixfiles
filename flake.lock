@@ -642,6 +642,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-fork": {
+      "locked": {
+        "lastModified": 1762373489,
+        "narHash": "sha256-wSEhUnhu7333TZMVJjCIYeeZxJxC901UkxXxOxKQxLs=",
+        "owner": "Sciencentistguy",
+        "repo": "nixpkgs-fork",
+        "rev": "8a8631eb0100a29cb69d45300260fd65e45e3afd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Sciencentistguy",
+        "ref": "dr14_tmeter-fix",
+        "repo": "nixpkgs-fork",
+        "type": "github"
+      }
+    },
     "nixpkgs-unfree": {
       "inputs": {
         "nixpkgs": [
@@ -753,6 +769,7 @@
         "nil": "nil",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unfree": "nixpkgs-unfree",
         "prism-launcher": "prism-launcher",
         "qobuz-identifier": "qobuz-identifier",

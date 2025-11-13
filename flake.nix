@@ -9,6 +9,10 @@
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # See https://github.com/NixOS/nixpkgs/pull/458923
+    nixpkgs-fork = {
+      url = "github:Sciencentistguy/nixpkgs-fork/dr14_tmeter-fix";
+    };
 
     # Environment/system management
     darwin = {
@@ -112,6 +116,7 @@
       // inputs.rust-nix-shell.packages.${system}
       // inputs.susbot.packages.${system}
       // inputs.videoconverter.packages.${system}
+      // {inherit (inputs.nixpkgs-fork.legacyPackages.${system}) dr14_tmeter;}
       // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
         inputs.prism-launcher.packages.${system}
       );
