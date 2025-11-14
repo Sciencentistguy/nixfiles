@@ -4,4 +4,7 @@
     option v4l2loopback devices=1 exclusive_caps=1
   '';
   boot.kernelModules = ["sg" "v4l2loopback"];
+  boot.kernelParams = [
+  "fastboot"
+  ];
 }
