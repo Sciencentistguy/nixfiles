@@ -239,7 +239,6 @@
                   ./home/gui/chrome.nix
                   ./home/gui/discord
                   ./home/gui/dolhin-emu.nix
-                  ./home/gui/drawio.nix
                   ./home/gui/firefox.nix
                   ./home/gui/lutris.nix
                   ./home/gui/makemkv
@@ -248,10 +247,7 @@
                   ./home/gui/picard.nix
                   ./home/gui/prism-launcher.nix
                   ./home/gui/photo-editing.nix
-                  ./home/gui/slack.nix
-                  ./home/gui/soulseek.nix
                   ./home/gui/spotify.nix
-                  ./home/gui/vlc.nix
                   ./home/gui/vscode
 
                   # other
