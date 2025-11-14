@@ -18,6 +18,7 @@
       "fromfilename"
       "mbsubmit"
       "mbsync"
+      "musicbrainz"
       "missing"
       "replaygain"
       "scrub"
