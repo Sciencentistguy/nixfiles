@@ -66,11 +66,7 @@ in {
         "telemetry.telemetryLevel" = "off";
         "terminal.integrated.defaultProfile.linux" = "zsh";
         "terminal.integrated.profiles.linux" = {
-          zsh = {
-            path = let
-              zsh = pkgs.zsh;
-            in "${pkgs.zsh}/bin/zsh";
-          };
+          zsh.path = "${pkgs.zsh}/bin/zsh";
         };
         "update.mode" = "none";
         "window.zoomLevel" = 1;
