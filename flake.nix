@@ -65,6 +65,10 @@
       url = "github:Sciencentistguy/videoconverter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vkdt = {
+      url = "github:hanatos/vkdt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nil = {
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
