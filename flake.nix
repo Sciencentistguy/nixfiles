@@ -107,24 +107,18 @@
       ];
     };
     homeManagerStateVersion = "22.05";
-    flakePkgs' = system:
-      self.packages.${system}
-      // inputs.agenix.packages.${system}
-      // inputs.beets-file-info.packages.${system}
-      // inputs.bonkbot.packages.${system}
-      // inputs.bulkrename.packages.${system}
-      // inputs.fenix.packages.${system}
-      // inputs.nil.packages.${system}
-      // inputs.nix-minecraft.packages.${system}
-      // inputs.qobuz-identifier.packages.${system}
-      // inputs.rust-nix-shell.packages.${system}
-      // inputs.susbot.packages.${system}
-      // inputs.videoconverter.packages.${system}
-      // {inherit (inputs.nixpkgs-sciencentistguy.legacyPackages.${system}) dr14_tmeter;}
-      // {inherit (inputs.nixpkgs-jacomalan1.legacyPackages.${system}) spotify;}
-      // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
-        inputs.prism-launcher.packages.${system}
-      );
+    flakePkgs' =
+      system: let
+        packageInputs = builtins.filter (v: v ? packages && v.packages ? ${system}) (nixpkgs.lib.attrValues inputs ++ [self]);
+        mergedPackages = nixpkgs.lib.foldl' (acc: v: acc // v.packages.${system}) {} packageInputs;
+      in
+        mergedPackages
+        // {inherit (inputs.nixpkgs-sciencentistguy.legacyPackages.${system}) dr14_tmeter;}
+        // {inherit (inputs.nixpkgs-jacomalan1.legacyPackages.${system}) spotify;}
+      # // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
+      #   inputs.prism-launcher.packages.${system}
+      # )
+      ;
   in
     {
       # Atlas - Server
