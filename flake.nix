@@ -13,10 +13,6 @@
     nixpkgs-sciencentistguy = {
       url = "github:Sciencentistguy/nixpkgs-fork/dr14_tmeter-fix";
     };
-    nixpkgs-jacomalan1 = {
-      url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.url = "github:JacoMalan1/nixpkgs/package/spotify/update";
-    };
 
     # Environment/system management
     darwin = {
@@ -118,7 +114,6 @@
       in
         mergedPackages
         // {inherit (inputs.nixpkgs-sciencentistguy.legacyPackages.${system}) dr14_tmeter;}
-        // {inherit (inputs.nixpkgs-jacomalan1.legacyPackages.${system}) spotify;}
       # // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
       #   inputs.prism-launcher.packages.${system}
       # )

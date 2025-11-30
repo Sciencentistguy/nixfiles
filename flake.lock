@@ -218,7 +218,7 @@
     },
     "fenix_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "rust-analyzer-src": "rust-analyzer-src_2"
       },
       "locked": {
@@ -642,24 +642,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-jacomalan1": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1755249704,
-        "narHash": "sha256-J1mqsd/gqZ32G3YOzWk9sppLbXXLEpu37hrZfRcTtdg=",
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
-        "rev": "12d82a604d21a65df008bdb1515eecb96f9e55dc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nixpkgs-unfree",
-        "type": "github"
-      }
-    },
     "nixpkgs-sciencentistguy": {
       "locked": {
         "lastModified": 1764275518,
@@ -697,22 +679,6 @@
       }
     },
     "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1763971379,
-        "narHash": "sha256-rAXxPZkLU+LO9MpTu1hOmbupyw7AN7cC4wLoVKlj5as=",
-        "owner": "JacoMalan1",
-        "repo": "nixpkgs",
-        "rev": "b681aee6a962eae3d56629f0601b90ba1d7f0bf5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JacoMalan1",
-        "ref": "package/spotify/update",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
       "locked": {
         "lastModified": 1757745802,
         "narHash": "sha256-hLEO2TPj55KcUFUU1vgtHE9UEIOjRcH/4QbmfHNF820=",
@@ -786,7 +752,6 @@
         "nil": "nil",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-jacomalan1": "nixpkgs-jacomalan1",
         "nixpkgs-sciencentistguy": "nixpkgs-sciencentistguy",
         "nixpkgs-unfree": "nixpkgs-unfree",
         "prism-launcher": "prism-launcher",
