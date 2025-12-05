@@ -26,6 +26,9 @@ require("user.neoformat")
 require("user.statusbar")
 require("user.vim-opts")
 
+require("mini.icons").setup()
+require("mini.icons").mock_nvim_web_devicons()
+
 -- Reopen where you left off
 vim.cmd([[
 autocmd BufReadPost *
@@ -33,3 +36,6 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 ]])
+
+-- Last !!
+vim.api.nvim_set_keymap("v", "S", "<Plug>VSurround", { noremap = true, silent = true })
