@@ -107,17 +107,12 @@
       ];
     };
     homeManagerStateVersion = "22.05";
-    flakePkgs' =
-      system: let
-        packageInputs = builtins.filter (v: v ? packages && v.packages ? ${system}) (nixpkgs.lib.attrValues inputs ++ [self]);
-        mergedPackages = nixpkgs.lib.foldl' (acc: v: acc // v.packages.${system}) {} packageInputs;
-      in
-        mergedPackages
-        // {inherit (inputs.nixpkgs-sciencentistguy.legacyPackages.${system}) dr14_tmeter;}
-      # // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") (
-      #   inputs.prism-launcher.packages.${system}
-      # )
-      ;
+    flakePkgs' = system: let
+      packageInputs = builtins.filter (v: v ? packages && v.packages ? ${system}) (nixpkgs.lib.attrValues inputs ++ [self]);
+      mergedPackages = nixpkgs.lib.foldl' (acc: v: acc // v.packages.${system}) {} packageInputs;
+    in
+      mergedPackages
+      // {inherit (inputs.nixpkgs-sciencentistguy.legacyPackages.${system}) dr14_tmeter;};
   in
     {
       # Atlas - Server
