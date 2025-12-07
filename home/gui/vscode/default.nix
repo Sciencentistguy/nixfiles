@@ -102,6 +102,7 @@ in {
         "vim.visualModeKeyBindings" = bindings.visual;
 
         # Rust-analyzer
+        "rust-analyzer.check.command" = "clippy";
         "rust-analyzer.checkOnSave" = true;
         "rust-analyzer.lens.implementations.enable" = false;
         "rust-analyzer.lens.run.enable" = false;
