@@ -15,6 +15,7 @@
   nix.settings.trusted-users = [
     "jamie"
   ];
+  nix.settings.download-buffer-size = 2 * 1024 * 1024 * 1024; # 2 GiB
 
   nix.nixPath = ["/etc/nix/path"];
   # the version of nixpkgs used to build the system
