@@ -20,6 +20,11 @@
     '';
   };
 
+  environment.variables = {
+    WAYLAND_DISPLAY = "wayland-0"; # Explicitly set if GNOME fails to export it
+    NIXOS_OZONE_WL = "1"; # Helps many other apps (Electron/Chromium) use Wayland
+  };
+
   services.gnome.gnome-browser-connector.enable = true;
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
