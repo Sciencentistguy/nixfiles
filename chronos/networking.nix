@@ -22,4 +22,6 @@
   networking.firewall.enable = false;
   networking.firewall.allowedUDPPorts = [41641];
   networking.firewall.trustedInterfaces = ["tailscale0"];
+
+  programs.mosh.enable = true;
 }

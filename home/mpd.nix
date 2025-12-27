@@ -23,7 +23,7 @@
     visualizerSupport = true;
   };
   programs.ncmpcpp.settings = {
-    visualizer_fps = 144;
+    visualizer_fps = 1000;
     user_interface = "alternative";
     media_library_primary_tag = "album_artist";
     display_bitrate = "yes";
