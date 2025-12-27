@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./base.nix
     ./config.nix
@@ -9,4 +9,6 @@
   ];
 
   programs.zsh.enable = true;
+
+  programs.mosh.enable = true;
 }
