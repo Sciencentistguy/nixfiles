@@ -45,6 +45,7 @@
     "/binds/music-library" = {
       device = "/media/Music";
       options = ["bind" "ro" "noauto"];
+      depends = ["/media"];
     };
   };
 
