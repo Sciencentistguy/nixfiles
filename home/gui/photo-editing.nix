@@ -4,7 +4,8 @@
   ...
 }: {
   home.packages = [
-    flakePkgs.darktable
+    # flakePkgs.darktable
+    pkgs.darktable
     pkgs.gimp3
     flakePkgs.vkdt-git
   ];
