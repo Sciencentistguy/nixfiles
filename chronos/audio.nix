@@ -58,5 +58,5 @@ in {
       "98-sample-rates" = sample_rate_cfg;
     };
   };
-  environment.systemPackages = [pkgs.easyeffects];
+  environment.systemPackages = with pkgs; [easyeffects qpwgraph];
 }
