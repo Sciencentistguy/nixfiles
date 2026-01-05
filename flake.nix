@@ -229,10 +229,8 @@
 
                   # gui
                   ./home/gui/alacritty.nix
-                  ./home/gui/chrome.nix
                   ./home/gui/discord
                   ./home/gui/dolhin-emu.nix
-                  ./home/gui/firefox.nix
                   ./home/gui/makemkv
                   ./home/gui/mkvtoolnix.nix
                   ./home/gui/obs.nix
@@ -241,6 +239,7 @@
                   ./home/gui/photo-editing.nix
                   ./home/gui/spotify.nix
                   ./home/gui/vscode
+                  ./home/gui/web-browser.nix
 
                   # other
                   ./home/mpd.nix
@@ -322,6 +321,7 @@
         minecraft-prometheus-exporter = pkgs.callPackage ./packages/minecraft-prometheus-exporter {};
         adobe-dcp-camera-profiles = pkgs.callPackage ./packages/adobe-dcp-camera-profiles {};
         darktable = pkgs.callPackage ./packages/darktable {inherit (inputs) darktable-src;};
+        helium-bin = pkgs.callPackage ./packages/helium-bin {};
       };
     }));
 }
