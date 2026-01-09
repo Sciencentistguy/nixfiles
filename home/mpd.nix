@@ -18,6 +18,15 @@
   services.mpdris2.enable = true;
   services.mpdris2.multimediaKeys = true;
 
+  services.mpdscribble = {
+    enable = true;
+    endpoints."last.fm" = {
+      username = "Sciencentistguy";
+      passwordFile = "/secrets/lastfm-password";
+    };
+    verbose = 2;
+  };
+
   programs.ncmpcpp.enable = true;
   programs.ncmpcpp.package = pkgs.ncmpcpp.override {
     visualizerSupport = true;
