@@ -322,6 +322,7 @@
         adobe-dcp-camera-profiles = pkgs.callPackage ./packages/adobe-dcp-camera-profiles {};
         darktable = pkgs.callPackage ./packages/darktable {inherit (inputs) darktable-src;};
         helium-bin = pkgs.callPackage ./packages/helium-bin {};
+        linuxPackagesForArch = pkgs.callPackage ./packages/linux-opt {};
       };
     }));
 }
