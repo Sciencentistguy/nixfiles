@@ -4,17 +4,16 @@
   ...
 }: {
   imports = [
-    ./audio-video.nix
     ./archive-utils.nix
+    ./audio-video
     ./bat.nix
     ./btop.nix
     ./bulkrename.nix
     ./comma.nix
     ./exiftool.nix
     ./eza.nix
-    ./fetch.nix
     ./fd.nix
-    ./ffmpeg
+    ./fetch.nix
     ./gping.nix
     ./jq.nix
     ./killall.nix

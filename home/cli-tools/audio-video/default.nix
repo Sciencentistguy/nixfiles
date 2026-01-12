@@ -15,6 +15,6 @@
     ]
     ++ lib.optionals (systemName == "chronos") [
       pkgs.mpv
-      pkgs.plex-mpv-shim
+      (pkgs.callPackage ./plex-mpv-shim.nix {})
     ];
 }
