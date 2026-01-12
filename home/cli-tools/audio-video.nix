@@ -5,11 +5,16 @@
   systemName,
   ...
 }: {
+  imports = [./ffmpeg];
   home.packages =
     [
       flakePkgs.dr14_tmeter
       flakePkgs.qobuz-identifier
       pkgs.spek
+      pkgs.yt-dlp
     ]
-    ++ lib.optional (systemName == "chronos") pkgs.mpv;
+    ++ lib.optionals (systemName == "chronos") [
+      pkgs.mpv
+      pkgs.plex-mpv-shim
+    ];
 }

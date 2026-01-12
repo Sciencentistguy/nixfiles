@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./audio-tools.nix
+    ./audio-video.nix
     ./archive-utils.nix
     ./bat.nix
     ./btop.nix
@@ -15,7 +15,6 @@
     ./fetch.nix
     ./fd.nix
     ./ffmpeg
-    ./file.nix
     ./gping.nix
     ./jq.nix
     ./killall.nix
@@ -32,6 +31,5 @@
     ./watch.nix
     ./wget.nix
     ./xattr.nix
-    ./yt-dlp.nix
   ];
 }
