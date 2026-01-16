@@ -24,7 +24,7 @@ vim.g.neoformat_json_prettier = {
 }
 vim.g.neoformat_rust_customrustfmt = {
     exe = "rustfmt",
-    args = { "--edition 2021" },
+    args = { "--edition 2024" },
     stdin = 1,
 }
 
