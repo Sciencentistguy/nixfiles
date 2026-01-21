@@ -33,9 +33,11 @@
     };
   };
 
-  xdg.configFile."mpv/mpv.conf".text =
+  xdg.configFile."mpv/mpv.conf" =
     lib.mkIf (systemName == "chronos")
-    <| lib.mkAfter ''
-      no-audio-display
-    '';
+    {
+      text = lib.mkAfter ''
+        no-audio-display
+      '';
+    };
 }
