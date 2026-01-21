@@ -119,7 +119,7 @@
       nixosConfigurations.atlas = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          inherit inputs nixpkgsConfig;
+          inherit inputs nixpkgsConfig homeManagerStateVersion;
           flakePkgs = flakePkgs' system;
           isDarwin = false;
           isNixOS = true;
