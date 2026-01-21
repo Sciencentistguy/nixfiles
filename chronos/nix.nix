@@ -9,7 +9,7 @@
   nix.enable = true;
   nix.extraOptions = ''
     auto-optimise-store = true
-    experimental-features = flakes nix-command
+    experimental-features = flakes nix-command pipe-operators
   '';
 
   nix.settings.trusted-users = [
