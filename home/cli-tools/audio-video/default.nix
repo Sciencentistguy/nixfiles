@@ -7,8 +7,7 @@
 }: {
   imports = [./ffmpeg];
   home.packages = let
-    mpv = pkgs.mpv.override {scripts = [pkgs.mpvScripts.mpris];};
-    plex-mpv-shim = pkgs.plex-mpv-shim.override {inherit mpv;};
+    plex-mpv-shim = pkgs.callPackage ./plex-mpv-shim.nix {};
   in
     [
       flakePkgs.dr14_tmeter
@@ -17,7 +16,26 @@
       pkgs.yt-dlp
     ]
     ++ lib.optionals (systemName == "chronos") [
-      mpv
-      (pkgs.callPackage ./plex-mpv-shim.nix {inherit plex-mpv-shim;})
+      plex-mpv-shim
     ];
+
+  programs.mpv = lib.mkIf (systemName == "chronos") {
+    enable = true;
+    config = {
+      vo = "gpu-next";
+      # no-audio-display = true; # see below; https://github.com/nix-community/home-manager/issues/8201
+    };
+    scripts = with pkgs.mpvScripts; [mpris quality-menu autocrop];
+
+    bindings = {
+      F = "script-binding quality_menu/video_formats_toggle";
+      "Alt+f" = "script-binding quality_menu/audio_formats_toggle";
+    };
+  };
+
+  xdg.configFile."mpv/mpv.conf".text =
+    lib.mkIf (systemName == "chronos")
+    <| lib.mkAfter ''
+      no-audio-display
+    '';
 }
