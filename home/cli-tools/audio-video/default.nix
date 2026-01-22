@@ -5,19 +5,33 @@
   systemName,
   ...
 }: {
-  imports = [./ffmpeg];
   home.packages = let
-    plex-mpv-shim = pkgs.callPackage ./plex-mpv-shim.nix {};
-  in
-    [
-      flakePkgs.dr14_tmeter
-      flakePkgs.qobuz-identifier
-      pkgs.spek
-      pkgs.yt-dlp
-    ]
-    ++ lib.optionals (systemName == "chronos") [
-      plex-mpv-shim
-    ];
+    ffmpeg = flakePkgs.videoconverter.ffmpeg;
+  in [
+    flakePkgs.dr14_tmeter
+    flakePkgs.qobuz-identifier
+    pkgs.spek
+    pkgs.yt-dlp
+
+    ffmpeg
+    flakePkgs.videoconverter
+    pkgs.ab-av1
+    pkgs.mediainfo
+
+    (pkgs.callPackage ./plot-dovi.nix {inherit ffmpeg;})
+
+    (pkgs.mkvtoolnix.override {
+      withGUI = false;
+    })
+  ];
+
+  # ffmpeg nnedi filter needs weights downloaded separately
+  home.file.".ffmpeg/nnedi3_weights".source = flakePkgs.nnedi_weights;
+
+  services.plex-mpv-shim = lib.mkIf (systemName == "chronos") {
+    enable = true;
+    settings.auto_transcode = false;
+  };
 
   programs.mpv = lib.mkIf (systemName == "chronos") {
     enable = true;

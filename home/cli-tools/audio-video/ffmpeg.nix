@@ -17,7 +17,4 @@ in {
       withGUI = false;
     })
   ];
-
-  # ffmpeg nnedi filter needs weights downloaded separately
-  home.file.".ffmpeg/nnedi3_weights".source = flakePkgs.nnedi_weights;
 }
