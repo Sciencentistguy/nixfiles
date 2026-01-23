@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  nixpkgsConfig,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./filesystems
     ./gpg.nix
@@ -18,8 +12,7 @@
 
   environment.shells = with pkgs; [
     bashInteractive
-    zsh
-  ];
+    zsh ];
 
   environment.systemPackages = with pkgs; [
     vim
