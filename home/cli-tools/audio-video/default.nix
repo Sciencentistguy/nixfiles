@@ -39,7 +39,10 @@
       vo = "gpu-next";
       # no-audio-display = true; # see below; https://github.com/nix-community/home-manager/issues/8201
     };
-    scripts = with pkgs.mpvScripts; [mpris quality-menu autocrop];
+    scripts = with pkgs.mpvScripts; [mpris quality-menu autocrop blacklistExtensions];
+
+    # Exclude cover art when playing folders
+    scriptOpts.blacklist_extensions.blacklist = lib.strings.concatStringsSep "," ["jpg" "png" "jpeg"];
 
     bindings = {
       F = "script-binding quality_menu/video_formats_toggle";
@@ -47,11 +50,9 @@
     };
   };
 
-  xdg.configFile."mpv/mpv.conf" =
-    lib.mkIf (systemName == "chronos")
-    {
-      text = lib.mkAfter ''
-        no-audio-display
-      '';
-    };
+  xdg.configFile."mpv/mpv.conf" = lib.mkIf (systemName == "chronos") {
+    text = lib.mkAfter ''
+      no-audio-display
+    '';
+  };
 }
