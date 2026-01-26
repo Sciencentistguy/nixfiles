@@ -8,7 +8,7 @@
   home.packages = let
     ffmpeg = flakePkgs.videoconverter.ffmpeg;
   in [
-    flakePkgs.dr14_tmeter
+    pkgs.dr14_tmeter
     flakePkgs.qobuz-identifier
     pkgs.spek
     pkgs.yt-dlp
