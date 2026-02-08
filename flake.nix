@@ -9,10 +9,6 @@
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # See https://github.com/NixOS/nixpkgs/pull/458923
-    nixpkgs-sciencentistguy = {
-      url = "github:Sciencentistguy/nixpkgs-fork/dr14_tmeter-fix";
-    };
 
     # Environment/system management
     darwin = {
@@ -109,10 +105,8 @@
     homeManagerStateVersion = "22.05";
     flakePkgs' = system: let
       packageInputs = builtins.filter (v: v ? packages && v.packages ? ${system}) (nixpkgs.lib.attrValues inputs ++ [self]);
-      mergedPackages = nixpkgs.lib.foldl' (acc: v: acc // v.packages.${system}) {} packageInputs;
     in
-      mergedPackages
-      // {inherit (inputs.nixpkgs-sciencentistguy.legacyPackages.${system}) dr14_tmeter;};
+      nixpkgs.lib.foldl' (acc: v: acc // v.packages.${system}) {} packageInputs;
   in
     {
       # Atlas - Server
