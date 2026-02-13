@@ -8,6 +8,7 @@
     ./audio-video
     ./bat.nix
     ./btop.nix
+    ./borg.nix
     ./bulkrename.nix
     ./comma.nix
     ./exiftool.nix
