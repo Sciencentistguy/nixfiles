@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.mpd.enable = true;
   services.mpd.dataDir = "/hdd/Music/mpd";
-  services.mpd.musicDirectory = "/binds/music-library";
+  services.mpd.musicDirectory = "/media/Music";
   services.mpd.extraConfig = ''
     audio_output {
       type "pipewire"
@@ -13,7 +17,11 @@
       path   "/tmp/mpd.fifo"
       format "44100:16:2"
     }
+
+    replaygain "off"
   '';
+
+  systemd.user.services.mpd.Service.ReadOnlyPaths = config.services.mpd.musicDirectory;
 
   services.mpdris2.enable = true;
   services.mpdris2.multimediaKeys = true;
@@ -32,7 +40,7 @@
     visualizerSupport = true;
   };
   programs.ncmpcpp.settings = {
-    visualizer_fps = 1000;
+    visualizer_fps = 165;
     user_interface = "alternative";
     media_library_primary_tag = "album_artist";
     display_bitrate = "yes";

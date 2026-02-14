@@ -40,14 +40,5 @@
     };
   };
 
-  # Virtual fielsystems
-  fileSystems = {
-    "/binds/music-library" = {
-      device = "/media/Music";
-      options = ["bind" "ro" "noauto"];
-      depends = ["/media"];
-    };
-  };
-
   boot.tmp.useTmpfs = true;
 }
