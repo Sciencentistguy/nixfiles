@@ -37,6 +37,10 @@
       url = "git+https://github.com/darktable-org/darktable.git?submodules=1";
       flake = false;
     };
+    helium-nix = {
+      url = "github:AlvaroParker/helium-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     prism-launcher = {
       url = "github:PrismLauncher/PrismLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
