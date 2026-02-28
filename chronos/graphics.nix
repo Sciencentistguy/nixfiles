@@ -23,9 +23,9 @@
 
   environment.systemPackages = with pkgs; [nvtopPackages.full];
 
-  programs.tuxclocker = {
-    enable = true;
-    useUnfree = true;
-    enabledNVIDIADevices = [0];
-  };
+  # programs.tuxclocker = {
+    # enable = true;
+    # useUnfree = true;
+    # enabledNVIDIADevices = [0];
+  # };
 }

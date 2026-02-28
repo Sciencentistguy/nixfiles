@@ -38,6 +38,7 @@
   programs.ncmpcpp.enable = true;
   programs.ncmpcpp.package = pkgs.ncmpcpp.override {
     visualizerSupport = true;
+    boost = pkgs.boost187;
   };
   programs.ncmpcpp.settings = {
     visualizer_fps = 165;
