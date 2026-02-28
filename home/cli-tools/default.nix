@@ -7,8 +7,8 @@
     ./archive-utils.nix
     ./audio-video
     ./bat.nix
-    ./btop.nix
     ./borg.nix
+    ./btop.nix
     ./bulkrename.nix
     ./comma.nix
     ./exiftool.nix
@@ -19,6 +19,7 @@
     ./jq.nix
     ./killall.nix
     ./ncdu.nix
+    ./networking.nix
     ./procs.nix
     ./rink.nix
     ./ripgrep.nix
@@ -26,7 +27,6 @@
     ./rust-nix-shell.nix
     ./sad.nix
     ./scripts.nix
-    ./speedtest.nix
     ./tmux.nix
     ./watch.nix
     ./wget.nix
