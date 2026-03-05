@@ -73,6 +73,10 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Libraries
     agenix = {
@@ -167,10 +171,7 @@
         modules = [
           ./hercules
           home-manager.nixosModules.home-manager
-          inputs.agenix.nixosModules.age
-          inputs.bonkbot.nixosModules.${system}.bonkbot
-          inputs.susbot.nixosModules.${system}.susbot
-          inputs.nix-minecraft.nixosModules.minecraft-servers
+          inputs.vscode-server.nixosModules.default
           (
             {
               pkgs,
