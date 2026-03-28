@@ -23,7 +23,16 @@
       enableZshIntegration = true;
       flags = ["--disable-up-arrow"];
     };
-    programs.starship.enable = true;
+    programs.starship = {
+      enable = true;
+      settings = {
+        format = "$username$hostname$shell$all";
+        cmd_duration = {
+          min_time = 5000;
+          show_milliseconds = true;
+        };
+      };
+    };
     home.packages = with pkgs; [rclone];
     programs.zsh = {
       enable = true;
