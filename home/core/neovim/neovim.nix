@@ -6,10 +6,10 @@
   git,
   gnumake,
   lib,
+  lua-language-server,
   makeWrapper,
   neovim-unwrapped, # flake
   nil, # flake
-  nodePackages,
   nodejs,
   perl,
   pyright,
@@ -21,11 +21,11 @@
   shfmt,
   stdenv,
   stylua,
-  lua-language-server,
   symlinkJoin,
   tree-sitter,
   xclip,
   zathura,
+prettier,
 }:
 symlinkJoin {
   name = "neovim";
@@ -54,7 +54,7 @@ symlinkJoin {
         # Formatters
         stylua
         alejandra
-        nodePackages.prettier
+        prettier
         shfmt
         rustfmt
 

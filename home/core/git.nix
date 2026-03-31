@@ -14,6 +14,7 @@
       ".DS_Store"
     ];
     signing = {
+      format = "openpgp";
       key = "30BBFF3FAB0BBB3E0435F83C8E8FF66E2AE8D970";
       signByDefault = true;
     };
