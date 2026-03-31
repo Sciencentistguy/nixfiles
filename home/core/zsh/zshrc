@@ -147,3 +147,18 @@ zvm_after_init_commands+=(
     "bindkey '^[OH' beginning-of-line"
     "bindkey '^[OF' end-of-line"
 )
+
+# If zsh-autosuggestions is installed, configure it to use Atuin's search. If
+# you'd like to override this, then add your config after the $(atuin init zsh)
+# in your .zshrc
+_zsh_autosuggest_strategy_atuin() {
+    # silence errors, since we don't want to spam the terminal prompt while typing.
+    suggestion=$(ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix 2>/dev/null)
+}
+
+if [ -n "${ZSH_AUTOSUGGEST_STRATEGY:-}" ]; then
+    ZSH_AUTOSUGGEST_STRATEGY=("atuin" "${ZSH_AUTOSUGGEST_STRATEGY[@]}")
+else
+    ZSH_AUTOSUGGEST_STRATEGY=("atuin")
+fi
+
