@@ -73,6 +73,10 @@
       command videoconverter "$@"
       stty sane
     '';
+
+    gdc = ''
+      git diff "${1}^" "${1}"
+    '';
   };
 in
   writeZsh "functions.zsh" (
