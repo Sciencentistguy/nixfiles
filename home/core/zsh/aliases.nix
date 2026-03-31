@@ -26,6 +26,7 @@
     mkdir = "mkdir -p";
     mm = "make -j$(nproc)";
     mount = "sudo mount";
+    mpvs = "mpv-search";
     mv = "mv -v";
     ncmpcpp = "ncmpcpp -q";
     neofetch = "clear; neofetch";

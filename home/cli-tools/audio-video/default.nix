@@ -20,6 +20,8 @@
 
     (pkgs.callPackage ./plot-dovi.nix {inherit ffmpeg;})
 
+    (pkgs.callPackage ./mpv-search.nix {})
+
     (pkgs.mkvtoolnix.override {
       withGUI = false;
     })
