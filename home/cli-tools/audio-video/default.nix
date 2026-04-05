@@ -7,25 +7,29 @@
 }: {
   home.packages = let
     ffmpeg = flakePkgs.videoconverter.ffmpeg;
-  in [
-    pkgs.dr14_tmeter
-    flakePkgs.qobuz-identifier
-    pkgs.spek
-    pkgs.yt-dlp
+  in
+    [
+      pkgs.dr14_tmeter
+      flakePkgs.qobuz-identifier
+      pkgs.spek
+      pkgs.yt-dlp
 
-    ffmpeg
-    flakePkgs.videoconverter
-    pkgs.ab-av1
-    pkgs.mediainfo
+      ffmpeg
+      flakePkgs.videoconverter
+      pkgs.ab-av1
+      pkgs.mediainfo
 
-    (pkgs.callPackage ./plot-dovi.nix {inherit ffmpeg;})
+      (pkgs.callPackage ./plot-dovi.nix {inherit ffmpeg;})
 
-    (pkgs.callPackage ./mpv-search.nix {})
+      (pkgs.callPackage ./mpv-search.nix {})
 
-    (pkgs.mkvtoolnix.override {
-      withGUI = false;
-    })
-  ];
+      (pkgs.mkvtoolnix.override {
+        withGUI = systemName == "chronos";
+      })
+    ]
+    ++ lib.optionals (systemName == "chronos") [
+      pkgs.audacity
+    ];
 
   # ffmpeg nnedi filter needs weights downloaded separately
   home.file.".ffmpeg/nnedi3_weights".source = flakePkgs.nnedi_weights;
