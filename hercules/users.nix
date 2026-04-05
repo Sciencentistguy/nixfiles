@@ -6,6 +6,7 @@
       shell = pkgs.zsh;
       extraGroups = ["wheel" "docker"];
       isNormalUser = true;
+      linger = true;
     };
     ncxl = {
       isSystemUser = true;
