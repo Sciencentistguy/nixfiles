@@ -1,9 +1,12 @@
 {
+  config,
   lib,
-  writeZsh,
-  xclip,
-}: let
-  functions = {
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.zsh.functions;
+  defaults = {
     lls = ''
       clear;
       ls
@@ -18,7 +21,7 @@
     '';
 
     imgpaste = ''
-      ${xclip}/bin/xclip -t image/png -o >$1
+      ${pkgs.xclip}/bin/xclip -t image/png -o >$1
     '';
 
     borderless = ''
@@ -78,7 +81,13 @@
       git diff "$${1}^" "$${1}"
     '';
   };
-in
-  writeZsh "functions.zsh" (
-    lib.concatStringsSep "\n\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions)
-  )
+  merged = defaults // cfg;
+in {
+  options.zsh.functions = mkOption {
+    type = types.attrsOf types.str;
+    default = {};
+  };
+
+  config.home.file.".zsh/functions.zsh".text =
+    concatStringsSep "\n\n" (mapAttrsToList (k: v: "${k}() {\n${v}\n}") merged);
+}

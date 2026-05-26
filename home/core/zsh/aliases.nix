@@ -1,9 +1,10 @@
-{
-  lib,
-  writeZsh,
-  isDarwin,
-}: let
-  regular = {
+{ config, lib, pkgs, ... }:
+with lib;
+let
+  cfg = config.zsh.aliases;
+  isDarwin = pkgs.stdenv.isDarwin;
+
+  defaultRegular = {
     ":q" = "exit";
     cp = "cp -av --reflink=auto";
     dc = "cd";
@@ -12,10 +13,7 @@
     e = "search-edit";
     ex = "extract";
     feh = "feh --conversion-timeout 1";
-    fex =
-      if isDarwin
-      then "open ."
-      else "nautilus . 2>/dev/null";
+    fex = if isDarwin then "open ." else "nautilus . 2>/dev/null";
     ffmpeg = "ffmpeg -hide_banner";
     ffplay = "ffplay -hide_banner";
     ffprobe = "ffprobe -hide_banner";
@@ -41,7 +39,6 @@
     xclip = "xclip -selection clipboard";
     zshrc-reload = "reload-zshrc";
     fzf = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
-
     ls = "exa -lhgbHm --git ";
     lst = "exa -lhgbHmT --git --git-ignore";
     lstg = "exa -lhgbHmT --git";
@@ -49,20 +46,24 @@
     lsat = "exa -lhgbHmaT --git";
   };
 
-  global = {
+  defaultGlobal = {
     sd = "~/ScratchArea";
     dl = "~/Downloads";
     "..." = "../..";
     "...." = "../../..";
     "....." = "../../../..";
   };
-in
-  writeZsh "aliases.zsh" (
-    lib.concatStringsSep "\n" (
-      lib.mapAttrsToList (k: v: "alias ${k}=${lib.escapeShellArg v}") regular
-    )
-    + "\n"
-    + lib.concatStringsSep "\n" (
-      lib.mapAttrsToList (k: v: "alias -g ${k}=${lib.escapeShellArg v}") global
-    )
-  )
+
+  reg = defaultRegular // cfg.regular;
+  glob = defaultGlobal // cfg.global;
+in {
+  options.zsh.aliases = {
+    regular = mkOption { type = types.attrsOf types.str; default = {}; };
+    global = mkOption { type = types.attrsOf types.str; default = {}; };
+  };
+
+  config.home.file.".zsh/aliases.zsh".text = ''
+    ${concatStringsSep "\n" (mapAttrsToList (k: v: "alias ${k}=${escapeShellArg v}") reg)}
+    ${concatStringsSep "\n" (mapAttrsToList (k: v: "alias -g ${k}=${escapeShellArg v}") glob)}
+  '';
+}

@@ -1,16 +1,11 @@
 {
+  config,
   lib,
-  nix-index-unwrapped,
-  oh-my-zsh,
-  writeTextFile,
-  writeZsh,
-  zsh-autosuggestions,
-  zsh-nix-shell,
-  zsh-syntax-highlighting,
-  zsh-vi-mode,
-}: let
-  ifExists = x: lib.optionalString (x != null) x;
-  plugins = {
+  pkgs,
+  ...
+}:
+with lib; let
+  plugins = with pkgs; {
     git = {
       file = "${oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh";
     };
@@ -101,14 +96,12 @@
 
   sourcePlugin = name: value: ''
     if [ -f ${value.file} ]; then
-      ${ifExists value.before or null}
+      ${value.before or ""}
       source ${value.file}
-      ${ifExists value.after or null}
-    else
-      echo "Plugin ${name} not found at ${value.file}"
+      ${value.after or ""}
     fi
   '';
-in
-  writeZsh "plugins.zsh" (
-    lib.concatStringsSep "\n" (lib.mapAttrsToList sourcePlugin plugins)
-  )
+in {
+  config.home.file.".zsh/plugins.zsh".text =
+    concatStringsSep "\n" (mapAttrsToList sourcePlugin plugins);
+}

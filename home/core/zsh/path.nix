@@ -1,26 +1,44 @@
 {
   config,
-  isDarwin,
-  isNixOS,
   lib,
-  writeZsh,
-}: let
-  path =
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.zsh;
+  isDarwin = pkgs.stdenv.isDarwin;
+
+  # Build the path list based on the options
+  pathList =
     [
-      "/run/wrappers/bin" # Note to self: this has to be at the top or sudo stops working
+      "/run/wrappers/bin" # Essential for sudo
       "${config.home.homeDirectory}/.nix-profile/bin"
       "/run/current-system/sw/bin"
       "/nix/var/nix/profiles/default/bin"
     ]
-    ++ lib.optional isDarwin
-    "/opt/homebrew/bin"
-    ++ lib.optionals (!isNixOS)
-    [
+    ++ optional isDarwin "/opt/homebrew/bin"
+    ++ optionals (!cfg.isNixOS) [
       "/bin"
       "/sbin"
       "/usr/bin"
       "/usr/sbin"
       "/usr/local/bin"
     ];
-in
-  writeZsh "path.zsh" ''export PATH="${lib.concatStringsSep ":" path}:$PATH"''
+in {
+  ### SCHEMA DEFINITION
+  options.zsh.isNixOS = mkOption {
+    type = types.bool;
+    default = true;
+    description = ''
+      Whether the target system is NixOS.
+      If false, standard FHS paths (like /usr/bin) are added to PATH.
+    '';
+  };
+
+  ### IMPLEMENTATION
+  config = {
+    home.file.".zsh/path.zsh".text = ''
+      export PATH="${concatStringsSep ":" pathList}:$PATH"
+    '';
+  };
+}

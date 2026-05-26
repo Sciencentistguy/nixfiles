@@ -1,34 +1,18 @@
-{
-  pkgs,
-  lib,
-  config,
-  flakePkgs,
-  inputs,
-  isDarwin,
-  isNixOS,
-  ...
-}: let
-  writeZsh = name: expr: let
-    text = pkgs.writeText name expr;
-  in
-    text;
-  # pkgs.runCommandLocal name {} "${pkgs.shfmt}/bin/shfmt -i 4 ${text} > $out";
+{isNixOS, ...}: {
+  imports = [
+    ./environment.nix
+    ./aliases.nix
+    ./functions.nix
+    ./path.nix
+    ./plugins.nix
+  ];
 
-  callPackage = x: attrs: pkgs.callPackage x ({inherit writeZsh;} // attrs);
-in {
+  # Purely static files
   home.file.".zshrc".source = ./zshrc;
 
-  home.file.".zsh/environment.zsh".source = callPackage ./environment.nix {};
+  zsh.isNixOS = isNixOS;
 
-  home.file.".zsh/path.zsh".source = callPackage ./path.nix {
-    inherit config isDarwin isNixOS;
+  zsh.aliases.regular = {
+    g = "git";
   };
-
-  home.file.".zsh/aliases.zsh".source = callPackage ./aliases.nix {
-    inherit isDarwin;
-  };
-
-  home.file.".zsh/functions.zsh".source = callPackage ./functions.nix {};
-
-  home.file.".zsh/plugins.zsh".source = callPackage ./plugins.nix {};
 }

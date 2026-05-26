@@ -1,8 +1,14 @@
 {
+  config,
   lib,
-  writeZsh,
-}: let
-  environment-variables = {
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.zsh.environment-variables;
+
+  # Your default internal variables
+  default-env = {
     GPG_TTY = "$(tty)";
     MAKEFLAGS = "-j$(nproc)";
     NODE_OPTIONS = lib.escapeShellArg "--max_old_space_size=16384";
@@ -15,7 +21,30 @@
     HISTSIZE = "10000000";
     SAVEHIST = "10000";
   };
-in
-  writeZsh "environment.zsh" (
-    lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "export ${k}=${v}") environment-variables)
-  )
+
+  # Merge defaults with the user-provided options
+  # We use // for attribute merging here
+  final-env = default-env // cfg;
+
+  # Create the script content
+  env-script = concatStringsSep "\n" (
+    mapAttrsToList (k: v: "export ${k}=${v}") final-env
+  );
+in {
+  ### SCHEMA DEFINITION
+  options.zsh.environment-variables = mkOption {
+    type = types.attrsOf types.str;
+    default = {};
+    description = "Custom environment variables to be exported in the Zsh env script.";
+  };
+
+  ### IMPLEMENTATION
+  config = {
+    # This writes the file to your nix store.
+    # You likely want to link this into your home directory.
+    home.file.".zsh/environment.zsh".text = env-script;
+
+    # Alternatively, if you want to use your specific writeZsh function:
+    # home.packages = [ (writeZsh "environment.zsh" env-script) ];
+  };
+}

@@ -39,6 +39,11 @@
     settings.auto_transcode = false;
   };
 
+  zsh.environment-variables = {
+    VIDEOCONVERTER_TV_OUTPUT_PREFIX = "/media/TV";
+    VIDEOCONVERTER_MOVIE_OUTPUT_DIR = "/media/Films";
+  };
+
   programs.mpv = lib.mkIf (systemName == "chronos") {
     enable = true;
     config = {
