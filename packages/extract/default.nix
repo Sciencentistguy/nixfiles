@@ -1,11 +1,11 @@
 {
+  _7zz,
   bzip2,
   fetchgit,
   gnutar,
   gzip,
   lib,
   makeWrapper,
-  p7zip,
   stdenvNoCC,
   unrar,
   unzip,
@@ -24,13 +24,18 @@ stdenvNoCC.mkDerivation {
   dontConfigure = true;
   dontBuild = true;
 
+  prePatch = ''
+    substituteInPlace extract.sh \
+      --replace-fail "7z" "7zz"
+  '';
+
   installPhase = ''
     install -Dm755 extract.sh $out/bin/extract
   '';
 
   postFixup = ''
     wrapProgram $out/bin/extract \
-      --set PATH ${lib.makeBinPath [bzip2 gnutar gzip p7zip unrar unzip]}
+      --set PATH ${lib.makeBinPath [bzip2 gnutar gzip _7zz unrar unzip]}
   '';
 
   meta = with lib; {

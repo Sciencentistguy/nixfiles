@@ -2,7 +2,7 @@
   cpio,
   fetchurl,
   libxml2,
-  p7zip,
+  _7zz,
   stdenvNoCC,
   xar,
 }:
@@ -31,10 +31,10 @@ stdenvNoCC.mkDerivation rec {
           ];
         })
       else xar;
-  in [p7zip xar' cpio];
+  in [_7zz xar' cpio];
 
   unpackCmd = ''
-    7z x "$src"
+    7zz x "$src"
     ls
     cd DNGConverter_${version}
     xar -x -f DNGConverter_${version}.pkg

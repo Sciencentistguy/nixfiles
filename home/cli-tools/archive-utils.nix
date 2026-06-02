@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     bzip2
     gzip
-    p7zip
+    _7zz
     unzip
     xz
     zip

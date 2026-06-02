@@ -1,6 +1,6 @@
 {
   fetchurl,
-  p7zip,
+  _7zz,
   stdenv,
   lib,
 }:
@@ -13,13 +13,13 @@ stdenv.mkDerivation {
     sha256 = "1djknxnzbdy5f1ig3rdfw6avy8vz70zql58hg0pyz4npvdmc2jv8";
   };
 
-  nativeBuildInputs = [p7zip];
+  nativeBuildInputs = [_7zz];
 
   unpackCmd = ''
-    7z x "$src" sources/install.wim
+    7zz x "$src" sources/install.wim
     mkdir source
     pushd source
-    7z e ../sources/install.wim Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"*"/"*"/license.rtf}
+    7zz e ../sources/install.wim Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"*"/"*"/license.rtf}
     popd
     rm -rf sources
     pwd

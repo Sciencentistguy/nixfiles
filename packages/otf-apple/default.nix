@@ -1,7 +1,7 @@
 {
   stdenv,
   lib,
-  p7zip,
+  _7zz,
   fetchurl,
 }:
 stdenv.mkDerivation {
@@ -26,18 +26,18 @@ stdenv.mkDerivation {
     })
   ];
 
-  nativeBuildInputs = [p7zip];
+  nativeBuildInputs = [_7zz];
 
   sourceRoot = "./";
 
   preUnpack = "mkdir fonts";
 
   unpackCmd = ''
-    7z x $curSrc >/dev/null
+    7zz x $curSrc >/dev/null
     dir="$(find . -not \( -path ./fonts -prune \) -type d | sed -n 2p)"
     cd $dir 2>/dev/null
-    7z x *.pkg >/dev/null
-    7z x Payload~ >/dev/null
+    7zz x *.pkg >/dev/null
+    7zz x Payload~ >/dev/null
     mv Library/Fonts/*.otf ../fonts/
     cd ../
     rm -R $dir
