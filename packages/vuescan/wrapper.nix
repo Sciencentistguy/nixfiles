@@ -1,5 +1,8 @@
 {
+  lib,
+  stdenvNoCC,
   buildFHSEnv,
+  makeDesktopItem,
   vuescan-unwrapped,
   udev,
   alsa-lib,

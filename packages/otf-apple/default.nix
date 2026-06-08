@@ -33,14 +33,15 @@ stdenv.mkDerivation {
   preUnpack = "mkdir fonts";
 
   unpackCmd = ''
-    7zz x $curSrc >/dev/null
-    dir="$(find . -not \( -path ./fonts -prune \) -type d | sed -n 2p)"
-    cd $dir 2>/dev/null
-    7zz x *.pkg >/dev/null
-    7zz x Payload~ >/dev/null
-    mv Library/Fonts/*.otf ../fonts/
-    cd ../
-    rm -R $dir
+    mkdir unpack
+    pushd unpack
+    7zz e $curSrc -y
+    7zz e *.pkg -y
+    7zz e Payload -y
+    7zz x Payload~ -y
+    mv Library/Fonts/*.?tf ../fonts
+    popd
+    rm -rf unpack
   '';
 
   installPhase = ''
