@@ -38,6 +38,13 @@
       fsType = "nfs";
       options = ["noauto" "x-systemd.automount" "nofail" "x-systemd.device-timeout=15s"];
     };
+    "/nix/var/nix/builds" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [
+        "mode=700"
+      ];
+    };
   };
 
   boot.tmp.useTmpfs = true;
