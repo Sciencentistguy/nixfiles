@@ -6,6 +6,7 @@
     ./i18n.nix
     ./time.nix
     ./users.nix
+    ./filesystems.nix
   ];
 
   programs.zsh.enable = true;
