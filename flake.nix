@@ -190,7 +190,6 @@
 
                   ./home/beets.nix
                 ];
-                systemd.user.startServices = "suggest";
               };
             }
           )
