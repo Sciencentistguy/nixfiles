@@ -6,15 +6,15 @@
       fsType = "btrfs";
     };
     "/windows/c" = {
-      device = "/dev/disk/by-uuid/4CCE434ACE432B90";
+      device = "/dev/disk/by-uuid/9EAEDCB0AEDC81E7";
       fsType = "ntfs";
-      options = ["uid=jamie" "gid=users"];
+      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other" "nofail" "x-systemd.device-timeout=15s"];
       noCheck = true;
     };
     "/windows/d" = {
       device = "/dev/disk/by-uuid/149247C59247AA56";
       fsType = "ntfs";
-      options = ["uid=jamie" "gid=users"];
+      options = ["noauto" "x-systemd.automount" "uid=jamie" "gid=users" "allow_other" "nofail" "x-systemd.device-timeout=15s"];
       noCheck = true;
     };
     "/atlas" = {
