@@ -1,3 +1,6 @@
 {pkgs, ...}: {
-  virtualisation.docker.enable = false;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true; # Optional: maps 'docker' command to podman
+  };
 }
