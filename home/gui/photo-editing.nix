@@ -7,6 +7,6 @@
     # flakePkgs.darktable
     (pkgs.darktable.override {withAi = true;})
     pkgs.gimp3
-    flakePkgs.vkdt-git
+    # flakePkgs.vkdt-git
   ];
 }
