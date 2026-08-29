@@ -36,7 +36,6 @@
     gnome-tweaks
 
     paper-icon-theme
-    paper-gtk-theme
     flakePkgs.apple-cursor-theme
 
     gnomeExtensions.blur-my-shell

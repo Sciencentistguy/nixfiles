@@ -28,7 +28,7 @@
     firefox-unwrapped.buildInputs;
 
   discord-unwrapped = discord.override {
-    inherit nss;
+        # inherit nss;
   };
 in
   discord-unwrapped.overrideAttrs (oldAttrs: rec {
