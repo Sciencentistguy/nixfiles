@@ -49,6 +49,10 @@
       url = "github:Sciencentistguy/qobuz_identifier";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rmdirall = {
+      url = "github:Sciencentistguy/rmdirall";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-nix-shell = {
       url = "github:Sciencentistguy/rust-nix-shell";
       inputs.nixpkgs.follows = "nixpkgs";

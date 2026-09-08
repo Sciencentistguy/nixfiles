@@ -23,6 +23,7 @@
     ./procs.nix
     ./rink.nix
     ./ripgrep.nix
+    ./rmdirall.nix
     ./rsync.nix
     ./rust-nix-shell.nix
     ./sad.nix
