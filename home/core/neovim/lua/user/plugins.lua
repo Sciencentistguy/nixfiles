@@ -26,7 +26,7 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function(_)
-            require("nvim-treesitter.configs").setup({
+            require("nvim-treesitter").setup({
                 highlight = {
                     enable = true,
                 },
