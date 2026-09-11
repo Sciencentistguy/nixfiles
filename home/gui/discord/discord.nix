@@ -26,14 +26,12 @@
     (throw "Could not find firefox nss")
     (throw "Firefox had multiple nss?")
     firefox-unwrapped.buildInputs;
-
-  discord-unwrapped = discord.override {
-        # inherit nss;
-  };
 in
-  discord-unwrapped.overrideAttrs (oldAttrs: rec {
-    desktopItem = oldAttrs.desktopItem.override {
-      exec = "${discord-unwrapped}/bin/Discord " + lib.concatStringsSep " " discord-flags;
-    };
-    installPhase = builtins.replaceStrings ["${oldAttrs.desktopItem}"] ["${desktopItem}"] oldAttrs.installPhase;
+  discord.overrideAttrs (oldAttrs: rec {
+    unwrappedDiscord = oldAttrs.unwrappedDiscord.overrideAttrs (old: {
+      desktopItem = oldAttrs.desktopItem.override {
+        exec = "${discord}/bin/Discord " + lib.concatStringsSep " " discord-flags;
+      };
+      installPhase = builtins.replaceStrings ["${oldAttrs.desktopItem}"] ["${desktopItem}"] oldAttrs.installPhase;
+    });
   })

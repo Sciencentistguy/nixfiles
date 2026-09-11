@@ -5,8 +5,8 @@
   ...
 }: {
   home.packages = let
-    discord = pkgs.callPackage ./discord.nix {};
-  in [discord];
+    # discord = pkgs.callPackage ./discord.nix {};
+  in [pkgs.discord];
 
   home.file.".config/discord/settings.json" = {
     text = builtins.toJSON {
