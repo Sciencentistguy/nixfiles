@@ -1,6 +1,7 @@
 {
   pkgs,
   flakePkgs,
+  lib,
   ...
 }: {
   # Enable the GNOME Desktop Environment.
@@ -18,6 +19,28 @@
       name='Terminal'
     '';
   };
+
+  # Ensure dconf is enabled
+  programs.dconf.enable = true;
+
+  # Override GDM's default dconf settings
+  programs.dconf.profiles.gdm.databases = [
+    {
+      settings = {
+        "org/gnome/desktop/session" = {
+          # Disable screen blanking
+          idle-delay = lib.gvariant.mkUint32 0;
+        };
+        "org/gnome/settings-daemon/plugins/power" = {
+          # Disable automatic suspend on AC and Battery
+          sleep-inactive-ac-timeout = lib.gvariant.mkInt32 0;
+          sleep-inactive-ac-type = "nothing";
+          sleep-inactive-battery-timeout = lib.gvariant.mkInt32 0;
+          sleep-inactive-battery-type = "nothing";
+        };
+      };
+    }
+  ];
 
   environment.variables = {
     WAYLAND_DISPLAY = "wayland-0"; # Explicitly set if GNOME fails to export it
@@ -42,5 +65,6 @@
     gnomeExtensions.custom-hot-corners-extended
     gnomeExtensions.impatience
     gnomeExtensions.just-perfection
+    gnomeExtensions.unblank
   ];
 }
