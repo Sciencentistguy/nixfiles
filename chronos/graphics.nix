@@ -21,11 +21,15 @@
 
   hardware.nvidia.open = false;
 
+  hardware.nvidia.powerManagement.enable = true;
+  # Optional but recommended for newer drivers:
+  hardware.nvidia.powerManagement.finegrained = false;
+
   environment.systemPackages = with pkgs; [nvtopPackages.full];
 
   # programs.tuxclocker = {
-    # enable = true;
-    # useUnfree = true;
-    # enabledNVIDIADevices = [0];
+  # enable = true;
+  # useUnfree = true;
+  # enabledNVIDIADevices = [0];
   # };
 }

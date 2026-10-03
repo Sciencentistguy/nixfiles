@@ -10,6 +10,7 @@
   boot.kernelModules = ["sg" "v4l2loopback"];
   boot.kernelParams = [
     "fastboot"
+    "consoleblank=0"
   ];
 
   boot.kernelPackages = flakePkgs.linuxPackagesForArch "znver2";
