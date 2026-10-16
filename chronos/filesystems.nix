@@ -38,6 +38,11 @@
       fsType = "nfs";
       options = ["noauto" "x-systemd.automount" "nofail" "x-systemd.device-timeout=15s"];
     };
+    "/data" = {
+      device = "fileserver.axolotl-shark.ts.net:/share/data";
+      fsType = "nfs";
+      options = ["noauto" "x-systemd.automount" "nofail" "x-systemd.device-timeout=15s"];
+    };
     "/nix/var/nix/builds" = {
       device = "tmpfs";
       fsType = "tmpfs";
