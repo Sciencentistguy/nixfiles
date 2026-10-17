@@ -14,7 +14,7 @@
 
       outputs = {
         influxdb_v2 = {
-          urls = ["http://10.0.253.103:8086"];
+          urls = ["http://influxdb.axolotl-shark.ts.net:8086"];
 
           token = "\${INFLUXDB_TOKEN}";
 
