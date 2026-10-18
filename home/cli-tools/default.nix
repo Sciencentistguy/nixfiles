@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./ai.nix
     ./archive-utils.nix
     ./audio-video
     ./bat.nix

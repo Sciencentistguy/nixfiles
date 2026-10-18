@@ -9,4 +9,6 @@
       OLLAMA_KV_CACHE_TYPE = "q8_0";
     };
   };
+
+  environment.systemPackages = [pkgs.codex];
 }
