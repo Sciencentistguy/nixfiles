@@ -28,7 +28,6 @@
   symlinkJoin,
   tree-sitter,
   xclip,
-  zathura,
   prettier,
 }:
 symlinkJoin {
@@ -49,7 +48,6 @@ symlinkJoin {
         ripgrep
         stdenv.cc
         tree-sitter
-        zathura
         gnumake
 
         # Linters
