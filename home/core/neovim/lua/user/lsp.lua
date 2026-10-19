@@ -1,6 +1,6 @@
 vim.lsp.inlay_hint.enable(true)
 
-vim.lsp.set_log_level("warn")
+vim.lsp.log.set_level("WARN")
 
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { silent = true })
 vim.keymap.set("n", "[g", function()
