@@ -64,8 +64,8 @@
   pkg-config,
   openssl,
   elfutils, # Added elfutils here
-}: arch: let
-  kernelPackages = linuxPackagesFor (
+}: arch:
+linuxPackagesFor (
   (linuxKernel.kernels.linux_latest.override {
     stdenv = llvmPackages.stdenv;
     ignoreConfigErrors = true;
@@ -93,18 +93,14 @@
       "KCFLAGS+=-march=${arch}"
       "KCXXFLAGS+=-march=${arch}"
     ];
+
+    # Out-of-tree modules run the installed resolve_btfids, which needs libelf.
+    postFixup =
+      (old.postFixup or "")
+      + ''
+        patchelf --add-rpath ${lib.makeLibraryPath [elfutils]} \
+          "$dev"/lib/modules/*/build/tools/bpf/resolve_btfids/resolve_btfids
+      '';
   })
-);
-in
-  # Out-of-tree modules run the kernel's resolve_btfids, which needs libelf.
-  kernelPackages.extend (final: prev: let
-    withLibelf = pkg:
-      pkg.overrideAttrs (old: {
-        env = (old.env or {}) // {LD_LIBRARY_PATH = lib.makeLibraryPath [elfutils];};
-      });
-  in {
-    v4l2loopback = withLibelf prev.v4l2loopback;
-    xone = withLibelf prev.xone;
-    xpad-noone = withLibelf prev.xpad-noone;
-  })
+)
 
