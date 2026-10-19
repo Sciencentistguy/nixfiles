@@ -32,6 +32,30 @@ require("lazy").setup({
         config = function(_)
             require("nvim-treesitter").setup()
 
+            -- Parsers for the languages used with the LSP servers/formatters; no-op if installed
+            require("nvim-treesitter").install({
+                "bash",
+                "c",
+                "cpp",
+                "diff",
+                "git_config",
+                "gitcommit",
+                "haskell",
+                "json",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "nix",
+                "python",
+                "query",
+                "ruby",
+                "rust",
+                "toml",
+                "vim",
+                "vimdoc",
+                "yaml",
+            })
+
             vim.treesitter.language.register("bash", "zsh")
 
             -- The main branch no longer enables modules from setup(); start per filetype
