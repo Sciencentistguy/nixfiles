@@ -7,10 +7,14 @@ require("lazy").setup({
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/vim-vsnip",
+    "hrsh7th/cmp-vsnip",
+    "petertriho/cmp-git",
 
     -- Visual
     {
         "navarasu/onedark.nvim",
+        lazy = false,
+        priority = 1000,
         config = function(_)
             local plugin = require("onedark")
             plugin.setup({
@@ -26,25 +30,19 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function(_)
-            require("nvim-treesitter").setup({
-                highlight = {
-                    enable = true,
-                },
-                matchup = {
-                    enbale = true,
-                },
-                indent = {
-                    enable = true,
-                },
-            })
+            require("nvim-treesitter").setup()
 
-            local old_ft_to_lang = require("nvim-treesitter.parsers").ft_to_lang
-            require("nvim-treesitter.parsers").ft_to_lang = function(ft)
-                if ft == "zsh" then
-                    return "bash"
-                end
-                return old_ft_to_lang(ft)
-            end
+            vim.treesitter.language.register("bash", "zsh")
+
+            -- The main branch no longer enables modules from setup(); start per filetype
+            vim.api.nvim_create_autocmd("FileType", {
+                group = vim.api.nvim_create_augroup("user-treesitter", { clear = true }),
+                callback = function(args)
+                    if pcall(vim.treesitter.start, args.buf) then
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
+            })
         end,
     },
     "arkav/lualine-lsp-progress",
@@ -63,11 +61,10 @@ require("lazy").setup({
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "junegunn/fzf.vim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
             "nvim-telescope/telescope-ui-select.nvim",
         },
-        init = function(_)
+        config = function(_)
             local telescope = require("telescope")
             telescope.setup()
             telescope.load_extension("fzf")
