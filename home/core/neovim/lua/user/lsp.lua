@@ -1,6 +1,6 @@
 vim.lsp.inlay_hint.enable(true)
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("warn")
 
 -- Set keybinds
 local opts = { noremap = true, silent = true }
@@ -20,18 +20,20 @@ vim.api.nvim_set_keymap("n", "<m-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>",
 vim.api.nvim_set_keymap(
     "n",
     "[g",
-    '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
+    "<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>",
     opts
 )
 vim.api.nvim_set_keymap(
     "n",
     "]g",
-    '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
+    "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>",
     opts
 )
 
 
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+vim.api.nvim_create_user_command("Format", function()
+    vim.lsp.buf.format()
+end, {})
 
 
 vim.lsp.enable("pyright")
