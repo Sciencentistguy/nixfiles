@@ -1,18 +1,25 @@
 local options = {
-    autoread = true,
-    conceallevel = 0,
+    background = "dark",
+    colorcolumn = "100",
     expandtab = true,
-    history = 500,
+    fileformats = { "unix", "dos", "mac" },
     ignorecase = true,
+    inccommand = "nosplit",
+    linebreak = true,
     mouse = "nv",
+    number = true,
     scrolloff = 7,
     shiftwidth = 4,
+    showmatch = true,
+    showmode = false,
     smartcase = true,
-    smarttab = true,
+    smartindent = true,
     spelllang = "en_gb",
+    swapfile = false,
     tabstop = 4,
+    termguicolors = true,
     updatetime = 300,
-    wildmenu = true,
+    whichwrap = "<,>,h,l",
     wildignore = {
         "*.o",
         "*~",
@@ -25,42 +32,15 @@ local options = {
         "*/.svn/*",
         "*/.DS_Store",
     },
-    ruler = true,
-    cmdheight = 1,
-    hid = true,
-    backspace = { "eol", "start", "indent" },
-    -- whichwrap = {"<,>", "h", "l"},
-    hlsearch = true,
-    incsearch = true,
-    lazyredraw = true,
-    magic = true,
-    showmatch = true,
-    background = "dark",
-    encoding = "utf-8",
-    ffs = { "unix", "dos", "mac" },
-    lbr = true,
-    tw = 500,
-    ai = true,
-    si = true,
-    wrap = true,
-    number = true,
+    writebackup = false,
+    backup = false,
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
--- I don't know why this has to be vim.o rather than vim.opts /shrug
-vim.o.termguicolors = true
-
--- These options don't work at all with vim.o{,pt} /shrug
-vim.cmd([[set colorcolumn=100]])
-vim.cmd([[set inccommand=nosplit]])
-vim.cmd([[set noshowmode]])
-vim.cmd([[set nobackup]])
-vim.cmd([[set noswapfile]])
-vim.cmd([[set nowb]])
-vim.cmd([[set whichwrap=<,>,h,l]])
+vim.opt.sessionoptions:append({ "tabpages", "globals" }) -- store tabpages and globals in session
 
 ----
 -- Mappings
@@ -129,4 +109,10 @@ vim.api.nvim_set_keymap("", "<leader>rg", ":Telescope live_grep<cr>", { silent =
 -- `,D` lists diagnostics
 vim.api.nvim_set_keymap("", "<leader>D", ":Telescope diagnostics<cr>", { silent = true })
 
-vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("user-yank-highlight", { clear = true }),
+    callback = function()
+        vim.hl.on_yank()
+    end,
+})
