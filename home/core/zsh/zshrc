@@ -86,6 +86,12 @@ fi
 # Plugins
 source ~/.zsh/plugins.zsh
 
+# mosh-server doesn't pass XDG_RUNTIME_DIR through, which stops atuin finding
+# its daemon socket
+if [[ -z "$XDG_RUNTIME_DIR" && -d "/run/user/$UID" ]]; then
+    export XDG_RUNTIME_DIR="/run/user/$UID"
+fi
+
 # Largely taken from
 # https://github.com/ellie/atuin/blob/aa556fa0883d1a5c8f35960c9d6e8966e4307896/src/shell/atuin.zsh
 if type atuin >/dev/null; then
