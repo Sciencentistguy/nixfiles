@@ -1,10 +1,6 @@
-{
-  lib,
-  systemName,
-  ...
-}: {
+{...}: {
   imports = [
-    ./ai.nix
+    ./ai
     ./archive-utils.nix
     ./audio-video
     ./bat.nix

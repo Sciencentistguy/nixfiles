@@ -1,0 +1,4 @@
+- Never co-sign commits. Users own all generated code directly.
+- Prefer self-documenting code over use of many comments.
+- Prefer inclusive langauge (e.g. primary/secondary over master/slave; allowlist/blocklist over whitelist/blacklist; etc). Git branches are the exception, prefer `master` over `main`
+- In general, commit changes in logical gropings, ensuring that each commit is a complete working unit of change. Don't pester the user asking whether to commit changes, use judgement
