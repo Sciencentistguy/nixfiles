@@ -13,7 +13,7 @@ local feedkey = function(key, mode)
 end
 
 cmp.setup({
-    autocomplete = false,
+    completion = { autocomplete = false },
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
@@ -28,7 +28,7 @@ cmp.setup({
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Only confirm explicitly selected items
         ["<Tab>"] = cmp.mapping(function(fallback) -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
             if cmp.visible() then
                 local entry = cmp.get_selected_entry()
@@ -54,8 +54,6 @@ cmp.setup({
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" },
         { name = "vsnip" },
-    }, {
-        { name = "copilot" },
     }, {
         { name = "buffer" },
     }),
