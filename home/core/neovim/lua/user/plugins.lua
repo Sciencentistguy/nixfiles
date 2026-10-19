@@ -28,6 +28,8 @@ require("lazy").setup({
     "kdheepak/tabline.nvim", -- config in lua/user/statusbar.lua
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main", -- the master branch is frozen and has no install()
+        lazy = false, -- main does not support lazy-loading
         build = ":TSUpdate",
         config = function(_)
             require("nvim-treesitter").setup()
