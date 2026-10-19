@@ -2,39 +2,38 @@ vim.lsp.inlay_hint.enable(true)
 
 vim.lsp.set_log_level("warn")
 
--- Set keybinds
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { silent = true })
+vim.keymap.set("n", "[g", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+end, { silent = true })
+vim.keymap.set("n", "]g", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, { silent = true })
 
-vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", opts)
-vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<F18>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<m-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-vim.api.nvim_set_keymap(
-    "n",
-    "[g",
-    "<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>",
-    opts
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "]g",
-    "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>",
-    opts
-)
+-- LSP keybinds are buffer-local, set only once a server attaches
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
+    callback = function(args)
+        local function map(lhs, rhs)
+            vim.keymap.set("n", lhs, rhs, { buffer = args.buf, silent = true })
+        end
 
+        map("gD", vim.lsp.buf.declaration)
+        map("gd", "<cmd>Telescope lsp_definitions<cr>")
+        map("gi", vim.lsp.buf.implementation)
+        map("gr", "<cmd>Telescope lsp_references<cr>")
+        map("K", vim.lsp.buf.hover)
+        map("<leader>k", vim.lsp.buf.signature_help)
+        map("<leader>rn", vim.lsp.buf.rename)
+        map("<F18>", vim.lsp.buf.rename)
+        map("<leader>ca", vim.lsp.buf.code_action)
+        map("<m-cr>", vim.lsp.buf.code_action)
+    end,
+})
 
 vim.api.nvim_create_user_command("Format", function()
     vim.lsp.buf.format()
 end, {})
-
 
 vim.lsp.enable("pyright")
 
@@ -63,7 +62,13 @@ vim.lsp.enable("lua_ls")
 
 vim.lsp.enable("nil_ls")
 
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "\u{ea87}",
+            [vim.diagnostic.severity.WARN] = "\u{ea6c}",
+            [vim.diagnostic.severity.INFO] = "\u{ea74}",
+            [vim.diagnostic.severity.HINT] = "\u{f0eb}",
+        },
+    },
+})
