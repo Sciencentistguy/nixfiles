@@ -2,8 +2,6 @@ vim.g.mapleader = ","
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-print(lazypath)
-
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         "git",
@@ -16,7 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Packer.nvim plugin file
+-- Plugin specs (lazy.nvim)
 require("user.plugins")
 
 require("user.cmp")
@@ -38,4 +36,4 @@ autocmd BufReadPost *
 ]])
 
 -- Last !!
-vim.api.nvim_set_keymap("v", "S", "<Plug>VSurround", { noremap = true, silent = true })
+vim.keymap.set("x", "S", "<Plug>VSurround", { remap = true, silent = true })
