@@ -1,7 +1,6 @@
 {
   cpio,
   fetchurl,
-  libxml2,
   _7zz,
   stdenvNoCC,
   xar,
@@ -11,27 +10,12 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://www.adobe.com/go/dng_converter_mac";
-    sha256 = "sha256-HYsBz1DeZTMhP4v4n6865RWiL2LUU0PfPGmC2MnAL/M=";
+    sha256 = "sha256-4M5tGCpdvG36jd40itTknOw7PGvL8UK0ANSIqgcNRM0=";
   };
 
-  version = "17_3_1";
+  version = "18_7";
 
-  nativeBuildInputs = let
-    # xar is broken on linux since gcc14. See https://github.com/NixOS/nixpkgs/pull/368920
-    xar' =
-      if stdenvNoCC.hostPlatform.isLinux
-      then
-        xar.overrideAttrs (old: {
-          env.NIX_CFLAGS_COMPILE = toString [
-            # libxml2 hack (see nixpkgs)
-            "-isystem ${libxml2.dev}/include/libxml2"
-            # fix build on GCC 14
-            "-Wno-error=implicit-function-declaration"
-            "-Wno-error=incompatible-pointer-types"
-          ];
-        })
-      else xar;
-  in [_7zz xar' cpio];
+  nativeBuildInputs = [_7zz xar cpio];
 
   unpackCmd = ''
     7zz x "$src"
