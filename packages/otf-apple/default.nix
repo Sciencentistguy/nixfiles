@@ -10,11 +10,11 @@ stdenv.mkDerivation {
   src = [
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
-      sha256 = "sha256-YxGk8IQ6TS5hagsFx3US0x0uqVBFnPUmzbW5CZageU8=";
+      sha256 = "sha256-loqzuLH5LC2K9h6waA9cIiTE541ZuYa/AEUCp/wBKRg=";
     })
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
-      sha256 = "sha256-/lF6UYS+KQ5m/om4tLbqGFSPztGuFTlJmnEmXjMXJJ8=";
+      sha256 = "sha256-wdDjROut1m62LwP4I3hMzknxeH9WVj+wmPygH8VUE1w=";
     })
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg";
