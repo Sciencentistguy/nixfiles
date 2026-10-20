@@ -24,10 +24,9 @@ require("lualine").setup({
                     unnamed = "[No Name]",
                 },
             },
-            {
-                "lsp_progress",
-                spinner_symbols = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" },
-            },
+            function()
+                return vim.lsp.status()
+            end,
         },
         lualine_x = {
             "filetype",

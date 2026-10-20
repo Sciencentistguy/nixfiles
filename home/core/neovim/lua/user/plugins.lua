@@ -24,7 +24,14 @@ require("lazy").setup({
         end,
     },
     "nvim-lualine/lualine.nvim", -- config in lua/user/statusbar.lua
-    { "nvim-mini/mini.icons", version = "*" },
+    {
+        "nvim-mini/mini.icons",
+        version = "*",
+        config = function(_)
+            require("mini.icons").setup()
+            require("mini.icons").mock_nvim_web_devicons()
+        end,
+    },
     "kdheepak/tabline.nvim", -- config in lua/user/statusbar.lua
     {
         "nvim-treesitter/nvim-treesitter",
@@ -71,8 +78,6 @@ require("lazy").setup({
             })
         end,
     },
-    "arkav/lualine-lsp-progress",
-    "nvim-lua/lsp-status.nvim",
 
     -- LSP stuff
     "neovim/nvim-lspconfig",
@@ -118,12 +123,12 @@ require("lazy").setup({
                 desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>cs",
+                "<leader>xs",
                 "<cmd>Trouble symbols toggle focus=false<cr>",
                 desc = "Symbols (Trouble)",
             },
             {
-                "<leader>cl",
+                "<leader>xl",
                 "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
                 desc = "LSP Definitions / references / ... (Trouble)",
             },
@@ -168,7 +173,7 @@ require("lazy").setup({
     },
 
     -- Misc
-    "Saecki/crates.nvim",
+    { "Saecki/crates.nvim", opts = {} },
     {
         "tpope/vim-surround",
         priority = 1000,
@@ -180,7 +185,7 @@ require("lazy").setup({
         end,
     },
     "airblade/vim-rooter",
-    "lukas-reineke/indent-blankline.nvim",
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     "Sciencentistguy/nerdcommenter",
     "godlygeek/tabular",
 })

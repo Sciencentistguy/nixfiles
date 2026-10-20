@@ -20,7 +20,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         map("gD", vim.lsp.buf.declaration)
         map("gd", "<cmd>Telescope lsp_definitions<cr>")
-        map("gi", vim.lsp.buf.implementation)
         map("gr", "<cmd>Telescope lsp_references<cr>")
         map("K", vim.lsp.buf.hover)
         map("<leader>k", vim.lsp.buf.signature_help)
@@ -35,6 +34,10 @@ vim.api.nvim_create_user_command("Format", function()
     vim.lsp.buf.format()
 end, {})
 
+vim.lsp.config("*", {
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
 vim.lsp.enable("pyright")
 
 vim.lsp.enable("hls")
@@ -46,13 +49,14 @@ vim.lsp.enable("solargraph")
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
+            runtime = { version = "LuaJIT" },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
                 globals = { "vim" },
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = { vim.env.VIMRUNTIME },
                 checkThirdParty = false,
             },
         },

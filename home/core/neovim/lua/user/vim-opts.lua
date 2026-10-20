@@ -109,7 +109,6 @@ vim.api.nvim_set_keymap("", "<leader>rg", ":Telescope live_grep<cr>", { silent =
 -- `,D` lists diagnostics
 vim.api.nvim_set_keymap("", "<leader>D", ":Telescope diagnostics<cr>", { silent = true })
 
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("user-yank-highlight", { clear = true }),
     callback = function()

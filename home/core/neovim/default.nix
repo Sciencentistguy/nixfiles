@@ -4,11 +4,13 @@
   ...
 }: let
   # Link vi and vim to nvim
-  neovim-unwrapped = pkgs.neovim-unwrapped.overrideAttrs (_: {
-    postInstall = ''
-      ln -s $out/bin/nvim $out/bin/vim
-      ln -s $out/bin/nvim $out/bin/vi
-    '';
+  neovim-unwrapped = pkgs.neovim-unwrapped.overrideAttrs (old: {
+    postInstall =
+      (old.postInstall or "")
+      + ''
+        ln -s $out/bin/nvim $out/bin/vim
+        ln -s $out/bin/nvim $out/bin/vi
+      '';
   });
 
   # Nvim needs a lot of things in $PATH; don't install them globally just because of that.

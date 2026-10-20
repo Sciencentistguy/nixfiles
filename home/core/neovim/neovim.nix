@@ -20,7 +20,7 @@
   python3,
   ripgrep,
   rubyPackages,
-  rust-analyzer, # flake
+  rust-analyzer,
   rubyEnv, # from pkgs.neovim
   rustfmt,
   shellcheck,
