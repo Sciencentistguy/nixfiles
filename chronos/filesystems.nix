@@ -52,5 +52,12 @@
     };
   };
 
+  # Stop user sessions before the network filesystems (and tailscale they rely on) go away,
+  # otherwise processes with open NFS files hang in I/O until SIGKILL on shutdown.
+  systemd.services."user@" = {
+    after = ["remote-fs.target" "tailscaled.service"];
+    overrideStrategy = "asDropin";
+  };
+
   boot.tmp.useTmpfs = true;
 }

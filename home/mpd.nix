@@ -22,6 +22,7 @@
   '';
 
   systemd.user.services.mpd.Service.ReadOnlyPaths = config.services.mpd.musicDirectory;
+  systemd.user.services.mpd.Service.TimeoutStopSec = 10;
 
   services.mpdris2.enable = true;
   services.mpdris2.settings.Bling.mmkeys = true;
