@@ -1,6 +1,28 @@
-{...}: {
+{pkgs, ...}: let
+  runtimeTools = with pkgs; [
+    curl
+    fd
+    jq
+    nodejs
+    perl
+    python3
+    ripgrep
+    ruby
+    tree
+    unzip
+  ];
+  claude-code = pkgs.symlinkJoin {
+    inherit (pkgs.claude-code) name version meta;
+    paths = [pkgs.claude-code];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/claude --prefix PATH : ${pkgs.lib.makeBinPath runtimeTools}
+    '';
+  };
+in {
   programs.claude-code = {
     enable = true;
+    package = claude-code;
     context = ./CLAUDE.md;
     mutableSettings = true;
     settings = {
