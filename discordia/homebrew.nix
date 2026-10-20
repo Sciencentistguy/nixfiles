@@ -42,13 +42,13 @@
     "sonos"
     "spotify"
     "steam"
-    "syncthing"
+    "syncthing-app"
     "utm"
     "visual-studio-code"
     "vlc"
     "warp"
     "zulu"
-    "zulu17"
-    "zulu8"
+    "zulu@17"
+    "zulu@8"
   ];
 }
