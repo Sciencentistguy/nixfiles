@@ -10,20 +10,18 @@ in {
     package = open-sus-sh;
     enableDefaultConfig = false;
 
-    matchBlocks = {
-      "*" = {
-        compression = false;
-      };
+    settings = {
+      "*".Compression = false;
 
-      "github.com".identityFile = "~/.ssh/github";
-      "*.github.com".identityFile = "~/.ssh/github";
-      "git.quigley.xyz".identityFile = "~/.ssh/github";
-      "gitlab.com".identityFile = "~/.ssh/github";
-      "*.gitlab.com".identityFile = "~/.ssh/github";
-      "ssh.york.ac.uk".user = "jehq500";
+      "github.com".IdentityFile = "~/.ssh/github";
+      "*.github.com".IdentityFile = "~/.ssh/github";
+      "git.quigley.xyz".IdentityFile = "~/.ssh/github";
+      "gitlab.com".IdentityFile = "~/.ssh/github";
+      "*.gitlab.com".IdentityFile = "~/.ssh/github";
+      "ssh.york.ac.uk".User = "jehq500";
       "rts001.cs.york.ac.uk" = {
-        user = "jehq500";
-        proxyCommand = "ssh -A -T -o Compression=no ssh.york.ac.uk -W %h:%p";
+        User = "jehq500";
+        ProxyCommand = "ssh -A -T -o Compression=no ssh.york.ac.uk -W %h:%p";
       };
     };
   };
