@@ -19,7 +19,7 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = let
     # xar is broken on linux since gcc14. See https://github.com/NixOS/nixpkgs/pull/368920
     xar' =
-      if stdenvNoCC.isLinux
+      if stdenvNoCC.hostPlatform.isLinux
       then
         xar.overrideAttrs (old: {
           env.NIX_CFLAGS_COMPILE = toString [

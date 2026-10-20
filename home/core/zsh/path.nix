@@ -6,7 +6,7 @@
 }:
 with lib; let
   cfg = config.zsh;
-  isDarwin = pkgs.stdenv.isDarwin;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
   # Build the path list based on the options
   pathList =

@@ -36,7 +36,7 @@ rustPlatform.buildRustPackage rec {
   buildNoDefaultFeatures = true;
   # the "notify" feature is currently broken on darwin
   buildFeatures =
-    if stdenv.isDarwin
+    if stdenv.hostPlatform.isDarwin
     then ["battery"]
     else ["default"];
 

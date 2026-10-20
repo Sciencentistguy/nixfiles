@@ -3,5 +3,5 @@
   inputs,
   ...
 }: {
-  home.packages = with pkgs; [inputs.home-manager.packages.${system}.home-manager];
+  home.packages = [inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.home-manager];
 }

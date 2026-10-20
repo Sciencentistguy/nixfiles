@@ -13,7 +13,7 @@ darktable.overrideAttrs (old: {
 
   cmakeFlags =
     old.cmakeFlags
-    ++ (lib.optionals (stdenv.isDarwin) [
+    ++ (lib.optionals (stdenv.hostPlatform.isDarwin) [
       "-DCMAKE_OSX_DEPLOYMENT_TARGET=26"
     ]);
 })

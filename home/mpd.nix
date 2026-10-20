@@ -24,7 +24,7 @@
   systemd.user.services.mpd.Service.ReadOnlyPaths = config.services.mpd.musicDirectory;
 
   services.mpdris2.enable = true;
-  services.mpdris2.multimediaKeys = true;
+  services.mpdris2.settings.Bling.mmkeys = true;
 
   services.mpdscribble = {
     enable = true;

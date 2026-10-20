@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.zsh.aliases;
-  isDarwin = pkgs.stdenv.isDarwin;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
   defaultRegular = {
     ":q" = "exit";
