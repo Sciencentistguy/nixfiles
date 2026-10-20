@@ -1,21 +1,15 @@
-{
-  pkgs,
-  config,
-  flakePkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   clang-format-style = import ./clang-format.nix;
   bindings = import ./vim-bindings.nix;
 in {
   programs.vscode = {
     enable = true;
 
-    mutableExtensionsDir = true;
+    # mutableExtensionsDir = true;
     profiles.default = {
       extensions = with pkgs.vscode-extensions;
         [
-          # arrterian.nix-env-selector
+          anthropic.claude-code
           tamasfe.even-better-toml
           dracula-theme.theme-dracula
           haskell.haskell
@@ -54,6 +48,7 @@ in {
 
       userSettings = {
         # vscode core settings
+        "claudeCode.preferredLocation" = "panel";
         "editor.cursorSurroundingLines" = 7;
         "editor.fontFamily" = "IosevkaTerm Nerd Font";
         "editor.fontLigatures" = true;
@@ -61,6 +56,8 @@ in {
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "trailing";
         "editor.rulers" = [100];
+        "extensions.autoCheckUpdates" = false;
+        "extensions.autoUpdate" = false;
         "files.autoGuessEncoding" = true;
         "keyboard.dispatch" = "keyCode";
         "telemetry.telemetryLevel" = "off";
