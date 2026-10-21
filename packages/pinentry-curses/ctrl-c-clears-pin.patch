@@ -1,0 +1,21 @@
+diff --git a/pinentry/pinentry-curses.c b/pinentry/pinentry-curses.c
+index 4e5753f..a4a5b17 100644
+--- a/pinentry/pinentry-curses.c
++++ b/pinentry/pinentry-curses.c
+@@ -1227,6 +1227,7 @@ dialog_input (dialog_t diag, int alt, int chr)
+       refresh ();
+       break;
+ 
++    case 'c' - 'a' + 1: /* control-c */
+     case 'u' - 'a' + 1: /* control-u */
+       /* Erase the whole line.  */
+       if (*pin_len > 0)
+@@ -1454,7 +1455,7 @@ dialog_run (pinentry_t pinentry, const char *tty_name, const char *tty_type)
+ 
+   keypad (stdscr, TRUE); /* Enable keyboard mapping.  */
+   nonl ();		/* Tell curses not to do NL->CR/NL on output.  */
+-  cbreak ();		/* Take input chars one at a time, no wait for \n.  */
++  raw ();		/* Take input chars one at a time, no signal generation.  */
+   noecho ();		/* Don't echo input - in color.  */
+ 
+   if (pinentry->ttyalert)
