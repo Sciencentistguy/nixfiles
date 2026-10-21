@@ -20,7 +20,7 @@ require("blink.cmp").setup({
         ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
     },
     completion = {
-        menu = { auto_show = false, border = "rounded" },
+        menu = { border = "rounded" },
         list = { selection = { preselect = false, auto_insert = false } },
         documentation = { auto_show = true, window = { border = "rounded" } },
     },
@@ -29,6 +29,7 @@ require("blink.cmp").setup({
         completion = { menu = { auto_show = false } },
     },
     sources = {
+        min_keyword_length = 2,
         per_filetype = {
             gitcommit = { "git", "buffer" },
         },
