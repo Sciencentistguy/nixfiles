@@ -21,6 +21,9 @@ in {
     }
 
     replaygain "off"
+
+    # ncmpcpp's media library requests the whole database in one response
+    max_output_buffer_size "65536"
   '';
 
   systemd.user.services.mpd.Service.ReadOnlyPaths = config.services.mpd.musicDirectory;
