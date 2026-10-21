@@ -91,14 +91,42 @@ if type atuin >/dev/null; then
     eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
+_atuin_history_step() {
+    local dir=$1
+    if [[ $LASTWIDGET != _atuin_up && $LASTWIDGET != _atuin_down ]]; then
+        _atuin_prefix=$BUFFER
+        _atuin_offset=-1
+    fi
+    (( _atuin_offset += dir ))
+    if (( _atuin_offset < 0 )); then
+        _atuin_offset=-1
+        BUFFER=$_atuin_prefix
+        CURSOR=$#BUFFER
+        return
+    fi
+    local entry
+    entry=$(atuin search --cmd-only --search-mode prefix --filter-mode global \
+        --limit 1 --offset $_atuin_offset -- "$_atuin_prefix" 2>/dev/null)
+    if [[ -n $entry ]]; then
+        BUFFER=$entry
+        CURSOR=$#BUFFER
+    else
+        (( _atuin_offset -= dir ))
+    fi
+}
+_atuin_up() { _atuin_history_step 1 }
+_atuin_down() { _atuin_history_step -1 }
+zle -N _atuin_up
+zle -N _atuin_down
+
 function zvm_after_init() {
     zvm_bindkey viins '^R' atuin-search-viins
     zvm_bindkey vicmd '^R' atuin-search-vicmd
 }
 
 zvm_after_init_commands+=(
-    "bindkey '^[[A' up-line-or-search"
-    "bindkey '^[[B' down-line-or-search"
+    "bindkey '^[[A' _atuin_up"
+    "bindkey '^[[B' _atuin_down"
     "bindkey '^[OH' beginning-of-line"
     "bindkey '^[OF' end-of-line"
     "bindkey '^[[H' beginning-of-line"
