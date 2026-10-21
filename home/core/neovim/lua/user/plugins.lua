@@ -137,7 +137,38 @@ require("lazy").setup({
     },
 
     -- Formatting
-    "sbdchd/neoformat",
+    {
+        "stevearc/conform.nvim",
+        cmd = "ConformInfo",
+        opts = {
+            formatters_by_ft = {
+                c = { "clang-format" },
+                cpp = { "clang-format" },
+                haskell = { "ormolu" },
+                json = { "prettier_json" },
+                lua = { "stylua" },
+                nix = { "alejandra" },
+                python = { "ruff_format" },
+                sh = { "shfmt" },
+                yaml = { "prettier" },
+            },
+            formatters = {
+                prettier_json = {
+                    command = "prettier",
+                    args = {
+                        "--stdin-filepath",
+                        "$FILENAME",
+                        "--parser",
+                        "json",
+                        "--tab-width",
+                        "2",
+                        "--print-width",
+                        "100",
+                    },
+                },
+            },
+        },
+    },
 
     -- Git support
     "tpope/vim-git",

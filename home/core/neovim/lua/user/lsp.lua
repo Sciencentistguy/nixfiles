@@ -35,17 +35,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-vim.api.nvim_create_user_command("Format", function(opts)
-    local range
-    if opts.range > 0 then
-        range = {
-            start = { opts.line1, 0 },
-            ["end"] = { opts.line2, #vim.fn.getline(opts.line2) },
-        }
-    end
-    vim.lsp.buf.format({ range = range })
-end, { range = true })
-
 vim.lsp.config("*", {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })

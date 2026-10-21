@@ -25,7 +25,7 @@ require("user.plugins")
 require("user.cmp")
 require("user.comment")
 require("user.lsp")
-require("user.neoformat")
+require("user.format")
 require("user.statusbar")
 require("user.vim-opts")
 
