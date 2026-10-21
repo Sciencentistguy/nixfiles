@@ -1,18 +1,11 @@
-# Shell options
-# Init prompt and colours
-autoload -U compinit promptinit
-autoload -U colors && colors
+autoload -U compinit
 compinit
-promptinit
 
 setopt AUTO_PUSHD
 setopt SHARE_HISTORY
-setopt completealiases
 setopt extendedglob
 
 unsetopt nomatch
-unsetopt correct
-unsetopt correct_all
 
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu select
@@ -24,12 +17,8 @@ if [ -z "${IN_NIX_SHELL}" ]; then
 fi
 
 # Prompt
-if type starship >/dev/null; then
-    eval "$(starship init zsh)"
-    RPROMPT=""
-else
-    prompt walters
-fi
+eval "$(starship init zsh)"
+RPROMPT=""
 
 # Aliases
 source ~/.zsh/aliases.zsh

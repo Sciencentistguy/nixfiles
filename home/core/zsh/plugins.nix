@@ -108,11 +108,9 @@ with lib; let
   sourcePlugin = name: let
     value = plugins.${name};
   in ''
-    if [ -f ${value.file} ]; then
-      ${value.before or ""}
-      source ${value.file}
-      ${value.after or ""}
-    fi
+    ${value.before or ""}
+    source ${value.file}
+    ${value.after or ""}
   '';
 in {
   config.home.file.".zsh/plugins.zsh".text =
