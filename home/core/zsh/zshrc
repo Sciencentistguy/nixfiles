@@ -87,59 +87,13 @@ if [[ -z "$XDG_RUNTIME_DIR" && -d "/run/user/$UID" ]]; then
     export XDG_RUNTIME_DIR="/run/user/$UID"
 fi
 
-# Largely taken from
-# https://github.com/ellie/atuin/blob/aa556fa0883d1a5c8f35960c9d6e8966e4307896/src/shell/atuin.zsh
 if type atuin >/dev/null; then
-    autoload -U add-zsh-hook
-
-    export ATUIN_SESSION=$(atuin uuid)
-    export ATUIN_HISTORY="atuin history list"
-    export ATUIN_BINDKEYS="true"
-
-    _atuin_preexec() {
-        id=$(atuin history start -- "$1")
-        export ATUIN_HISTORY_ID="$id"
-    }
-
-    _atuin_precmd() {
-        local EXIT="$?"
-
-        [[ -z "${ATUIN_HISTORY_ID}" ]] && return
-
-        (RUST_LOG=error atuin history end --exit $EXIT -- $ATUIN_HISTORY_ID &) >/dev/null 2>&1
-    }
-
-    _atuin_search() {
-        emulate -L zsh
-        zle -I
-
-        # Switch to cursor mode, then back to application
-        echoti rmkx
-        # swap stderr and stdout, so that the tui stuff works
-        # TODO: not this
-        output=$(RUST_LOG=error atuin search -i -- $BUFFER 3>&1 1>&2 2>&3)
-        echoti smkx
-
-        if [[ -n $output ]]; then
-            LBUFFER=$output
-        fi
-
-        zle reset-prompt
-    }
-
-    add-zsh-hook preexec _atuin_preexec
-    add-zsh-hook precmd _atuin_precmd
-
-    zle -N _atuin_search_widget _atuin_search
-
-    if [[ $ATUIN_BINDKEYS == "true" ]]; then
-        bindkey '^r' _atuin_search_widget
-    fi
+    eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
 function zvm_after_init() {
-    zvm_bindkey viins '^R' _atuin_search_widget
-    zvm_bindkey vicmd '^R' _atuin_search_widget
+    zvm_bindkey viins '^R' atuin-search-viins
+    zvm_bindkey vicmd '^R' atuin-search-vicmd
 }
 
 zvm_after_init_commands+=(
@@ -150,18 +104,3 @@ zvm_after_init_commands+=(
     "bindkey '^[[H' beginning-of-line"
     "bindkey '^[[F' end-of-line"
 )
-
-# If zsh-autosuggestions is installed, configure it to use Atuin's search. If
-# you'd like to override this, then add your config after the $(atuin init zsh)
-# in your .zshrc
-_zsh_autosuggest_strategy_atuin() {
-    # silence errors, since we don't want to spam the terminal prompt while typing.
-    suggestion=$(ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix 2>/dev/null)
-}
-
-if [ -n "${ZSH_AUTOSUGGEST_STRATEGY:-}" ]; then
-    ZSH_AUTOSUGGEST_STRATEGY=("atuin" "${ZSH_AUTOSUGGEST_STRATEGY[@]}")
-else
-    ZSH_AUTOSUGGEST_STRATEGY=("atuin")
-fi
-
