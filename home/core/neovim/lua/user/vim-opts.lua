@@ -35,8 +35,6 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
-vim.opt.sessionoptions:append({ "tabpages", "globals" }) -- store tabpages and globals in session
-
 ----
 -- Mappings
 ----

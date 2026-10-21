@@ -19,7 +19,7 @@ require("lazy").setup({
             require("onedark").load()
         end,
     },
-    "nvim-lualine/lualine.nvim", -- config in lua/user/statusbar.lua
+    "nvim-lualine/lualine.nvim", -- statusline and tabline, config in lua/user/statusbar.lua
     {
         "nvim-mini/mini.icons",
         version = "*",
@@ -28,7 +28,6 @@ require("lazy").setup({
             require("mini.icons").mock_nvim_web_devicons()
         end,
     },
-    "kdheepak/tabline.nvim", -- config in lua/user/statusbar.lua
     {
         "nvim-treesitter/nvim-treesitter",
         branch = "main", -- the master branch is frozen and has no install()

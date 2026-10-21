@@ -3,6 +3,15 @@ require("lualine").setup({
         theme = "onedark",
         icons_enabled = true,
     },
+    tabline = {
+        lualine_a = {
+            {
+                "buffers",
+                symbols = { modified = " +" },
+            },
+        },
+        lualine_z = { "tabs" },
+    },
     sections = {
         lualine_a = {
             {
@@ -48,11 +57,5 @@ require("lualine").setup({
         lualine_z = {
             "location",
         },
-    },
-})
-
-require("tabline").setup({
-    options = {
-        modified_icon = "+ ",
     },
 })
