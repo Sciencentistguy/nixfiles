@@ -26,6 +26,7 @@ require("user.cmp")
 require("user.comment")
 require("user.lsp")
 require("user.format")
+require("user.rooter")
 require("user.statusbar")
 require("user.vim-opts")
 

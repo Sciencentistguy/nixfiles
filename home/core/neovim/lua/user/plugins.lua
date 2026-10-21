@@ -198,7 +198,6 @@ require("lazy").setup({
         "windwp/nvim-autopairs",
         opts = {},
     },
-    "airblade/vim-rooter",
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
