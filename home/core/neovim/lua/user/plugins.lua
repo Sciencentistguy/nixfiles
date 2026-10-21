@@ -104,12 +104,7 @@ require("lazy").setup({
     },
     {
         "folke/trouble.nvim",
-        opts = {
-            diagnostics = {
-                auto_close = true,
-                auto_open = true,
-            },
-        }, -- for default options, refer to the configuration section for custom setup.
+        opts = {},
         cmd = "Trouble",
         keys = {
             {

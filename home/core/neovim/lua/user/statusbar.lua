@@ -1,6 +1,7 @@
 require("lualine").setup({
     options = {
         theme = "onedark",
+        icons_enabled = true,
     },
     sections = {
         lualine_a = {
@@ -48,7 +49,6 @@ require("lualine").setup({
             "location",
         },
     },
-    icons_enabled = true,
 })
 
 require("tabline").setup({
