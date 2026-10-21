@@ -51,9 +51,17 @@ in {
   };
 
   programs.ncmpcpp.enable = true;
-  programs.ncmpcpp.package = pkgs.ncmpcpp.override {
-    visualizerSupport = true;
-  };
+  programs.ncmpcpp.package =
+    (pkgs.ncmpcpp.overrideAttrs (_: {
+      src = pkgs.fetchFromGitHub {
+        owner = "Sciencentistguy";
+        repo = "ncmpcpp";
+        rev = "media-library-faster-album-listing";
+        sha256 = "sha256-/eI2hfThwZLfNwWKjPaeQJTSoZkc1FSPH4gEGB5zgJE=";
+      };
+    })).override {
+      visualizerSupport = true;
+    };
   programs.ncmpcpp.settings = {
     mpd_host = mpdSocket;
     visualizer_fps = 165;
