@@ -17,7 +17,7 @@ with lib; let
     '';
 
     reload-zshrc = ''
-      source $HOME/.zshrc
+      exec zsh
     '';
 
     imgpaste = ''
@@ -78,7 +78,7 @@ with lib; let
     '';
 
     gdc = ''
-      git diff "$${1}^" "$${1}"
+      git diff "$1^" "$1"
     '';
   };
   merged = defaults // cfg;

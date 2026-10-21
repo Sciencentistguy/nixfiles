@@ -38,6 +38,7 @@ in {
   ### IMPLEMENTATION
   config = {
     home.file.".zsh/path.zsh".text = ''
+      typeset -U path
       export PATH="${concatStringsSep ":" pathList}:$PATH"
     '';
   };

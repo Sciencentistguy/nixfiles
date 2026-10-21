@@ -39,11 +39,11 @@ let
     xclip = "xclip -selection clipboard";
     zshrc-reload = "reload-zshrc";
     fzf = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
-    ls = "exa -lhgbHm --git ";
-    lst = "exa -lhgbHmT --git --git-ignore";
-    lstg = "exa -lhgbHmT --git";
-    lsa = "exa -lhgbHma --git";
-    lsat = "exa -lhgbHmaT --git";
+    ls = "eza -lhgbHm --git ";
+    lst = "eza -lhgbHmT --git --git-ignore";
+    lstg = "eza -lhgbHmT --git";
+    lsa = "eza -lhgbHma --git";
+    lsat = "eza -lhgbHmaT --git";
   };
 
   defaultGlobal = {

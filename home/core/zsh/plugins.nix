@@ -79,7 +79,7 @@ with lib; let
           back-double-quoted-argument = "fg=#56B6C2";
           back-dollar-quoted-argument = "fg=#56B6C2";
           redirection = "fg=#EFC07B";
-          comment = "fg=#282C34,bold";
+          comment = "fg=#5C6370";
           arg0 = "fg=#98C379";
         };
       in ''
@@ -94,7 +94,20 @@ with lib; let
     };
   };
 
-  sourcePlugin = name: value: ''
+  # zsh-syntax-highlighting must be sourced last
+  loadOrder = [
+    "command-not-found"
+    "git"
+    "globalias"
+    "zsh-vi-mode"
+    "zsh-nix-shell"
+    "zsh-autosuggestions"
+    "zsh-syntax-highlighting"
+  ];
+
+  sourcePlugin = name: let
+    value = plugins.${name};
+  in ''
     if [ -f ${value.file} ]; then
       ${value.before or ""}
       source ${value.file}
@@ -103,5 +116,5 @@ with lib; let
   '';
 in {
   config.home.file.".zsh/plugins.zsh".text =
-    concatStringsSep "\n" (mapAttrsToList sourcePlugin plugins);
+    concatStringsSep "\n" (map sourcePlugin loadOrder);
 }
