@@ -37,7 +37,7 @@ in {
   home.sessionVariables.MPD_HOST = mpdSocket;
 
   services.mpdris2.enable = true;
-  services.mpdris2.mpd.host = mpdSocket;
+  services.mpdris2.settings.Connection.host = mpdSocket;
   services.mpdris2.settings.Bling.mmkeys = true;
 
   services.mpdscribble = {
