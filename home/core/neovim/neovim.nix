@@ -26,6 +26,7 @@
   stylua,
   symlinkJoin,
   tree-sitter,
+  wl-clipboard,
   ty,
   xclip,
   prettier,
@@ -76,6 +77,7 @@ symlinkJoin {
         clang-tools
       ]
       ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [
+        wl-clipboard
         xclip
       ];
   in ''
