@@ -12,7 +12,6 @@
   neovim-unwrapped, # flake
   neovim-node-client,
   nil, # flake
-  nodejs,
   ormolu,
   perl,
   python3,
@@ -40,6 +39,7 @@ symlinkJoin {
     perlEnv = perl.withPackages (pp: with pp; [NeovimExt MsgPackRaw]);
     # Same host_prog setup that nixpkgs's neovim wrapper generates
     providers = lib.concatStringsSep ";" [
+      "vim.g.python3_host_prog=[[${python}/bin/python3]]"
       "vim.g.node_host_prog=[[${neovim-node-client}/bin/neovim-node-host]]"
       "vim.g.perl_host_prog=[[${perlEnv}/bin/perl]]"
     ];
@@ -48,9 +48,6 @@ symlinkJoin {
         curl
         fd
         git
-        nodejs
-        perlEnv
-        python
         ripgrep
         stdenv.cc
         tree-sitter
@@ -82,8 +79,7 @@ symlinkJoin {
       ];
   in ''
     wrapProgram $out/bin/nvim \
-      --prefix PATH : ${lib.makeBinPath path} \
-      --prefix LD_LIBRARY_PATH : ${stdenv.cc.cc.lib}/lib \
+      --suffix PATH : ${lib.makeBinPath path} \
       --add-flags '--cmd "lua ${providers}"'
 
     # Link vi and vim to the wrapped nvim
