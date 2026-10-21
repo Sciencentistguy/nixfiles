@@ -6,26 +6,24 @@ require("lazy").setup({
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    "petertriho/cmp-git",
+    { "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
 
     -- Visual
     {
         "navarasu/onedark.nvim",
         lazy = false,
         priority = 1000,
-        config = function(_)
-            local plugin = require("onedark")
-            plugin.setup({
-                transparent = true,
-            })
-            plugin.load()
+        opts = { transparent = true },
+        config = function(_, opts)
+            require("onedark").setup(opts)
+            require("onedark").load()
         end,
     },
     "nvim-lualine/lualine.nvim", -- config in lua/user/statusbar.lua
     {
         "nvim-mini/mini.icons",
         version = "*",
-        config = function(_)
+        config = function()
             require("mini.icons").setup()
             require("mini.icons").mock_nvim_web_devicons()
         end,
@@ -36,7 +34,7 @@ require("lazy").setup({
         branch = "main", -- the master branch is frozen and has no install()
         lazy = false, -- main does not support lazy-loading
         build = ":TSUpdate",
-        config = function(_)
+        config = function()
             require("nvim-treesitter").setup()
 
             -- Parsers for the languages used with the LSP servers/formatters; no-op if installed
@@ -78,6 +76,7 @@ require("lazy").setup({
 
     -- LSP stuff
     "neovim/nvim-lspconfig",
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
         "mrcjkb/rustaceanvim",
         version = "^6",
@@ -92,7 +91,7 @@ require("lazy").setup({
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
             "nvim-telescope/telescope-ui-select.nvim",
         },
-        config = function(_)
+        config = function()
             local telescope = require("telescope")
             telescope.setup()
             telescope.load_extension("fzf")
@@ -144,32 +143,37 @@ require("lazy").setup({
     "tpope/vim-git",
     {
         "lewis6991/gitsigns.nvim",
-        config = function(_)
-            require("gitsigns").setup()
-        end,
+        event = { "BufReadPre", "BufNewFile" },
+        opts = {},
     },
 
     -- matchup
     {
         "andymass/vim-matchup",
-        init = function(_)
+        init = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
     },
 
     -- Misc
-    { "Saecki/crates.nvim", opts = {} },
     {
-        "tpope/vim-surround",
-        priority = 1000,
+        "Saecki/crates.nvim",
+        event = "BufRead Cargo.toml",
+        opts = {
+            lsp = { enabled = true, actions = true, completion = true, hover = true },
+        },
     },
+    "tpope/vim-surround",
     {
         "windwp/nvim-autopairs",
-        config = function(_)
-            require("nvim-autopairs").setup({})
-        end,
+        opts = {},
     },
     "airblade/vim-rooter",
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
     "godlygeek/tabular",
 })
