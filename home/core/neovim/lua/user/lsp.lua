@@ -44,8 +44,6 @@ vim.lsp.enable("hls")
 
 vim.lsp.enable("clangd")
 
-vim.lsp.enable("solargraph")
-
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {

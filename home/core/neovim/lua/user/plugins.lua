@@ -55,7 +55,6 @@ require("lazy").setup({
                 "nix",
                 "python",
                 "query",
-                "ruby",
                 "rust",
                 "toml",
                 "vim",
