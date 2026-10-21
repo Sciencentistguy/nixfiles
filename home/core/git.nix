@@ -12,6 +12,7 @@
       ".ccls*/"
       ".clangd"
       ".DS_Store"
+      ".claude/"
     ];
     signing = {
       format = "openpgp";
