@@ -304,9 +304,6 @@
       pkgsUnfree = inputs.nixpkgs-unfree.legacyPackages.${system};
     in {
       packages = rec {
-        starship-sciencentistguy = pkgs.callPackage ./packages/starship-sciencentistguy {
-          # inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
-        };
         extract = pkgsUnfree.callPackage ./packages/extract {};
         sherlock = pkgs.callPackage ./packages/sherlock {};
         otf-apple = pkgsUnfree.callPackage ./packages/otf-apple {};

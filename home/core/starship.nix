@@ -1,13 +1,22 @@
 {
   pkgs,
-  flakePkgs,
   systemName,
   lib,
   ...
 }: let
   onDiscordia = systemName == "discordia";
 in {
-  programs.starship.package = flakePkgs.starship-sciencentistguy;
+  programs.starship.package = pkgs.starship.overrideAttrs (old: {
+    patches =
+      (old.patches or [])
+      ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/Sciencentistguy/starship/commit/b69c6fd61edc067d9ad88d1eb856f4ae649da115.patch";
+          hash = "sha256-JOaIqnsOgbN01SDEu1A5tf57KJWN5mD98qFo5+UwrxY=";
+        })
+      ];
+    doCheck = false;
+  });
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
   programs.starship.enableBashIntegration = false;
