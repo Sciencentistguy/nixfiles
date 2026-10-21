@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  mpdSocket = "/run/user/1000/mpd/socket";
+  mpdSocket = "/run/user/${toString config.home.uid}/mpd/socket";
 in {
   services.mpd.enable = true;
   services.mpd.network.listenAddress = mpdSocket;

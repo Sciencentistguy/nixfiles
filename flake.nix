@@ -220,6 +220,7 @@
               home-manager.backupFileExtension = ".hm-bak";
               home-manager.users.jamie = {
                 home.stateVersion = homeManagerStateVersion;
+                home.uid = 1000;
                 nixpkgs = nixpkgsConfig;
                 imports = [
                   ./home/core
