@@ -693,6 +693,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-audacity": {
+      "locked": {
+        "lastModified": 1792116957,
+        "narHash": "sha256-EjZqHKObBfIOeHZnMRVV87HB3pPq/WBkmRJWyFxmZu8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f20cd90e28fe0403873f473b29e42662cd86e8c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f20cd90e28fe0403873f473b29e42662cd86e8c4",
+        "type": "github"
+      }
+    },
     "nixpkgs-unfree": {
       "inputs": {
         "nixpkgs": [
@@ -795,6 +811,7 @@
         "nil": "nil",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-audacity": "nixpkgs-audacity",
         "nixpkgs-unfree": "nixpkgs-unfree",
         "prism-launcher": "prism-launcher",
         "qobuz-identifier": "qobuz-identifier",
