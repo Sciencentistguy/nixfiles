@@ -37,6 +37,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
-
--- Last !!
-vim.keymap.set("x", "S", "<Plug>VSurround", { remap = true, silent = true })

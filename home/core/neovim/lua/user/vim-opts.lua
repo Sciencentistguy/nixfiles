@@ -43,68 +43,75 @@ vim.opt.sessionoptions:append({ "tabpages", "globals" }) -- store tabpages and g
 -- Mappings
 ----
 
+local map = vim.keymap.set
+local telescope = function(picker)
+    return function()
+        require("telescope.builtin")[picker]()
+    end
+end
+
 -- Disable arrow keys
-vim.api.nvim_set_keymap("", "<Up>", "", { noremap = true })
-vim.api.nvim_set_keymap("", "<Left>", "", { noremap = true })
-vim.api.nvim_set_keymap("", "<Down>", "", { noremap = true })
-vim.api.nvim_set_keymap("", "<Right>", "", { noremap = true })
+map({ "n", "x", "o" }, "<Up>", "<Nop>")
+map({ "n", "x", "o" }, "<Left>", "<Nop>")
+map({ "n", "x", "o" }, "<Down>", "<Nop>")
+map({ "n", "x", "o" }, "<Right>", "<Nop>")
 
 -- `<c-{h,j,k,l}>` moves between windows
-vim.api.nvim_set_keymap("", "<c-h>", "<c-W>h", {})
-vim.api.nvim_set_keymap("", "<c-j>", "<c-W>j", {})
-vim.api.nvim_set_keymap("", "<c-k>", "<c-W>k", {})
-vim.api.nvim_set_keymap("", "<c-l>", "<c-W>l", {})
+map({ "n", "x" }, "<c-h>", "<c-w>h")
+map({ "n", "x" }, "<c-j>", "<c-w>j")
+map({ "n", "x" }, "<c-k>", "<c-w>k")
+map({ "n", "x" }, "<c-l>", "<c-w>l")
 
 -- Disable the worst feature of vim
-vim.api.nvim_set_keymap("", "q:", "", { noremap = true })
-vim.api.nvim_set_keymap("", "q/", "", { noremap = true })
-vim.api.nvim_set_keymap("", "q?", "", { noremap = true })
+map("n", "q:", "<Nop>")
+map("n", "q/", "<Nop>")
+map("n", "q?", "<Nop>")
 
 -- Unbind `{` and `}` in vmode
-vim.api.nvim_set_keymap("v", "{", "", { noremap = true })
-vim.api.nvim_set_keymap("v", "}", "", { noremap = true })
+map("x", "{", "<Nop>")
+map("x", "}", "<Nop>")
 
 -- Annoying
-vim.api.nvim_set_keymap("", "Q", "", { noremap = true })
+map({ "n", "x" }, "Q", "<Nop>")
 
 -- `<F1>` is really irritating
-vim.api.nvim_set_keymap("", "<F1>", "", { noremap = true })
-vim.api.nvim_set_keymap("i", "<F1>", "", { noremap = true })
+map({ "n", "x", "o", "i" }, "<F1>", "<Nop>")
 
 -- `H` and `L` are useless and annoying
-vim.api.nvim_set_keymap("", "H", "h", { noremap = true })
-vim.api.nvim_set_keymap("", "L", "l", { noremap = true })
+map({ "n", "x" }, "H", "h")
+map({ "n", "x" }, "L", "l")
 
 -- `s` works like `d` but doesn't yank to buffer
-vim.api.nvim_set_keymap("", "s", '"_d', { noremap = true })
-vim.api.nvim_set_keymap("", "ss", '"_dd', { noremap = true })
-vim.api.nvim_set_keymap("", "S", '"_D', { noremap = true })
+map({ "n", "x" }, "s", '"_d')
+map("n", "ss", '"_dd')
+map("n", "S", '"_D')
 
 -- `j` and `k` move by wrapped line, unless it would break things
-vim.api.nvim_set_keymap("", "k", "(v:count == 0 ? 'gk' : 'k')", { noremap = true, expr = true })
-vim.api.nvim_set_keymap("", "j", "(v:count == 0 ? 'gj' : 'j')", { noremap = true, expr = true })
+map({ "n", "x" }, "k", function()
+    return vim.v.count == 0 and "gk" or "k"
+end, { expr = true })
+map({ "n", "x" }, "j", function()
+    return vim.v.count == 0 and "gj" or "j"
+end, { expr = true })
 
 -- `0` moves to the beginning of a line, not necessaryily column 0
-vim.api.nvim_set_keymap("", "0", "^", {})
-
--- `Y` yanks to end of line, à la `D`
-vim.api.nvim_set_keymap("n", "Y", "y$", {})
+map({ "n", "x", "o" }, "0", "^")
 
 -- `,<cr>` clears highlights
-vim.api.nvim_set_keymap("", "<leader><cr>", ":noh<cr>", { silent = true })
+map("n", "<leader><cr>", "<cmd>noh<cr>", { silent = true })
 
 -- `,h` and `,l` move around buffers
-vim.api.nvim_set_keymap("", "<leader>l", ":bnext<cr>", { silent = true })
-vim.api.nvim_set_keymap("", "<leader>h", ":bprev<cr>", { silent = true })
+map("n", "<leader>l", "<cmd>bnext<cr>", { silent = true })
+map("n", "<leader>h", "<cmd>bprev<cr>", { silent = true })
 
 -- `,e` searches for files to edit
-vim.api.nvim_set_keymap("", "<leader>e", ":Telescope find_files<cr>", { silent = true })
+map("n", "<leader>e", telescope("find_files"), { silent = true })
 
 -- `,rg` searches text
-vim.api.nvim_set_keymap("", "<leader>rg", ":Telescope live_grep<cr>", { silent = true })
+map("n", "<leader>rg", telescope("live_grep"), { silent = true })
 
 -- `,D` lists diagnostics
-vim.api.nvim_set_keymap("", "<leader>D", ":Telescope diagnostics<cr>", { silent = true })
+map("n", "<leader>D", telescope("diagnostics"), { silent = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("user-yank-highlight", { clear = true }),
