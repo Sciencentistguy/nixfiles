@@ -10,6 +10,12 @@ vim.keymap.set("n", "]g", function()
     vim.diagnostic.jump({ count = 1, float = true })
 end, { silent = true })
 
+local function telescope(picker)
+    return function()
+        require("telescope.builtin")[picker]()
+    end
+end
+
 -- LSP keybinds are buffer-local, set only once a server attaches
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
@@ -19,9 +25,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         map("gD", vim.lsp.buf.declaration)
-        map("gd", "<cmd>Telescope lsp_definitions<cr>")
-        map("gr", "<cmd>Telescope lsp_references<cr>")
-        map("K", vim.lsp.buf.hover)
+        map("gd", telescope("lsp_definitions"))
+        map("gr", telescope("lsp_references"))
         map("<leader>k", vim.lsp.buf.signature_help)
         map("<leader>rn", vim.lsp.buf.rename)
         map("<F18>", vim.lsp.buf.rename)
@@ -30,39 +35,32 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-vim.api.nvim_create_user_command("Format", function()
-    vim.lsp.buf.format()
-end, {})
+vim.api.nvim_create_user_command("Format", function(opts)
+    local range
+    if opts.range > 0 then
+        range = {
+            start = { opts.line1, 0 },
+            ["end"] = { opts.line2, #vim.fn.getline(opts.line2) },
+        }
+    end
+    vim.lsp.buf.format({ range = range })
+end, { range = true })
 
 vim.lsp.config("*", {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
-vim.lsp.enable("ty")
-
-vim.lsp.enable("hls")
-
-vim.lsp.enable("clangd")
-
+-- Neovim runtime and plugin types come from lazydev.nvim
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             runtime = { version = "LuaJIT" },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = { vim.env.VIMRUNTIME },
-                checkThirdParty = false,
-            },
+            workspace = { checkThirdParty = false },
         },
     },
 })
-vim.lsp.enable("lua_ls")
 
-vim.lsp.enable("nil_ls")
+vim.lsp.enable({ "clangd", "hls", "lua_ls", "nil_ls", "ty" })
 
 vim.diagnostic.config({
     signs = {
