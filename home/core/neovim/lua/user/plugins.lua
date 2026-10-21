@@ -203,6 +203,15 @@ require("lazy").setup({
         main = "ibl",
         event = { "BufReadPost", "BufNewFile" },
         opts = {},
+        init = function()
+            vim.api.nvim_create_autocmd("FileType", {
+                group = vim.api.nvim_create_augroup("user-ibl-no-scope", { clear = true }),
+                pattern = "nix",
+                callback = function(args)
+                    require("ibl").setup_buffer(args.buf, { scope = { enabled = false } })
+                end,
+            })
+        end,
     },
     { "nvim-mini/mini.align", version = "*", opts = {} },
 })
