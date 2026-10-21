@@ -1,14 +1,10 @@
 local cmp = require("cmp")
 
-local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 cmp.setup({
     completion = { autocomplete = false },
     snippet = {
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            vim.snippet.expand(args.body)
         end,
     },
     window = {
@@ -29,8 +25,8 @@ cmp.setup({
                 else
                     cmp.confirm()
                 end
-            elseif vim.fn["vsnip#jumpable"](1) == 1 then
-                feedkey("<Plug>(vsnip-jump-next)", "")
+            elseif vim.snippet.active({ direction = 1 }) then
+                vim.snippet.jump(1)
             else
                 fallback()
             end
@@ -39,8 +35,8 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                feedkey("<Plug>(vsnip-jump-prev)", "")
+            elseif vim.snippet.active({ direction = -1 }) then
+                vim.snippet.jump(-1)
             else
                 fallback()
             end
@@ -49,7 +45,6 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" },
-        { name = "vsnip" },
     }, {
         { name = "buffer" },
     }),
