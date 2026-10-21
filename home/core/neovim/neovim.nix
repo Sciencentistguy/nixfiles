@@ -88,5 +88,9 @@ symlinkJoin {
       --prefix LD_LIBRARY_PATH : ${stdenv.cc.cc.lib}/lib \
       --set GEM_HOME ${rubyEnv}/${rubyEnv.ruby.gemPath} \
       --add-flags '--cmd "lua ${providers}"'
+
+    # Link vi and vim to the wrapped nvim
+    ln -s nvim $out/bin/vim
+    ln -s nvim $out/bin/vi
   '';
 }
