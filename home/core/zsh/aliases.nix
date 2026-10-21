@@ -6,7 +6,7 @@ let
 
   defaultRegular = {
     ":q" = "exit";
-    cp = "cp -av --reflink=auto";
+    cp = if isDarwin then "cp -av" else "cp -av --reflink=auto";
     dc = "cd";
     df = "df -h";
     du = "du -sh";
@@ -19,8 +19,7 @@ let
     ffprobe = "ffprobe -hide_banner";
     gdd = "git -c diff.external=difft diff";
     gla = "git-pull-all";
-    less = "less -r";
-    makepkg-gcc = "makepkg --config /etc/makepkg.conf.gcc";
+    less = "less -R";
     mc = "make clean";
     mkdir = "mkdir -p";
     mm = "make -j$(nproc)";
@@ -28,7 +27,6 @@ let
     mpvs = "mpv-search";
     mv = "mv -v";
     ncmpcpp = "ncmpcpp -q";
-    neofetch = "clear; neofetch";
     poweroff = "sudo poweroff";
     reboot = "sudo reboot";
     rg = "rg -S";
@@ -38,7 +36,6 @@ let
     sudo = "sudo ";
     umount = "sudo umount";
     xclip = "xclip -selection clipboard";
-    zshrc-reload = "reload-zshrc";
     fzf = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
     ls = "eza -lhgbHm --git ";
     lst = "eza -lhgbHmT --git --git-ignore";

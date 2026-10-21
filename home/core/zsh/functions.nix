@@ -8,7 +8,7 @@ with lib; let
   cfg = config.zsh.functions;
   defaults = {
     lls = ''
-      clear;
+      clear
       ls
     '';
 
@@ -21,7 +21,7 @@ with lib; let
     '';
 
     imgpaste = ''
-      ${pkgs.xclip}/bin/xclip -t image/png -o >$1
+      ${pkgs.xclip}/bin/xclip -t image/png -o >"$1"
     '';
 
     borderless = ''
@@ -33,20 +33,16 @@ with lib; let
     '';
 
     ffcompare = ''
-      ffplay $1 &
-      ffplay $2
-    '';
-
-    aur = ''
-      git clone "https://aur.archlinux.org/$1"
+      ffplay "$1" &
+      ffplay "$2"
     '';
 
     cpufreq = ''
-      watch -n0.1 'cat /proc/cpuinfo | grep "^[c]pu MHz" | sort -r'
+      watch -n0.1 'grep "^[c]pu MHz" /proc/cpuinfo | sort -r'
     '';
 
     git-pull-all = ''
-      for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
+      for branch in $(git branch --all | grep '^\s*remotes' | grep -E --invert-match '(:?HEAD|master)$'); do
           git branch --track "''${branch##*/}" "$branch"
       done
     '';
