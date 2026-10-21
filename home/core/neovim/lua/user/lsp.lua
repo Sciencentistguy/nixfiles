@@ -38,7 +38,7 @@ vim.lsp.config("*", {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
-vim.lsp.enable("pyright")
+vim.lsp.enable("basedpyright")
 
 vim.lsp.enable("hls")
 

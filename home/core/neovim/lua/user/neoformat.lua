@@ -28,5 +28,5 @@ vim.g.neoformat_json_prettier = {
     stdin = 1,
 }
 vim.g.neoformat_enabled_haskell = { "ormolu" }
-vim.g.neoformat_enabled_python = { "black" }
+vim.g.neoformat_enabled_python = { "ruff" }
 vim.g.neoformat_enabled_yaml = { "prettier" }

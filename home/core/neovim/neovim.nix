@@ -1,5 +1,6 @@
 {
   alejandra,
+  basedpyright,
   clang-tools,
   curl,
   fd,
@@ -15,9 +16,9 @@
   nodejs,
   ormolu,
   perl,
-  pyright,
   python3,
   ripgrep,
+  ruff,
   rust-analyzer,
   rustfmt,
   shellcheck,
@@ -34,7 +35,7 @@ symlinkJoin {
   paths = [neovim-unwrapped];
   buildInputs = [makeWrapper];
   postBuild = let
-    python = python3.withPackages (pp: with pp; [pynvim black]);
+    python = python3.withPackages (pp: with pp; [pynvim]);
     perlEnv = perl.withPackages (pp: with pp; [NeovimExt MsgPackRaw]);
     # Same host_prog setup that nixpkgs's neovim wrapper generates
     providers = lib.concatStringsSep ";" [
@@ -64,11 +65,12 @@ symlinkJoin {
         shfmt
         rustfmt
         ormolu
+        ruff
 
         # Language servers
         rust-analyzer
         lua-language-server
-        pyright
+        basedpyright
         nil
         haskell-language-server
         clang-tools
