@@ -1,4 +1,4 @@
--- Formatters come from conform.nvim, falling back to the LSP when none is configured (e.g. Rust)
+-- Formatters come from conform.nvim, falling back to the LSP when none is configured
 vim.api.nvim_create_user_command("Format", function(args)
     local range
     if args.range > 0 then

@@ -148,6 +148,7 @@ require("lazy").setup({
                 lua = { "stylua" },
                 nix = { "alejandra" },
                 python = { "ruff_format" },
+                rust = { "rustfmt" },
                 sh = { "shfmt" },
                 yaml = { "prettier" },
             },
