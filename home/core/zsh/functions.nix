@@ -80,6 +80,10 @@ with lib; let
     gdc = ''
       git diff "$1^" "$1"
     '';
+
+    gddc = ''
+      git -c diff.external=difft diff "$1^" "$1"
+    '';
   };
   merged = defaults // cfg;
 in {

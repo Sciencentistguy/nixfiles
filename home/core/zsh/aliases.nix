@@ -17,6 +17,7 @@ let
     ffmpeg = "ffmpeg -hide_banner";
     ffplay = "ffplay -hide_banner";
     ffprobe = "ffprobe -hide_banner";
+    gdd = "git -c diff.external=difft diff";
     gla = "git-pull-all";
     less = "less -r";
     makepkg-gcc = "makepkg --config /etc/makepkg.conf.gcc";
