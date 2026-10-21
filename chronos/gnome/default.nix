@@ -45,6 +45,10 @@
   environment.variables = {
     WAYLAND_DISPLAY = "wayland-0"; # Explicitly set if GNOME fails to export it
     NIXOS_OZONE_WL = "1"; # Helps many other apps (Electron/Chromium) use Wayland
+    # XWayland/FHS apps (e.g. Steam) don't see the GNOME cursor setting
+    XCURSOR_THEME = "macOSMonterey";
+    # NixOS default omits the system icon dir, where the cursor theme is installed
+    XCURSOR_PATH = lib.mkForce "$HOME/.icons:$HOME/.local/share/icons:/run/current-system/sw/share/icons";
   };
 
   services.gnome.gnome-browser-connector.enable = true;
@@ -55,7 +59,6 @@
 
   environment.systemPackages = with pkgs; [
     gnome-themes-extra
-    flameshot
     gnome-tweaks
 
     paper-icon-theme
