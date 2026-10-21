@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.zsh;
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
-  # Build the path list based on the options
   pathList =
     [
       "/run/wrappers/bin" # Essential for sudo
@@ -16,8 +14,8 @@ with lib; let
       "/run/current-system/sw/bin"
       "/nix/var/nix/profiles/default/bin"
     ]
-    ++ optional isDarwin "/opt/homebrew/bin"
-    ++ optionals (!cfg.isNixOS) [
+    ++ lib.optional isDarwin "/opt/homebrew/bin"
+    ++ lib.optionals (!cfg.isNixOS) [
       "/bin"
       "/sbin"
       "/usr/bin"
@@ -25,9 +23,8 @@ with lib; let
       "/usr/local/bin"
     ];
 in {
-  ### SCHEMA DEFINITION
-  options.zsh.isNixOS = mkOption {
-    type = types.bool;
+  options.zsh.isNixOS = lib.mkOption {
+    type = lib.types.bool;
     default = true;
     description = ''
       Whether the target system is NixOS.
@@ -35,11 +32,13 @@ in {
     '';
   };
 
-  ### IMPLEMENTATION
-  config = {
-    home.file.".zsh/path.zsh".text = ''
-      typeset -U path
-      export PATH="${concatStringsSep ":" pathList}:$PATH"
-    '';
-  };
+  # Sourced from both .zshenv and .zshrc (macOS's path_helper reorders PATH in
+  # between), so it must be idempotent.
+  # TODO: `nix shell` does not set IN_NIX_SHELL
+  config.home.file.".zsh/path.zsh".text = ''
+    if [[ -z $IN_NIX_SHELL ]]; then
+        typeset -U path
+        export PATH="${lib.concatStringsSep ":" pathList}:$PATH"
+    fi
+  '';
 }

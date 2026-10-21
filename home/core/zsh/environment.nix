@@ -1,50 +1,31 @@
 {
   config,
   lib,
-  pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.zsh.environment-variables;
 
-  # Your default internal variables
   default-env = {
-    GPG_TTY = "$(tty)";
-    MAKEFLAGS = "-j$(nproc)";
-    NODE_OPTIONS = lib.escapeShellArg "--max_old_space_size=16384";
     RUST_BACKTRACE = "1";
-    XDG_DATA_DIRS = "$HOME/.nix-profile/share:$HOME/.share:\"\${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}\"";
     EDITOR = "nvim";
     VISUAL = "nvim";
     FZF_DEFAULT_COMMAND = lib.escapeShellArg "rg --files";
-    HISTFILE = "$HOME/.zsh_history";
-    HISTSIZE = "10000000";
-    SAVEHIST = "10000";
   };
 
-  # Merge defaults with the user-provided options
-  # We use // for attribute merging here
   final-env = default-env // cfg;
-
-  # Create the script content
-  env-script = concatStringsSep "\n" (
-    mapAttrsToList (k: v: "export ${k}=${v}") final-env
-  );
 in {
-  ### SCHEMA DEFINITION
-  options.zsh.environment-variables = mkOption {
-    type = types.attrsOf types.str;
+  options.zsh.environment-variables = lib.mkOption {
+    type = lib.types.attrsOf lib.types.str;
     default = {};
-    description = "Custom environment variables to be exported in the Zsh env script.";
+    description = "Custom environment variables to be exported from .zshenv.";
   };
 
-  ### IMPLEMENTATION
-  config = {
-    # This writes the file to your nix store.
-    # You likely want to link this into your home directory.
-    home.file.".zsh/environment.zsh".text = env-script;
+  # Sourced from .zshenv, so this must stay cheap and idempotent
+  config.home.file.".zsh/environment.zsh".text = ''
+    typeset -TUx XDG_DATA_DIRS xdg_data_dirs
+    (( $#xdg_data_dirs )) || xdg_data_dirs=(/usr/local/share /usr/share)
+    xdg_data_dirs=("$HOME/.nix-profile/share" "$HOME/.share" $xdg_data_dirs)
 
-    # Alternatively, if you want to use your specific writeZsh function:
-    # home.packages = [ (writeZsh "environment.zsh" env-script) ];
-  };
+    ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "export ${k}=${v}") final-env)}
+  '';
 }

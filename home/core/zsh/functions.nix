@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.zsh.functions;
   defaults = {
     lls = ''
@@ -83,11 +82,11 @@ with lib; let
   };
   merged = defaults // cfg;
 in {
-  options.zsh.functions = mkOption {
-    type = types.attrsOf types.str;
+  options.zsh.functions = lib.mkOption {
+    type = lib.types.attrsOf lib.types.str;
     default = {};
   };
 
   config.home.file.".zsh/functions.zsh".text =
-    concatStringsSep "\n\n" (mapAttrsToList (k: v: "${k}() {\n${v}\n}") merged);
+    lib.concatStringsSep "\n\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") merged);
 }

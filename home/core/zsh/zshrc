@@ -1,6 +1,10 @@
 autoload -U compinit
 compinit
 
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
 setopt AUTO_PUSHD
 setopt SHARE_HISTORY
 setopt extendedglob
@@ -10,11 +14,12 @@ unsetopt nomatch
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' menu select
 
-# Path
-if [ -z "${IN_NIX_SHELL}" ]; then
-    #TODO: `nix shell` does not set IN_NIX_SHELL
-    source "$HOME/.zsh/path.zsh"
-fi
+# .zshenv already did this, but macOS's /etc/zprofile (path_helper) reorders
+# PATH afterwards
+source "$HOME/.zsh/path.zsh"
+
+export GPG_TTY=$(tty)
+export MAKEFLAGS="-j$(nproc)"
 
 # Prompt
 eval "$(starship init zsh)"
@@ -26,45 +31,24 @@ source ~/.zsh/aliases.zsh
 # Functions
 source ~/.zsh/functions.zsh
 
-# Environment
-source ~/.zsh/environment.zsh
-
-if [[ $(uname) == "Darwin" ]]; then
-    if [ -f "/etc/static/zshrc" ]; then
-        source "/etc/static/zshrc"
-    fi
+if [[ $OSTYPE == darwin* && -f /etc/static/zshrc ]]; then
+    source /etc/static/zshrc
 fi
 
-if type clang >/dev/null; then
-    export CC=clang
-    export CXX=clang++
-fi
-
-if [ -f "$HOME/.config/python/startup.py" ]; then
+if [[ -f $HOME/.config/python/startup.py ]]; then
     export PYTHONSTARTUP="$HOME/.config/python/startup.py"
-fi
-
-if [ -d "/etc/nix/path" ]; then
-    export NIX_PATH="/etc/nix/path"
 fi
 
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
 
-if [ -d /etc/zsh/zshrc.d ]; then
-    for file in /etc/zsh/zshrc.d/*; do
-        source $file
-    done
-fi
+for file in /etc/zsh/zshrc.d/*(N); do
+    source "$file"
+done
 
 if [[ -z $SSH_AUTH_SOCK ]]; then
     eval "$(ssh-agent)" >/dev/null
-fi
-
-# Command-not-found
-if [ -f ~/.zsh/command-not-found.zsh ]; then
-    source ~/.zsh/command-not-found.zsh
 fi
 
 # Plugins
@@ -76,8 +60,12 @@ if [[ -z "$XDG_RUNTIME_DIR" && -d "/run/user/$UID" ]]; then
     export XDG_RUNTIME_DIR="/run/user/$UID"
 fi
 
-if type atuin >/dev/null; then
+if (( $+commands[atuin] )); then
     eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
+if (( $+commands[nix-your-shell] )); then
+    eval "$(nix-your-shell zsh)"
 fi
 
 _atuin_history_step() {

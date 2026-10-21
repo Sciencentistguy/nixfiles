@@ -1,4 +1,8 @@
-{isNixOS, ...}: {
+{
+  isNixOS,
+  pkgs,
+  ...
+}: {
   imports = [
     ./environment.nix
     ./aliases.nix
@@ -9,6 +13,12 @@
 
   # Purely static files
   home.file.".zshrc".source = ./zshrc;
+  home.file.".zshenv".text = ''
+    source "$HOME/.zsh/path.zsh"
+    source "$HOME/.zsh/environment.zsh"
+  '';
+
+  home.packages = [pkgs.nix-your-shell];
 
   zsh.isNixOS = isNixOS;
 

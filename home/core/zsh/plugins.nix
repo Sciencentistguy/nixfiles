@@ -1,14 +1,9 @@
 {
-  config,
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   plugins = with pkgs; {
-    git = {
-      file = "${oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh";
-    };
     command-not-found = {
       file = "${nix-index-unwrapped}/etc/profile.d/command-not-found.sh";
     };
@@ -21,12 +16,9 @@ with lib; let
         bindkey -r '^R'
       '';
     };
-    zsh-nix-shell = {
-      file = "${zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh";
-    };
 
     globalias = {
-      file = "${oh-my-zsh}/share/oh-my-zsh/plugins/globalias/globalias.plugin.zsh";
+      file = "${./globalias.zsh}";
       after = let
         globalias-filter-values = [
           "cp"
@@ -97,10 +89,8 @@ with lib; let
   # zsh-syntax-highlighting must be sourced last
   loadOrder = [
     "command-not-found"
-    "git"
     "globalias"
     "zsh-vi-mode"
-    "zsh-nix-shell"
     "zsh-autosuggestions"
     "zsh-syntax-highlighting"
   ];
@@ -114,5 +104,5 @@ with lib; let
   '';
 in {
   config.home.file.".zsh/plugins.zsh".text =
-    concatStringsSep "\n" (map sourcePlugin loadOrder);
+    lib.concatStringsSep "\n" (map sourcePlugin loadOrder);
 }
