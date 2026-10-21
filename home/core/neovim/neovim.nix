@@ -1,6 +1,5 @@
 {
   alejandra,
-  basedpyright,
   clang-tools,
   curl,
   fd,
@@ -27,6 +26,7 @@
   stylua,
   symlinkJoin,
   tree-sitter,
+  ty,
   xclip,
   prettier,
 }:
@@ -70,7 +70,7 @@ symlinkJoin {
         # Language servers
         rust-analyzer
         lua-language-server
-        basedpyright
+        ty
         nil
         haskell-language-server
         clang-tools
