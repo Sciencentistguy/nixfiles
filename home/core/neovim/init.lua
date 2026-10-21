@@ -22,7 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugin specs (lazy.nvim)
 require("user.plugins")
 
-require("user.cmp")
+require("user.completion")
 require("user.comment")
 require("user.lsp")
 require("user.format")

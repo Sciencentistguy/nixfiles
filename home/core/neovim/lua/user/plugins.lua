@@ -1,12 +1,12 @@
 require("lazy").setup({
     -- Completion
-    "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    { "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
+    {
+        "saghen/blink.cmp",
+        version = "1.*", -- config in lua/user/completion.lua
+        dependencies = {
+            { "Kaiser-Yang/blink-cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
+        },
+    },
 
     -- Visual
     {
