@@ -18,8 +18,6 @@ in {
     doCheck = false;
   });
   programs.starship.enable = true;
-  programs.starship.enableZshIntegration = true;
-  programs.starship.enableBashIntegration = false;
   programs.starship.settings = {
     add_newline = false;
     format = "$username$hostname$shell$all";
@@ -70,8 +68,6 @@ in {
     username = {
       show_always = true;
       format = "[$user]($style)@";
-    };
-    username = {
       style_root = "bold #E06C75";
       style_user = "bold #EFC07B";
     };
