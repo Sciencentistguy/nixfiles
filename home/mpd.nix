@@ -4,7 +4,6 @@
   ...
 }: {
   services.mpd.enable = true;
-  services.mpd.dataDir = "/hdd/Music/mpd";
   services.mpd.musicDirectory = "/media/Music";
   services.mpd.extraConfig = ''
     audio_output {
