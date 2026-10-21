@@ -3,7 +3,6 @@
   clang-tools,
   curl,
   fd,
-  fzf,
   git,
   gnumake,
   haskell-language-server,
@@ -49,7 +48,6 @@ symlinkJoin {
       [
         curl
         fd
-        fzf
         git
         nodejs
         perlEnv

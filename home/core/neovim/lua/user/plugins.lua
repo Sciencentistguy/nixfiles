@@ -149,13 +149,6 @@ require("lazy").setup({
             require("gitsigns").setup()
         end,
     },
-    {
-        "m42e/lgh.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "ibhagwan/fzf-lua",
-        },
-    },
 
     -- matchup
     {
