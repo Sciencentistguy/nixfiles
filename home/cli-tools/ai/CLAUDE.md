@@ -8,7 +8,7 @@
 ## Commits
 - In general, commit changes in logical gropings, ensuring that each commit is a complete working unit of change. Don't pester the user asking whether to commit changes, use judgement
 - You Should Not co-sign commits. Users own all generated code directly.
-  - Caveat: if a repository has an ai-specific contribution guide, follow that.
+  - Caveat: if a repository has an ai-specific contribution guide, you MUST follow that. Pro-actively check for such things before creating commits.
 
 ## Coding style
 - Prefer self-documenting code over use of many comments.
