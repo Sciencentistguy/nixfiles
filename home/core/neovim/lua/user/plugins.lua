@@ -170,7 +170,6 @@ require("lazy").setup({
     },
 
     -- Git support
-    "tpope/vim-git",
     {
         "lewis6991/gitsigns.nvim",
         event = { "BufReadPre", "BufNewFile" },
@@ -204,5 +203,5 @@ require("lazy").setup({
         event = { "BufReadPost", "BufNewFile" },
         opts = {},
     },
-    "godlygeek/tabular",
+    { "nvim-mini/mini.align", version = "*", opts = {} },
 })
