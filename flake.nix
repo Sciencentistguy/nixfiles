@@ -130,6 +130,7 @@
         };
         modules = [
           ./atlas
+          ./nixos/tailscale-switch-inhibitor.nix
           home-manager.nixosModules.home-manager
           inputs.agenix.nixosModules.age
           inputs.bonkbot.nixosModules.${system}.bonkbot
@@ -171,6 +172,7 @@
         };
         modules = [
           ./hercules
+          ./nixos/tailscale-switch-inhibitor.nix
           home-manager.nixosModules.home-manager
           (
             {
@@ -208,6 +210,7 @@
         };
         modules = [
           ./chronos
+          ./nixos/tailscale-switch-inhibitor.nix
           home-manager.nixosModules.home-manager
           inputs.agenix.nixosModules.age
           (
