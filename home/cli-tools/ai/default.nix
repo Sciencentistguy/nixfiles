@@ -5,6 +5,7 @@
     context = ./CLAUDE.md;
     mutableSettings = true;
     settings = {
+      showThinkingSummaries = true;
       theme = "auto";
       env = {
         "GIT_CONFIG_COUNT" = "1";
