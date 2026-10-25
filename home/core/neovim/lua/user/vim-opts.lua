@@ -7,6 +7,7 @@ local options = {
     mouse = "nv",
     number = true,
     scrolloff = 7,
+    shada = "!,'100,<0,s10,h", -- the default, but don't persist registers (macros)
     shiftwidth = 4,
     showmatch = true,
     showmode = false,
