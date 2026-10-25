@@ -132,24 +132,6 @@
         "type": "github"
       }
     },
-    "darktable-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792532189,
-        "narHash": "sha256-bQT7ry5KaXm3+Fpg1HN4JQ1uB1J5aMq5RZVWo9iZ2No=",
-        "ref": "refs/heads/master",
-        "rev": "7e99c8c703329e35252a3bd54d7744f63969252b",
-        "revCount": 47816,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/darktable-org/darktable.git"
-      },
-      "original": {
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/darktable-org/darktable.git"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -801,7 +783,6 @@
         "beets-file-info": "beets-file-info",
         "bonkbot": "bonkbot",
         "bulkrename": "bulkrename",
-        "darktable-src": "darktable-src",
         "darwin": "darwin",
         "fenix": "fenix",
         "flake-compat": "flake-compat_2",
