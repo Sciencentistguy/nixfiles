@@ -51,6 +51,15 @@
     XCURSOR_PATH = lib.mkForce "$HOME/.icons:$HOME/.local/share/icons:/run/current-system/sw/share/icons";
   };
 
+  # Apps launched from the shell live in its cgroup; by default systemd stops
+  # the whole unit (ending the session) when the kernel OOM-kills any of them.
+  systemd.user.services."org.gnome.Shell@" = {
+    overrideStrategy = "asDropin";
+    serviceConfig.OOMPolicy = "continue";
+    # the default service PATH would override the session's PATH for the shell and everything it launches
+    path = lib.mkForce [];
+  };
+
   services.gnome.gnome-browser-connector.enable = true;
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
