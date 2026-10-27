@@ -5,8 +5,6 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
-    # audacity 4.0.0 fails to build against Qt 6.12; See https://github.com/NixOS/nixpkgs/issues/572942
-    nixpkgs-audacity.url = "github:NixOS/nixpkgs/f20cd90e28fe0403873f473b29e42662cd86e8c4";
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";

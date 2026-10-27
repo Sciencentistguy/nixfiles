@@ -29,7 +29,7 @@
       })
     ]
     ++ lib.optionals (systemName == "chronos") [
-      inputs.nixpkgs-audacity.legacyPackages.${pkgs.stdenv.hostPlatform.system}.audacity
+      pkgs.audacity
     ];
 
   # ffmpeg nnedi filter needs weights downloaded separately
