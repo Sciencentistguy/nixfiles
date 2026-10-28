@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
-  homebrew.onActivation.cleanup = "zap";
   homebrew.onActivation.upgrade = true;
   homebrew.global.brewfile = true;
 
@@ -21,6 +20,8 @@
     Pages = 409201541;
     Bitwarden = 1352778147;
     Tailscale = 1475387142;
+    WhatsApp = 310633997;
+    "Windows App" = 1295203466;
   };
 
   homebrew.casks = [
