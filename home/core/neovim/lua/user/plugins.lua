@@ -41,6 +41,7 @@ require("lazy").setup({
                 "bash",
                 "c",
                 "cpp",
+                "css",
                 "diff",
                 "git_config",
                 "gitcommit",
