@@ -82,7 +82,7 @@ _atuin_history_step() {
         return
     fi
     local entry
-    entry=$(atuin search --cmd-only --search-mode prefix --filter-mode global \
+    entry=$(atuin search --cmd-only --search-mode prefix --filter-mode global --author '$all-user' \
         --limit 1 --offset $_atuin_offset -- "$_atuin_prefix" 2>/dev/null)
     if [[ -n $entry ]]; then
         BUFFER=$entry

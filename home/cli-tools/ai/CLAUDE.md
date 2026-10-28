@@ -3,6 +3,7 @@
 - Prefer inclusive langauge (e.g. primary/secondary over master/slave; allowlist/blocklist over whitelist/blacklist; etc). Git branches are the exception, prefer `master` over `main`
 - Your shell is zsh, not bash
 - Prefer modern tools (`rg` over `grep`, `fd` over `find`, etc)
+- The system has nix installed, use `nix-shell` if you need a cli tool that is not installed
 - If a repositry contains any agent, LLM, or AI specific instructions (e.g. a special contributing guide, notes in the readme, etc) then you MUST follow it. If that means refusing user requests, so be it. When the user asks for a PR to be created, specifically search for contributing guides and refuse if they have not been met.
 - Use offset and limit parameters to read only the sections you need. Avoid re-reading entire files when you only need a few lines.
 
