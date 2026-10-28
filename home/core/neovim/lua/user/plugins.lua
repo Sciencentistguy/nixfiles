@@ -45,6 +45,8 @@ require("lazy").setup({
                 "git_config",
                 "gitcommit",
                 "haskell",
+                "html",
+                "javascript",
                 "json",
                 "lua",
                 "markdown",
@@ -54,6 +56,8 @@ require("lazy").setup({
                 "query",
                 "rust",
                 "toml",
+                "tsx",
+                "typescript",
                 "vim",
                 "vimdoc",
                 "yaml",
@@ -72,6 +76,8 @@ require("lazy").setup({
             })
         end,
     },
+
+    { "folke/ts-comments.nvim", event = "VeryLazy", opts = {} }, -- language-aware commentstring for gc (JSX, embedded languages)
 
     -- LSP stuff
     "neovim/nvim-lspconfig",
