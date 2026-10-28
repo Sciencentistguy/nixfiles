@@ -47,6 +47,11 @@ in {
           mods = "Command";
           action = "CreateNewWindow";
         }
+        {
+          key = "Slash";
+          mods = "Command";
+          chars = "\\u001f"; # <c-_>, which neovim binds to toggle comments
+        }
       ];
     colors = {
       primary = {
