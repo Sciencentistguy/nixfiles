@@ -45,3 +45,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
+
+if vim.fn.has("clipboard") == 0 and vim.env.TMUX then
+    vim.g.clipboard = {
+        name = "tmux",
+        copy = { ["+"] = { "tmux", "load-buffer", "-" }, ["*"] = { "tmux", "load-buffer", "-" } },
+        paste = { ["+"] = { "tmux", "save-buffer", "-" }, ["*"] = { "tmux", "save-buffer", "-" } },
+        cache_enabled = 0,
+    }
+end
