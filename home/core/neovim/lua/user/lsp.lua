@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>rn", vim.lsp.buf.rename)
         map("<F18>", vim.lsp.buf.rename)
         map("<leader>ca", vim.lsp.buf.code_action)
+        map("<leader>ac", vim.lsp.buf.code_action)
         map("<m-cr>", vim.lsp.buf.code_action)
     end,
 })
