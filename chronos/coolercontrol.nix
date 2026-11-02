@@ -14,7 +14,7 @@
     };
     script = ''
       journalctl --follow --lines=0 --output=cat --unit=coolercontrold |
-        grep --line-buffered "Significant issue retrieving status for liquidctl device: Corsair Hydro" |
+        grep --line-buffered --extended-regexp "Significant issue retrieving status for liquidctl device: Corsair Hydro|Error getting status from device #[0-9]+: Response timed out" |
         while read -r _; do
           for dev in /sys/bus/usb/devices/*; do
             [ "$(cat "$dev/idVendor" 2>/dev/null)" = 1b1c ] || continue
@@ -25,6 +25,8 @@
           done
           sleep 3
           systemctl restart coolercontrold
+          # one stall logs several lines, so drop those queued behind the one we acted on
+          while read -r -t 1 _; do :; done
         done
     '';
   };
