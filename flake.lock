@@ -152,6 +152,26 @@
         "type": "github"
       }
     },
+    "dr-rs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793662333,
+        "narHash": "sha256-vmxX6jyN6Zf1y4KINYWPlb0g4T+v9cF7jIMi/Jj5NBk=",
+        "owner": "Sciencentistguy",
+        "repo": "dr-rs",
+        "rev": "743d8a75a4a0fd63dd01878db1ede5ddd0361554",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Sciencentistguy",
+        "repo": "dr-rs",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -768,6 +788,7 @@
         "bonkbot": "bonkbot",
         "bulkrename": "bulkrename",
         "darwin": "darwin",
+        "dr-rs": "dr-rs",
         "fenix": "fenix",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_5",

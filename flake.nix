@@ -33,6 +33,10 @@
       url = "github:Sciencentistguy/bulkrename";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dr-rs = {
+      url = "github:Sciencentistguy/dr-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     helium-nix = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";

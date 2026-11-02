@@ -1,0 +1,6 @@
+uuid = "9c25dae0-8351-4e02-a7eb-10cd74e8ae9e"
+name = "DR meter on save"
+description = "Runs dr-rs on an album folder after Picard saves it."
+api = ["3.0"]
+authors = ["Jamie Quigley"]
+license = "GPL-3.0-or-later"
