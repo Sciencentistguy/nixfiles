@@ -7,6 +7,7 @@
     ./borg.nix
     ./btop.nix
     ./bulkrename.nix
+    ./clipboard.nix
     ./comma.nix
     ./exiftool.nix
     ./eza.nix
