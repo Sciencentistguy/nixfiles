@@ -28,6 +28,7 @@
       pull.ff = "only";
       url."https://github.com/".insteadOf = "git://github.com/";
       push.autoSetupRemote = true;
+      protocol.file.allow = "always";
     };
   };
 
