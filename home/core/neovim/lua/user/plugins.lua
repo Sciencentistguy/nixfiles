@@ -71,7 +71,11 @@ require("lazy").setup({
                 group = vim.api.nvim_create_augroup("user-treesitter", { clear = true }),
                 callback = function(args)
                     if pcall(vim.treesitter.start, args.buf) then
-                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                        -- Without an indents query (e.g. haskell) the treesitter indentexpr always yields column 0
+                        local lang = vim.treesitter.language.get_lang(args.match)
+                        if lang and vim.treesitter.query.get(lang, "indents") then
+                            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                        end
                     end
                 end,
             })
@@ -79,6 +83,8 @@ require("lazy").setup({
     },
 
     { "folke/ts-comments.nvim", event = "VeryLazy", opts = {} }, -- language-aware commentstring for gc (JSX, embedded languages)
+
+    { "itchyny/vim-haskell-indent", ft = "haskell" }, -- neither neovim nor nvim-treesitter ships a haskell indent
 
     -- LSP stuff
     "neovim/nvim-lspconfig",
