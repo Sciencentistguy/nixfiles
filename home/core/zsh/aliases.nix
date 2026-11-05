@@ -109,6 +109,8 @@
     gbs = "git bisect";
     gap = "git apply";
     gd = "git diff";
+    gbd = "git branch --delete";
+    gbD = "git branch -D";
   };
 
   defaultGlobal = {
