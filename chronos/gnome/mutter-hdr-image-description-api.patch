@@ -1,0 +1,21 @@
+diff --git a/src/wayland/meta-wayland-color-management.c b/src/wayland/meta-wayland-color-management.c
+index 7fee3f4a0..0c38b3637 100644
+--- a/src/wayland/meta-wayland-color-management.c
++++ b/src/wayland/meta-wayland-color-management.c
+@@ -1963,11 +1963,11 @@ color_manager_create_windows_scrgb (struct wl_client   *client,
+                         wl_resource_get_version (resource),
+                         id);
+ 
+-  image_desc =
+-    meta_wayland_image_description_new_color_state (color_manager,
+-                                                    image_desc_resource,
+-                                                    color_state,
+-                                                    META_WAYLAND_IMAGE_DESCRIPTION_FLAGS_DEFAULT);
++  image_desc = meta_wayland_image_description_new (color_manager,
++                                                   image_desc_resource);
++  meta_wayland_image_description_set_ready (image_desc,
++                                            color_state,
++                                            META_WAYLAND_IMAGE_DESCRIPTION_FLAGS_DEFAULT);
+ 
+   wl_resource_set_implementation (image_desc_resource,
+                                   &meta_wayland_image_description_interface,
