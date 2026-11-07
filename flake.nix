@@ -234,7 +234,7 @@
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/makemkv
                   ./home/gui/obs.nix
-                  ./home/gui/picard.nix
+                  ./home/gui/picard
                   ./home/gui/prism-launcher.nix
                   ./home/gui/photo-editing.nix
                   ./home/gui/spotify.nix
