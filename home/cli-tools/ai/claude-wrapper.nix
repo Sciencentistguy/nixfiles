@@ -34,6 +34,5 @@ in
     postBuild = ''
       wrapProgram $out/bin/claude \
         --prefix PATH : ${lib.makeBinPath runtimeTools} \
-        --set BUN_OPTIONS "--preload=${./no-agent-summary.js}"
     '';
   }
