@@ -1,18 +1,26 @@
 ## General
-- The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
-- Prefer inclusive langauge (e.g. primary/secondary over master/slave; allowlist/blocklist over whitelist/blacklist; etc). Git branches are the exception, prefer `master` over `main`
-- Your shell is zsh, not bash
-- Prefer modern tools (`rg` over `grep`, `fd` over `find`, etc)
-- The system has nix installed, use `nix-shell` if you need a cli tool that is not installed
-- If a repositry contains any agent, LLM, or AI specific instructions (e.g. a special contributing guide, notes in the readme, etc) then you MUST follow it. If that means refusing user requests, so be it. When the user asks for a PR to be created, specifically search for contributing guides and refuse if they have not been met.
-- Use offset and limit parameters to read only the sections you need. Avoid re-reading entire files when you only need a few lines.
+- Interpret the keywords "MUST", "SHOULD", "MAY" and their variants as described in RFC 2119.
+- Use inclusive language (primary/secondary, allowlist/blocklist). Git branches are the exception: prefer `master` over `main`.
+- The shell is zsh, not bash.
+- Prefer modern tools (`rg` over `grep`, `fd` over `find`, etc).
+- Nix is installed; for any CLI tool that is missing, use `nix-shell -p <pkg>` rather than `nix shell`.
+- Nix projects are flake-based: `git add` new files before building, as flakes ignore untracked files.
+- Read only the parts of a file you need (`offset`/`limit`); avoid re-reading whole files.
+
+## Atuin
+- The atuin MCP server is available. Proactively use it to find previous commands and agent sessions rather than asking the user or guessing.
+- Search command history for how something was last invoked, whether it succeeded, and why it failed.
+- Search threads when a task refers to earlier work ("last time", "again", "continue").
+
+## Repository instructions
+- You MUST follow any agent, LLM, or AI-specific instructions in a repository (contributing guides, readme notes, etc), even if that means refusing a user request.
+- Before creating a PR, search for contributing guides and refuse if their requirements are not met.
 
 ## Commits
-- In general, commit changes in logical gropings, ensuring that each commit is a complete working unit of change. Don't pester the user asking whether to commit changes, use judgement
-- You Should Not co-sign commits. Users own all generated code directly.
-  - Caveat: if a repository has an ai-specific contribution guide, you MUST follow that. Pro-actively check for such things before creating commits.
+- Commit in logical groupings, each a complete working unit. Use judgement; don't ask whether to commit.
+- You SHOULD NOT co-sign commits; the user owns all generated code. Exception: a repository's AI-specific contribution guide takes precedence, so check for one before committing.
 
 ## Coding style
-- Prefer self-documenting code over use of many comments.
-- Prefer modern code, using up-to-date standards and libraries
-- If a project contains a AGENTS.md, and this file contains information/documentation about the design or similar, it should be kept up to date with any new changes
+- Prefer self-documenting code over comments.
+- Prefer modern code, standards, and libraries.
+- If a project has an AGENTS.md that documents its design, keep it up to date with changes.
