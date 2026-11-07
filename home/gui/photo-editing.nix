@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   # Rawspeed is effectively unmaintained
   # See: https://github.com/darktable-org/rawspeed/pull/972#issuecomment-4820206677
   rawspeedPatches = [
@@ -17,16 +21,11 @@
 in {
   home.packages = [
     ((pkgs.darktable.override {withAi = true;}).overrideAttrs (old: {
-      patches =
-        (old.patches or [])
-        ++ [
-          # lightroom: import into current modules and params versions
-          (pkgs.fetchpatch {
-            url = "https://github.com/darktable-org/darktable/compare/fa09a49446e75e9d4a9841f0cfeb9a0b99cc7d77...1ff468b385fbe2220d2140681a5a3411fb527e3a.patch";
-            hash = "sha256-zZaHxDRVkRtbOoeCnY7JVix9G3DYWFjmEFlP1/CRBFc=";
-            excludes = ["RELEASE_NOTES.md"];
-          })
-        ];
+      version = "5.8.0-unstable-${builtins.substring 0 8 inputs.darktable.lastModifiedDate}";
+      src = inputs.darktable;
+      # the version can't be derived from git, as the flake input has no .git directory
+      cmakeFlags = old.cmakeFlags ++ ["-DPROJECT_VERSION=5.8.0"];
+      doInstallCheck = false;
       # rawspeed is vendored in a subdirectory, so its patches need their own strip root
       postPatch =
         (old.postPatch or "")

@@ -37,6 +37,10 @@
       url = "github:Sciencentistguy/dr-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darktable = {
+      url = "git+https://github.com/darktable-org/darktable?submodules=1";
+      flake = false;
+    };
     helium-nix = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
