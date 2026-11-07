@@ -307,6 +307,11 @@
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
       pkgsUnfree = inputs.nixpkgs-unfree.legacyPackages.${system};
+      # VueScan links against GTK2 directly, which nixpkgs now marks as broken
+      pkgsGtk2 = import nixpkgs {
+        inherit system;
+        config.problems.handlers."gtk+".broken = "warn";
+      };
     in {
       packages = rec {
         extract = pkgsUnfree.callPackage ./packages/extract {};
@@ -317,8 +322,8 @@
         apple-cursor-theme = pkgs.callPackage ./packages/apple-cursor-theme {};
         update-music-library = pkgs.callPackage ./packages/update-music-library {};
         asp = pkgs.callPackage ./packages/asp {};
-        vuescan-unwrapped = pkgs.callPackage ./packages/vuescan/unwrapped.nix {};
-        vuescan = pkgs.callPackage ./packages/vuescan/wrapper.nix {inherit vuescan-unwrapped;};
+        vuescan-unwrapped = pkgsGtk2.callPackage ./packages/vuescan/unwrapped.nix {};
+        vuescan = pkgsGtk2.callPackage ./packages/vuescan/wrapper.nix {inherit vuescan-unwrapped;};
         minecraft-prometheus-exporter = pkgs.callPackage ./packages/minecraft-prometheus-exporter {};
         adobe-dcp-camera-profiles = pkgs.callPackage ./packages/adobe-dcp-camera-profiles {};
         helium-bin = pkgs.callPackage ./packages/helium-bin {};
