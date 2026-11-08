@@ -19,6 +19,7 @@
       export WINEDEBUG=''${WINEDEBUG:--all}
       app="$WINEPREFIX/drive_c/Program Files/Dolby/Dolby Reference Player"
 
+      mkdir -p "$WINEPREFIX"
       if [ ! -e "$app/drpv.exe" ]; then
         wine msiexec /i ${installer} /qn
       fi
