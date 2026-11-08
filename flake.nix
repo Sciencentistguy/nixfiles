@@ -235,6 +235,7 @@
                   # gui
                   ./home/gui/alacritty.nix
                   ./home/gui/discord
+                  ./home/gui/dolby-reference-player.nix
                   ./home/gui/dolhin-emu.nix
                   ./home/gui/makemkv
                   ./home/gui/obs.nix
