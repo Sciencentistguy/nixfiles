@@ -74,7 +74,8 @@ require("lazy").setup({
                         -- Without an indents query (e.g. haskell) the treesitter indentexpr always yields column 0
                         local lang = vim.treesitter.language.get_lang(args.match)
                         if lang and vim.treesitter.query.get(lang, "indents") then
-                            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                            vim.bo[args.buf].indentexpr =
+                                "v:lua.require'nvim-treesitter'.indentexpr()"
                         end
                     end
                 end,
@@ -227,4 +228,5 @@ require("lazy").setup({
         end,
     },
     { "nvim-mini/mini.align", version = "*", opts = {} },
+    { "ThorstenRhau/brygga.nvim", version = "*", opts = {} },
 })
