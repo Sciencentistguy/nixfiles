@@ -197,6 +197,9 @@ require("lazy").setup({
         init = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
+        config = function()
+            require("user.matchup")
+        end,
     },
 
     -- Misc
