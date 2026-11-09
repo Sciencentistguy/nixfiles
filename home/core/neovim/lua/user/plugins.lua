@@ -196,9 +196,6 @@ require("lazy").setup({
         "andymass/vim-matchup",
         init = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
-            -- Its query re-runs over +-400 lines on every % and cursor move (~30ms in a 600 line
-            -- rust file); the regex engine matches brackets in a fraction of that
-            vim.g.matchup_treesitter_disabled = { "rust" }
         end,
     },
 
