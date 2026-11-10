@@ -21,3 +21,18 @@ bindkey -M viins "^ " magic-space
 
 # normal space during searches
 bindkey -M isearch " " magic-space
+
+# typing "/" after a path-valued global alias expands it, so "cd sd/f" works
+globalias-slash() {
+   local word=${${(Az)LBUFFER}[-1]}
+   if [[ ${galiases[$word]} == (/|\~|.)* ]]; then
+      zle _expand_alias
+      zle expand-word
+   fi
+   zle self-insert
+}
+zle -N globalias-slash
+
+bindkey -M emacs "/" globalias-slash
+bindkey -M viins "/" globalias-slash
+bindkey -M isearch "/" self-insert
