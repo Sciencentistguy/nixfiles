@@ -8,7 +8,7 @@
   boot.extraModprobeConfig = ''
     option v4l2loopback devices=1 exclusive_caps=1
   '';
-  boot.kernelModules = ["sg" "v4l2loopback"];
+  boot.kernelModules = ["sg" "v4l2loopback" "nct6775"];
   boot.kernelParams = [
     "fastboot"
     "consoleblank=0"
