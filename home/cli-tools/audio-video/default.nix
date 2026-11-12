@@ -10,7 +10,7 @@
     ffmpeg = flakePkgs.videoconverter.ffmpeg;
   in
     [
-      pkgs.dr14_tmeter
+      flakePkgs.dr-rs
       flakePkgs.qobuz-identifier
       pkgs.spek
       pkgs.yt-dlp
