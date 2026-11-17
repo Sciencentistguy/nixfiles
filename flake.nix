@@ -53,6 +53,10 @@
       url = "github:Sciencentistguy/qobuz_identifier";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    reel = {
+      url = "github:Sciencentistguy/reel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rmdirall = {
       url = "github:Sciencentistguy/rmdirall";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -176,6 +180,7 @@
           ./hercules
           ./nixos/tailscale-switch-inhibitor.nix
           home-manager.nixosModules.home-manager
+          inputs.reel.nixosModules.default
           (
             {
               pkgs,

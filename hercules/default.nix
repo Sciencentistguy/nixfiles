@@ -2,11 +2,12 @@
   imports = [
     ./base.nix
     ./config.nix
+    ./filesystems.nix
     ./gpg.nix
     ./i18n.nix
+    ./reel.nix
     ./time.nix
     ./users.nix
-    ./filesystems.nix
   ];
 
   programs.zsh.enable = true;

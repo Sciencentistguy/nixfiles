@@ -776,6 +776,26 @@
         "type": "github"
       }
     },
+    "reel": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795004602,
+        "narHash": "sha256-cjm51yNsjn5aMwYoFWQWMeGTgT6GbBQi9yh/3GJaIs8=",
+        "owner": "Sciencentistguy",
+        "repo": "reel",
+        "rev": "4c744103eec4bc56ad2d6ec2dcfd32dc382ceb98",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Sciencentistguy",
+        "repo": "reel",
+        "type": "github"
+      }
+    },
     "rmdirall": {
       "inputs": {
         "fenix": "fenix_2",
@@ -819,6 +839,7 @@
         "nixpkgs-unfree": "nixpkgs-unfree",
         "prism-launcher": "prism-launcher",
         "qobuz-identifier": "qobuz-identifier",
+        "reel": "reel",
         "rmdirall": "rmdirall",
         "rust-nix-shell": "rust-nix-shell",
         "susbot": "susbot",
