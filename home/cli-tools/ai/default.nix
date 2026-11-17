@@ -30,4 +30,10 @@
       };
     };
   };
+
+  programs.pi-coding-agent = {
+    enable = true;
+    extraPackages = import ./runtime-tools.nix pkgs;
+    context = ./CLAUDE.md;
+  };
 }
