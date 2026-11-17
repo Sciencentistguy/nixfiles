@@ -13,6 +13,7 @@ in {
     settings = {
       "*".Compression = false;
 
+      "forgejo.axolotl-shark.ts.net".IdentityFile = "~/.ssh/github";
       "github.com".IdentityFile = "~/.ssh/github";
       "*.github.com".IdentityFile = "~/.ssh/github";
       "git.quigley.xyz".IdentityFile = "~/.ssh/github";
