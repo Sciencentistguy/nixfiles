@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [wl-clipboard xclip];
+{pkgs, lib, ...}: {
+  home.packages = with pkgs; lib.optionals (stdenv.isLinux) [wl-clipboard xclip];
 }
