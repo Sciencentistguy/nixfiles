@@ -11,6 +11,9 @@
       set -g mouse on
       set -sg escape-time 10 # https://neovim.io/doc/user/faq.html#_esc-in-tmux-or-gnu-screen-is-delayed
       set -g focus-events on
+      set -g extended-keys on # distinguish shift-enter from enter for claude-code
+      set -g extended-keys-format csi-u
+      set -as terminal-features ',alacritty*:extkeys'
     '';
     historyLimit = 1000000;
     plugins = [
