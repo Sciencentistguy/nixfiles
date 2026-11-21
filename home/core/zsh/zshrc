@@ -68,6 +68,11 @@ if (( $+commands[nix-your-shell] )); then
     eval "$(nix-your-shell zsh)"
 fi
 
+_atuin_clear_suggestion() {
+    POSTDISPLAY=
+    (( $+functions[_zsh_autosuggest_highlight_reset] )) && _zsh_autosuggest_highlight_reset
+}
+
 _atuin_history_step() {
     local dir=$1
     if [[ $LASTWIDGET != _atuin_up && $LASTWIDGET != _atuin_down ]]; then
@@ -79,6 +84,7 @@ _atuin_history_step() {
         _atuin_offset=-1
         BUFFER=$_atuin_prefix
         CURSOR=$#BUFFER
+        _atuin_clear_suggestion
         return
     fi
     local entry
@@ -87,6 +93,7 @@ _atuin_history_step() {
     if [[ -n $entry ]]; then
         BUFFER=$entry
         CURSOR=$#BUFFER
+        _atuin_clear_suggestion
     else
         (( _atuin_offset -= dir ))
     fi
@@ -95,7 +102,6 @@ _atuin_up() { _atuin_history_step 1 }
 _atuin_down() { _atuin_history_step -1 }
 zle -N _atuin_up
 zle -N _atuin_down
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(_atuin_up _atuin_down)
 
 function zvm_after_init() {
     zvm_bindkey viins '^R' atuin-search-viins
