@@ -12,9 +12,9 @@
         auto_sync = true;
         sync_address = "https://api.atuin.sh";
         search_mode = "fulltext";
-        threads = {
-                    capture = true;
-        };
+        threads.capture = true;
+        output.enabled = true;
+        pty_proxy.enabled = true;
       };
       daemon.enable = true;
     }
