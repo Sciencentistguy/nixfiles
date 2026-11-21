@@ -1,0 +1,909 @@
+diff --git a/clutter/clutter/clutter-color-state-params.c b/clutter/clutter/clutter-color-state-params.c
+index 3768bd9..0a42eea 100644
+--- a/clutter/clutter/clutter-color-state-params.c
++++ b/clutter/clutter/clutter-color-state-params.c
+@@ -53,6 +53,7 @@ typedef struct _ClutterColorStateParams
+   ClutterColorimetry colorimetry;
+   ClutterEOTF eotf;
+   ClutterLuminance luminance;
++  ClutterColorMasteringMetadata mastering;
+ } ClutterColorStateParams;
+ 
+ G_DEFINE_TYPE (ClutterColorStateParams,
+@@ -93,6 +94,15 @@ clutter_color_state_params_get_luminance (ClutterColorStateParams *color_state_p
+     }
+ }
+ 
++const ClutterColorMasteringMetadata *
++clutter_color_state_params_get_mastering_metadata (ClutterColorStateParams *color_state_params)
++{
++  g_return_val_if_fail (CLUTTER_IS_COLOR_STATE_PARAMS (color_state_params),
++                        NULL);
++
++  return &color_state_params->mastering;
++}
++
+ static void
+ clutter_color_state_params_finalize (GObject *object)
+ {
+@@ -132,7 +142,11 @@ clutter_color_state_params_equals (ClutterColorState *color_state,
+   target_lum =
+     clutter_color_state_params_get_luminance (other_color_state_params);
+ 
+-  return clutter_luminance_equal (lum, target_lum);
++  if (!clutter_luminance_equal (lum, target_lum))
++    return FALSE;
++
++  return clutter_mastering_metadata_equal (&color_state_params->mastering,
++                                           &other_color_state_params->mastering);
+ }
+ 
+ static char *
+@@ -141,7 +155,9 @@ clutter_color_state_params_to_string (ClutterColorState *color_state)
+   ClutterColorStateParams *color_state_params =
+     CLUTTER_COLOR_STATE_PARAMS (color_state);
+   g_autofree char *primaries_name = NULL;
++  g_autofree char *mastering_str = NULL;
+   const char *transfer_function_name;
++  const ClutterColorMasteringMetadata *mastering;
+   const ClutterLuminance *lum;
+   uint64_t id;
+ 
+@@ -149,20 +165,33 @@ clutter_color_state_params_to_string (ClutterColorState *color_state)
+   primaries_name = clutter_colorimetry_to_string (color_state_params->colorimetry);
+   transfer_function_name = clutter_eotf_to_string (color_state_params->eotf);
+   lum = clutter_color_state_params_get_luminance (color_state_params);
++  mastering = &color_state_params->mastering;
++
++  if (mastering->has_primaries || mastering->has_luminance ||
++      mastering->has_max_cll || mastering->has_max_fall)
++    {
++      mastering_str =
++        g_strdup_printf (", mastering: (primaries: %s, min lum: %f, "
++                         "max lum: %f, max CLL: %f, max FALL: %f)",
++                         mastering->has_primaries ? "set" : "unset",
++                         mastering->min_lum,
++                         mastering->max_lum,
++                         mastering->max_cll,
++                         mastering->max_fall);
++    }
+ 
+   return g_strdup_printf ("ClutterColorState %" G_GUINT64_FORMAT " "
+                           "(primaries: %s, transfer function: %s, "
+                           "min lum: %f, max lum: %f, ref lum: %f, "
+-                          "mastering max lum: %f)",
++                          "mastering max lum: %f%s)",
+                           id,
+                           primaries_name,
+                           transfer_function_name,
+                           lum->min,
+                           lum->max,
+                           lum->ref,
+-                          lum->mastering_max);
+-
+-
++                          lum->mastering_max,
++                          mastering_str ? mastering_str : "");
+ }
+ 
+ static ClutterEncodingRequiredFormat
+@@ -438,6 +467,43 @@ clutter_color_state_params_new_from_primitives (ClutterContext     *context,
+                                               luminance.mastering_max);
+ }
+ 
++/**
++ * clutter_color_state_params_new_with_mastering:
++ *
++ * Like clutter_color_state_params_new_from_primitives(), but additionally
++ * attaches optional mastering display metadata describing the color volume
++ * the content was authored for.
++ *
++ * Return value: A new ClutterColorState object.
++ **/
++ClutterColorState *
++clutter_color_state_params_new_with_mastering (ClutterContext                      *context,
++                                               ClutterColorimetry                   colorimetry,
++                                               ClutterEOTF                          eotf,
++                                               ClutterLuminance                     luminance,
++                                               const ClutterColorMasteringMetadata *mastering)
++{
++  ClutterColorState *color_state;
++  ClutterColorStateParams *color_state_params;
++
++  if (mastering && mastering->has_luminance && mastering->max_lum > 0.0f &&
++      luminance.type == CLUTTER_LUMINANCE_TYPE_EXPLICIT)
++    luminance.mastering_max = mastering->max_lum;
++
++  color_state = clutter_color_state_params_new_from_primitives (context,
++                                                                colorimetry,
++                                                                eotf,
++                                                                luminance);
++
++  if (mastering)
++    {
++      color_state_params = CLUTTER_COLOR_STATE_PARAMS (color_state);
++      color_state_params->mastering = *mastering;
++    }
++
++  return color_state;
++}
++
+ static gboolean
+ cicp_primaries_to_clutter (ClutterCicpPrimaries   primaries,
+                            ClutterColorimetry    *colorimetry,
+diff --git a/clutter/clutter/clutter-color-state-params.h b/clutter/clutter/clutter-color-state-params.h
+index ced7509..8c812fe 100644
+--- a/clutter/clutter/clutter-color-state-params.h
++++ b/clutter/clutter/clutter-color-state-params.h
+@@ -56,6 +56,13 @@ ClutterColorState * clutter_color_state_params_new_from_primitives (ClutterConte
+                                                                     ClutterEOTF         eotf,
+                                                                     ClutterLuminance    luminance);
+ 
++CLUTTER_EXPORT
++ClutterColorState * clutter_color_state_params_new_with_mastering (ClutterContext                      *context,
++                                                                   ClutterColorimetry                   colorimetry,
++                                                                   ClutterEOTF                          eotf,
++                                                                   ClutterLuminance                     luminance,
++                                                                   const ClutterColorMasteringMetadata *mastering);
++
+ CLUTTER_EXPORT
+ ClutterColorState * clutter_color_state_params_new_from_cicp (ClutterContext     *context,
+                                                               const ClutterCicp  *cicp,
+@@ -70,4 +77,7 @@ const ClutterEOTF * clutter_color_state_params_get_eotf (ClutterColorStateParams
+ CLUTTER_EXPORT
+ const ClutterLuminance * clutter_color_state_params_get_luminance (ClutterColorStateParams *color_state_params);
+ 
++CLUTTER_EXPORT
++const ClutterColorMasteringMetadata * clutter_color_state_params_get_mastering_metadata (ClutterColorStateParams *color_state_params);
++
+ G_END_DECLS
+diff --git a/clutter/clutter/clutter-color-utils.c b/clutter/clutter/clutter-color-utils.c
+index e271141..b7d7b95 100644
+--- a/clutter/clutter/clutter-color-utils.c
++++ b/clutter/clutter/clutter-color-utils.c
+@@ -301,6 +301,40 @@ clutter_luminance_equal (const ClutterLuminance *lum,
+          luminance_value_approx_equal (lum->ref, other_lum->ref, 0.1f);
+ }
+ 
++gboolean
++clutter_mastering_metadata_equal (const ClutterColorMasteringMetadata *mastering,
++                                  const ClutterColorMasteringMetadata *other_mastering)
++{
++  if (mastering->has_primaries != other_mastering->has_primaries ||
++      mastering->has_luminance != other_mastering->has_luminance ||
++      mastering->has_max_cll != other_mastering->has_max_cll ||
++      mastering->has_max_fall != other_mastering->has_max_fall)
++    return FALSE;
++
++  if (mastering->has_primaries &&
++      !clutter_primaries_equal (&mastering->primaries, &other_mastering->primaries))
++    return FALSE;
++
++  if (mastering->has_luminance &&
++      (!luminance_value_approx_equal (mastering->min_lum,
++                                      other_mastering->min_lum, 0.1f) ||
++       !luminance_value_approx_equal (mastering->max_lum,
++                                      other_mastering->max_lum, 0.1f)))
++    return FALSE;
++
++  if (mastering->has_max_cll &&
++      !luminance_value_approx_equal (mastering->max_cll,
++                                     other_mastering->max_cll, 0.1f))
++    return FALSE;
++
++  if (mastering->has_max_fall &&
++      !luminance_value_approx_equal (mastering->max_fall,
++                                     other_mastering->max_fall, 0.1f))
++    return FALSE;
++
++  return TRUE;
++}
++
+ const ClutterPrimaries *
+ clutter_colorimetry_get_primaries (const ClutterColorimetry *colorimetry)
+ {
+diff --git a/clutter/clutter/clutter-color-utils.h b/clutter/clutter/clutter-color-utils.h
+index 3bc1845..06b8d6b 100644
+--- a/clutter/clutter/clutter-color-utils.h
++++ b/clutter/clutter/clutter-color-utils.h
+@@ -112,6 +112,25 @@ typedef struct _ClutterLuminance
+   float mastering_max;
+ } ClutterLuminance;
+ 
++/*
++ * Optional mastering display metadata, describing the color volume the
++ * content was actually authored for. Unlike the container colorimetry and
++ * luminance, these values are hints and may exceed the container volume
++ * (extended target volume).
++ */
++typedef struct _ClutterColorMasteringMetadata
++{
++  gboolean has_primaries;
++  ClutterPrimaries primaries;
++  gboolean has_luminance;
++  float min_lum;
++  float max_lum;
++  gboolean has_max_cll;
++  float max_cll;
++  gboolean has_max_fall;
++  float max_fall;
++} ClutterColorMasteringMetadata;
++
+ typedef enum _ClutterCicpPrimaries
+ {
+   CLUTTER_CICP_PRIMARIES_SRGB = 1,
+@@ -189,6 +208,10 @@ CLUTTER_EXPORT
+ gboolean clutter_luminance_equal (const ClutterLuminance *lum,
+                                   const ClutterLuminance *other_lum);
+ 
++CLUTTER_EXPORT
++gboolean clutter_mastering_metadata_equal (const ClutterColorMasteringMetadata *mastering,
++                                           const ClutterColorMasteringMetadata *other_mastering);
++
+ CLUTTER_EXPORT
+ void clutter_xyY_to_XYZ (float            x,
+                          float            y,
+diff --git a/src/backends/meta-color-device.c b/src/backends/meta-color-device.c
+index 2006fdd..f7a7066 100644
+--- a/src/backends/meta-color-device.c
++++ b/src/backends/meta-color-device.c
+@@ -685,16 +685,85 @@ on_manager_ready (MetaColorManager *color_manager,
+   create_cd_device (color_device);
+ }
+ 
++/* Reference white luminance used for PQ HDR content, matching the PQ
++ * default luminance in clutter-color-state-params.c. */
++#define HDR_REFERENCE_LUMINANCE 203.0f
++
+ static void
+-get_color_metadata_from_monitor (MetaMonitor        *monitor,
+-                                 ClutterColorimetry *colorimetry,
+-                                 ClutterEOTF        *eotf)
++fill_hdr_metadata_from_edid (const MetaEdidInfo            *edid_info,
++                             ClutterLuminance              *luminance,
++                             ClutterColorMasteringMetadata *mastering)
++{
++  const struct di_hdr_static_metadata *hdr = &edid_info->hdr_static_metadata;
++  const struct di_color_primaries *primaries =
++    &edid_info->default_color_primaries;
++  float max_lum = (float) hdr->desired_content_max_luminance;
++  float min_lum = (float) hdr->desired_content_min_luminance;
++  float max_fall = (float) hdr->desired_content_max_frame_avg_luminance;
++
++  if (max_lum > 0.0f)
++    {
++      /* For PQ the encoded signal range is fixed (0-10000 nits per spec); the
++       * display's actual capability is carried as the mastering luminance so
++       * the tone mapper compresses content into the panel's range. Seed the
++       * container with the PQ defaults so the inverse-EOTF chain encodes
++       * values relative to 10000 cd/m² as the spec requires; override only
++       * the mastering peak with the EDID value. */
++      ClutterEOTF pq_eotf = {
++        .type = CLUTTER_EOTF_TYPE_NAMED,
++        .tf_name = CLUTTER_TRANSFER_FUNCTION_PQ,
++      };
++      *luminance = *clutter_eotf_get_default_luminance (pq_eotf);
++      luminance->type = CLUTTER_LUMINANCE_TYPE_EXPLICIT;
++      luminance->ref = HDR_REFERENCE_LUMINANCE;
++      luminance->mastering_max = max_lum;
++
++      mastering->has_luminance = TRUE;
++      mastering->min_lum = min_lum;
++      mastering->max_lum = max_lum;
++
++      /* Report the display's peak luminance as the target max content light
++       * level too. Clients (e.g. Wine's Wayland driver) read target_max_cll
++       * to derive the peak brightness they advertise to applications. */
++      mastering->has_max_cll = TRUE;
++      mastering->max_cll = max_lum;
++    }
++
++  if (primaries->has_primaries)
++    {
++      mastering->has_primaries = TRUE;
++      mastering->primaries.r_x = primaries->primary[0].x;
++      mastering->primaries.r_y = primaries->primary[0].y;
++      mastering->primaries.g_x = primaries->primary[1].x;
++      mastering->primaries.g_y = primaries->primary[1].y;
++      mastering->primaries.b_x = primaries->primary[2].x;
++      mastering->primaries.b_y = primaries->primary[2].y;
++      mastering->primaries.w_x = primaries->default_white.x;
++      mastering->primaries.w_y = primaries->default_white.y;
++    }
++
++  if (max_fall > 0.0f)
++    {
++      mastering->has_max_fall = TRUE;
++      mastering->max_fall = max_fall;
++    }
++}
++
++static void
++get_color_metadata_from_monitor (MetaMonitor                   *monitor,
++                                 ClutterColorimetry            *colorimetry,
++                                 ClutterEOTF                   *eotf,
++                                 ClutterLuminance              *luminance,
++                                 ClutterColorMasteringMetadata *mastering)
+ {
+   MetaOutput *output;
+   const MetaOutputInfo *output_info;
+   MetaEdidInfo *edid_info;
+   const struct di_color_primaries *primaries;
+ 
++  *luminance = (ClutterLuminance) { .type = CLUTTER_LUMINANCE_TYPE_DERIVED };
++  *mastering = (ClutterColorMasteringMetadata) { 0 };
++
+   switch (meta_monitor_get_color_mode (monitor))
+     {
+     case META_COLOR_MODE_DEFAULT:
+@@ -708,6 +777,12 @@ get_color_metadata_from_monitor (MetaMonitor        *monitor,
+       colorimetry->colorspace = CLUTTER_COLORSPACE_BT2020;
+       eotf->type = CLUTTER_EOTF_TYPE_NAMED;
+       eotf->tf_name = CLUTTER_TRANSFER_FUNCTION_PQ;
++
++      output = meta_monitor_get_main_output (monitor);
++      output_info = meta_output_get_info (output);
++      edid_info = output_info->edid_info;
++      if (edid_info)
++        fill_hdr_metadata_from_edid (edid_info, luminance, mastering);
+       return;
+     case META_COLOR_MODE_SDR_NATIVE:
+       output = meta_monitor_get_main_output (monitor);
+@@ -755,9 +830,11 @@ update_color_state (MetaColorDevice *color_device)
+   g_auto (ClutterColorimetry) colorimetry = { 0 };
+   ClutterEOTF eotf;
+   ClutterLuminance luminance;
++  ClutterColorMasteringMetadata mastering;
+   UpdateResult result = 0;
+ 
+-  get_color_metadata_from_monitor (monitor, &colorimetry, &eotf);
++  get_color_metadata_from_monitor (monitor, &colorimetry, &eotf,
++                                   &luminance, &mastering);
+ 
+   if (meta_debug_control_is_hdr_forced (debug_control))
+     {
+@@ -765,15 +842,19 @@ update_color_state (MetaColorDevice *color_device)
+       colorimetry.colorspace = CLUTTER_COLORSPACE_BT2020;
+       eotf.type = CLUTTER_EOTF_TYPE_NAMED;
+       eotf.tf_name = CLUTTER_TRANSFER_FUNCTION_PQ;
++      luminance = (ClutterLuminance) { .type = CLUTTER_LUMINANCE_TYPE_DERIVED };
++      mastering = (ClutterColorMasteringMetadata) { 0 };
+     }
+ 
+-  luminance = *clutter_eotf_get_default_luminance (eotf);
++  if (luminance.type == CLUTTER_LUMINANCE_TYPE_DERIVED)
++    luminance = *clutter_eotf_get_default_luminance (eotf);
+   luminance.ref = luminance.ref * color_device->reference_luminance_factor;
+ 
+-  color_state = clutter_color_state_params_new_from_primitives (clutter_context,
+-                                                                colorimetry,
+-                                                                eotf,
+-                                                                luminance);
++  color_state = clutter_color_state_params_new_with_mastering (clutter_context,
++                                                               colorimetry,
++                                                               eotf,
++                                                               luminance,
++                                                               &mastering);
+ 
+   if (!color_device->color_state ||
+       !clutter_color_state_equals (color_device->color_state, color_state))
+diff --git a/src/tests/edid-tests.c b/src/tests/edid-tests.c
+index dbf4dde..fe3224b 100644
+--- a/src/tests/edid-tests.c
++++ b/src/tests/edid-tests.c
+@@ -78,4 +78,13 @@ main (int    argc,
+   g_assert_true (edid_info->hdr_static_metadata.pq);
+   g_assert_true (edid_info->colorimetry.bt2020_rgb);
+   g_assert_true (edid_info->colorimetry.bt2020_ycc);
++
++  /* The default color primaries feed the HDR mastering display metadata
++   * reported to clients via the color-management protocol. */
++  g_assert_true (edid_info->default_color_primaries.has_primaries);
++  g_assert_true (edid_info->default_color_primaries.has_default_white_point);
++  g_assert_cmpfloat (edid_info->default_color_primaries.primary[0].x, >, 0.0f);
++  g_assert_cmpfloat (edid_info->default_color_primaries.primary[0].y, >, 0.0f);
++  g_assert_cmpfloat (edid_info->hdr_static_metadata.desired_content_min_luminance,
++                     >=, 0.0f);
+ }
+diff --git a/src/tests/wayland-color-management-test.c b/src/tests/wayland-color-management-test.c
+index f1ee183..39b8664 100644
+--- a/src/tests/wayland-color-management-test.c
++++ b/src/tests/wayland-color-management-test.c
+@@ -78,6 +78,7 @@ color_management (void)
+   const ClutterColorimetry *colorimetry;
+   const ClutterEOTF *eotf;
+   const ClutterLuminance *lum;
++  const ClutterColorMasteringMetadata *mastering;
+   const MtkAnonymousFile *file;
+ 
+   wayland_test_client = meta_wayland_test_client_new (test_context,
+@@ -161,6 +162,51 @@ color_management (void)
+   g_assert_nonnull (file);
+   emit_sync_event (4);
+ 
++  wait_for_sync_point (5);
++  color_state = get_window_color_state (test_window);
++  color_state_params = CLUTTER_COLOR_STATE_PARAMS (color_state);
++  colorimetry = clutter_color_state_params_get_colorimetry (color_state_params);
++  g_assert_cmpuint (colorimetry->type, ==, CLUTTER_COLORIMETRY_TYPE_COLORSPACE);
++  g_assert_cmpuint (colorimetry->colorspace, ==, CLUTTER_COLORSPACE_BT2020);
++  mastering = clutter_color_state_params_get_mastering_metadata (color_state_params);
++  g_assert_true (mastering->has_primaries);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.r_x, 0.64f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.r_y, 0.33f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.g_x, 0.30f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.g_y, 0.60f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.b_x, 0.15f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.b_y, 0.06f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.w_x, 0.34567f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (mastering->primaries.w_y, 0.35850f, TEST_COLOR_EPSILON);
++  g_assert_true (mastering->has_luminance);
++  g_assert_cmpfloat_with_epsilon (mastering->min_lum, 0.005f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat (mastering->max_lum, ==, 1000.0f);
++  g_assert_true (mastering->has_max_cll);
++  g_assert_cmpfloat (mastering->max_cll, ==, 1000.0f);
++  g_assert_true (mastering->has_max_fall);
++  g_assert_cmpfloat (mastering->max_fall, ==, 400.0f);
++  lum = clutter_color_state_params_get_luminance (color_state_params);
++  g_assert_cmpfloat (lum->mastering_max, ==, 1000.0f);
++  emit_sync_event (5);
++
++  wait_for_sync_point (6);
++  color_state = get_window_color_state (test_window);
++  color_state_params = CLUTTER_COLOR_STATE_PARAMS (color_state);
++  colorimetry = clutter_color_state_params_get_colorimetry (color_state_params);
++  g_assert_cmpuint (colorimetry->type, ==, CLUTTER_COLORIMETRY_TYPE_COLORSPACE);
++  g_assert_cmpuint (colorimetry->colorspace, ==, CLUTTER_COLORSPACE_SRGB);
++  eotf = clutter_color_state_params_get_eotf (color_state_params);
++  g_assert_cmpuint (eotf->type, ==, CLUTTER_EOTF_TYPE_NAMED);
++  g_assert_cmpuint (eotf->tf_name, ==, CLUTTER_TRANSFER_FUNCTION_LINEAR);
++  lum = clutter_color_state_params_get_luminance (color_state_params);
++  g_assert_cmpuint (lum->type, ==, CLUTTER_LUMINANCE_TYPE_EXPLICIT);
++  g_assert_cmpfloat_with_epsilon (lum->min, 0.0f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (lum->max, 80.0f, TEST_COLOR_EPSILON);
++  g_assert_cmpfloat_with_epsilon (lum->ref, 203.0f, TEST_COLOR_EPSILON);
++  mastering = clutter_color_state_params_get_mastering_metadata (color_state_params);
++  g_assert_true (mastering->has_primaries);
++  emit_sync_event (6);
++
+   meta_wayland_test_client_finish (wayland_test_client);
+ }
+ 
+diff --git a/src/tests/wayland-test-clients/color-management.c b/src/tests/wayland-test-clients/color-management.c
+index 98f76e9..8d3282f 100644
+--- a/src/tests/wayland-test-clients/color-management.c
++++ b/src/tests/wayland-test-clients/color-management.c
+@@ -252,6 +252,82 @@ create_image_description_from_icc (WaylandDisplay                  *display,
+   g_assert_cmpint (image_description_context.image_description_id, >, 0);
+ }
+ 
++static void
++create_image_description_with_mastering (WaylandDisplay                  *display,
++                                         struct wp_image_description_v1 **image_description)
++{
++  struct wp_image_description_creator_params_v1 *creator_params;
++  ImageDescriptionContext image_description_context;
++
++  creator_params =
++    wp_color_manager_v1_create_parametric_creator (display->color_management_mgr);
++
++  wp_image_description_creator_params_v1_set_primaries_named (
++    creator_params,
++    WP_COLOR_MANAGER_V1_PRIMARIES_BT2020);
++  wp_image_description_creator_params_v1_set_tf_named (
++    creator_params,
++    WP_COLOR_MANAGER_V1_TRANSFER_FUNCTION_ST2084_PQ);
++  wp_image_description_creator_params_v1_set_luminances (
++    creator_params,
++    float_to_scaled_uint32 (0.005f),
++    10000,
++    203);
++  wp_image_description_creator_params_v1_set_mastering_display_primaries (
++    creator_params,
++    float_to_scaled_uint32_chromaticity (custom_primaries.r_x),
++    float_to_scaled_uint32_chromaticity (custom_primaries.r_y),
++    float_to_scaled_uint32_chromaticity (custom_primaries.g_x),
++    float_to_scaled_uint32_chromaticity (custom_primaries.g_y),
++    float_to_scaled_uint32_chromaticity (custom_primaries.b_x),
++    float_to_scaled_uint32_chromaticity (custom_primaries.b_y),
++    float_to_scaled_uint32_chromaticity (custom_primaries.w_x),
++    float_to_scaled_uint32_chromaticity (custom_primaries.w_y));
++  wp_image_description_creator_params_v1_set_mastering_luminance (
++    creator_params,
++    float_to_scaled_uint32 (0.005f),
++    1000);
++  wp_image_description_creator_params_v1_set_max_cll (creator_params, 1000);
++  wp_image_description_creator_params_v1_set_max_fall (creator_params, 400);
++
++  image_description_context.image_description_id = 0;
++  image_description_context.creation_failed = FALSE;
++
++  *image_description =
++    wp_image_description_creator_params_v1_create (creator_params);
++  wp_image_description_v1_add_listener (
++    *image_description,
++    &image_description_listener,
++    &image_description_context);
++
++  wait_for_image_description_ready (&image_description_context, display);
++
++  g_assert_false (image_description_context.creation_failed);
++  g_assert_cmpint (image_description_context.image_description_id, >, 0);
++}
++
++static void
++create_image_description_windows_scrgb (WaylandDisplay                  *display,
++                                        struct wp_image_description_v1 **image_description)
++{
++  ImageDescriptionContext image_description_context;
++
++  image_description_context.image_description_id = 0;
++  image_description_context.creation_failed = FALSE;
++
++  *image_description =
++    wp_color_manager_v1_create_windows_scrgb (display->color_management_mgr);
++  wp_image_description_v1_add_listener (
++    *image_description,
++    &image_description_listener,
++    &image_description_context);
++
++  wait_for_image_description_ready (&image_description_context, display);
++
++  g_assert_false (image_description_context.creation_failed);
++  g_assert_cmpint (image_description_context.image_description_id, >, 0);
++}
++
+ int
+ main (int    argc,
+       char **argv)
+@@ -363,6 +439,32 @@ main (int    argc,
+   test_driver_sync_point (display->test_driver, 4, NULL);
+   wait_for_sync_event (display, 4);
+ 
++  create_image_description_with_mastering (display, &image_description);
++  wp_color_management_surface_v1_set_image_description (
++    color_surface,
++    image_description,
++    WP_COLOR_MANAGER_V1_RENDER_INTENT_PERCEPTUAL);
++
++  wl_surface_commit (surface);
++
++  wp_image_description_v1_destroy (image_description);
++
++  test_driver_sync_point (display->test_driver, 5, NULL);
++  wait_for_sync_event (display, 5);
++
++  create_image_description_windows_scrgb (display, &image_description);
++  wp_color_management_surface_v1_set_image_description (
++    color_surface,
++    image_description,
++    WP_COLOR_MANAGER_V1_RENDER_INTENT_PERCEPTUAL);
++
++  wl_surface_commit (surface);
++
++  wp_image_description_v1_destroy (image_description);
++
++  test_driver_sync_point (display->test_driver, 6, NULL);
++  wait_for_sync_event (display, 6);
++
+   wp_color_management_surface_v1_destroy (color_surface);
+ 
+   return EXIT_SUCCESS;
+diff --git a/src/wayland/meta-wayland-color-management.c b/src/wayland/meta-wayland-color-management.c
+index 5558813..c454112 100644
+--- a/src/wayland/meta-wayland-color-management.c
++++ b/src/wayland/meta-wayland-color-management.c
+@@ -133,6 +133,7 @@ typedef struct _MetaWaylandCreatorParams
+   ClutterColorimetry colorimetry;
+   ClutterEOTF eotf;
+   ClutterLuminance lum;
++  ClutterColorMasteringMetadata mastering;
+ 
+   gboolean is_colorimetry_set;
+   gboolean is_eotf_set;
+@@ -540,6 +541,12 @@ send_primaries (struct wl_resource     *resource,
+     float_to_scaled_uint32_chromaticity (primaries->b_y),
+     float_to_scaled_uint32_chromaticity (primaries->w_x),
+     float_to_scaled_uint32_chromaticity (primaries->w_y));
++}
++
++static void
++send_target_primaries (struct wl_resource     *resource,
++                       const ClutterPrimaries *primaries)
++{
+   wp_image_description_info_v1_send_target_primaries (
+     resource,
+     float_to_scaled_uint32_chromaticity (primaries->r_x),
+@@ -560,7 +567,8 @@ send_information_from_params (struct wl_resource *info_resource,
+   enum wp_color_manager_v1_transfer_function tf;
+   ClutterColorStateParams *color_state_params;
+   const ClutterColorimetry *colorimetry;
+-  const ClutterPrimaries *primaries;
++  const ClutterPrimaries *container_primaries = NULL;
++  const ClutterColorMasteringMetadata *mastering;
+   const ClutterEOTF *eotf;
+   const ClutterLuminance *lum;
+ 
+@@ -574,14 +582,16 @@ send_information_from_params (struct wl_resource *info_resource,
+       wp_image_description_info_v1_send_primaries_named (info_resource,
+                                                          primaries_named);
+ 
+-      primaries = clutter_colorspace_to_primaries (colorimetry->colorspace);
+-      send_primaries (info_resource, primaries);
++      container_primaries =
++        clutter_colorspace_to_primaries (colorimetry->colorspace);
+       break;
+     case CLUTTER_COLORIMETRY_TYPE_PRIMARIES:
+-      send_primaries (info_resource, colorimetry->primaries);
++      container_primaries = colorimetry->primaries;
+       break;
+     }
+ 
++  send_primaries (info_resource, container_primaries);
++
+   eotf = clutter_color_state_params_get_eotf (color_state_params);
+   switch (eotf->type)
+     {
+@@ -604,9 +614,34 @@ send_information_from_params (struct wl_resource *info_resource,
+                                                 float_to_scaled_uint32 (lum->min),
+                                                 (uint32_t) lum->max,
+                                                 (uint32_t) lum->ref);
+-  wp_image_description_info_v1_send_target_luminance (info_resource,
+-                                                      float_to_scaled_uint32 (lum->min),
+-                                                      (uint32_t) lum->max);
++
++  mastering = clutter_color_state_params_get_mastering_metadata (color_state_params);
++
++  /* The target color volume: the mastering display metadata when known,
++   * otherwise the container color volume itself. */
++  if (mastering->has_primaries)
++    send_target_primaries (info_resource, &mastering->primaries);
++  else
++    send_target_primaries (info_resource, container_primaries);
++
++  if (mastering->has_luminance && mastering->max_lum > 0.0f)
++    wp_image_description_info_v1_send_target_luminance (
++      info_resource,
++      float_to_scaled_uint32 (mastering->min_lum),
++      (uint32_t) mastering->max_lum);
++  else
++    wp_image_description_info_v1_send_target_luminance (
++      info_resource,
++      float_to_scaled_uint32 (lum->min),
++      (uint32_t) lum->max);
++
++  if (mastering->has_max_cll && mastering->max_cll > 0.0f)
++    wp_image_description_info_v1_send_target_max_cll (info_resource,
++                                                      (uint32_t) mastering->max_cll);
++
++  if (mastering->has_max_fall && mastering->max_fall > 0.0f)
++    wp_image_description_info_v1_send_target_max_fall (info_resource,
++                                                       (uint32_t) mastering->max_fall);
+ }
+ 
+ static void
+@@ -1283,10 +1318,11 @@ creator_params_create (struct wl_client   *client,
+                         id);
+ 
+   color_state =
+-    clutter_color_state_params_new_from_primitives (clutter_context,
+-                                                    creator_params->colorimetry,
+-                                                    creator_params->eotf,
+-                                                    creator_params->lum);
++    clutter_color_state_params_new_with_mastering (clutter_context,
++                                                   creator_params->colorimetry,
++                                                   creator_params->eotf,
++                                                   creator_params->lum,
++                                                   &creator_params->mastering);
+ 
+   image_desc = meta_wayland_image_description_new (color_manager,
+                                                    image_desc_resource);
+@@ -1491,14 +1527,8 @@ creator_params_set_luminance (struct wl_client   *client,
+       return;
+     }
+ 
+-  if (ref > max)
+-    {
+-      wl_resource_post_error (resource,
+-                              WP_IMAGE_DESCRIPTION_CREATOR_PARAMS_V1_ERROR_INVALID_LUMINANCE,
+-                              "The reference luminance is bigger than the maximum luminance, "
+-                              "extended target volume unsupported");
+-      return;
+-    }
++  /* A reference luminance above the maximum luminance is allowed: it
++   * indicates an extended target volume, which we advertise support for. */
+ 
+   creator_params->lum.type = CLUTTER_LUMINANCE_TYPE_EXPLICIT;
+   creator_params->lum.min = min;
+@@ -1519,9 +1549,28 @@ creator_params_set_mastering_display_primaries (struct wl_client   *client,
+                                                 int32_t             w_x,
+                                                 int32_t             w_y)
+ {
+-  wl_resource_post_error (resource,
+-                          WP_COLOR_MANAGER_V1_ERROR_UNSUPPORTED_FEATURE,
+-                          "Setting mastering display primaries is not supported");
++  MetaWaylandCreatorParams *creator_params =
++    wl_resource_get_user_data (resource);
++  ClutterPrimaries *primaries = &creator_params->mastering.primaries;
++
++  if (creator_params->mastering.has_primaries)
++    {
++      wl_resource_post_error (resource,
++                              WP_IMAGE_DESCRIPTION_CREATOR_PARAMS_V1_ERROR_ALREADY_SET,
++                              "The mastering display primaries were already set");
++      return;
++    }
++
++  primaries->r_x = scaled_uint32_to_float_chromaticity (r_x);
++  primaries->r_y = scaled_uint32_to_float_chromaticity (r_y);
++  primaries->g_x = scaled_uint32_to_float_chromaticity (g_x);
++  primaries->g_y = scaled_uint32_to_float_chromaticity (g_y);
++  primaries->b_x = scaled_uint32_to_float_chromaticity (b_x);
++  primaries->b_y = scaled_uint32_to_float_chromaticity (b_y);
++  primaries->w_x = scaled_uint32_to_float_chromaticity (w_x);
++  primaries->w_y = scaled_uint32_to_float_chromaticity (w_y);
++
++  creator_params->mastering.has_primaries = TRUE;
+ }
+ 
+ static void
+@@ -1530,9 +1579,33 @@ creator_params_set_mastering_luminance (struct wl_client   *client,
+                                         uint32_t            min_lum,
+                                         uint32_t            max_lum)
+ {
+-  wl_resource_post_error (resource,
+-                          WP_COLOR_MANAGER_V1_ERROR_UNSUPPORTED_FEATURE,
+-                          "Setting mastering display luminances is not supported");
++  MetaWaylandCreatorParams *creator_params =
++    wl_resource_get_user_data (resource);
++  float min, max;
++
++  if (creator_params->mastering.has_luminance)
++    {
++      wl_resource_post_error (resource,
++                              WP_IMAGE_DESCRIPTION_CREATOR_PARAMS_V1_ERROR_ALREADY_SET,
++                              "The mastering display luminances were already set");
++      return;
++    }
++
++  min = scaled_uint32_to_float (min_lum);
++  max = (float) max_lum;
++
++  if (max > 0.0f && max <= min)
++    {
++      wl_resource_post_error (resource,
++                              WP_IMAGE_DESCRIPTION_CREATOR_PARAMS_V1_ERROR_INVALID_LUMINANCE,
++                              "The mastering maximum luminance is smaller than "
++                              "the minimum luminance");
++      return;
++    }
++
++  creator_params->mastering.has_luminance = TRUE;
++  creator_params->mastering.min_lum = min;
++  creator_params->mastering.max_lum = max;
+ }
+ 
+ static void
+@@ -1540,8 +1613,19 @@ creator_params_set_max_cll (struct wl_client   *client,
+                             struct wl_resource *resource,
+                             uint32_t            max_cll)
+ {
+-  /* ignoring for now */
+-  /* FIXME: technically we must send errors in some cases */
++  MetaWaylandCreatorParams *creator_params =
++    wl_resource_get_user_data (resource);
++
++  if (creator_params->mastering.has_max_cll)
++    {
++      wl_resource_post_error (resource,
++                              WP_IMAGE_DESCRIPTION_CREATOR_PARAMS_V1_ERROR_ALREADY_SET,
++                              "The maximum content light level was already set");
++      return;
++    }
++
++  creator_params->mastering.has_max_cll = TRUE;
++  creator_params->mastering.max_cll = (float) max_cll;
+ }
+ 
+ static void
+@@ -1549,8 +1633,19 @@ creator_params_set_max_fall (struct wl_client   *client,
+                              struct wl_resource *resource,
+                              uint32_t            max_fall)
+ {
+-  /* ignoring for now */
+-  /* FIXME: technically we must send errors in some cases */
++  MetaWaylandCreatorParams *creator_params =
++    wl_resource_get_user_data (resource);
++
++  if (creator_params->mastering.has_max_fall)
++    {
++      wl_resource_post_error (resource,
++                              WP_IMAGE_DESCRIPTION_CREATOR_PARAMS_V1_ERROR_ALREADY_SET,
++                              "The maximum frame-average light level was already set");
++      return;
++    }
++
++  creator_params->mastering.has_max_fall = TRUE;
++  creator_params->mastering.max_fall = (float) max_fall;
+ }
+ 
+ static const struct wp_image_description_creator_params_v1_interface
+@@ -1813,9 +1908,62 @@ color_manager_create_windows_scrgb (struct wl_client   *client,
+                                     struct wl_resource *resource,
+                                     uint32_t            id)
+ {
+-  wl_resource_post_error (resource,
+-                          WP_COLOR_MANAGER_V1_ERROR_UNSUPPORTED_FEATURE,
+-                          "Windows scRGB is not supported");
++  MetaWaylandColorManager *color_manager = wl_resource_get_user_data (resource);
++  ClutterContext *clutter_context = get_clutter_context (color_manager);
++  struct wl_resource *image_desc_resource;
++  g_autoptr (ClutterColorState) color_state = NULL;
++  MetaWaylandImageDescription *image_desc;
++  ClutterColorimetry colorimetry;
++  ClutterEOTF eotf;
++  ClutterLuminance luminance;
++  ClutterColorMasteringMetadata mastering;
++
++  /* Windows-scRGB: sRGB (BT.709) primaries with an extended linear transfer
++   * characteristic. R=G=B=1.0 maps to 80 cd/m². The mastering color volume
++   * may extend up to BT.2100. */
++  colorimetry = (ClutterColorimetry) {
++    .type = CLUTTER_COLORIMETRY_TYPE_COLORSPACE,
++    .colorspace = CLUTTER_COLORSPACE_SRGB,
++  };
++  eotf = (ClutterEOTF) {
++    .type = CLUTTER_EOTF_TYPE_NAMED,
++    .tf_name = CLUTTER_TRANSFER_FUNCTION_LINEAR,
++  };
++  luminance = (ClutterLuminance) {
++    .type = CLUTTER_LUMINANCE_TYPE_EXPLICIT,
++    .min = 0.0f,
++    .max = 80.0f,
++    .ref = 203.0f,
++    .mastering_max = 80.0f,
++  };
++  mastering = (ClutterColorMasteringMetadata) {
++    .has_primaries = TRUE,
++    .primaries = *clutter_colorspace_to_primaries (CLUTTER_COLORSPACE_BT2020),
++  };
++
++  color_state =
++    clutter_color_state_params_new_with_mastering (clutter_context,
++                                                   colorimetry,
++                                                   eotf,
++                                                   luminance,
++                                                   &mastering);
++
++  image_desc_resource =
++    wl_resource_create (client,
++                        &wp_image_description_v1_interface,
++                        wl_resource_get_version (resource),
++                        id);
++
++  image_desc = meta_wayland_image_description_new (color_manager,
++                                                   image_desc_resource);
++  meta_wayland_image_description_set_ready (image_desc,
++                                            color_state,
++                                            META_WAYLAND_IMAGE_DESCRIPTION_FLAGS_DEFAULT);
++
++  wl_resource_set_implementation (image_desc_resource,
++                                  &meta_wayland_image_description_interface,
++                                  image_desc,
++                                  image_description_destructor);
+ }
+ 
+ static void
+@@ -1844,6 +1992,12 @@ color_manager_send_supported_events (struct wl_resource *resource)
+                                               WP_COLOR_MANAGER_V1_FEATURE_SET_TF_POWER);
+   wp_color_manager_v1_send_supported_feature (resource,
+                                               WP_COLOR_MANAGER_V1_FEATURE_SET_LUMINANCES);
++  wp_color_manager_v1_send_supported_feature (resource,
++                                              WP_COLOR_MANAGER_V1_FEATURE_SET_MASTERING_DISPLAY_PRIMARIES);
++  wp_color_manager_v1_send_supported_feature (resource,
++                                              WP_COLOR_MANAGER_V1_FEATURE_EXTENDED_TARGET_VOLUME);
++  wp_color_manager_v1_send_supported_feature (resource,
++                                              WP_COLOR_MANAGER_V1_FEATURE_WINDOWS_SCRGB);
+   wp_color_manager_v1_send_supported_tf_named (resource,
+                                                WP_COLOR_MANAGER_V1_TRANSFER_FUNCTION_GAMMA22);
+   wp_color_manager_v1_send_supported_tf_named (resource,
