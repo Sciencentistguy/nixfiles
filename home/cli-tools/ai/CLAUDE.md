@@ -24,3 +24,6 @@
 - Prefer self-documenting code over comments.
 - Prefer modern code, standards, and libraries.
 - If a project has an AGENTS.md that documents its design, keep it up to date with changes.
+
+## Licensing
+- New projects MUST default to the MPL-2.0 licence rather than any other FOSS licence, unless specified otherwise.

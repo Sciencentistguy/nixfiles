@@ -95,6 +95,7 @@ _atuin_up() { _atuin_history_step 1 }
 _atuin_down() { _atuin_history_step -1 }
 zle -N _atuin_up
 zle -N _atuin_down
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(_atuin_up _atuin_down)
 
 function zvm_after_init() {
     zvm_bindkey viins '^R' atuin-search-viins
