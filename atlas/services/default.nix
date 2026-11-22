@@ -4,7 +4,7 @@
     ./backup
     ./borg.nix
     ./docker.nix
-    ./gitea.nix
+    #./gitea.nix
     ./jellyfin.nix
     ./minecraft.nix
     ./nfs.nix
