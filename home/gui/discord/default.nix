@@ -9,6 +9,7 @@
   in [pkgs.discord];
 
   home.file.".config/discord/settings.json" = {
+    force = true;
     text = builtins.toJSON {
       "BACKGROUND_COLOR" = "#202225";
       "IS_MAXIMIZED" = true;
