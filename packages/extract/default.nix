@@ -1,41 +1,37 @@
 {
   _7zz,
   bzip2,
-  fetchgit,
   gnutar,
   gzip,
   lib,
+  lzip,
   makeWrapper,
   stdenvNoCC,
   unrar,
   unzip,
+  xz,
+  zstd,
 }:
 stdenvNoCC.mkDerivation {
   name = "extract.sh";
 
-  src = fetchgit {
-    url = "https://gist.github.com/a99876efb08a9b4ae76846cd69274a4b.git";
-    rev = "b4858b70caa217d206b0f3b56a28950d8ea90a88";
-    sha256 = "sha256-pV1JmpIRMs6gJs48IIca5OR8S2JnT4x41+5kgr4UDfM=";
-  };
+  src = ./extract.sh;
 
   nativeBuildInputs = [makeWrapper];
 
+  dontUnpack = true;
   dontConfigure = true;
   dontBuild = true;
 
-  prePatch = ''
-    substituteInPlace extract.sh \
-      --replace-fail "7z" "7zz"
-  '';
-
   installPhase = ''
-    install -Dm755 extract.sh $out/bin/extract
+    install -Dm755 $src $out/bin/extract
+    substituteInPlace $out/bin/extract \
+      --replace-fail "7z x" "7zz x"
   '';
 
   postFixup = ''
     wrapProgram $out/bin/extract \
-      --set PATH ${lib.makeBinPath [bzip2 gnutar gzip _7zz unrar unzip]}
+      --set PATH ${lib.makeBinPath [bzip2 gnutar gzip lzip _7zz unrar unzip xz zstd]}
   '';
 
   meta = with lib; {
