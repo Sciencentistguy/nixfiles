@@ -63,7 +63,8 @@
   llvm,
   pkg-config,
   openssl,
-  elfutils, # Added elfutils here
+  elfutils,
+  zlib,
 }: arch:
 linuxPackagesFor (
   (linuxKernel.kernels.linux_latest.override {
@@ -81,9 +82,9 @@ linuxPackagesFor (
       elfutils
     ];
 
-    # Expand library path to include both openssl and elfutils
+    # Host tools are linked without an rpath, so expose their runtime libraries
     env = (old.env or {}) // {
-      LD_LIBRARY_PATH = "${lib.makeLibraryPath [ openssl elfutils ]}";
+      LD_LIBRARY_PATH = "${lib.makeLibraryPath [ openssl elfutils zlib ]}";
     };
 
     makeFlags = (old.makeFlags or []) ++ [
@@ -94,11 +95,11 @@ linuxPackagesFor (
       "KCXXFLAGS+=-march=${arch}"
     ];
 
-    # Out-of-tree modules run the installed resolve_btfids, which needs libelf.
+    # Out-of-tree modules run the installed resolve_btfids, which needs libelf and zlib.
     postFixup =
       (old.postFixup or "")
       + ''
-        patchelf --add-rpath ${lib.makeLibraryPath [elfutils]} \
+        patchelf --add-rpath ${lib.makeLibraryPath [elfutils zlib]} \
           "$dev"/lib/modules/*/build/tools/bpf/resolve_btfids/resolve_btfids
       '';
   })
