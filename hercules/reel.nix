@@ -7,7 +7,7 @@
         tv = "/media/TV";
       };
       import = {
-        operation = "copy";
+        operation = "remux";
         timid = true;
       };
       metadata = {
